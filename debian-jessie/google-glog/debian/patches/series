@@ -1,0 +1,4 @@
+20120617_fix_for_hurd.diff
+20120621_errnos.diff
+20130313_fix_test_on_ports.diff
+x32_build_fix.patch

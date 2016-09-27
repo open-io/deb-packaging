@@ -1,0 +1,7 @@
+/var/log/gunicorn/*.log {
+	compress
+	delaycompress
+	missingok
+	notifempty
+	weekly
+}

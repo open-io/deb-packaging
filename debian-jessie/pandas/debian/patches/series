@@ -1,0 +1,8 @@
+up_no_warningwas_issued
+deb_nonversioneer_version
+deb_doc_donotoverride_PYTHONPATH
+deb_skip_test_precision_i386
+deb_skip_stata_on_bigendians
+deb_disable_googleanalytics
+deb_skip_sequencelike_on_armel
+deb_skip_test_pytables_failure

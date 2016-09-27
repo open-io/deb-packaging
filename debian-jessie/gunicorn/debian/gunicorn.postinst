@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -eu
+
+USER=www-data
+GROUP=www-data
+LOG_DIR=/var/log/gunicorn
+
+case "${1}" in
+	configure)
+		# Only change perms if we don't exist
+		if [ ! -d "${LOG_DIR}" ]
+		then
+			mkdir -p ${LOG_DIR}
+			chmod 755 ${LOG_DIR}
+			chown ${USER}:${GROUP} ${LOG_DIR}
+		fi
+		;;
+
+	abort-upgrade|abort-remove|abort-deconfigure)
+		;;
+
+	*)
+		echo "postinst called with unknown argument \`${1}'" >&2
+		exit 1
+		;;
+esac
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,57 @@
+influxdb-python (2.12.0-1~oio1) jessie; urgency=medium
+
+  * Non-maintainer upload.
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 27 Apr 2016 20:48:00 +0000
+
+influxdb-python (2.12.0-1) unstable; urgency=medium
+
+  * New upstream version
+
+ -- Alexandre Viau <aviau@debian.org>  Fri, 29 Jan 2016 10:10:50 -0500
+
+influxdb-python (2.11.0-1) unstable; urgency=medium
+
+  * New upstream version
+  * Changed my email to @debian.org
+  * Updated source link in d/copyright
+
+ -- Alexandre Viau <aviau@debian.org>  Mon, 11 Jan 2016 19:48:22 -0500
+
+influxdb-python (2.10.0-1) unstable; urgency=medium
+
+  * New upstream version (Closes: #802079)
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Fri, 30 Oct 2015 16:14:53 -0400
+
+influxdb-python (2.8.0-1) unstable; urgency=low
+
+  * New upstream version
+  * debian/copyright: only mention copyright holder
+  * Changed Vcs-Browser link for cgit
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Tue, 18 Aug 2015 14:48:42 -0400
+
+influxdb-python (2.7.3-1) unstable; urgency=medium
+
+  * New upstream version
+  * Re-enable tests
+  * Re-order control fields
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Fri, 31 Jul 2015 10:20:24 -0400
+
+influxdb-python (2.6.0-1) unstable; urgency=medium
+
+  [ Alexandre Viau ]
+  * Released new upstream version (Closes: #791879)
+
+  [ Thomas Goirand ]
+  * Fixed identical short and long description.
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Sat, 11 Jul 2015 19:21:32 -0400
+
+influxdb-python (0.1.12-1) unstable; urgency=low
+
+  * Initial release (Closes: #764643)
+
+ -- Alexandre Viau <alexandre@alexandreviau.net>  Fri, 10 Oct 2014 12:56:09 -0400

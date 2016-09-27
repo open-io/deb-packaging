@@ -1,0 +1,36 @@
+Index: pkg-google-glog/configure.ac
+===================================================================
+--- pkg-google-glog.orig/configure.ac	2012-06-17 21:48:33.000000000 +0900
++++ pkg-google-glog/configure.ac	2012-06-17 22:37:32.000000000 +0900
+@@ -32,8 +32,16 @@
+ AC_CHECK_HEADER(sys/types.h, ac_cv_have_systypes_h=1, ac_cv_have_systypes_h=0)
+ AC_CHECK_HEADER(inttypes.h, ac_cv_have_inttypes_h=1, ac_cv_have_inttypes_h=0)
+ AC_CHECK_HEADERS(unistd.h, ac_cv_have_unistd_h=1, ac_cv_have_unistd_h=0)
+-AC_CHECK_HEADERS(syscall.h)
+-AC_CHECK_HEADERS(sys/syscall.h)
++# Do not check for syscall.h on GNU/Hurd, as it is available but not
++# the way to do "syscalls"
++case "$host_os" in
++  gnu*)
++    ;;
++  *)
++    AC_CHECK_HEADERS(syscall.h)
++    AC_CHECK_HEADERS(sys/syscall.h)
++    ;;
++esac
+ # For backtrace with glibc.
+ AC_CHECK_HEADERS(execinfo.h)
+ # For backtrace with libunwind.
+Index: pkg-google-glog/src/utilities.h
+===================================================================
+--- pkg-google-glog.orig/src/utilities.h	2012-06-17 21:48:33.000000000 +0900
++++ pkg-google-glog/src/utilities.h	2012-06-17 22:36:56.000000000 +0900
+@@ -48,6 +48,8 @@
+ # define OS_NETBSD
+ #elif defined(__OpenBSD__)
+ # define OS_OPENBSD
++#elif defined(__GNU__)
++# define OS_HURD
+ #else
+ // TODO(hamaji): Add other platforms.
+ #endif

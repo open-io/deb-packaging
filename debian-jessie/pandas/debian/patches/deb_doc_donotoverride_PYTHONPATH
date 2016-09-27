@@ -1,0 +1,12 @@
+--- a/doc/make.py
++++ b/doc/make.py
+@@ -26,7 +26,8 @@ import sphinx
+ import argparse
+ import jinja2
+ 
+-os.environ['PYTHONPATH'] = '..'
++# Debian's debian/rules overrides it to point to correct built pandas
++# os.environ['PYTHONPATH'] = '..'
+ 
+ SPHINX_BUILD = 'sphinxbuild'
+ 

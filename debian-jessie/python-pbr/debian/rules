@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+
+PYTHONS:=$(shell pyversions -vr)
+PYTHON3S:=$(shell py3versions -vr)
+
+UPSTREAM_GIT = git://github.com/openstack-dev/pbr.git
+include /usr/share/openstack-pkg-tools/pkgos.make
+
+export OSLO_PACKAGE_VERSION=$(VERSION)
+
+export http_proxy=127.0.0.1:9
+export https_proxy=127.0.0.1:9
+
+%:
+	dh $@ --buildsystem=python_distutils --with python2,python3,sphinxdoc
+
+override_dh_clean:
+	dh_clean -O--buildsystem=python_distutils
+	rm -rf .testrepository build __pycache__
+
+override_dh_auto_install:
+	set -e && for pyvers in $(PYTHONS); do \
+		python$$pyvers setup.py install --install-layout=deb \
+			--root $(CURDIR)/debian/python-pbr; \
+	done
+	mv $(CURDIR)/debian/python-pbr/usr/bin/pbr $(CURDIR)/debian/python-pbr/usr/bin/python2-pbr
+	set -e && for pyvers in $(PYTHON3S); do \
+		python$$pyvers setup.py install --install-layout=deb \
+			--root $(CURDIR)/debian/python3-pbr; \
+		rm -rf $(CURDIR)/debian/python3-pbr/usr/lib/python3/dist-packages/pbr/tests ; \
+	done
+	mv $(CURDIR)/debian/python3-pbr/usr/bin/pbr $(CURDIR)/debian/python3-pbr/usr/bin/python3-pbr
+
+override_dh_auto_test:
+ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
+	if ! dpkg-vendor --derives-from ubuntu; then \
+		set -e && $(CURDIR)/debian/tests/unit; \
+	fi
+endif
+
+override_dh_sphinxdoc:
+ifeq (,$(findstring nodocs, $(DEB_BUILD_OPTIONS)))
+	sphinx-build -b html doc/source $(CURDIR)/debian/python-pbr-doc/usr/share/doc/python-pbr-doc/html
+	dh_sphinxdoc -O--buildsystem=python_distutils
+endif

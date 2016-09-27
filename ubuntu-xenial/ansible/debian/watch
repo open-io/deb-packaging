@@ -1,0 +1,3 @@
+version=3
+opts=dversionmangle=s/\+dfsg// \
+https://releases.ansible.com/ansible/ ansible-([0-9\.]+).tar.gz

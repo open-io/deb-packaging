@@ -1,0 +1,9 @@
+Document: google-glog
+Title: How To Use Google Logging Library (google-glog)
+Author: Shinichiro Hamaji
+Abstract: Manual for google-glog
+Section: Programming/C++
+
+Format: HTML
+Index: /usr/share/doc/libgoogle-glog-doc/glog.html
+Files: /usr/share/doc/libgoogle-glog-doc/*.html /usr/share/doc/libgoogle-glog-doc/*.css

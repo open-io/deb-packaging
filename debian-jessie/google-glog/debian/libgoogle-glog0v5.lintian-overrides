@@ -1,0 +1,4 @@
+package-name-doesnt-match-sonames
+# This warning is reported when build without optimization.
+# But glog doesn't work correctly with optimization.
+hardening-no-fortify-functions

@@ -1,0 +1,54 @@
+Source: influxdb-python
+Section: python
+Priority: optional
+Maintainer: Alexandre Viau <aviau@debian.org>
+Build-Depends: debhelper (>= 9),
+               dh-python,
+               python-all,
+               python-setuptools,
+               python3-all,
+               python3-setuptools
+Build-Depends-Indep: python-requests (>= 1.0.3),
+                     python-mock,
+                     python-requests-mock (>= 0.5.1),
+                     python-six (>= 0.1.9),
+                     python-nose,
+                     python-pandas (>= 0.17),
+                     python3-requests,
+                     python3-mock,
+                     python3-requests-mock (>= 0.5.1),
+                     python3-six (>= 0.1.9),
+                     python3-nose,
+                     python3-pandas (>= 0.17)
+Standards-Version: 3.9.6
+Vcs-Git: git://anonscm.debian.org/collab-maint/influxdb-python.git
+Vcs-Browser: http://anonscm.debian.org/cgit/collab-maint/influxdb-python.git
+Homepage: https://pypi.python.org/pypi/influxdb
+
+Package: python-influxdb
+Architecture: all
+Depends: ${misc:Depends},
+         ${python:Depends},
+         python-requests (>= 1.0.3),
+         python-six (>= 0.1.9)
+Description: Client for InfluxDB - Python 2.7
+ API bindings for InfluxDB. Supports both InfluxDB v0.8 and InfluxDB >= 0.9.
+ InfluxDB is an open source distributed time series database with no external
+ dependencies. It's useful for recording metrics, events, and performing
+ analytics.
+ .
+ This package contains the Python 2.7 module.
+
+Package: python3-influxdb
+Architecture: all
+Depends: ${misc:Depends},
+         ${python3:Depends},
+         python3-requests,
+         python-six (>= 0.1.9)
+Description: Client for InfluxDB - Python 3.x
+ API bindings for InfluxDB. Supports both InfluxDB v0.8 and InfluxDB >= 0.9.
+ InfluxDB is an open source distributed time series database with no external
+ dependencies. It's useful for recording metrics, events, and performing
+ analytics.
+ .
+ This package contains the Python 3.x module.

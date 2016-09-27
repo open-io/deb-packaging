@@ -1,0 +1,34 @@
+diamond (20160920.git175a4db-3) xenial; urgency=medium
+
+  * Fix prerm stop command
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 20 Sep 2016 15:27:30 +0000
+
+diamond (20160916.git175a4db-2) xenial; urgency=medium
+
+  * Fix init to systemd
+  * Add patch for influxdb >0.9 support
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 16 Sep 2016 13:32:12 +0000
+
+diamond (20160916.git175a4db-1) xenial; urgency=medium
+
+  * Update
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 16 Sep 2016 08:58:09 +0000
+
+diamond (3.1.0) unstable; urgency=low
+  * new upstream
+ -- Rob Smith <kormoc@gmail.com>  Tue, 05 Nov 2012 15:19:00 -0800
+
+diamond (3.0.2) unstable; urgency=low
+  * new upstream
+ -- Rob Smith <kormoc@gmail.com>  Tue, 01 Aug 2012 21:06:00 -0800
+
+diamond (3.0.0) unstable; urgency=low
+  * new upstream
+ -- Rob Smith <kormoc@gmail.com>  Tue, 24 Jul 2012 23:56:00 -0800
+
+diamond (0.2.0) unstable; urgency=low
+  * new upstream
+ -- Christian Becker <c.becker@traviangames.com>  Tue, 16 Feb 2012 18:24:00 +0200

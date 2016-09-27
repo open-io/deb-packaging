@@ -1,0 +1,81 @@
+Source: json-c
+Priority: extra
+Maintainer: fabien boucher <fabien.dot.boucher@gmail.com>
+Uploaders: Ondřej Surý <ondrej@debian.org>
+Build-Depends: debhelper (>= 9), dh-exec, dh-autoreconf
+Standards-Version: 3.9.3.0
+Section: libs
+Homepage: https://github.com/json-c/json-c/wiki
+Vcs-Git: git://anonscm.debian.org/git/collab-maint/json-c
+Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/json-c.git;a=summary
+
+Package: libjson-c2
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: JSON manipulation library - shared library
+ This library allows you to easily construct JSON objects in C,
+ output them as JSON formatted strings and parse JSON formatted
+ strings back into the C representation of JSON objects.
+
+Package: libjson-c-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libjson-c2 (= ${binary:Version}), ${misc:Depends}
+Description: JSON manipulation library - development files
+ This library allows you to easily construct JSON objects in C,
+ output them as JSON formatted strings and parse JSON formatted
+ strings back into the C representation of JSON objects.
+ .
+ The development headers for compiling programs that use libjson-c
+ are provided by this package.
+
+Package: libjson-c2-dbg
+Section: debug
+Architecture: any
+Multi-Arch: same
+Depends: libjson-c2 (= ${binary:Version}), ${misc:Depends}
+Description: JSON manipulation library - debug symbols
+ This library allows you to easily construct JSON objects in C,
+ output them as JSON formatted strings and parse JSON formatted
+ strings back into the C representation of JSON objects.
+ .
+ The debugging symbols for tracking down bugs in applications
+ that use libjson-c are provided by this package.
+
+Package: libjson-c-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends},
+	 libjs-jquery
+Description: JSON manipulation library - documentation files
+ This library allows you to easily construct JSON objects in C,
+ output them as JSON formatted strings and parse JSON formatted
+ strings back into the C representation of JSON objects.
+ .
+ The documentation for libjson-c is provided by this package.
+
+Package: libjson0-dev
+Section: oldlibs
+Priority: extra
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+	 libjson0 (= ${binary:Version}),
+	 libjson-c-dev
+Description: JSON manipulation library (transitional package)
+ This is a transition package that can be safely removed once no
+ package depend on it.
+
+Package: libjson0
+Section: oldlibs
+Priority: extra
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: JSON manipulation library (transitional package)
+ This is a transition package that can be safely removed once no
+ package depend on it.

@@ -1,0 +1,5 @@
+python-engineio (1.0.3-1) xenial; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 14 Sep 2016 16:18:45 +0000

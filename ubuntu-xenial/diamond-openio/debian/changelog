@@ -1,0 +1,5 @@
+diamond-openio (20160916.gite39f0e9-1) xenial; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 16 Sep 2016 10:00:58 +0000

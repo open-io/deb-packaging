@@ -1,0 +1,7 @@
+diff -Naur json-c-89ae583a8624fad6be4a7d1da084b0c410e4fc63.orig/Makefile.am.inc json-c-89ae583a8624fad6be4a7d1da084b0c410e4fc63.new/Makefile.am.inc
+--- json-c-89ae583a8624fad6be4a7d1da084b0c410e4fc63.orig/Makefile.am.inc	2015-03-31 11:23:03.000000000 +0000
++++ json-c-89ae583a8624fad6be4a7d1da084b0c410e4fc63.new/Makefile.am.inc	2016-03-31 19:09:10.164000000 +0000
+@@ -1,2 +1,2 @@
+-AM_CFLAGS = -Wall -Werror -Wno-error=deprecated-declarations -Wextra -Wwrite-strings -Wno-unused-parameter -std=gnu99 -D_GNU_SOURCE -D_REENTRANT
++AM_CFLAGS = -Wall -Wno-error=deprecated-declarations -Wextra -Wwrite-strings -Wno-unused-parameter -std=gnu99 -D_GNU_SOURCE -D_REENTRANT
+ 

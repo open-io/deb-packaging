@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export DOCDIR=$(CURDIR)/debian/libgoogle-glog-doc/
+
+override_dh_installdocs-indep:
+	dh_installdocs
+	sed -i 's|http.*/favicon.ico||' \
+		$(DOCDIR)/usr/share/doc/libgoogle-glog-doc/glog.html
+
+override_dh_installchangelogs:
+	dh_installchangelogs ChangeLog
+
+override_dh_auto_test:
+	-if [ -f /proc/version ]; then $(MAKE) check; fi
+
+%:
+	dh $@ --with autoreconf --parallel
+
+get-orig-source:
+	uscan --verbose --force-download --rename
+
+.PHONY: override_dh_installdocs-indep override_dh_installchangelogs \
+	override_dh_auto_test

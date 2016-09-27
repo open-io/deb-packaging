@@ -1,0 +1,15 @@
+Source: puppet-module-openio-openiosds
+Section: unknown
+Priority: optional
+Maintainer: Romain Acciari <romain.acciari@openio.io>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: https://github.com/open-io/puppet-openiosds/
+#Vcs-Git: git://anonscm.debian.org/collab-maint/puppet-module-openio-openiosds.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/puppet-module-openio-openiosds.git;a=summary
+
+Package: puppet-module-openio-openiosds
+Architecture: all
+Depends: ${misc:Depends}, puppet (>= 3.6), puppet-module-openio-gridinit, puppet-module-puppetlabs-stdlib  (>= 4.6.0)
+Description: Puppet module for OpenIO SDS solution
+ Puppet module to install OpenIO SDS solution.

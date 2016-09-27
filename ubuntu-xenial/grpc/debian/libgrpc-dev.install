@@ -1,0 +1,17 @@
+usr/bin/*
+usr/include/grpc/
+usr/include/grpc++/
+usr/lib/libgpr.a
+usr/lib/libgpr.so
+usr/lib/libgrpc.a
+usr/lib/libgrpc.so
+usr/lib/libgrpc++.a
+usr/lib/libgrpc++.so
+usr/lib/pkgconfig/grpc.pc
+usr/lib/pkgconfig/grpc++.pc
+usr/lib/libgrpc++_unsecure.a
+usr/lib/libgrpc_unsecure.a
+usr/lib/libgrpc++_unsecure.so
+usr/lib/libgrpc_unsecure.so
+usr/lib/pkgconfig/grpc++_unsecure.pc
+usr/lib/pkgconfig/grpc_unsecure.pc

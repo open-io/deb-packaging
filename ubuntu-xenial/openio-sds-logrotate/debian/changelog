@@ -1,0 +1,5 @@
+openio-sds-logrotate (1.0-1) xenial; urgency=low
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 25 Jul 2016 18:21:17 +0000

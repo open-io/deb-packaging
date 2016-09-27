@@ -1,0 +1,122 @@
+google-glog (0.3.4-2~oio1) jessie; urgency=medium
+
+  * Non-maintainer upload.
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 16 May 2016 13:26:03 +0000
+
+google-glog (0.3.4-2) unstable; urgency=low
+
+  * Only alter documentation when it's built.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 26 Mar 2016 11:34:25 +0000
+
+google-glog (0.3.4-1) unstable; urgency=low
+
+  * Fix FTBFS on x32 (closes: #819120).
+  * Enable parallel compilation.
+  * Update homepage and source URLs.
+  * Update watch file.
+  * Update Standards-Version to 3.9.7 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 26 Mar 2016 08:27:47 +0000
+
+google-glog (0.3.4-0.1) unstable; urgency=medium
+
+  * Non maintainer upload.
+  * New upstream version.
+  * Ignore test results (the demangler is not aware of the __cxx11 symbols
+    in GCC 5's libstdc++). See #792649.
+  * Rename libgoogle-glog0 -> libgoogle-glog0v5, follow-up transition
+    for the libstdc++6 ABI changes.
+  * Re-enable optimization. Closes: #749169.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 11 Aug 2015 09:41:28 +0200
+
+google-glog (0.3.3-2) unstable; urgency=medium
+
+  * debian/control: Build-Depends on libunwind7-dev as well to backport more
+    easily.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sun, 09 Feb 2014 10:11:13 +0900
+
+google-glog (0.3.3-1) unstable; urgency=low
+
+  * New upstream release.  (Closes: #702483)
+  * Replaces debian/patches/debian/patches/20120617_fix_test_on_ppc.diff
+    with debian/patches/20130313_fix_test_on_ports.diff. Some test should
+    be run only on x86 and x86_64.
+    Thanks to Michael Terry for a patch.  (Closes: #699444, #702985)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Fri, 15 Mar 2013 00:05:54 +0900
+
+google-glog (0.3.2-4) unstable; urgency=low
+
+  * debian/control: Build-Depends on libunwind-dev on i386 as well.
+    Thanks to Matthias Klose for the fix.  (Closes: #690229)
+  * Uses dh-autoreconf to fix FTBFS on hurd-i386, which was degraded by the
+    previous release.
+    Thanks to Pino Toscano for the patch.  (Closes: #690252)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sat, 13 Oct 2012 20:59:46 +0900
+
+google-glog (0.3.2-3) unstable; urgency=low
+
+  * debian/control:
+    - Adds Laszlo Boszormenyi (GCS) into Uploaders.
+    - Build-Depends on libunwind8 as before.
+    - Corrected descriptions.
+    - libgoogle-glog-dev depends on libgflags-dev as well.
+      (Closes: #676605)
+  * Adds debian/patches/20120617_fix_test_on_ppc.diff:
+    Fixes to make a test run on powerpc.
+    (Closes: #645744)
+  * debian/rules: Freshens autotools by using autotools-dev.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Thu, 21 Jun 2012 21:07:21 +0900
+
+google-glog (0.3.2-2) unstable; urgency=low
+
+  * Put back Daigo Moriwaki as maintainer and add myself as uploader.
+  * Correct doc-base paths.
+  * Fix FTBFS on Hurd with debian/patches/20120617_fix_for_hurd.diff.
+    (http://code.google.com/p/google-glog/issues/detail?id=124)
+  * Only run testsuite if /proc is mounted, fixes FTBFS on several archs. Also
+    add debian/patches/20120621_errnos.diff to fix tests on Hurd.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.hu>  Thu, 07 Jun 2012 08:50:15 +0000
+
+google-glog (0.3.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #673241)
+  * Fix FTBFS on several architectures (Closes: #644602, #645744)
+
+ -- Koichi Akabe <vbkaisetsu@gmail.com>  Thu, 31 May 2012 20:57:32 +0900
+
+google-glog (0.3.1-2) unstable; urgency=low
+
+  * Added patches to fix test errors.
+    - debian/patches/20110923-r91-demangle.diff fixes
+      a test error caused by src/demangle_unittest.sh.
+    - debian/patches/20110923-r92-reduce-stack-consumpution.diff
+      fixes a test caused by src/symbolize_unittest.cc.
+    (Closes: #621385)
+  * debian/control:
+    - Bumped up Standards-Version to 3.9.2.
+    - Fixed lintian errors: description-synopsis-starts-with-article
+
+ -- Daigo Moriwaki <daigo@debian.org>  Fri, 23 Sep 2011 22:53:12 +0900
+
+google-glog (0.3.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/copyright: replaced "debianized".
+  * debian/control: Bumped up Standards-Version to 3.9.1.
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sat, 05 Mar 2011 16:43:39 +0900
+
+google-glog (0.3.0-1) unstable; urgency=low
+
+  * Initial release. (Closes: #555329: ITP: google-glog -- application-
+    level logging APIs based on C++-style)
+
+ -- Daigo Moriwaki <daigo@debian.org>  Sat, 24 Jul 2010 23:04:29 +0900

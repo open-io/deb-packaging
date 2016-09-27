@@ -1,0 +1,62 @@
+Description: gtest fix
+ TODO: Put a short summary on the line above and replace this paragraph
+ with a longer explanation of this change. Complete the meta-information
+ with other relevant fields (see below for details). To make it easier, the
+ information below has been extracted from the changelog. Adjust it or drop
+ it.
+ .
+ protobuf (3.0.0~b2-1) wily; urgency=medium
+ .
+   * Non-maintainer upload.
+   * New upstream release
+Author: Romain Acciari <romain.acciari@openio.io>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- protobuf-3.0.0~b2.orig/src/Makefile.am
++++ protobuf-3.0.0~b2/src/Makefile.am
+@@ -669,11 +669,8 @@ check_PROGRAMS = protoc protobuf-test pr
+                  protobuf-lite-test test_plugin protobuf-lite-arena-test \
+                  $(GZCHECKPROGRAMS)
+ protobuf_test_LDADD = $(PTHREAD_LIBS) libprotobuf.la libprotoc.la \
+-                      ../gmock/gtest/lib/libgtest.la              \
+-                      ../gmock/lib/libgmock.la                    \
+-                      ../gmock/lib/libgmock_main.la
+-protobuf_test_CPPFLAGS = -I$(srcdir)/../gmock/gtest/include \
+-                         -I$(srcdir)/../gmock/include
++                      -lgtest -lgtest_main
++protobuf_test_CPPFLAGS = 
+ # Disable optimization for tests unless the user explicitly asked for it,
+ # since test_util.cc takes forever to compile with optimization (with GCC).
+ # See configure.ac for more info.
+@@ -753,9 +750,7 @@ nodist_protobuf_test_SOURCES = $(protoc_
+ # Run cpp_unittest again with PROTOBUF_TEST_NO_DESCRIPTORS defined.
+ protobuf_lazy_descriptor_test_LDADD = $(PTHREAD_LIBS) libprotobuf.la \
+                       libprotoc.la                                   \
+-                      ../gmock/gtest/lib/libgtest.la                 \
+-                      ../gmock/lib/libgmock.la                       \
+-                      ../gmock/lib/libgmock_main.la
++                      -lgtest -lgtest_main
+ protobuf_lazy_descriptor_test_CPPFLAGS = -I$(srcdir)/../gmock/include       \
+                                          -I$(srcdir)/../gmock/gtest/include \
+                                          -DPROTOBUF_TEST_NO_DESCRIPTORS
+@@ -801,7 +796,7 @@ nodist_protobuf_lite_arena_test_SOURCES
+ 
+ # Test plugin binary.
+ test_plugin_LDADD = $(PTHREAD_LIBS) libprotobuf.la libprotoc.la \
+-                    ../gmock/gtest/lib/libgtest.la
++                    -lgtest
+ test_plugin_CPPFLAGS = -I$(srcdir)/../gmock/gtest/include
+ test_plugin_SOURCES =                                          \
+   google/protobuf/compiler/mock_code_generator.cc              \

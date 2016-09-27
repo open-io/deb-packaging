@@ -1,0 +1,65 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+DH_VERBOSE = 1
+export DH_OPTIONS=-v
+export DEB_BUILD_OPTIONS += nocheck
+export PBR_VERSION=3.0.0
+DESTDIR=$(CURDIR)/debian/openio-sds
+PYTHON_SITELIB=$(python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
+
+# see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+
+# main packaging script based on dh7 syntax
+%:
+	dh $@ --buildsystem cmake
+
+override_dh_auto_configure:
+	dh_auto_configure --buildsystem cmake -- \
+	-DCMAKE_BUILD_TYPE="Release" \
+	-DCMAKE_INSTALL_PREFIX="/usr" \
+	-DLD_LIBDIR="lib" \
+	-DEXE_PREFIX="oio" \
+	-DZK_LIBDIR="/usr/lib" \
+	-DZK_INCDIR="/usr/include/zookeeper" \
+	-DLZO_INCDIR="/usr/include/lzo" \
+	-DAPACHE2_LIBDIR="/usr/lib/apache2" \
+	-DAPACHE2_INCDIR="/usr/include/apache2" \
+	-DLIBRAIN_LIBDIR="/usr/lib" \
+	-DLIBRAIN_INCDIR="/usr/include" \
+	-DSOCKET_OPTIMIZED=1
+
+override_dh_auto_build:
+	dh_auto_build --buildsystem cmake
+	python setup.py build
+
+override_dh_install:
+	dh_install
+	python setup.py install -O1 --skip-build --prefix=/usr --install-layout=deb --root $(DESTDIR)
+	# Install OpenIO SDS directories
+	mkdir -pv $(DESTDIR)/var/log/oio/sds \
+		$(DESTDIR)/var/lib/oio/sds \
+		$(DESTDIR)/etc/oio/sds \
+		$(DESTDIR)/run/oio/sds
+
+
+
+# debmake generated override targets
+# This is example for Cmake (See http://bugs.debian.org/641051 )
+#override_dh_auto_configure:
+#       dh_auto_configure -- \
+#
+
+

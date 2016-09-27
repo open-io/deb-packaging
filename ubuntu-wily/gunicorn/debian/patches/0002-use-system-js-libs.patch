@@ -1,0 +1,23 @@
+From: Chris Lamb <lamby@debian.org>
+Date: Fri, 30 Oct 2015 12:05:16 +0000
+Subject: use-system-js-libs
+
+---
+ examples/websocket/websocket.html | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/examples/websocket/websocket.html b/examples/websocket/websocket.html
+index 59467d4..39daf00 100644
+--- a/examples/websocket/websocket.html
++++ b/examples/websocket/websocket.html
+@@ -3,8 +3,8 @@
+ <head>
+ <!-- idea and code swiped from
+ http://assorted.svn.sourceforge.net/viewvc/assorted/real-time-plotter/trunk/src/rtp.html?view=markup -->
+-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+-<script src="http://people.iola.dk/olau/flot/jquery.flot.js"></script>
++<script src="file:///usr/share/javascript/jquery/jquery.js"></script>
++<script src="file:///usr/share/javascript/jquery-flot/jquery.flot.js"></script>
+ <script>
+ window.onload = function() {
+     var data = {};

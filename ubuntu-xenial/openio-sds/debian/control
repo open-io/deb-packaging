@@ -1,0 +1,18 @@
+Source: openio-sds
+Section: unknown
+Priority: optional
+Maintainer: Romain Acciari <romain.acciari@openio.io>
+Build-Depends: debhelper (>= 9), cmake, libglib2.0-dev (>= 2.42), libzookeeper-mt-dev (>= 3.4.5), python-dev, python-setuptools, libzmq3-dev, libcurl4-gnutls-dev, libapreq2-dev (>= 1.2), libsqlite3-dev (>= 3.7.11), libattr1-dev (>= 2.4.32), libevent-dev (>= 2.0), apache2 (>= 2.2), apache2-dev (>= 2.2), liblzo2-dev (>= 2.0), openio-gridinit, openio-asn1c (>= 0.9.27.1), libdb-dev, libjson-c-dev (>= 0.12), flex, bison, curl, python-pbr
+Standards-Version: 3.9.5
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://anonscm.debian.org/collab-maint/openio-sds.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/openio-sds.git;a=summary
+
+Package: openio-sds
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-xattr (>= 0.8.0) | python-pyxattr (>= 0.4.0), python-eventlet (>= 0.15.2), gunicorn (>= 19.4.5), python-requests (>= 2.6.0), python-flask, python-redis, python-zmq, apache2, libexpat1, openio-asn1c (>= 0.9.27.1), libglib2.0-0 (>= 2.42), zlib1g, libjson-c2 (>= 0.12), python-zookeeper (>= 3.4.5), libapr1 (>= 1.2), libevent-2.0-5, liblzo2-2 (>= 2.0), openio-gridinit, libdb5.3, python-pbr, python-yaml, python-plyvel, libsqlite3-0 (>= 3.7.11), libleveldb1v5, python-simplejson (>= 2.0.9), python-flask, python-eventlet, python-zmq, python-redis, cliff-tablib, python-cliff (>= 1.13), python-tablib, python-pyeclib (>= 1.2.0)
+Description: OpenIO Cloud Storage Solution
+ OpenIO software storage solution is designed to handle PETA-bytes of
+ data in a distributed way, data such as: images, videos, documents, emails,
+ and any other personal unstructured data.
+ OpenIO is a fork of Redcurrant, from Worldline by Atos.
