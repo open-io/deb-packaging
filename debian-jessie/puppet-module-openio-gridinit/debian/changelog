@@ -1,0 +1,5 @@
+puppet-module-openio-gridinit (1.1.5-1) jessie; urgency=low
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 25 Jul 2016 09:44:24 +0000

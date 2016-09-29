@@ -15,9 +15,6 @@ override_dh_auto_build-arch:
 override_dh_auto_build-indep:
 	dh_auto_build --indep
 
-	# Java build.
-	ant -f debian/java-build.xml jar
-
 override_dh_auto_test-arch:
 	echo 'Skipping tests/checks'
 #	dh_auto_test --arch
@@ -47,10 +44,6 @@ override_dh_auto_clean-arch:
 override_dh_auto_clean-indep:
 	dh_auto_clean --indep
 
-	# Java clean.
-	ant -f debian/java-build.xml clean || true
-	mh_clean || true
-
 override_dh_auto_install-arch:
 	dh_auto_install --arch
 
@@ -65,9 +58,6 @@ override_dh_auto_install-arch:
 
 override_dh_auto_install-indep:
 	dh_auto_install --indep
-
-	# Java install.
-	mh_install
 
 override_dh_install:
 	dh_install

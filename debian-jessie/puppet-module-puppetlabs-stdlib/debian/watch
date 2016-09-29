@@ -1,0 +1,2 @@
+version=3
+http://qa.debian.org/cgi-bin/fakeupstream.cgi?upstream=forge.puppetlabs/puppetlabs/stdlib .*/puppetlabs-stdlib-(.+)\.tar\.gz

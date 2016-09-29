@@ -2,7 +2,21 @@ Source: oiofs-fuse
 Section: unknown
 Priority: optional
 Maintainer: Romain Acciari <romain.acciari@openio.io>
-Build-Depends: debhelper (>= 9), cmake, openio-sds (>= 3.0.0~b3), libprotobuf-dev (>= 3.0.0~b2), libprotoc-dev (>= 3.0.0~b2), libgrpc-dev (>= 0.11.1), libhiredis-dev, libfuse-dev, libglib2.0-dev, libgoogle-glog-dev, libgflags-dev, protobuf-compiler (>= 3.0.0~b2), libjson-c-dev, libsqlite3-dev
+Build-Depends:
+ debhelper (>= 9)
+ , cmake
+ , openio-sds (>= 3.0.0)
+ , libprotobuf-dev (>= 3.0.0)
+ , libprotoc-dev (>= 3.0.0)
+ , libgrpc-dev (>= 0.12.0)
+ , libhiredis-dev
+ , libfuse-dev
+ , libglib2.0-dev
+ , libgoogle-glog-dev
+ , libgflags-dev
+ , protobuf-compiler (>= 3.0.0)
+ , libjson-c-dev
+ , libsqlite3-dev
 Standards-Version: 3.9.5
 Homepage: http://gitlab.openio.io/openio/oio-fs
 #Vcs-Git: git://anonscm.debian.org/collab-maint/oiofs-fuse.git
@@ -10,7 +24,14 @@ Homepage: http://gitlab.openio.io/openio/oio-fs
 
 Package: oiofs-fuse
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libfuse2, libgrpc0 (>= 0.11.1), openio-sds (>= 3.0.0~b3), libgoogle-glog0v5, libjson-c2
+Depends:
+ ${shlibs:Depends}
+ , ${misc:Depends}
+ , libfuse2
+ , libgrpc0 (>= 0.12.0)
+ , openio-sds (>= 3.0.0)
+ , libgoogle-glog0v5
+ , libjson-c2
 Description: OpenIO FileSystem FUSE adapter
  oiofs FUSE is a FUSE adapter that allows you to mount OpenIO SDS
  containers as filesystems on Linux systems.

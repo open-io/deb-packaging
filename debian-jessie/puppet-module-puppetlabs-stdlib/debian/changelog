@@ -1,0 +1,62 @@
+puppet-module-puppetlabs-stdlib (4.10.0-1~ubuntu1) jessie; urgency=medium
+
+  * Backport for Jessie
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 28 Sep 2016 10:18:33 +0000
+
+puppet-module-puppetlabs-stdlib (4.10.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * Imported upstream release 4.10.0
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Mon, 21 Dec 2015 09:16:43 +0100
+
+puppet-module-puppetlabs-stdlib (4.9.0-1) unstable; urgency=medium
+
+  [ Michael Weiser ]
+  *  Imported upstream release 4.6.0 (Closes: #775535, CVE-2015-1029)
+
+  [ Stig Sandbeck Mathisen ]
+  * Imported upstream release 4.9.0
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Fri, 11 Sep 2015 23:39:28 +0200
+
+puppet-module-puppetlabs-stdlib (4.4.0-1) unstable; urgency=medium
+
+  *  Imported upstream release 4.4.0
+
+ -- Michael Weiser <michael.weiser@gmx.de>  Fri, 21 Nov 2014 12:31:59 +0100
+
+puppet-module-puppetlabs-stdlib (4.3.2-1) unstable; urgency=medium
+
+  * Imported upstream relase 4.3.2
+  * Declare compliance with Debian policy 3.9.6
+  * Update debian/control metadata with cme (Vcs-*)
+  * Update dependencies
+  * Update file lists
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Fri, 24 Oct 2014 22:18:07 +0200
+
+puppet-module-puppetlabs-stdlib (4.1.0-3) unstable; urgency=medium
+
+  * debian/watch: use redirector from qa.debian.org.
+  * debian/control:
+    - use Debian address in Uploaders field.
+    - Bump Standards-Version to 3.9.5. No further changes.
+
+ -- Thomas Bechtold <toabctl@debian.org>  Wed, 22 Jan 2014 08:00:14 +0100
+
+puppet-module-puppetlabs-stdlib (4.1.0-2) unstable; urgency=low
+
+  [ Thomas Bechtold ]
+  * Mention update-alternatives in README.Debian.
+  * Fix postinst and prerm scripts.
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Mon, 04 Nov 2013 18:42:08 +0100
+
+puppet-module-puppetlabs-stdlib (4.1.0-1) unstable; urgency=low
+
+  [ Thomas Bechtold ]
+  * Initial release Closes: #720079).
+
+ -- Stig Sandbeck Mathisen <ssm@debian.org>  Sun, 01 Sep 2013 15:26:19 +0200

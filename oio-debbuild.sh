@@ -53,8 +53,10 @@ while read -r src filename dest taropt || [[ -n "$src" ]]; do
 done <sources
 
 # Create the package now
+echo WRK=$WRK
 pushd "$WRK"
-pushd *
+echo PUSHD */
+pushd */
 cp -a "$BASEDIR/debian" ./
 dpkg-buildpackage -S -us -uc -nc -d
 popd

@@ -1,9 +1,9 @@
-protobuf (3.0.0~b2-1) jessie; urgency=medium
+protobuf (3.0.2-1) jessie; urgency=medium
 
   * Non-maintainer upload.
   * New upstream release
 
- -- Romain Acciari <romain.acciari@openio.io>  Mon, 11 Apr 2016 09:24:09 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 28 Sep 2016 10:28:57 +0000
 
 protobuf (2.6.1-1.2) unstable; urgency=medium
 

@@ -1,0 +1,35 @@
+Description: only use unicodecsv for python 2.x
+ Only use unicodecsv for python 2, since the python 3 module works fine
+ with unicode data.
+Author: Doug Hellmann <doug@doughellmann.com>
+Origin: upstream, https://git.openstack.org/cgit/openstack/cliff/commit/?id=25cce67529d70e3aab8653946fdf1eda12ded9b9
+Last-Update: 2016-01-08
+
+Index: b/cliff/formatters/commaseparated.py
+===================================================================
+--- a/cliff/formatters/commaseparated.py
++++ b/cliff/formatters/commaseparated.py
+@@ -1,7 +1,11 @@
+ """Output formatters using csv format.
+ """
+ 
+-import unicodecsv as csv
++import sys
++if sys.version_info[0] == 3:
++    import csv
++else:
++    import unicodecsv as csv
+ import os
+ 
+ from .base import ListFormatter
+Index: b/requirements.txt
+===================================================================
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -7,5 +7,5 @@
+ pyparsing>=2.0.1
+ six>=1.9.0
+ stevedore>=1.5.0 # Apache-2.0
+-unicodecsv>=0.8.0
++unicodecsv>=0.8.0;python_version=='2.7' or python_version=='2.6'
+ PyYAML>=3.1.0

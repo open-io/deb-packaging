@@ -1,0 +1,18 @@
+Description: Remove unnecessary dependency on argparse
+ argparse is in the standard library as of Python >= 2.7 and >= 3.2.
+Author: Colin Watson <cjwatson@ubuntu.com>
+Bug-Debian: https://bugs.debian.org/810126
+Last-Update: 2016-01-08
+
+Index: b/requirements.txt
+===================================================================
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -2,7 +2,6 @@
+ # of appearance. Changing the order has an impact on the overall integration
+ # process, which may cause wedges in the gate later.
+ pbr<2.0,>=1.4
+-argparse
+ cmd2>=0.6.7
+ PrettyTable<0.8,>=0.7
+ pyparsing>=2.0.1

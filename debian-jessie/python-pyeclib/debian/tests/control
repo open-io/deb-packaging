@@ -1,0 +1,3 @@
+Tests: encode-decode encode-decode3
+Depends: python-pyeclib,
+         python3-pyeclib,

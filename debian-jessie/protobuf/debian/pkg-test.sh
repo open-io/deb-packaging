@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Script to automate running the provided example programs to test all
-# language binding (cpp, python, java)
+# language binding (cpp, python)
 
 # Needs to be run from the directory containing the newly-built deb's
 
@@ -19,8 +19,6 @@ echo "*** Installing packages"
 dpkg -i *.deb
 
 cd /usr/share/doc/protobuf-compiler/examples
-
-export CLASSPATH=/usr/share/java/protobuf.jar
 
 echo "*** Building example programs"
 
@@ -46,20 +44,9 @@ two@example.net
 
 EOF
 
-echo "*** Adding via java"
-
-./add_person_java $TEST_FILE << EOF
-2
-Person Two
-
-555-1234
-work
-
-EOF
 
 
-
-for kind in cpp python java; do
+for kind in cpp python; do
   echo "*** Listing via $kind"
   ./list_people_$kind $TEST_FILE
 done

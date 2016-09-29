@@ -1,0 +1,29 @@
+puppet-module-openio-openiosds (20160920.gita9fc0f1-1) jessie; urgency=medium
+
+  * Testing
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 28 Sep 2016 10:01:14 +0000
+
+puppet-module-openio-openiosds (20160920.gite48e1b1-2) xenial; urgency=medium
+
+  * Testing
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 20 Sep 2016 15:39:50 +0000
+
+puppet-module-openio-openiosds (20160920.gitd5f78ee-1) xenial; urgency=medium
+
+  * Testing
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 20 Sep 2016 15:18:13 +0000
+
+puppet-module-openio-openiosds (20160725.git375ce30-1) xenial; urgency=medium
+
+  * Testing
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 25 Jul 2016 17:56:40 +0000
+
+puppet-module-openio-openiosds (0.ad6cbadbff2a5667e87e0f9154fe4bf5ee46c241-1) xenial; urgency=low
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 25 Jul 2016 08:23:45 +0000

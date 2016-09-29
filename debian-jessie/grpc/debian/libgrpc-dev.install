@@ -7,7 +7,6 @@ usr/lib/libgrpc.a
 usr/lib/libgrpc.so
 usr/lib/libgrpc++.a
 usr/lib/libgrpc++.so
-usr/lib/pkgconfig/gpr.pc
 usr/lib/pkgconfig/grpc.pc
 usr/lib/pkgconfig/grpc++.pc
 usr/lib/libgrpc++_unsecure.a
