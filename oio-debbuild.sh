@@ -14,7 +14,7 @@ OSDISTRO=$(basename $(dirname "$BASEDIR"))
 OSDISTCODENAME=${OSDISTRO//*-}
 OSDISTID=${OSDISTRO//-*}
 
-BASEWRK="$HOME/packaging/workspace"
+BASEWRK="$HOME/debbuildir"
 if [ ! -d "$BASEWRK" ]; then
   echo "Working directory $BASEWRK doesnt exists."
   exit 1
