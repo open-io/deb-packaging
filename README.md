@@ -128,51 +128,51 @@ fi
 
 Before building your first packages, you need to create the tarball chroot for the targeted distribution. This base image contains the minimal packages used to create a chroot environment and the repository configuration that provides the packages dependencies required by the packages you'll build. As its prebuilt, it is fast, the drowback is that you'll need to refresh it when the repository changes.  
 
-For a Debian Jessie, to create or rebuild the initial chroot (due to changes in your `.pbuilderrc` for example):
+For a Debian Jessie, to create or rebuild the initial chroot (due to changes in your `.pbuilderrc` for example):  
 `# sudo DIST=jessie pbuilder create`
 
-You can simply update the environment by using:
+You can simply update the environment by using:  
 `# sudo DIST=jessie pbuilder update`
 
 
 ### Setup
 
-In your user home directory, clone this repository:
+In your user home directory, clone this repository:  
 `# git clone git@github.com:open-io/deb-packaging.git`
 
-Create the building directory that will be used to create the Debian source package:
+Create the building directory that will be used to create the Debian source package:  
 `# mkdir ~/debbuildir`
 
 ### Rebuilding a package
 
-To rebuild the `openio-sds` package for Debian Jessie, change to the corresponding directory:
+To rebuild the `openio-sds` package for Debian Jessie, change to the corresponding directory:  
 `# cd deb-packaging/debian-jessie/openio-sds`
-Then run the command:
+Then run the command:  
 `# ../../oio-debbuild.sh`
 This will download the source tarball in the `sources` file, create the Debian source package and run the pbuilder command that creates the packages.  
 The resulting packages are in the `/var/cache/pbuilder/jessie-amd64/result/` directory.  
 
 ### Updating a package
 
-To update the `openio-sds` package for Debian Jessie, change to the corresponding directory:
+To update the `openio-sds` package for Debian Jessie, change to the corresponding directory:  
 `# cd deb-packaging/debian-jessie/openio-sds`
 Change the `sources` file to the correct source tarball. The first field is the URL to download the tarball and the second field is the name of the source tarball (should match the convention *pkgname_pkgversion.orig.tar.gz*).  
-Example of `sources` file:
+Example of `sources` file:  
 
 ```
 https://github.com/open-io/oio-sds/archive/3.0.0.tar.gz openio-sds_3.0.0.orig.tar.gz
 ```
 
-Then create a new changelog entry for the packages:
+Then create a new changelog entry for the packages:  
 `# dch -b -v 3.0.0-1 --distribution jessie`
 
-You are ready to run the `oio-debbuild.sh` that will download the source and build the package:
+You are ready to run the `oio-debbuild.sh` that will download the source and build the package:  
 `# ../../oio-debbuild.sh`
 
 
 ### Adding the packages to a repository
 
-If dput and mini-dinstall are configured, you can put the packages in the repository using the command:
+If dput and mini-dinstall are configured, you can put the packages in the repository using the command:  
 `# dput -u debian-openio-sds-testing /var/cache/pbuilder/jessie-amd64/result/openio-sds_*.changes`
 
 
