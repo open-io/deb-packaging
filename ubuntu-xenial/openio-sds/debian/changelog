@@ -1,8 +1,8 @@
-openio-sds (20160923.git65d959e-1) xenial; urgency=medium
+openio-sds (3.0.0~c1-1) xenial; urgency=medium
 
-  * Testing
+  * New release candidate
 
- -- Romain Acciari <romain.acciari@openio.io>  Fri, 23 Sep 2016 10:02:24 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 30 Sep 2016 10:00:05 +0000
 
 openio-sds (3.0.0~b3-1) xenial; urgency=medium
 

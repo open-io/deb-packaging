@@ -1,14 +1,8 @@
-openio-sds (20160928.gite384024-1) jessie; urgency=medium
+openio-sds (3.0.0~c1-1) jessie; urgency=medium
 
-  * Testing
+  * First release candidate
 
- -- Romain Acciari <romain.acciari@openio.io>  Wed, 28 Sep 2016 13:51:52 +0000
-
-openio-sds (20160928.gite13c8fd-1) jessie; urgency=medium
-
-  * Testing
-
- -- Romain Acciari <romain.acciari@openio.io>  Wed, 28 Sep 2016 08:58:27 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 30 Sep 2016 09:31:14 +0000
 
 openio-sds (2.0.0-1) jessie; urgency=medium
 
