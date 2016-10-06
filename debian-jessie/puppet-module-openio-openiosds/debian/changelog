@@ -1,3 +1,9 @@
+puppet-module-openio-openiosds (1.1.45-1) jessie; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 30 Sep 2016 18:26:52 +0000
+
 puppet-module-openio-openiosds (1.1.44-1) jessie; urgency=medium
 
   * New release
