@@ -37,6 +37,9 @@ rm -rf "$WRK"
 mkdir -pv "$WRK"
 #while IFS='' read -r src || [[ -n "$src" ]]; do
 while read -r src filename dest taropt || [[ -n "$src" ]]; do
+  if [[ "$src" =~ ^# ]]; then
+    continue
+  fi
   TAROPT=''
   if [ "${taropt}" == 'strip1' ]; then
     TAROPT="--strip-components 1"
