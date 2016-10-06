@@ -1,3 +1,9 @@
+openio-sds-swift (0.6.0-2) jessie; urgency=medium
+
+  * Remove useless python-oiopy dependency
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 06 Oct 2016 12:33:30 +0000
+
 openio-sds-swift (0.6.0-1) jessie; urgency=medium
 
   * New upstream release

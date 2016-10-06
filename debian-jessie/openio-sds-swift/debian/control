@@ -10,6 +10,6 @@ Homepage: <insert the upstream URL, if relevant>
 
 Package: openio-sds-swift
 Architecture: all
-Depends: ${misc:Depends}, python-oiopy (>= 0.7.1), swift-proxy
+Depends: ${misc:Depends}, swift-proxy, openio-sds
 Description: Swift Gateway for OpenIO SDS
  Swift Gateway for OpenIO SDS.
