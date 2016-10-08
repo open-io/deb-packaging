@@ -2,11 +2,11 @@
 set -e
 
 
-REPO=$1
-if [ -n "$REPO" ]; then
-  echo "You must specify a repository like sds-testing."
+if [ $# -ne 1 ]; then
+  echo "You must specify a repository like <sds-testing>."
   exit 1
 fi
+REPO=$1
 
 BASEDIR="$PWD"
 PKGNAME=$(basename "$BASEDIR")
@@ -33,9 +33,11 @@ if [ ! -f sources ]; then
 fi
 
 # Unpack in working dir
+echo "### Creating working directory"
 rm -rf "$WRK"
-mkdir -pv "$WRK"
+mkdir -p "$WRK"
 #while IFS='' read -r src || [[ -n "$src" ]]; do
+echo "### Downloading source files"
 while read -r src filename dest taropt || [[ -n "$src" ]]; do
   if [[ "$src" =~ ^# ]]; then
     continue
@@ -56,15 +58,17 @@ while read -r src filename dest taropt || [[ -n "$src" ]]; do
 done <sources
 
 # Create the package now
-echo WRK=$WRK
-pushd "$WRK"
-echo PUSHD */
-pushd */
+pushd "$WRK" >/dev/null
+pushd */ >/dev/null
+echo "### Building source package"
 cp -a "$BASEDIR/debian" ./
-dpkg-buildpackage -S -us -uc -nc -d
-popd
+dpkg-buildpackage -S -us -uc -nc -d >/dev/null
+popd >/dev/null
 pkgdsc=$(ls *.dsc)
-echo sudo DIST="$OSDISTCODENAME" pbuilder build ${WRK}/*.dsc
-popd
+echo "### Starting building package"
+sudo DIST="$OSDISTCODENAME" pbuilder build ${WRK}/*.dsc
+echo "### Building done"
+popd >/dev/null
 echo
-echo dput -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTCODENAME}-amd64/result/$(basename ${pkgdsc} .dsc)*.changes
+echo "### Uploading package $pkgdsc to repository ${OSDISTID}-openio-${REPO}"
+dput -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTCODENAME}-amd64/result/$(basename ${pkgdsc} .dsc)*.changes
