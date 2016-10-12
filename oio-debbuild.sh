@@ -71,4 +71,4 @@ echo "### Building done"
 popd >/dev/null
 echo
 echo "### Uploading package $pkgdsc to repository ${OSDISTID}-openio-${REPO}"
-dput -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTCODENAME}-amd64/result/$(basename ${pkgdsc} .dsc)*.changes
+dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTCODENAME}-amd64/result/$(basename ${pkgdsc} .dsc)*.changes
