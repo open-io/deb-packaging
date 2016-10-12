@@ -1,0 +1,5 @@
+python-django-redis-cache (1.7.0-1) xenial; urgency=low
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 12 Oct 2016 10:22:09 +0000
