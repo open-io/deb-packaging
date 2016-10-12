@@ -1,0 +1,25 @@
+Source: gevent-websocket
+Maintainer: Benjamin Drung <benjamin.drung@profitbricks.com>
+Section: python
+Priority: optional
+Build-Depends: debhelper (>= 9),
+               python-all (>= 2.6.6-3),
+               python-setuptools (>= 0.6b3)
+Standards-Version: 3.9.5
+X-Python-Version: >= 2.5
+Homepage: https://bitbucket.org/Jeffrey/gevent-websocket
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/gevent-websocket.git
+Vcs-Git: git://anonscm.debian.org/collab-maint/gevent-websocket.git
+
+Package: python-gevent-websocket
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Description: websocket library for the gevent networking library
+ gevent-websocket is a WebSocket library for the gevent networking library.
+ .
+ Features include:
+ .
+  * Integration on both socket level or using an abstract interface.
+  * RPC and PubSub framework using WAMP (WebSocket Application Messaging
+    Protocol).
+  * Easily extendible using a simple WebSocket protocol plugin API
