@@ -1,0 +1,5 @@
+openio-sds-rsyslog (1.2-1) jessie; urgency=low
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 25 Jul 2016 18:34:53 +0000
