@@ -1,3 +1,21 @@
+openio-sds (3.1.0~b0-1) xenial; urgency=medium
+
+  * New beta release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 03 Nov 2016 09:45:06 +0000
+
+openio-sds (3.0.1-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 31 Oct 2016 15:29:16 +0000
+
+openio-sds (3.0.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 20 Oct 2016 09:50:39 +0000
+
 openio-sds (3.0.0~c1-1) xenial; urgency=medium
 
   * New release candidate
