@@ -1,3 +1,15 @@
+openio-sds-swift (0.7.0~b0-1) xenial; urgency=medium
+
+  * New beta release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 03 Nov 2016 10:17:26 +0000
+
+openio-sds-swift (0.6.1-1) xenial; urgency=medium
+
+  * New upstream release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 20 Oct 2016 09:53:23 +0000
+
 openio-sds-swift (0.6.0-1) xenial; urgency=medium
 
   * New upstream release
