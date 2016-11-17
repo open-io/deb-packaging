@@ -1,3 +1,15 @@
+grpc (1.0.0-3) xenial; urgency=medium
+
+  * Add debug symbols package
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 19 Oct 2016 13:09:45 +0000
+
+grpc (1.0.0-2) xenial; urgency=medium
+
+  * Fix package name according to ABI version
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 18 Oct 2016 08:36:31 +0000
+
 grpc (1.0.0-1) xenial; urgency=medium
 
   * New upstream release

@@ -32,3 +32,7 @@ override_dh_auto_install:
 %:
 	dh $@ --parallel
 
+
+.PHONY: override_dh_strip
+override_dh_strip:
+	dh_strip --dbg-package=libgrpc1-dbg
