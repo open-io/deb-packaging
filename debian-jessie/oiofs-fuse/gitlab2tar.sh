@@ -14,13 +14,18 @@ rm -vf oio-fs.tar.gz
 rm -vrf oio-fs
 git clone -n $giturl
 pushd oio-fs
-  git checkout $cid
+  git checkout tags/$cid
   git submodule update --init
-  rm -rf .git
   if [ "$cid" == "master" ]; then
     cid=$(git log --format="%H" -n 1)
   fi
+  rm -rf .git
 popd
-tar zvcf oiofs-fuse_$(date +%Y%m%d%H%M).git${cid:0:7}.orig.tar.gz oio-fs
+if [ "$cid" == 'master' ]; then
+  tar zvcf oiofs-fuse_$(date +%Y%m%d%H%M).git${cid:0:7}.orig.tar.gz oio-fs
+  echo oiofs-fuse_$(date +%Y%m%d%H%M).git${cid:0:7}.orig.tar.gz  oiofs-fuse_$(date +%Y%m%d%H%M).git${cid:0:7}.orig.tar.gz >sources
+else
+  tar zvcf oiofs-fuse_${cid}.orig.tar.gz oio-fs
+  echo oiofs-fuse_${cid}.orig.tar.gz oiofs-fuse_${cid}.orig.tar.gz >sources
+fi
 rm -vrf oio-fs
-echo oiofs-fuse_$(date +%Y%m%d%H%M).git${cid:0:7}.orig.tar.gz  oiofs-fuse_$(date +%Y%m%d%H%M).git${cid:0:7}.orig.tar.gz >sources

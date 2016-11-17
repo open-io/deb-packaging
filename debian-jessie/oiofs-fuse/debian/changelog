@@ -1,8 +1,8 @@
-oiofs-fuse (20160928.git6be0fdc-1) jessie; urgency=medium
+oiofs-fuse (1.0.0~c2-1) jessie; urgency=medium
 
-  * Testing
+  * New release
 
- -- Romain Acciari <romain.acciari@openio.io>  Wed, 28 Sep 2016 15:44:43 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 20 Oct 2016 12:50:58 +0000
 
 oiofs-fuse (20160411-1) jessie; urgency=low
 
