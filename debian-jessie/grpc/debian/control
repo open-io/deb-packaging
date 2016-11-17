@@ -7,12 +7,13 @@ Build-Depends:
  , zlib1g-dev
  , libssl-dev
  , libprotobuf-dev (>= 3.0.0)
- , protobuf-compiler (>= 3.0.0~b2)
+ , protobuf-compiler (>= 3.0.0)
  , libgflags-dev
  , libgtest-dev
  , libgoogle-perftools-dev
  , python
- , libprotoc-dev (>= 3.0.0~b2)
+ , libprotoc-dev (>= 3.0.0)
+ , cmake
 Standards-Version: 3.9.6
 Section: libs
 Homepage: http://www.grpc.io/
@@ -23,16 +24,16 @@ Package: libgrpc-dev
 Section: libdevel
 Architecture: any
 Depends:
- libgrpc0 (= ${binary:Version})
+ libgrpc1 (= ${binary:Version})
  , ${misc:Depends}
 Description: high performance general RPC framework (development)
  A modern, open source remote procedure call (RPC) framework that can
  run anywhere. It enables client and server applications to communicate
  transparently, and makes it easier to build connected systems.
  .
- This package contains the headers and the static library for libgrpc0.
+ This package contains the headers and the static library for libgrpc1.
 
-Package: libgrpc0
+Package: libgrpc1
 Architecture: any
 Depends:
  ${shlibs:Depends}
@@ -43,3 +44,17 @@ Description: high performance general RPC framework
  transparently, and makes it easier to build connected systems.
  .
  This package provides the gRPC C bindings.
+
+Package: libgrpc1-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends:
+    libgrpc1 (= ${binary:Version}),
+    ${misc:Depends}
+Description: debugging symbols for libgrpc1
+ A modern, open source remote procedure call (RPC) framework that can
+ run anywhere. It enables client and server applications to communicate
+ transparently, and makes it easier to build connected systems.
+ .
+ This package contains the debugging symbols for libgrpc1.
