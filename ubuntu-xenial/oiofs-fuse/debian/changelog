@@ -1,32 +1,8 @@
-oiofs-fuse (20160909.git4e607755-3) xenial; urgency=medium
+oiofs-fuse (1.0.0~c2-1) xenial; urgency=medium
 
-  * Fix libjson-c dep
+  * New release
 
- -- Romain Acciari <romain.acciari@openio.io>  Mon, 12 Sep 2016 08:01:51 +0000
-
-oiofs-fuse (20160909.git4e607755-2) xenial; urgency=medium
-
-  * Add libsqlite3-dev build dep
-
- -- Romain Acciari <romain.acciari@openio.io>  Fri, 09 Sep 2016 15:55:30 +0000
-
-oiofs-fuse (20160909.git4e607755-1) xenial; urgency=medium
-
-  * New upstream
-
- -- Romain Acciari <romain.acciari@openio.io>  Fri, 09 Sep 2016 14:55:51 +0000
-
-oiofs-fuse (20160715.git246aeb5-1) xenial; urgency=medium
-
-  * New upstream
-
- -- Romain Acciari <romain.acciari@openio.io>  Fri, 15 Jul 2016 11:20:28 +0000
-
-oiofs-fuse (20160706.gitcb4a1e6-1) xenial; urgency=medium
-
-  * New upstream
-
- -- Romain Acciari <romain.acciari@openio.io>  Wed, 06 Jul 2016 09:59:52 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 20 Oct 2016 12:18:11 +0000
 
 oiofs-fuse (20160411-1) xenial; urgency=low
 

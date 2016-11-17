@@ -8,7 +8,7 @@ Build-Depends:
  , openio-sds
  , libprotobuf-dev (>= 3.0.0)
  , libprotoc-dev (>= 3.0.0)
- , libgrpc-dev (>= 0.12.0)
+ , libgrpc-dev (>= 1.0)
  , libhiredis-dev
  , libfuse-dev
  , libglib2.0-dev
@@ -29,7 +29,7 @@ Depends:
  ${shlibs:Depends}
  , ${misc:Depends}
  , libfuse2
- , libgrpc0 (>= 0.12.0)
+ , libgrpc1 (>= 1.0)
  , openio-sds (>= 3.0.0)
  , libgoogle-glog0v5 (>= 0.3.4)
  , libjson-c2
@@ -37,3 +37,18 @@ Description: OpenIO FileSystem FUSE adapter
  oiofs FUSE is a FUSE adapter that allows you to mount OpenIO SDS
  containers as filesystems on Linux systems.
  oiofs FUSE provides another means to access OpenIO SDS Storage.
+
+Package: oiofs-fuse-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends:
+ oiofs-fuse (= ${binary:Version})
+ , ${misc:Depends}
+Description: debugging symbols for oiofs-fuse
+ oiofs FUSE is a FUSE adapter that allows you to mount OpenIO SDS
+ containers as filesystems on Linux systems.
+ oiofs FUSE provides another means to access OpenIO SDS Storage.
+ .
+ This package contains the debugging symbols for oiofs-fuse.
+
