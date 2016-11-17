@@ -42,7 +42,6 @@ Depends:
  , python-requests (>= 2.6.0)
  , python-flask
  , python-redis
- , python-zmq
  , apache2
  , libexpat1
  , openio-asn1c (>= 0.9.27.1)
@@ -63,7 +62,6 @@ Depends:
  , python-simplejson (>= 2.0.9)
  , python-flask
  , python-eventlet
- , python-zmq
  , python-redis
  , cliff-tablib
  , python-cliff (>= 1.13)
