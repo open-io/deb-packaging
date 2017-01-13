@@ -29,8 +29,16 @@ include /usr/share/dpkg/default.mk
 #	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
 
 override_dh_auto_install:
-	dh_auto_install
-	mkdir -pv $(DESTDIR)/var/www/openio
-	cp -a grid-admin common dashboard grid-viewer $(DESTDIR)/var/www/openio/
+	dh_auto_install --destdir=debian/openio-dashboard-frontend
+	mkdir -pv $(DESTDIR)/var/www/openio/static
+	cp -a grid-admin common dashboard grid-viewer $(DESTDIR)/var/www/openio/static/
+	chown www-data:www-data $(DESTDIR)/var/www/openio
+	mkdir -pv $(DESTDIR)/etc/nginx/sites-available \
+		$(DESTDIR)/etc/nginx/sites-enabled
+	install debian/openio-dashboard-frontend.openio-dashboard_http \
+		$(DESTDIR)/etc/nginx/sites-available/openio-dashboard_http
+	install debian/openio-dashboard-frontend.openio-dashboard_https \
+		$(DESTDIR)/etc/nginx/sites-available/openio-dashboard_https
 
-
+override_dh_fixperms:
+	dh_fixperms --exclude openio

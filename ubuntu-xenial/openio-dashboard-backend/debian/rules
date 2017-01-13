@@ -21,7 +21,7 @@ include /usr/share/dpkg/default.mk
 
 # main packaging script based on dh7 syntax
 %:
-	dh $@ --buildsystem pybuild
+	dh $@ --buildsystem pybuild --with=systemd
 
 # debmake generated override targets
 # This is example for Cmake (See http://bugs.debian.org/641051 )
@@ -30,12 +30,24 @@ include /usr/share/dpkg/default.mk
 #	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
 
 override_dh_auto_install:
-	dh_auto_install
+	dh_auto_install --destdir=debian/openio-dashboard-backend
 	mkdir -pv $(DESTDIR)/etc/openio_dashboard
-	install conf/conf.sample.cfg $(DESTDIR)/etc/openio_dashboard/conf.cfg
+	install debian/openio-dashboard-backend.conf.cfg $(DESTDIR)/etc/openio_dashboard/conf.cfg
+	touch $(DESTDIR)/etc/openio_dashboard/secret
+	mkdir -pv $(DESTDIR)/etc/openio_dashboard/ssh
+	touch $(DESTDIR)/etc/openio_dashboard/ssh/id_rsa $(DESTDIR)/etc/openio_dashboard/ssh/id_rsa.pub
+	mkdir -pv $(DESTDIR)/usr/share/openio_dashboard
+	install debian/openio-dashboard-backend.sql $(DESTDIR)/usr/share/openio_dashboard/openio-dashboard-initdb.sql
 
 override_dh_auto_clean:
 
 override_dh_auto_test:
 
+override_dh_installinit:
+	dh_installinit --name=openio_celery_beat
+	dh_installinit --name=openio_celery
+	dh_installinit --name=openio_dashboard
 
+#override_dh_fixperms:
+#	dh_fixperms
+	

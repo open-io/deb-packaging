@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenIO Dashboard Celery Worker
+After=network.target redis-server.service
+
+[Service]
+User=openio
+Group=openio
+Environment="OIO_DASHBOARD_CONF=/etc/openio_dashboard/"
+ExecStart=/usr/bin/celery --app=openio_dashboard.celery:app worker --loglevel=ERROR --concurrency=8 -P gevent
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

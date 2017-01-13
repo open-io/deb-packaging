@@ -1,0 +1,12 @@
+[Unit]
+Description=OpenIO Dashboard Service
+After=network.target mysql.service
+
+[Service]
+User=openio
+Group=openio
+ExecStart=/usr/bin/oio-dash-service -c /etc/openio_dashboard/conf.cfg
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
