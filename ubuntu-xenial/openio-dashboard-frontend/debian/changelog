@@ -1,5 +1,5 @@
-openio-dashboard-frontend (20161003.git65fc50c-1) xenial; urgency=low
+openio-dashboard-frontend (1.0.1-1) xenial; urgency=medium
 
   * Initial release
 
- -- Romain Acciari <romain.acciari@openio.io>  Fri, 23 Sep 2016 16:03:42 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 06 Dec 2016 15:06:06 +0000
