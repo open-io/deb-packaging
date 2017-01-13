@@ -1,0 +1,30 @@
+openio-sds-replicator (20160110.git7ec6279-2) xenial; urgency=medium
+
+  * 
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 11 Jan 2017 14:09:29 +0000
+
+openio-sds-replicator (20160110.git7ec6279-2) xenial; urgency=medium
+
+  * Create a symlink to the jar file
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 11 Jan 2017 13:25:46 +0000
+
+openio-sds-replicator (20160110.git7ec6279-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 10 Jan 2017 15:45:47 +0000
+
+openio-sds-replicator (20160103.gitf0a7a62-2) xenial; urgency=medium
+
+  * Remove symlink
+  * Change jar path
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 06 Jan 2017 15:51:25 +0000
+
+openio-sds-replicator (20160103.gitf0a7a62-1) xenial; urgency=low
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 05 Jan 2017 16:47:59 +0000
