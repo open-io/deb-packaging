@@ -1,3 +1,9 @@
+openio-sds-logrotate (1.1-1) jessie; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 09 Jan 2017 10:25:49 +0000
+
 openio-sds-logrotate (1.0-1) jessie; urgency=low
 
   * Initial release
