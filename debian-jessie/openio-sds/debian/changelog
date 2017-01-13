@@ -1,3 +1,9 @@
+openio-sds (3.1.2-1) jessie; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 28 Dec 2016 18:00:23 +0000
+
 openio-sds (3.1.0~b0-1) jessie; urgency=medium
 
   * New beta release
