@@ -1,0 +1,17 @@
+Source: diamond-openio
+Section: unknown
+Priority: optional
+Maintainer: Romain Acciari <romain.acciari@openio.io>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://anonscm.debian.org/collab-maint/diamond-openio.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/diamond-openio.git;a=summary
+
+Package: diamond-openio
+Architecture: all
+Depends: ${misc:Depends}
+Description: OpenIO Collectors for Diamond
+ This module provides custom collectors for diamond.
+ It specifically targets metrics provided by OpenIO-SDS,
+ as well as the APIs to which OpenIO-SDS can bind.
