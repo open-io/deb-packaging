@@ -1,8 +1,14 @@
-openio-sds (3.1.0~b0-1) xenial; urgency=medium
+openio-sds (3.1.2-1) xenial; urgency=medium
 
-  * New beta release
+  * Update to 3.1.2
 
- -- Romain Acciari <romain.acciari@openio.io>  Thu, 03 Nov 2016 09:45:06 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 28 Dec 2016 18:04:23 +0000
+
+openio-sds (3.0.1-2) xenial; urgency=medium
+
+  * Add user creation at preinst
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 30 Nov 2016 15:18:49 +0000
 
 openio-sds (3.0.1-1) xenial; urgency=medium
 
