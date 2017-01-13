@@ -2,3 +2,4 @@
 *.tar.xz
 *.tar
 *.tar.bz2
+.token
