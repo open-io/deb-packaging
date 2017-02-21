@@ -1,3 +1,9 @@
+grpc (1.0.1-1) jessie; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 21 Feb 2017 11:13:13 +0000
+
 grpc (1.0.0-3~oio1) jessie; urgency=medium
 
   * Fix package name according to ABI version
