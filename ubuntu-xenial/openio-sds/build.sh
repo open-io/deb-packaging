@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-cdate=$(date +%Y%m%d)
+cdate=$(date +%Y%m%d%H%M)
 last_deb=$(ls -dt openio-sds_*.debian.tar.xz | head -n1)
 
 if [ -n "$1" ]; then
