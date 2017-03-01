@@ -1,11 +1,11 @@
-diamond-openio (20161019.gitc789102-1) xenial; urgency=medium
+diamond-openio (1.0.1-1) xenial; urgency=medium
 
-  * Testing
+  * Updated
 
- -- Romain Acciari <romain.acciari@openio.io>  Wed, 19 Oct 2016 14:30:43 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 01 Mar 2017 14:41:41 +0000
 
-diamond-openio (20160916.gite39f0e9-1) xenial; urgency=low
+diamond-openio (1.0.0-1) xenial; urgency=medium
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release
 
- -- Romain Acciari <romain.acciari@openio.io>  Fri, 16 Sep 2016 10:00:58 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 21 Feb 2017 13:34:53 +0000
