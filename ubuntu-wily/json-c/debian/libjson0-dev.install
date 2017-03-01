@@ -1,4 +1,0 @@
-usr/include/json-c
-usr/lib/*/libjson.a
-usr/lib/*/libjson.so
-usr/lib/*/pkgconfig/json-c.pc
