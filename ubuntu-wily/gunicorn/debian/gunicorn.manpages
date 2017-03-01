@@ -1,2 +1,0 @@
-debian/manpages/*.1
-debian/tmp/gunicorn-debian.8
