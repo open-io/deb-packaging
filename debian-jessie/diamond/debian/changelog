@@ -1,3 +1,9 @@
+diamond (4.0.515-1) jessie; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 28 Feb 2017 10:08:31 +0000
+
 diamond (20160920.git175a4db-3) jessie; urgency=medium
 
   * Fix prerm stop command
