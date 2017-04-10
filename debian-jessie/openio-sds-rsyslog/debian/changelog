@@ -1,3 +1,9 @@
+openio-sds-rsyslog (1.2-3) jessie; urgency=medium
+
+  * Rewrite postinst
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 10 Apr 2017 08:52:24 +0000
+
 openio-sds-rsyslog (1.2-2) jessie; urgency=medium
 
   * Rebuild
