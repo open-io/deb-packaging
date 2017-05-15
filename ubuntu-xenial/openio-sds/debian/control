@@ -26,6 +26,7 @@ Build-Depends:
  , bison
  , curl
  , python-pbr
+ , libleveldb-dev 
 Standards-Version: 3.9.5
 Homepage: <insert the upstream URL, if relevant>
 #Vcs-Git: git://anonscm.debian.org/collab-maint/openio-sds.git
