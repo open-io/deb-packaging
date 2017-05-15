@@ -1,0 +1,9 @@
+install-layout.diff
+multiarch-extname.diff
+fix-python3.5.diff
+no-sphinx-rst.linker.diff
+fix-changes-link.diff
+multiple-entrypoints.diff
+no-SOURCES.txt-in-egg-ingo.diff
+re-add-changes-file.diff
+sort_native_libs.patch

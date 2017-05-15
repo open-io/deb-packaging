@@ -1,0 +1,247 @@
+iozone3 (429-3) jessie; urgency=medium
+
+  * patches/kfreebsd.patch: Refresh (thanks, Steven Chamberlain).  Closes:
+    #763570.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 29 Sep 2014 13:40:36 -0500
+
+iozone3 (429-2) unstable; urgency=medium
+
+  * rules: update OS/architecture analysis to determine targets: check OS
+    variable explicitly.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 29 Sep 2014 13:30:42 -0500
+
+iozone3 (429-1) unstable; urgency=medium
+
+  * New upstream.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 28 Sep 2014 22:00:48 -0500
+
+iozone3 (428-1) unstable; urgency=medium
+
+  * New upstream.  Closes: #747198.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 03 Aug 2014 23:35:29 -0500
+
+iozone3 (420-3) unstable; urgency=low
+
+  * rules: build hurd as 'generic'.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 14 Sep 2013 09:04:10 -0500
+
+iozone3 (420-2) unstable; urgency=low
+
+  * rules: rename target 'build' to 'override_dh_auto_build' so that
+    the buildd command 'debian/rules binary-arch' works as expected.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 14 Sep 2013 00:10:25 -0500
+
+iozone3 (420-1) unstable; urgency=low
+
+  * New upstream.  Closes: #666076.
+  
+  * watch: New watchfile.  Closes: #712768.
+
+  * patches/gnu3d-dem.patch: Remove.  Applied upstream.
+  
+  * control: Update Standards-Version and debhelper compatibility levels.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 22 Jul 2013 00:55:03 -0500
+
+iozone3 (397-2) unstable; urgency=low
+
+  * patches/kfreebsd.patch: New.  Build on kfreebsd (thanks, Christoph
+    Egger).  Closes: #640159.
+
+ -- Steve M. Robbins <smr@debian.org>  Fri, 02 Sep 2011 20:17:20 -0500
+
+iozone3 (397-1) unstable; urgency=low
+
+  * New upstream.  Closes: #632744.
+
+ -- Steve M. Robbins <smr@debian.org>  Tue, 30 Aug 2011 22:42:12 -0500
+
+iozone3 (373-2) unstable; urgency=low
+
+  * debian/patches/gnu3d-dem.patch: New.  Fix plot generation of
+    Generate_Graph.
+
+ -- Steve M. Robbins <smr@debian.org>  Tue, 04 Jan 2011 00:02:06 -0600
+
+iozone3 (373-1) unstable; urgency=low
+
+  * New upstream.
+    - debian/patches/make-fileop_linux.patch: Delete; applied upstream.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 03 Jan 2011 23:42:33 -0600
+
+iozone3 (308-1) unstable; urgency=low
+
+  * New upstream release.
+    - debian/patches/manpage.diff: Deleted; applied upstream.
+  
+  * debian/control: Set Standards-Version to 3.8.0; no changes.
+  
+  * debian/compat: Set to 7.
+  * debian/control: Require debhelper version >= 7.
+  
+  * Convert to SVN using mergeWithUpstream mode.
+    - debian/patches/make-fileop_linux.patch: Refresh.
+  
+  * debian/fileop.1: New.
+  * debian/rules: Install manpage fileop.1.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 09 Aug 2008 23:02:33 -0500
+
+iozone3 (287-2) unstable; urgency=low
+
+  * debian/patches/manpage.diff: New.  Fix typos in docs/iozone.1
+    (thanks, "A. Costa" <agcosta@gis.net>).  Closes: #475311.
+
+ -- Steve M. Robbins <smr@debian.org>  Wed, 16 Apr 2008 19:10:24 -0500
+
+iozone3 (287-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 25 Feb 2008 22:26:48 -0600
+
+iozone3 (279-2) never released; urgency=low
+
+  * src/current/makefile: Revert to upstream version.
+  
+  * debian/rules: Use quilt to manage patches.
+  * debian/control: Add quilt to build-depends.  Update Standards-Version
+    to 3.7.3 (no changes).
+  * debian/patches/series: New.
+  * debian/patches/make-fileop_linux.patch: New.  Makefile changes moved
+    here.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 25 Feb 2008 22:21:46 -0600
+
+iozone3 (279-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 14 Jan 2007 14:40:35 -0600
+
+iozone3 (263-3) unstable; urgency=low
+
+  * src/current/makefile: Add fileop_linux.o dependency to linux-sparc
+  target.  Closes: #406240.
+
+ -- Steve M. Robbins <smr@debian.org>  Wed, 10 Jan 2007 21:50:15 -0600
+
+iozone3 (263-2) unstable; urgency=low
+
+  * src/current/makefile: Build fileop for linux-sparc target.
+  Closes: #406240.
+
+  * debian/copyright:
+  * debian/control: Add note that this package may safely be auto-built,
+  as it is non-free only because of a technicality.  Closes: #385602.
+  
+ -- Steve M. Robbins <smr@debian.org>  Tue,  9 Jan 2007 21:10:53 -0600
+
+iozone3 (263-1) unstable; urgency=low
+
+  * New upstream.  Closes: #366704.
+    Upgrade Standards-Version to 3.7.2.
+    Upgrade debhelper to version 5.
+
+  * Install example scripts for gnuplot, etc.  Closes: #366702.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 13 May 2006 00:12:53 -0400
+
+iozone3 (260-2) unstable; urgency=low
+
+  * src/current/iozone.c: apply patch from upstream (thanks, Don Capps).
+  Closes: #357712
+  
+  * Install binary "fileop" and documentation Run_rules.doc.
+
+ -- Steve M. Robbins <smr@debian.org>  Thu, 30 Mar 2006 20:56:47 -0500
+
+iozone3 (260-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- Steve M. Robbins <smr@debian.org>  Tue, 28 Mar 2006 21:55:48 -0500
+
+iozone3 (257-1) unstable; urgency=low
+
+  * New upstream.  Closes: #340666.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 27 Nov 2005 19:14:30 -0500
+
+iozone3 (226-3) unstable; urgency=low
+
+  * New maintainer.  Closes: #297425.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat,  7 May 2005 01:16:24 -0400
+
+iozone3 (226-2) unstable; urgency=low
+
+  * Orphan as in bug # 297425
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Sat,  5 Mar 2005 03:06:07 -0700
+
+iozone3 (226-1) unstable; urgency=low
+
+  * New upstream
+  * Fix man page (283665)
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Tue, 30 Nov 2004 13:45:07 -0700
+
+iozone3 (221-1) unstable; urgency=low
+
+  * New upstream
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Fri, 27 Aug 2004 07:25:14 -0600
+
+iozone3 (172-1) unstable; urgency=low
+
+  * New upstream
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Sun, 11 May 2003 18:49:55 -0600
+
+iozone3 (152-2) unstable; urgency=low
+
+  * Use sh to run debian/build (closes:192343)
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Sun, 11 May 2003 18:44:24 -0600
+
+iozone3 (152-1) unstable; urgency=low
+
+  * New upstream version
+  * Update standards version
+  * Build with gcc 3.2
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Mon, 13 Jan 2003 22:29:46 -0700
+
+iozone3 (124-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Mon, 13 Jan 2003 22:27:25 -0700
+
+iozone3 (121-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Thu, 22 Aug 2002 10:07:25 -0600
+
+iozone3 (120-2) unstable; urgency=low
+
+  * Update email address.
+  * Update Standards version
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Tue, 20 Aug 2002 21:01:23 -0600
+
+iozone3 (120-1) unstable; urgency=low
+
+  * Initial Release (closes: 155275)
+
+ -- Kevin M. Rosenberg <kmr@debian.org>  Fri,  2 Aug 2002 13:33:11 -0600
+

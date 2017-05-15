@@ -1,0 +1,17 @@
+Source: iozone3
+Section: non-free/utils
+Priority: optional
+Maintainer: Steve M. Robbins <smr@debian.org>
+Build-Depends: debhelper (>= 9), quilt
+XS-Autobuild: yes
+Homepage: http://www.iozone.org/
+Standards-Version: 3.9.5
+
+Package: iozone3
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Filesystem and Disk Benchmarking Tool
+ Iozone is useful for determining a broad benchmark of filesystem 
+ performance. The benchmark tests file I/O performance for the
+ following operations: Read, write, re-read, re-write, read backwards, 
+ read strided, fread, fwrite, random read/write, pread/pwrite variants.

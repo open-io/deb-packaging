@@ -1,0 +1,153 @@
+#!/bin/sh
+# The content after this line comes from Debian Swift source package
+# and has been automatically added to a .init.in script, which
+# contains only the descriptive part for the daemon. Everything
+# else is standardized as a single unique script.
+
+# Author: Thomas Goirand <zigo@debian.org>
+# Author: Ondřej Nový <novy@ondrej.org>
+
+# PATH should only include /usr/* if it runs after the mountnfs.sh script
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+DAEMON=/usr/bin/${NAME}
+SYSTEM_USER=${PROJECT_NAME}
+SYSTEM_GROUP=${PROJECT_NAME}
+
+# Exit if the package is not installed
+[ -x $DAEMON ] || exit 0
+
+# If ran as root, create /var/lock/X, /var/run/X, /var/lib/X and /var/log/X as needed
+if [ `whoami` = "root" ] ; then
+	for i in lock run lib ; do
+		mkdir -p /var/$i/${PROJECT_NAME}
+		chown ${SYSTEM_USER}:${SYSTEM_GROUP} /var/$i/${PROJECT_NAME}
+	done
+
+	for i in log ; do
+		mkdir -p /var/$i/${PROJECT_NAME}
+		chown ${SYSTEM_USER}:adm /var/$i/${PROJECT_NAME}
+	done
+fi
+
+# This defines init_is_upstart which we use later on (+ more...)
+. /lib/lsb/init-functions
+
+RET=0
+
+# Configs
+[ -r /etc/default/openstack ] && . /etc/default/openstack
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+do_start() {
+	# Check for existence of ring files
+	if
+			[ ! -r /etc/swift/account.ring.gz ] ||
+			[ ! -r /etc/swift/container.ring.gz ] ||
+			test -z "$(find /etc/swift -maxdepth 1 -name 'object*.ring.gz' -print -quit)" ; then
+		log_end_msg 1
+		exit $?
+	fi
+
+	STARTED=
+	for CONF_FILE in /etc/swift/${CONFIG}.conf /etc/swift/${CONFIG}/*.conf ; do
+		if [ ! -e "$CONF_FILE" ] ; then
+			continue
+		fi
+
+		SUFFIX=${CONF_FILE#/etc/swift/$CONFIG}
+		SUFFIX=${SUFFIX%.conf}
+		if [ "$SUFFIX" ] ; then
+			# /etc/swift/${NAME}/*.conf
+			SUFFIX=-${SUFFIX#/}
+		fi
+		PIDFILE=/var/run/${PROJECT_NAME}/${NAME}${SUFFIX}.pid
+
+		start-stop-daemon \
+			--start \
+			--quiet \
+			--background \
+			--chuid ${SYSTEM_USER}:${SYSTEM_GROUP} \
+			--make-pidfile \
+			--pidfile ${PIDFILE} \
+			--chdir /var/lib/${PROJECT_NAME} \
+			--startas $DAEMON \
+			--test > /dev/null \
+			|| return 1
+		start-stop-daemon \
+			--start \
+			--quiet \
+			--background \
+			--chuid ${SYSTEM_USER}:${SYSTEM_GROUP} \
+			--make-pidfile \
+			--pidfile ${PIDFILE} \
+			--chdir /var/lib/${PROJECT_NAME} \
+			--startas $DAEMON \
+			-- $CONF_FILE \
+			|| return 2
+
+		STARTED=1
+	done
+
+	if [ ! "$STARTED" ] ; then
+		return 2
+	fi
+}
+
+do_stop() {
+	for PIDFILE in /var/run/${PROJECT_NAME}/${NAME}*.pid ; do
+		start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE
+		RETVAL=$?
+		rm -f $PIDFILE
+		if [ "$RETVAL" != "0" ] ; then
+			return "$RETVAL"
+		fi
+	done
+}
+
+case "$1" in
+start)
+	#init_is_upstart > /dev/null 2>&1 && exit 1
+	log_daemon_msg "Starting $DESC" "$NAME"
+	do_start
+	case $? in
+		0|1) log_end_msg 0 ; RET=$? ;;
+		2)   log_end_msg 1 ; RET=$? ;;
+	esac
+;;
+stop)
+	#init_is_upstart > /dev/null 2>&1 && exit 0
+	log_daemon_msg "Stopping $DESC" "$NAME"
+	do_stop
+	case $? in
+		0|1) log_end_msg 0 ; RET=$? ;;
+		2)   log_end_msg 1 ; RET=$? ;;
+	esac
+;;
+status)
+	status_of_proc "$DAEMON" "$NAME"
+	RET=$?
+;;
+restart|force-reload)
+	#init_is_upstart > /dev/null 2>&1 && exit 1
+	log_daemon_msg "Restarting $DESC" "$NAME"
+	do_stop
+	case $? in
+		0|1)
+			do_start
+			case $? in
+				0) log_end_msg 0 ; RET=$? ;;
+				1) log_end_msg 1 ; RET=$? ;; # Old process is still running
+				*) log_end_msg 1 ; RET=$? ;; # Failed to start
+			esac
+		;;
+		*) log_end_msg 1 ; RET=$? ;; # Failed to stop
+	esac
+;;
+*)
+	echo "Usage: $0 {start|stop|status|restart|force-reload}" >&2
+	RET=3
+;;
+esac
+
+exit $RET

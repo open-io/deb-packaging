@@ -1,0 +1,11 @@
+# see git-dpm(1) from git-dpm package
+b08aa7e7cb402c11adc6e793320215f6f62f54e4
+b08aa7e7cb402c11adc6e793320215f6f62f54e4
+b08aa7e7cb402c11adc6e793320215f6f62f54e4
+b08aa7e7cb402c11adc6e793320215f6f62f54e4
+setuptools-scm_1.10.1.orig.tar.bz2
+c953cc4228654d151be4cd84db6391fd050eb3bf
+16244
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"

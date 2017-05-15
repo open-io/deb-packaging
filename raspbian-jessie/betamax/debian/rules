@@ -1,0 +1,10 @@
+#! /usr/bin/make -f
+
+export PYBUILD_NAME=betamax
+
+# Some tests are missing from source tarball, so for now we disable them.
+# See https://github.com/sigmavirus24/betamax/pull/90
+export PYBUILD_DISABLE=test
+
+%:
+	dh $@ --with python2,python3 --buildsystem=pybuild

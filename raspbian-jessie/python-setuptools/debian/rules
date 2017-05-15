@@ -1,0 +1,63 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with python2,python3,pypy,sphinxdoc --buildsystem pybuild
+
+# no versioned easy_install scripts
+export SETUPTOOLS_DISABLE_VERSIONED_EASY_INSTALL_SCRIPT = yes
+
+# versioned easy_install scripts
+#export XPYVERSIONS  = 2.7
+#export XPY3VERSIONS = 3.4 3.5
+
+override_dh_auto_test:
+
+override_dh_auto_install:
+	dh_auto_install
+
+	PYTHONPATH=$(CURDIR) $(MAKE) -C docs html
+
+#	mkdir -p debian/python-setuptools-whl/usr/share/python-wheels
+#	python3 setup.py bdist_wheel --universal \
+#	        -d debian/python-setuptools-whl/usr/share/python-wheels
+
+	# dh_pypy from dh-python < 1.20150705-1 falls over requires.txt
+	# and our requires.txt aren't useful
+	find debian/tmp -name requires.txt -delete
+
+override_dh_installchangelogs:
+	dh_installchangelogs CHANGES.rst
+
+override_dh_auto_clean:
+	# Keep entry_points, we need it to drive setup.py
+	-mv setuptools.egg-info/entry_points.txt .
+	dh_auto_clean
+	mkdir -p setuptools.egg-info
+	mv entry_points.txt setuptools.egg-info
+
+	rm -rf .eggs docs/build
+
+override_dh_install:
+	sed -i '1 s,.*,#!/usr/bin/python,' debian/tmp/usr/bin/easy_install
+	sed '1 s/python/python3/' debian/tmp/usr/bin/easy_install > \
+	   debian/tmp/usr/bin/easy_install3
+	sed '1 s/python/pypy/' debian/tmp/usr/bin/easy_install > \
+	   debian/tmp/usr/bin/easy_install-pypy
+	dh_install
+
+override_dh_installdocs:
+	dh_installdocs -p python-pkg-resources -p python3-pkg-resources \
+	               -p pypy-pkg-resources \
+	               docs/pkg_resources.txt
+	dh_installdocs -p python-setuptools -p python3-setuptools \
+	               -p pypy-setuptools \
+	               -X pkg_resources docs/*.txt
+	dh_installdocs -p python-setuptools-doc docs/build/html
+	dh_installdocs --remaining-packages
+	dh_link -p python-setuptools-doc \
+	        /usr/share/doc/python-setuptools-doc/html \
+	        /usr/share/doc/python-setuptools/html \
+	        /usr/share/doc/python-setuptools-doc/html \
+	        /usr/share/doc/python3-setuptools/html \
+	        /usr/share/doc/python-setuptools-doc/html \
+	        /usr/share/doc/pypy-setuptools/html

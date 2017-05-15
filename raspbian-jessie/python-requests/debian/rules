@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=requests
+
+%:
+	dh $@ --with python2,python3 --buildsystem=pybuild
+
+# The test suite currently requires external network access, so we
+# can't enable it.  Once this issue is fixed, it will be easy to
+# re-enable.
+#
+# https://github.com/kennethreitz/requests/issues/2184
+#
+# barry@debian.org 2014-11-19
+#override_dh_auto_test:
+#	PYBUILD_SYSTEM=custom \
+#	PYBUILD_TEST_ARGS="{interpreter} test_requests.py" \
+#	http_proxy= https_proxy= \
+#	dh_auto_test
+
+override_dh_auto_test:
+
+override_dh_installchangelogs:
+	dh_installchangelogs HISTORY.rst

@@ -1,0 +1,19 @@
+#! /usr/bin/make -f
+
+export PYBUILD_NAME := six
+export PYBUILD_TEST_PYTEST := 1
+export PYBUILD_BEFORE_TEST := cp -a test_six.py {build_dir}/
+export PYBUILD_AFTER_TEST := \
+	rm -rf {build_dir}/test_six.py \
+	       {build_dir}/*.pyc {build_dir}/__pycache__
+
+
+%:
+	dh $@ --with python2,python3 --buildsystem=pybuild
+
+
+override_dh_auto_install:
+	dh_auto_install
+	python3 setup.py bdist_wheel \
+		--universal \
+		-d $(CURDIR)/debian/tmp/usr/share/python-wheels

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+set -x
+
+python ./dateutil/test/test.py -v
+python3 ./dateutil/test/test.py -v

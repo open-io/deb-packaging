@@ -1,0 +1,24 @@
+python-traceback2 (1.4.0-3~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 19 Nov 2015 10:44:23 +0100
+
+python-traceback2 (1.4.0-3) unstable; urgency=medium
+
+  * Fixed FTBFS by not running unit tests: there's no way to do it the way
+    upstream organized sources and dependencies (Closes: #799163).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 21 Sep 2015 08:48:26 +0000
+
+python-traceback2 (1.4.0-2) unstable; urgency=medium
+
+  * Applied Ubuntu patch to run unit tests at build time (Closes: #795891).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 14 Sep 2015 11:14:16 +0000
+
+python-traceback2 (1.4.0-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #791791)
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 21 Apr 2015 09:25:58 +0200

@@ -1,0 +1,14 @@
+Index: b/setuptools/command/install_egg_info.py
+===================================================================
+--- a/setuptools/command/install_egg_info.py
++++ b/setuptools/command/install_egg_info.py
+@@ -73,6 +73,9 @@ class install_egg_info(Command):
+             for skip in '.svn/', 'CVS/':
+                 if src.startswith(skip) or '/' + skip in src:
+                     return None
++            if self.install_layout and self.install_layout in ['deb'] and src.startswith('SOURCES.txt'):
++                log.info("Skipping SOURCES.txt")
++                return None
+             self.outputs.append(dst)
+             log.debug("Copying %s to %s", src, dst)
+             return dst

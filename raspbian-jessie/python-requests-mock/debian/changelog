@@ -1,0 +1,49 @@
+python-requests-mock (0.7.0-2~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * 
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 30 May 2016 11:25:30 +0000
+
+python-requests-mock (0.7.0-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Fixed VCS URLs (https).
+
+  [ Thomas Goirand ]
+  * Uploading to unstable.
+  * Standards-Version: 3.9.7 (no change).
+  * Fixed debian/copyright ordering.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 04 Apr 2016 10:06:54 +0000
+
+python-requests-mock (0.7.0-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 08 Dec 2015 15:05:30 +0100
+
+python-requests-mock (0.6.0-2) unstable; urgency=medium
+
+  * Fixed Uploaders: field.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 28 Apr 2015 14:18:52 +0000
+
+python-requests-mock (0.6.0-1) unstable; urgency=medium
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed new python-requests required version.
+
+  [ Corey Bryant ]
+  * New upstream release.
+  * d/rules: Switch UPSTREAM_GIT to github/openstack repo.
+  * d/rules: Fail the build if tests fail.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Mon, 07 Dec 2015 15:34:55 -0500
+
+python-requests-mock (0.4.0-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #754537)
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 12 Jul 2014 15:30:04 +0800

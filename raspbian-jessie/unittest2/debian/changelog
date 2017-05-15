@@ -1,0 +1,109 @@
+unittest2 (1.1.0-6~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 19 Nov 2015 10:43:42 +0100
+
+unittest2 (1.1.0-6) unstable; urgency=medium
+
+  * Also Depends: on python{3}-linecache2.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 14 Sep 2015 12:45:57 +0000
+
+unittest2 (1.1.0-5) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 29 Jul 2015 19:52:39 +0000
+
+unittest2 (1.1.0-4) experimental; urgency=medium
+
+  * Added missing python{3,}-linecache2 build-depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 15 Jul 2015 21:10:15 +0000
+
+unittest2 (1.1.0-3) experimental; urgency=medium
+
+  * Added missing python{3,}-traceback2 build-depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 09 Jul 2015 19:23:12 +0000
+
+unittest2 (1.1.0-2) experimental; urgency=medium
+
+  * Added Python 3 support:
+    - Modified debian/rules to add --with python3.
+    - Removed argparse from requirements in setup.py (in d/patches).
+    - Adds update-alternatives to handle /usr/bin/unit2.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 09 Jul 2015 08:55:11 +0000
+
+unittest2 (1.1.0-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Ran wrap-and-sort -t -a.
+  * Moved python-all and python-setuptools to Build-Depends instead of
+    Build-Depends-Indep, as this is needed by the clean target.
+  * Bumped compat and debhelper to 9.
+  * Added full text of the BSD-3-clause license, missing from d/copyright.
+  * Added extend-diff-ignore = "^[^/]*[.]egg-info/" in d/source/options.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 08 Jul 2015 14:58:39 +0000
+
+unittest2 (0.8.0-1) experimental; urgency=low
+
+  * Team upload.
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+  * Run tests only if DEB_BUILD_OPTIONS=nocheck is not set.
+
+  [ Sandro Tosi ]
+  * Switch to dh_python2
+  * debian/control
+    - bump Standards-Version to 3.9.5 (no changes needed)
+  * debian/copyright
+    - switch to DEP-5 format
+
+  [ Zygmunt Krynicki ]
+  * Update debian/watch to use pypi redirector 
+  * Use wrap-and-sort on everything
+  * New upstream release
+  * Port to pybuild 
+  * Update Standards-Version to 3.9.6 (no change required) 
+  * Correct debian/copyright license on setup.py (BSD-3-clause)
+  * Correct debian/copyright license on unittest2 (Python)
+  * Update debian/copyright with my changes to debian/*
+  * Add missing dependency on python-pkg-resources (for unit2 executable)
+  * Add autopackage tests
+  * Add a simple manual page for unit2(1) 
+  * Move DPMT to Maintainers and set myself as uploader
+
+ -- Piotr Ożarowski <piotr@debian.org>  Thu, 19 Mar 2015 22:33:46 +0100
+
+unittest2 (0.5.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sandro Tosi <morph@debian.org>  Tue, 13 Jul 2010 00:11:34 +0200
+
+unittest2 (0.5.0-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/watch
+    - use only numbers and dots for version matching
+  * debian/control
+    - bump Standards-Version to 3.9.0 (no changes needed)
+
+ -- Sandro Tosi <morph@debian.org>  Mon, 12 Jul 2010 20:47:28 +0200
+
+unittest2 (0.4.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Sandro Tosi <morph@debian.org>  Sat, 12 Jun 2010 09:39:12 +0200
+
+unittest2 (0.4.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #580895)
+
+ -- Sandro Tosi <morph@debian.org>  Mon, 10 May 2010 21:23:41 +0200

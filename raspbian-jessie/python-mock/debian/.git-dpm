@@ -1,0 +1,11 @@
+# see git-dpm(1) from git-dpm package
+6ebd75bb3d062b3ec5c33e23257a2e8618e195c2
+6ebd75bb3d062b3ec5c33e23257a2e8618e195c2
+6811a9d12ae8b5e8ba7ee0f6bca5b9b8d95530dc
+6811a9d12ae8b5e8ba7ee0f6bca5b9b8d95530dc
+python-mock_2.0.0.orig.tar.gz
+397ed52eb2d8d4b326bc3fa6b38adda5f0b090d3
+73684
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"

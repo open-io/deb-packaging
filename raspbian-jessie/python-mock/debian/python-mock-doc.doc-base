@@ -1,0 +1,9 @@
+Document: python-mock
+Title: Python Mock Documentation
+Author: Michael Foord
+Abstract: This documentation gives an introduction to Python Mock.
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python-mock-doc/html/index.html
+Files: /usr/share/doc/python-mock-doc/html/*.html

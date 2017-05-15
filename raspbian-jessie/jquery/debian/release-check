@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -e
+
+
+cachedir=$HOME/.cache/jquery-debian
+mkdir -p $cachedir
+version=$(dpkg-parsechangelog -SVersion | cut -d + -f 1)
+if [ ! -f $cachedir/jquery-${version}.js ]; then
+  wget --directory-prefix=$cachedir http://code.jquery.com/jquery-${version}.js
+fi
+
+./debian/rules dist/jquery.js
+rc=0
+diff --ignore-blank-line \
+  --ignore-matching-lines=Date:.*Z \
+  -u $cachedir/jquery-${version}.js dist/jquery.js || rc=$?
+./debian/rules clean
+
+if [ "$rc" -ne 0 ]; then
+  printf "Proceed? [y/N]"
+  read proceed
+  if [ "$proceed" != y -a "$proceed" != Y ]; then
+    exit 1
+  fi
+fi

@@ -1,0 +1,41 @@
+Description: Removed privacy breach in docs
+Author: Thomas Goirand <zigo@debian.org>
+Forwarded: not-needed
+Last-Update: 2015-07-27
+
+--- a/docs/_templates/page.html
++++ b/docs/_templates/page.html
+@@ -1,9 +1,5 @@
+ {% extends "!page.html" %}
+ {% block extrahead %}
+-    <a href="https://github.com/aliles/funcsigs">
+-        <img style="position: absolute; top: 0; right: 0; border: 0;"
+-             src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
+-             alt="Fork me on GitHub">
+-    </a>
++    <a href="https://github.com/aliles/funcsigs">Fork me on GitHub</a>
+     {{ super() }}
+ {% endblock %}
+--- a/README.rst
++++ b/README.rst
+@@ -337,17 +337,6 @@
+ .. _PEP 362: http://www.python.org/dev/peps/pep-0362/
+ .. _inspect: http://docs.python.org/3/library/inspect.html#introspecting-callables-with-the-signature-object
+ .. _issues system: https://github.com/testing-cabal/funcsigs/issues
+-
+-.. |build_status| image:: https://secure.travis-ci.org/aliles/funcsigs.png?branch=master
+-   :target: http://travis-ci.org/#!/aliles/funcsigs
+-   :alt: Current build status
+-
+-.. |coverage| image:: https://coveralls.io/repos/aliles/funcsigs/badge.png?branch=master
+-   :target: https://coveralls.io/r/aliles/funcsigs?branch=master
+-   :alt: Coverage status
+-
+-.. |pypi_version| image:: https://pypip.in/v/funcsigs/badge.png
+-   :target: https://crate.io/packages/funcsigs/
+-   :alt: Latest PyPI version
+-
+-
++.. _Current build status: http://travis-ci.org/#!/aliles/funcsigs
++.. _Coverage status: https://coveralls.io/r/aliles/funcsigs?branch=master
++.. _Latest PyPI version: https://crate.io/packages/funcsigs/

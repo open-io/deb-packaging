@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=cffi
+export PYBUILD_AFTER_INSTALL=find {destdir} -name '*.so' | python3 -c 'import os; src=input().strip(); src=os.path.relpath(src); dst=src.replace("cffi", "cffi-backend", 1); os.makedirs(os.path.dirname(dst)); os.rename(src, dst); print("RENAMED %s -> %s" % (src, dst))'
+
+%:
+	dh $@ --with python2,python3 --buildsystem pybuild
+
+override_dh_auto_test:
+#	PYBUILD_SYSTEM=custom \
+#		PYBUILD_TEST_ARGS="{interpreter} -m pytest c/ testing/" \
+#		dh_auto_test
+	true
+
+override_dh_install:
+	debian/gen-backend-versions.py
+	dh_install
+
+override_dh_installchangelogs:
+	dh_installchangelogs doc/source/whatsnew.rst
+
+override_dh_strip:
+	dh_strip -p python-cffi-backend -p python-cffi-backend-dbg \
+	         --dbg-package=python-cffi-backend-dbg
+	dh_strip -p python3-cffi-backend -p python3-cffi-backend-dbg \
+	         --dbg-package=python3-cffi-backend-dbg
+	dh_strip --remaining-packages
+
+override_dh_clean:
+	dh_clean
+	rm -rf $(wildcard testing/*/snippets/*/build testing/*/snippets/*/dist testing/*/snippets/*/*.egg-info)
+	rm -rf debian/python-cffi-dbg debian/python3-cffi-dbg

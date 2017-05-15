@@ -1,0 +1,117 @@
+python-concurrent.futures (3.0.5-2~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Ondřej Nový <onovy@debian.org>  Thu, 07 Jul 2016 22:46:37 +0200
+
+python-concurrent.futures (3.0.5-2) unstable; urgency=medium
+
+  * Standards-Version is 3.9.8 now (no change)
+  * Change directory to $ADTTMP before running Debian tests
+  * d/rules: Changed UPSTREAM_GIT protocol to https
+  * d/{control,copyright}: Use my @debian.org email address
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 20 Jun 2016 23:30:33 +0200
+
+python-concurrent.futures (3.0.5-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Standards-Version is 3.9.7 now (no change).
+  * Fixed Homepage.
+  * Fixed Vcs-Url (https).
+  * Added Debian tests.
+  * Removed patch 0001-Fix-i386-test-failure.patch (Applied upstream).
+  * d/compat bumped to 9 (no change).
+  * Fixed d/copyright order.
+  * Added myself to d/copyright.
+  * Added myself as uploader.
+
+ -- Ondřej Nový <novy@ondrej.org>  Mon, 29 Feb 2016 15:56:06 +0100
+
+python-concurrent.futures (3.0.3-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+  * Fixed watch file to use github tags instead of broken PyPi.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 16 Oct 2015 07:49:51 +0000
+
+python-concurrent.futures (3.0.3-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release: dropping version for python-all,
+    adding dh-python, etc.
+  * Standards-Version is now 3.9.6.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 15 Jul 2015 12:41:55 +0000
+
+python-concurrent.futures (2.2.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+
+ -- Barry Warsaw <barry@debian.org>  Mon, 29 Sep 2014 15:53:00 -0400
+
+python-concurrent.futures (2.1.6-4) unstable; urgency=medium
+
+  * Team upload.
+  * debian/patches/0001-Fix-i386-test-failure.patch: Fix FTBFS on i386.
+    (Closes: #762142)
+
+ -- Barry Warsaw <barry@debian.org>  Thu, 18 Sep 2014 17:21:42 -0400
+
+python-concurrent.futures (2.1.6-3) unstable; urgency=medium
+
+  * Adopting the package (Closes: #736714).
+  * Moves the package to pkg-openstack because I want to use Git.
+  * Added missing build-depends: python-unittest2.
+  * Removes Provides: python-futures, since concurrent.futures is really the
+    new API that upstream wants to advertise for.
+  * Added extend-diff-ignore = "^[^/]*[.]egg-info/" in debian/source/options,
+    and removed the rm -rf *.egg-info from debian/rules.
+  * Fix debian/copyright parseable format.
+  * Simplify unit test runs.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 21 Feb 2014 15:07:44 +0800
+
+python-concurrent.futures (2.1.6-2) unstable; urgency=medium
+
+  * Team upload.
+  * Fixes the fact that the package isn't installed at all in /usr/lib/python,
+    which makes it completely unusable:
+    - Added missing --with python2.
+    - Added explicit --buildsystem=python_distutils.
+    - Added Provides: python-futures
+    - Added missing ${sphinxdoc:Depends}, installing correctly with sphinx-build
+  * Removed useless XS-Python-Version: >= 2.6.
+  * Removed deprecated python-support build-depends in the favor of dh_python2,
+    and therefore now build-depends on python-all version (>= 2.6.6-3~).
+  * Ran wrap-and-sort.
+  * Fixed Format field of debian/copyright.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 25 Jan 2014 05:59:22 +0000
+
+python-concurrent.futures (2.1.6-1) unstable; urgency=low
+
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+
+  [ Sandro Tosi ]
+  * New upstream release
+  * debian/copyright
+    - extend packaging copyright years
+  * debian/control
+    - bump Standards-Version to 3.9.5 (no changes needed)
+
+ -- Sandro Tosi <morph@debian.org>  Fri, 17 Jan 2014 21:04:59 +0100
+
+python-concurrent.futures (2.1.3-1) experimental; urgency=low
+
+  * New upstream release
+
+ -- Sandro Tosi <morph@debian.org>  Wed, 29 Aug 2012 23:17:44 +0200
+
+python-concurrent.futures (2.1.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #657067)
+
+ -- Sandro Tosi <morph@debian.org>  Sun, 08 Apr 2012 13:22:06 +0200

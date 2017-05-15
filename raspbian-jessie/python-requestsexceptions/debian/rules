@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+DH_ALWAYS_EXCLUDE=CVS:.svn:.git
+export PYBUILD_NAME = requestsexceptions
+
+%:
+		dh $@ --with python2 --with python3 --buildsystem=pybuild

@@ -1,0 +1,6 @@
+0001-debian-ports.patch
+0102-kfreebsd.patch
+0103-hurd.patch
+0112-makefile_install.patch
+0113-makefile_memenv.patch
+1001-fix_bloom_test.patch

@@ -1,0 +1,3 @@
+version=3
+opts=filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/pyinotify-$1\.tar\.gz/ \
+  https://github.com/seb-m/pyinotify/tags .*/v?(\d\S*)\.tar\.gz

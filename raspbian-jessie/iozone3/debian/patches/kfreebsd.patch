@@ -1,0 +1,36 @@
+Description: Enable building on kfreebsd
+Author: Christoph Egger <christoph@debian.org>
+Bug: 640159
+Forwarded: no
+
+
+--- a/src/current/iozone.c
++++ b/src/current/iozone.c
+@@ -287,10 +287,10 @@
+ #include <unistd.h>
+ 
+ #include <fcntl.h>
+-#if !defined(__FreeBSD__) && !defined(__OpenBSD__) && !defined(__APPLE__) && !defined(__DragonFly__)
++#if !defined(__FreeBSD_kernel__) && !defined(__OpenBSD__) && !defined(__APPLE__) && !defined(__DragonFly__)
+ #include <malloc.h>
+ #endif
+-#if defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__APPLE__) || defined(__DragonFly__)
++#if defined(__FreeBSD_kernel__) || defined(__OpenBSD__) || defined(__APPLE__) || defined(__DragonFly__)
+ #include <stdlib.h>
+ #include <string.h>
+ #endif
+--- a/src/current/makefile
++++ b/src/current/makefile
+@@ -494,6 +494,12 @@
+ 	$(CC)  -O fileop_freebsd.o -o fileop
+ 	$(CC)  -O pit_server.o -o pit_server
+ 
++kfreebsd:        iozone_freebsd.o libbif.o fileop_freebsd.o libasync.o pit_server.o
++	$(CC) $(LDFLAGS) iozone_freebsd.o libbif.o -lpthread -lrt libasync.o \
++	        -o iozone
++	$(CC)  -O fileop_freebsd.o -o fileop
++	$(CC)  -O pit_server.o -o pit_server
++
+ #
+ # GNU C compiler DragonFly build with no threads, no largefiles
+ #

@@ -1,0 +1,41 @@
+#!/usr/bin/make -f
+
+PYTHONS:=$(shell pyversions -vr)
+PYTHON3S:=$(shell py3versions -vr)
+
+BUILD_DATE = $(shell dpkg-parsechangelog --show-field Date)
+BUILD_DATE_FORMATTED = $(shell LC_ALL=C date --utc --date="$(BUILD_DATE)" "+%B %d, %Y")
+
+%:
+	dh $@ --buildsystem=python_distutils --with python2,python3,sphinxdoc
+
+override_dh_install:
+	set -e ; for pyvers in $(PYTHONS); do \
+		python$$pyvers setup.py install --install-layout=deb \
+			--root $(CURDIR)/debian/python-repoze.who; \
+	done
+	set -e ; for pyvers in $(PYTHON3S); do \
+		python$$pyvers setup.py install --install-layout=deb \
+			--root $(CURDIR)/debian/python3-repoze.who; \
+	done
+	rm -rf $(CURDIR)/debian/python*/usr/lib/python*/dist-packages/*.pth
+
+	find $(CURDIR)/debian/python-repoze.who -iname __pycache__ -exec rm -rf {} \;
+
+override_dh_clean:
+	dh_clean -O--buildsystem=python_distutils
+	rm -rf docs/.build build
+
+override_dh_auto_build:
+	PYTHONPATH=. sphinx-build -b html -D today="$(BUILD_DATE_FORMATTED)" docs $(CURDIR)/debian/python-repoze.who/usr/share/doc/python-repoze.who/html
+
+override_dh_auto_install:
+	dh_auto_install
+	find debian/ -name '*.pth' -delete
+
+
+override_dh_auto_test:
+ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
+	nosetests
+	nosetests3
+endif

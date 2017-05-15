@@ -1,0 +1,222 @@
+		Debian Copyright File for iozone3
+		=================================
+
+Upstream Authors: William Norcott <wnorcott@us.oracle.com>,
+                  Don Capps <capps@iozone.org>	
+Download URL: http://www.iozone.org/src/current/iozone3_120.tar
+
+Current Debian Packager/Maintainer: Steven M. Robbins <smr@debian.org>
+Former Debian Packager/Maintainer: Kevin M. Rosenberg <kmr@debian.org>
+
+Upstream Copyright
+------------------
+  Copyright 1991, 1992, 1994, 1998, 2000, 2001  William D. Norcott	
+         Original Author: William Norcott (wnorcott@us.oracle.com)
+                 4 Dunlap Drive
+                 Nashua, NH 03060
+        Enhancements: Don Capps (capps@iozone.org)
+         	  7417 Crenshaw
+         	  Plano, TX 75025
+   Copyright 1991, 1992, 1994, 1998, 1999, 2002   William D. Norcott
+  License to freely use and distribute this software is hereby granted 
+  by the author, subject to the condition that this copyright notice 
+  remains intact.  The author retains the exclusive right to publish 
+  derivative works based on this work, including, but not limited to, 
+  revised versions of this work
+  Other contributors:
+  Don Capps       (Hewlett Packard)	capps@iozone.org
+
+
+Permission to Distribute Iozone with Debian
+-------------------------------------------
+<Mail to wnorcott@us.oracle.com bounced Aug 2, 2002>
+
+From don.capps2@verizon.net  Mon Aug  5 14:24:46 2002
+Return-Path: <don.capps2@verizon.net>
+Received: from localhost (fetchmail@localhost [127.0.0.1])
+	by tiger.med-info.com (8.12.4/8.12.4/Debian-2) with ESMTP id g75KJ8Ew019713
+	for <kevin@localhost>; Mon, 5 Aug 2002 14:24:45 -0600
+Received: from boa.b9.com
+	by localhost with IMAP (fetchmail-5.9.11)
+	for kevin@localhost (single-drop); Mon, 05 Aug 2002 14:24:45 -0600 (MDT)
+Received: from out004.verizon.net (out004pub.verizon.net [206.46.170.142])
+	by boa.b9.com (8.12.4/8.12.4/Debian-4) with ESMTP id g75KKAQg016839
+	for <kevin@rosenberg.net>; Mon, 5 Aug 2002 14:20:10 -0600
+Received: from dpc1 ([4.47.216.43]) by out004.verizon.net
+          (InterMail vM.5.01.05.09 201-253-122-126-109-20020611) with SMTP
+          id <20020805202004.IGLA10030.out004.verizon.net@dpc1>
+          for <kevin@rosenberg.net>; Mon, 5 Aug 2002 15:20:04 -0500
+Message-ID: <015101c23cbd$7a44a600$0400000a@nsr.hp.com>
+Reply-To: "Don Capps" <don.capps2@verizon.net>
+From: "Don Capps" <don.capps2@verizon.net>
+To: "Kevin Rosenberg" <kevin@rosenberg.net>
+References: <20020802234417.GA17814@rosenberg.net>
+Subject: Re: Request permission to distribute iozone3 Debian package
+Date: Mon, 5 Aug 2002 15:20:01 -0500
+Organization: Self
+MIME-Version: 1.0
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2600.0000
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+X-Spam-Status: No, hits=2.2 required=5.0
+	tests=FOR_FREE,RCVD_IN_OSIRUSOFT_COM
+	version=2.31
+X-Spam-Level: **
+Status: RO
+Content-Length: 3122
+Lines: 74
+
+Kevin,
+
+    What you are proposing sounds fine to me.  I can't
+speak for William nor can I contact him as his email
+address is no longer valid and there is no information
+available on how to get in contact with him. 
+
+-------------------------
+Current text in Iozone:
+-------------------------
+      Copyright 1991, 1992, 1994, 1998, 1999, 2002   William D. Norcott
+  
+   License to freely use and distribute this software is hereby granted 
+   by the author, subject to the condition that this copyright notice 
+   remains intact.  The author retains the exclusive right to publish 
+   derivative works based on this work, including, but not limited to
+   revised versions of this work.
+------------------------
+
+    The last time I spoke with Norcott I asked him about the intent
+of the license. He indicated that anyone could use it and distribute
+it for free.  The idea of the later sentence was to protect Iozone 
+so that if someone modified it, the original author would still
+have the right to publish future works that included any additions
+that anyone might have made.  And, that all of the code that is
+in Iozone could be used by the original author in other projects
+that may or may not be freeware. Iozone's code is intended to
+be freely available. It would not be in the spirit of the license
+for someone to take the code out of Iozone, repackage it
+into a commercial package, re-license it or patent it, and then 
+prevent the original author of Iozone from using his own code.
+
+    I can't see how your proposal would be a problem 
+as you are not making changes and you are keeping the
+original license text intact. You are not selling it or making
+any claims that would prevent the authors of Iozone from 
+continuing their development. Seems like it is perfectly
+reasonable and well within the spirit of the license.
+
+Note: Mandrake is already distributing Iozone, and there
+are RedHat rpms for it. So this would certainly not
+be a ground breaking activity. 
+
+Should you ever find the need to modify Iozone, please
+let me know of your changes and I will work with you 
+to ensure that your changes are merged into the Iozone
+source base. This will help your users keep up to date and
+will reduce the merging activity that you would need to 
+perform as future release of Iozone become available.
+
+Please be sure to pick up the most recent version of Iozone
+for your distribution. Iozone is available on 
+http://www.iozone.org
+
+Enjoy,
+Don Capps
+
+P.S. If you ever find Norcott please let me know. The 
+last time I lost contact with him it was almost 8 years
+before I found him again.  Norcott has not touched Iozone
+for almost 10 years, and the only original lines in 
+the current version of Iozone, from his original work,
+are the Copyright and license statement. :-) He was
+pleased with the direction that Iozone has taken but 
+is not participating in any Iozone development.
+
+
+----- Original Message ----- 
+From kevin@rosenberg.net Fri Aug  2 17:44:17 2002
+Date: Fri, 2 Aug 2002 17:44:17 -0600
+From: Kevin Rosenberg <kevin@rosenberg.net>
+To: capps@iozone.org, wnorcott@us.oracle.com
+Subject: Request permission to distribute iozone3 Debian package
+Message-ID: <20020802234417.GA17814@rosenberg.net>
+Mime-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="J/dobhs11T7y2rNN"
+Content-Disposition: inline
+User-Agent: Mutt/1.4i
+X-GPG-ID: 0xC4A4823E
+X-GPG-FP: D7A0 55B6 4768 3582 B10D  3F0C 112E CDF2 C4A3 823E
+X-GPG-Key: http://www.rosenberg.net/kevin/key.asc
+Status: RO
+Content-Length: 1513
+Lines: 45
+
+
+--J/dobhs11T7y2rNN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello Don and William,
+
+I am interested in distributing iozone3 in the non-free section of
+Debian. According to your license, distribution of derivations is
+forbidden.
+
+I'm interested in "packaging" iozone3 in Debian in the non-free
+section. This will not involve any source code changes. However, in
+the most strict (i.e. safest) sense, a Debian package is a derivation
+of the original since it involves combining the original with extra
+information as well as lossless compression.
+
+Thus, I seek your written permission via e-mail to distribute a Debian
+package of the unmodified source code and also a Debian package of the
+pre-compiled binary. Your copyright statement, as in all Debian
+packages, would be included in the package.
+
+Thanks for your consideration and your valuable tool,
+
+--=20
+ GPG signed and encrypted   |  .''`.  ** Debian GNU/Linux **
+    messages accepted.      | : :' :      The  universal
+                            | `. `'      Operating System
+ http://kevin.rosenberg.net |   `-    http://www.debian.org/
+
+--J/dobhs11T7y2rNN
+Content-Type: application/pgp-signature
+Content-Disposition: inline
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.0.6 (GNU/Linux)
+Comment: For info see http://www.gnupg.org
+
+iD8DBQE9SxlRES7N8sSjgj4RAlbeAJ9uiECIdHO+e1h4M7C02SqgvW6vcQCeIXiQ
+B5l2SMXlUCFTwYKg8oUxLCM=
+=5Ze1
+-----END PGP SIGNATURE-----
+
+--J/dobhs11T7y2rNN--
+
+
+
+		Note on Autobuilding
+		====================
+
+This license is non-free due to some sloppiness in construction: the
+original license forbids distributing derivative works, while the
+active author has granted an exception for Debian.
+
+In short: iozone3 is in non-free, as far as I am aware, only due to
+DFSG #8: License Must Not Be Specific to Debian.  I expect that it
+can be safely autobuilt.
+
+The header "XS-Autobuild: yes" is an indication that this package may
+safely be autobuilt.  Please contact nonfree@release.debian.net before
+changing that.
+
+See http://lists.debian.org/debian-devel-announce/2006/11/msg00012.html

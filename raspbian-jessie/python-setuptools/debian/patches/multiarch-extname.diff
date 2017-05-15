@@ -1,0 +1,86 @@
+Index: b/setuptools/command/easy_install.py
+===================================================================
+--- a/setuptools/command/easy_install.py
++++ b/setuptools/command/easy_install.py
+@@ -195,6 +195,7 @@ class easy_install(Command):
+         # enable custom installation, known values: deb
+         self.install_layout = None
+         self.force_installation_into_system_dir = None
++        self.multiarch = None
+ 
+         # Always read easy_install options, even if we are subclassed, or have
+         # an independent instance created.  This ensures that defaults will
+@@ -268,7 +269,9 @@ class easy_install(Command):
+             if not self.install_layout.lower() in ['deb']:
+                 raise DistutilsOptionError("unknown value for --install-layout")
+             self.install_layout = self.install_layout.lower()
+-
++            import sysconfig
++            if sys.version_info[:2] >= (3, 3):
++                self.multiarch = sysconfig.get_config_var('MULTIARCH')
+         self._expand('install_dir', 'script_dir', 'build_directory',
+                      'site_dirs')
+         # If a non-default installation directory was specified, default the
+Index: b/setuptools/command/install_lib.py
+===================================================================
+--- a/setuptools/command/install_lib.py
++++ b/setuptools/command/install_lib.py
+@@ -1,4 +1,5 @@
+ import os
++import sys
+ import imp
+ from itertools import product, starmap
+ import distutils.command.install_lib as orig
+@@ -6,6 +7,18 @@ import distutils.command.install_lib as
+ class install_lib(orig.install_lib):
+     """Don't add compiled flags to filenames of non-Python files"""
+ 
++    def initialize_options(self):
++        orig.install_lib.initialize_options(self)
++        self.multiarch = None
++        self.install_layout = None
++
++    def finalize_options(self):
++        orig.install_lib.finalize_options(self)
++        self.set_undefined_options('install',('install_layout','install_layout'))
++        if self.install_layout == 'deb' and sys.version_info[:2] >= (3, 3):
++            import sysconfig
++            self.multiarch = sysconfig.get_config_var('MULTIARCH')
++
+     def run(self):
+         self.build()
+         outfiles = self.install()
+@@ -90,6 +103,8 @@ class install_lib(orig.install_lib):
+         exclude = self.get_exclusions()
+ 
+         if not exclude:
++            import distutils.dir_util
++            distutils.dir_util._multiarch = self.multiarch
+             return orig.install_lib.copy_tree(self, infile, outfile)
+ 
+         # Exclude namespace package __init__.py* files from the output
+@@ -99,12 +114,24 @@ class install_lib(orig.install_lib):
+ 
+         outfiles = []
+ 
++        if self.multiarch:
++            import sysconfig
++            ext_suffix = sysconfig.get_config_var ('EXT_SUFFIX')
++            if ext_suffix.endswith(self.multiarch + ext_suffix[-3:]):
++                new_suffix = None
++            else:
++                new_suffix = "%s-%s%s" % (ext_suffix[:-3], self.multiarch, ext_suffix[-3:])
++
+         def pf(src, dst):
+             if dst in exclude:
+                 log.warn("Skipping installation of %s (namespace package)",
+                          dst)
+                 return False
+ 
++            if self.multiarch and new_suffix and dst.endswith(ext_suffix) and not dst.endswith(new_suffix):
++                dst = dst.replace(ext_suffix, new_suffix)
++                log.info("renaming extension to %s", os.path.basename(dst))
++
+             log.info("copying %s -> %s", src, os.path.dirname(dst))
+             outfiles.append(dst)
+             return dst

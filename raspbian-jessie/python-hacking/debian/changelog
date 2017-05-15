@@ -1,0 +1,100 @@
+python-hacking (0.10.2-4~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 20 Nov 2015 10:08:54 +0100
+
+python-hacking (0.10.2-4) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 16 Oct 2015 09:49:09 +0000
+
+python-hacking (0.10.2-3) experimental; urgency=medium
+
+  * Fixed (build-)dependencies which where quite wrong.
+  * Removed doc/source/static/nature.css from debian/copyright (it's gone from
+    upstream source code).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 22 Sep 2015 15:21:08 +0200
+
+python-hacking (0.10.2-2) experimental; urgency=medium
+
+  * Team upload.
+  * d/control: Drop upper version boundary for pbr, no longer required.
+
+ -- James Page <james.page@ubuntu.com>  Tue, 02 Jun 2015 09:41:22 +0100
+
+python-hacking (0.10.2-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release:
+    - d/control: Align version requirements with upstream.
+    - d/p/no-intersphinx.patch: Dropped no longer needed.
+    - d/p/fix-requirements.txt.patch: Refresh, allow use of flake8 2.2.2.
+
+ -- James Page <james.page@ubuntu.com>  Mon, 01 Jun 2015 14:59:11 +0100
+
+python-hacking (0.9.2-1) unstable; urgency=medium
+
+  * New upstream version.
+
+ -- Clint Adams <clint@debian.org>  Sat, 30 May 2015 17:26:58 -0400
+
+python-hacking (0.9.0-1) unstable; urgency=medium
+
+  * New upstream version.
+    - Update fix-requirements.txt.patch.
+
+ -- Clint Adams <clint@debian.org>  Sat, 30 May 2015 16:51:32 -0400
+
+python-hacking (0.8.1-4) unstable; urgency=medium
+
+  * Fixes requirements to allow pyflakes >= 0.8 (Closes: #745644).
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 03 May 2014 02:18:32 +0000
+
+python-hacking (0.8.1-3) unstable; urgency=medium
+
+  * Uploading to unstable.
+  * Fixed missing BSD-2-clause license for nature.css in debian/copyright.
+  * Calling testr / subunit without going through setup.py.
+  * dh_clean also rm -rf .testrepository.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 25 Mar 2014 00:49:47 +0800
+
+python-hacking (0.8.1-2) experimental; urgency=medium
+
+  * Added missing build-depends: python3-pbr.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 23 Mar 2014 02:57:34 +0000
+
+python-hacking (0.8.1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Uploading to experimental.
+  * Added support for Python 3.
+  * fix requirements.txt for flake8 and pep8 versions (Closes: #742256).
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 21 Mar 2014 19:32:24 +0800
+
+python-hacking (0.8.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Ran wrap-and-sort.
+  * Standard-Version: is now 3.9.5.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 24 Jan 2014 16:30:53 +0800
+
+python-hacking (0.6.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixed git URL in debian/rules.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 20 Jul 2013 22:28:28 +0800
+
+python-hacking (0.5.6-1) unstable; urgency=low
+
+  * Initial release. (Closes: 714505)
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 30 Jun 2013 16:36:51 +0800

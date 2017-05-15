@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --with python2,python3 --buildsystem=pybuild
+
+override_dh_auto_install:
+	dh_auto_install $@
+	rm -f debian/python*-dateutil/usr/lib/*/site-packages/dateutil/zoneinfo/zoneinfo-*.tar.gz

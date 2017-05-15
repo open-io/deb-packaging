@@ -1,0 +1,60 @@
+Source: python-dateutil
+Section: python
+Priority: optional
+Maintainer: Guido Günther <agx@sigxcpu.org>
+Build-Depends: debhelper (>= 8),
+ dh-python,
+ python3,
+ python3-setuptools,
+ python3-six,
+ python-all (>= 2.6.6-3~),
+ python-setuptools,
+ python-six,
+Standards-Version: 3.9.6
+Vcs-Git: git://git.debian.org/git/calendarserver/python-dateutil.git
+Vcs-Browser: http://git.debian.org/?p=calendarserver/python-dateutil.git
+X-Python-Version: >= 2.3
+X-Python3-Version: >= 3.2
+XS-Testsuite: autopkgtest
+
+Package: python-dateutil
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends}, tzdata
+XB-Python-Version: ${python:Version}
+Description: powerful extensions to the standard datetime module
+ It features:
+ .
+  * computing of relative deltas (next month, next year, next monday, last week
+    of month, etc);
+  * computing of relative deltas between two given date and/or datetime objects
+  * computing of dates based on very flexible recurrence rules, using a superset
+    of the iCalendar specification. Parsing of RFC strings is supported as well.
+  * generic parsing of dates in almost any string format
+  * timezone (tzinfo) implementations for tzfile(5) format files
+    (/etc/localtime, /usr/share/zoneinfo, etc), TZ environment string (in all
+    known formats), iCalendar format files, given ranges (with help from
+    relative deltas), local machine timezone, fixed offset timezone, UTC
+    timezone
+  * computing of Easter Sunday dates for any given year, using Western, Orthodox
+    or Julian algorithms
+
+Package: python3-dateutil
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}, tzdata
+XB-Python-Version: ${python3:Version}
+Description: powerful extensions to the standard datetime module
+ It features:
+ .
+  * computing of relative deltas (next month, next year, next monday, last week
+    of month, etc);
+  * computing of relative deltas between two given date and/or datetime objects
+  * computing of dates based on very flexible recurrence rules, using a superset
+    of the iCalendar specification. Parsing of RFC strings is supported as well.
+  * generic parsing of dates in almost any string format
+  * timezone (tzinfo) implementations for tzfile(5) format files
+    (/etc/localtime, /usr/share/zoneinfo, etc), TZ environment string (in all
+    known formats), iCalendar format files, given ranges (with help from
+    relative deltas), local machine timezone, fixed offset timezone, UTC
+    timezone
+  * computing of Easter Sunday dates for any given year, using Western, Orthodox
+    or Julian algorithms

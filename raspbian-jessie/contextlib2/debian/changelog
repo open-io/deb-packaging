@@ -1,0 +1,57 @@
+contextlib2 (0.5.3-1~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+  
+ -- Tristan Seligmann <mithrandi@debian.org>  Sun, 22 May 2016 04:09:37 +0200
+
+contextlib2 (0.5.3-1) unstable; urgency=medium
+
+  [ Tristan Seligmann ]
+  * Add version to unittest2 build-dependencies.
+  * New upstream release.
+  * Ship .pydist files.
+  * Bump Standards-Version to 3.9.8 (no changes).
+  * Update Vcs-* URLs for https.
+
+ -- Tristan Seligmann <mithrandi@debian.org>  Thu, 05 May 2016 03:10:07 +0200
+
+contextlib2 (0.5.1-1~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * Add version to unittest2 build dependencies.
+
+ -- Tristan Seligmann <mithrandi@debian.org>  Wed, 27 Jan 2016 04:19:44 +0200
+
+contextlib2 (0.5.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Add build-dependency on unittest2.
+
+ -- Tristan Seligmann <mithrandi@debian.org>  Tue, 19 Jan 2016 19:47:17 +0200
+
+contextlib2 (0.4.0-3) unstable; urgency=medium
+
+  * Fix watch file (using pypi.debian.net redirector).
+  * Bump S-V to 3.9.6.
+
+ -- Tristan Seligmann <mithrandi@debian.org>  Tue, 25 Aug 2015 21:40:15 +0200
+
+contextlib2 (0.4.0-2.1) unstable; urgency=medium
+
+  * Team upload.
+  * Added Python 3 support.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 15 Jul 2015 13:21:23 +0000
+
+contextlib2 (0.4.0-2) unstable; urgency=medium
+
+  * Fix Vcs-Svn field (was missing a character).
+  * Bump Standards-Version (no changes).
+
+ -- Tristan Seligmann <mithrandi@debian.org>  Sun, 27 Jul 2014 07:05:05 +0200
+
+contextlib2 (0.4.0-1) unstable; urgency=low
+
+  * Initial release. (Closes: #719458)
+
+ -- Tristan Seligmann <mithrandi@debian.org>  Mon, 12 Aug 2013 07:05:07 +0200

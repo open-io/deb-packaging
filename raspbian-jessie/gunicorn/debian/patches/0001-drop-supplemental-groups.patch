@@ -1,0 +1,35 @@
+From: Chris Lamb <lamby@debian.org>
+Date: Tue, 16 Oct 2012 12:05:35 +0100
+Subject: 0001-drop-supplemental-groups
+
+---
+ gunicorn/util.py | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/gunicorn/util.py b/gunicorn/util.py
+index 13e6d65..12f31b1 100644
+--- a/gunicorn/util.py
++++ b/gunicorn/util.py
+@@ -21,6 +21,7 @@ import inspect
+ import errno
+ import warnings
+ import cgi
++import errno
+ 
+ from gunicorn.errors import AppImportError
+ from gunicorn.six import text_type
+@@ -152,6 +153,14 @@ def set_owner_process(uid, gid):
+         # groups like on osx or fedora
+         gid = abs(gid) & 0x7FFFFFFF
+         os.setgid(gid)
++
++        # Also drop supplemental groups
++        try:
++            os.setgroups([])
++        except OSError as e:
++            if e.errno != errno.EPERM:
++                raise
++
+     if uid:
+         os.setuid(uid)
+ 
