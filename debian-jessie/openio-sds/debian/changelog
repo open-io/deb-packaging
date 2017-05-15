@@ -8,20 +8,9 @@ openio-sds (3.3.0-1) jessie; urgency=medium
 openio-sds (3.2.4-1) jessie; urgency=medium
 
   * New release
+  * Change python to C for rdir 
 
- -- Romain Acciari <romain.acciari@openio.io>  Fri, 16 Jun 2017 16:35:34 +0000
-
-openio-sds (3.2.3-1) jessie; urgency=medium
-
-  * New release
-
- -- Romain Acciari <romain.acciari@openio.io>  Tue, 09 May 2017 09:46:49 +0000
-
-openio-sds (3.2.2-1) jessie; urgency=medium
-
-  * New release
-
- -- Romain Acciari <romain.acciari@openio.io>  Thu, 20 Apr 2017 07:59:29 +0000
+ -- Sebastien Lapierre <sebastien.lapierre@openio.io>  Fri, 12 May 2017 15:30:05 +0000
 
 openio-sds (3.2.0-1) jessie; urgency=medium
 
