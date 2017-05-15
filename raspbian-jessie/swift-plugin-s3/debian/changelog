@@ -1,0 +1,71 @@
+swift-plugin-s3 (1.10-1) jessie; urgency=medium
+
+  [ Ondřej Nový ]
+  * New upstream release.
+  * Fixed watch file.
+  * Changed upstream URLs to Openstack.
+  * Changed Vcs URLs to https proto.
+  * Added python-six build dependency.
+
+  [ Thomas Goirand ]
+  * Fixed upstream VCS URL in debian/rules.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 02 Feb 2016 13:19:31 +0000
+
+swift-plugin-s3 (1.9-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * New upstream release.
+  * Added myself as uploader.
+
+  [ Thomas Goirand ]
+  * Fixed debian/copyright ordering.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 28 Jan 2016 13:26:22 +0000
+
+swift-plugin-s3 (1.8-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Reviewed (build-)depends for this release.
+  * Fixed unit tests running (using nose-exclude to not run functional tests).
+  * Removed obsolete patches.
+  * Standards-Version is now 3.9.6 (no change).
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 10 Jun 2015 09:28:51 +0200
+
+swift-plugin-s3 (1.7-5) unstable; urgency=medium
+
+  * Updated upstream URL in debian/rules,control,copyright.
+  * Fixed spaces instead of tabs in debian/rules line 15 (Closes: #750308).
+  * Added swift-plugin-s3.doc-base file.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 17 May 2014 03:22:58 +0800
+
+swift-plugin-s3 (1.7-4) unstable; urgency=low
+
+  * Added the packaging of sphinxdoc.
+  * Standards-Version: is now 3.9.5.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 07 Feb 2014 23:37:25 +0800
+
+swift-plugin-s3 (1.7-3) unstable; urgency=medium
+
+  * Ran wrap-and-sort.
+  * Added upstream patches cherry-pick from github (Closes: #737639):
+    - fix_signature_bug_to_use_RAW_PATH_INFO.patch
+    - Updated_HEAD_and_ACL_calls_to_objects_to_work_correctly.patch
+  * Standards-Version: is now 3.9.5.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 04 Feb 2014 15:10:16 +0000
+
+swift-plugin-s3 (1.7-2) unstable; urgency=low
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 17 May 2013 08:09:11 +0000
+
+swift-plugin-s3 (1.7-1) experimental; urgency=low
+
+  * Initial release (Closes: #693137).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 13 Nov 2012 14:05:57 +0000

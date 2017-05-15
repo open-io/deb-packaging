@@ -1,0 +1,1 @@
+Test-Command: cd "$ADTTMP" ; python -c "import swift3; print swift3.version"
