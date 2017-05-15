@@ -1,0 +1,82 @@
+From 83ce45b1c361c24a1397bbc8af3e43117edf0799 Mon Sep 17 00:00:00 2001
+From: Daniele Tricoli <eriol@mornie.org>
+Date: Sat, 18 Jun 2016 18:57:45 +0200
+Subject: Use the same unbundling strategy implemented by pip
+
+Description: Use the same unbundling strategy implemented by pip.
+Author: The pip developers <python-virtualenv@groups.google.com>
+Patch-Name: use-pip-unbundling.patch
+---
+ requests/packages/__init__.py | 61 ++++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 51 insertions(+), 10 deletions(-)
+
+diff --git a/requests/packages/__init__.py b/requests/packages/__init__.py
+index 971c2ad..7a87131 100644
+--- a/requests/packages/__init__.py
++++ b/requests/packages/__init__.py
+@@ -23,14 +23,55 @@ request.
+ from __future__ import absolute_import
+ import sys
+ 
+-try:
+-    from . import urllib3
+-except ImportError:
+-    import urllib3
+-    sys.modules['%s.urllib3' % __name__] = urllib3
++# On Debian we use the unbundling strategy implemented by pip inside
++# pip._vendor.__init__.
++def vendored(modulename):
++    vendored_name = "{0}.{1}".format(__name__, modulename)
+ 
+-try:
+-    from . import chardet
+-except ImportError:
+-    import chardet
+-    sys.modules['%s.chardet' % __name__] = chardet
++    try:
++        __import__(vendored_name, globals(), locals(), level=0)
++    except ImportError:
++        try:
++            __import__(modulename, globals(), locals(), level=0)
++        except ImportError:
++            # We can just silently allow import failures to pass here. If we
++            # got to this point it means that ``import requests.packages.whatever``
++            # failed and so did ``import whatever``. Since we're importing this
++            # upfront in an attempt to alias imports, not erroring here will
++            # just mean we get a regular import error whenever requests
++            # *actually* tries to import one of these modules to use it, which
++            # actually gives us a better error message than we would have
++            # otherwise gotten.
++            pass
++        else:
++            sys.modules[vendored_name] = sys.modules[modulename]
++            base, head = vendored_name.rsplit(".", 1)
++            setattr(sys.modules[base], head, sys.modules[modulename])
++
++vendored('chardet')
++vendored('urllib3')
++vendored('urllib3._collections')
++vendored('urllib3.connection')
++vendored('urllib3.connectionpool')
++vendored('urllib3.contrib')
++vendored('urllib3.contrib.ntlmpool')
++vendored('urllib3.contrib.pyopenssl')
++vendored('urllib3.exceptions')
++vendored('urllib3.fields')
++vendored('urllib3.filepost')
++vendored('urllib3.packages')
++vendored('urllib3.packages.ordered_dict')
++vendored('urllib3.packages.six')
++vendored('urllib3.packages.ssl_match_hostname')
++vendored('urllib3.packages.ssl_match_hostname._implementation')
++vendored('urllib3.poolmanager')
++vendored('urllib3.request')
++vendored('urllib3.response')
++vendored('urllib3.util')
++vendored('urllib3.util.connection')
++vendored('urllib3.util.request')
++vendored('urllib3.util.response')
++vendored('urllib3.util.retry')
++vendored('urllib3.util.ssl_')
++vendored('urllib3.util.timeout')
++vendored('urllib3.util.url')

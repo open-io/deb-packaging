@@ -1,0 +1,16 @@
+python-keyring (8.4.1-1) unstable; urgency=medium
+
+  Now this package contains only the recommended secure backends for each
+  platform — on Linux these are the Secret Service backend and the KWallet
+  D-Bus based backend.
+
+  All the other backends have been moved to the new keyrings.alt package
+  (which provides python-keyrings.alt and python3-keyrings.alt binaries).
+
+  Please make sure you have keyrings.alt installed if you need to use the
+  old backends (for example the file backend).
+
+  See https://github.com/jaraco/keyring/issues/117 for the reasoning of
+  the split.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 07 Feb 2016 13:22:13 +0300

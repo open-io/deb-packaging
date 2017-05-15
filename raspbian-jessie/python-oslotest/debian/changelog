@@ -1,0 +1,176 @@
+python-oslotest (1:2.3.0-1~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * 
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 30 May 2016 11:22:17 +0000
+
+python-oslotest (1:2.3.0-1) unstable; urgency=medium
+
+  [ David Della Vecchia ]
+  * New upstream release.
+  * d/control: Align depends with upstream.
+
+  [ Ondřej Nový ]
+  * Fixed homepage (https).
+  * Fixed VCS URLs (https).
+
+  [ Thomas Goirand ]
+  * Uploading to unstable.
+  * Standards-Version: 3.9.7 (no change).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 05 Apr 2016 22:55:18 +0000
+
+python-oslotest (1:2.0.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends.
+  * Fixed debian/copyright ordering.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 26 Nov 2015 15:42:27 +0100
+
+python-oslotest (1:1.11.0-2) unstable; urgency=medium
+
+  * override_dh_python3 to fix Py3 shebang.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 23 Oct 2015 23:30:21 +0000
+
+python-oslotest (1:1.11.0-1) unstable; urgency=medium
+
+  [ Corey Bryant ]
+  * New upstream release.
+  * d/control: Update uploaders.
+
+  [ Thomas Goirand ]
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 16 Oct 2015 10:23:25 +0000
+
+python-oslotest (1:1.10.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Added myself as uploader.
+
+ -- Ivan Udovichenko <iudovichenko@mirantis.com>  Tue, 08 Sep 2015 12:41:27 +0300
+
+python-oslotest (1:1.9.0-1) experimental; urgency=medium
+
+  [ James Page ]
+  * d/p/fix-import-of-mock.patch: Dropped, as python 3.2 is no longer a
+    target.
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 30 Jul 2015 15:07:14 +0000
+
+python-oslotest (1:1.7.0-2) experimental; urgency=medium
+
+  * Removed python{3}-os-client-config form build-dependencies, as it makes a
+    build-dependency loop.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 07 Jul 2015 19:30:03 +0200
+
+python-oslotest (1:1.7.0-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+    - d/control: Add BD on python{3}-os-client-config.
+    - d/p/*: Refresh.
+  * Update watch file to use Debian pypi redirector.
+
+ -- James Page <james.page@ubuntu.com>  Wed, 10 Jun 2015 17:19:41 +0100
+
+python-oslotest (1:1.6.0-2) experimental; urgency=medium
+
+  * Bump epoch to allow resync with Ubuntu.
+
+ -- James Page <james.page@ubuntu.com>  Fri, 05 Jun 2015 09:50:48 +0100
+
+python-oslotest (1.6.0-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release:
+    - d/control: Align version requirements with upstream.
+    - d/p/*: Refresh.
+
+ -- James Page <james.page@ubuntu.com>  Wed, 03 Jun 2015 10:22:31 +0100
+
+python-oslotest (1.5.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Uploading to unstable.
+  * Updated a few versions for (build)-depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 25 Feb 2015 10:28:33 +0100
+
+python-oslotest (1.2.0-2) experimental; urgency=medium
+
+  * Removed extra space in long desc of python-oslotest-doc (Closes: #772583).
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 07 Jan 2015 15:43:37 +0100
+
+python-oslotest (1.2.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Rebases the six.moves patch.
+  * Upstream removed the .sh extension for the oslo_debug_helper, updates the
+    debian/rules accordingly.
+  * Added dh-python as build-depends.
+  * Now using Build-Depends-Indep too, and moved many build-depends there.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 12 Nov 2014 13:28:36 +0000
+
+python-oslotest (1.1.0.0-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 02 Oct 2014 08:00:09 +0000
+
+python-oslotest (1.1.0.0~a2-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Updated (build-)depends for this release.
+  * Added patch for the import of the mock module in Python 3.2.
+  * Added alternative handling for /usr/bin/oslo_debug_helper.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 17 Sep 2014 20:12:19 +0800
+
+python-oslotest (1.1.0.0~a1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Uploading to experimental before Jessie's freeze.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 05 Sep 2014 15:20:43 +0800
+
+python-oslotest (1.0.0-2) unstable; urgency=medium
+
+  * build-depends: dropped python-hacking, added python{3,}-pbr.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 08 Jun 2014 00:58:30 +0800
+
+python-oslotest (1.0.0-1) unstable; urgency=medium
+
+  [ Thomas Bechtold ]
+  * debian/watch: Use github tags.
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Uploading to unstable.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 18 Apr 2014 05:54:51 +0000
+
+python-oslotest (0.1-2) experimental; urgency=low
+
+  * Do not run unit tests using python 2.6.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 28 Mar 2014 23:36:09 +0800
+
+python-oslotest (0.1-1) experimental; urgency=low
+
+  * Initial release. (Closes: #742310)
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 21 Mar 2014 17:25:32 +0800

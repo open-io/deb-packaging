@@ -1,0 +1,5 @@
+dh_autoreconf       usr/bin
+dh_autoreconf_clean usr/bin
+autoreconf.pm       /usr/share/perl5/Debian/Debhelper/Sequence
+autoreconf.mk       /usr/share/cdbs/1/rules
+ltmain-as-needed.diff /usr/share/dh-autoreconf

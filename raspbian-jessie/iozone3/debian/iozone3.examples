@@ -1,0 +1,6 @@
+src/current/Generate_Graphs
+src/current/Gnuplot.txt
+src/current/client_list
+src/current/*.sh
+src/current/*.pl
+src/current/*.dem

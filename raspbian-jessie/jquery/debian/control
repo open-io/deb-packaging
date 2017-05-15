@@ -1,0 +1,30 @@
+Source: jquery
+Section: web
+Priority: optional
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Marcelo Jorge Vieira (metal) <metal@debian.org>,
+           Steve Kemp <skx@debian.org>,
+           Antonio Terceiro <terceiro@debian.org>
+Build-Depends: debhelper (>= 9~),
+               node-requirejs,
+               node-source-map,
+               node-uglify,
+               nodejs,
+Standards-Version: 3.9.6
+Homepage: http://jquery.com/
+Vcs-Git: git://anonscm.debian.org/pkg-javascript/jquery.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-javascript/jquery.git
+
+Package: libjs-jquery
+Architecture: all
+Multi-Arch: foreign
+Conflicts: jquery
+Replaces: jquery
+Breaks: movabletype-opensource (<< 5.1.4+dfsg-3~)
+Depends: ${misc:Depends}
+Recommends: javascript-common
+Description: JavaScript library for dynamic web applications
+ jQuery is a fast, concise, JavaScript Library that simplifies how you
+ traverse HTML documents, handle events, perform animations, and add Ajax
+ interactions to your web pages. jQuery is designed to change the way
+ that you write JavaScript.

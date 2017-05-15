@@ -1,0 +1,18 @@
+Description: sort libs in native_libs.txt
+Author: Anton Gladky <gladk@debian.org>
+Bug-Debian: https://bugs.debian.org/825857
+Last-Update: 2016-06-09
+
+Index: python-setuptools-20.10.1/setuptools/command/bdist_egg.py
+===================================================================
+--- python-setuptools-20.10.1.orig/setuptools/command/bdist_egg.py
++++ python-setuptools-20.10.1/setuptools/command/bdist_egg.py
+@@ -197,7 +197,7 @@ class bdist_egg(Command):
+             if not self.dry_run:
+                 ensure_directory(native_libs)
+                 libs_file = open(native_libs, 'wt')
+-                libs_file.write('\n'.join(all_outputs))
++                libs_file.write('\n'.join(sorted(all_outputs)))
+                 libs_file.write('\n')
+                 libs_file.close()
+         elif os.path.isfile(native_libs):

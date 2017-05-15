@@ -1,0 +1,122 @@
+python-oslo.log (3.3.0-1~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * 
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 12 Jul 2016 09:01:09 +0000
+
+python-oslo.log (3.3.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Standards-Version is 3.9.8 now (no change)
+  * d/rules: Changed UPSTREAM_GIT protocol to https
+  * d/copyright: Changed source URL to https protocol
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed python{3,}-oslo.config (build-)depends version.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 21 Jun 2016 11:27:26 +0200
+
+python-oslo.log (3.2.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 04 Apr 2016 08:26:51 +0000
+
+python-oslo.log (3.2.0-1) experimental; urgency=medium
+
+  [ David Della Vecchia ]
+  * d/p/allow-pyinotify-0.9.5.patch: Rebasing.
+
+  [ Ondřej Nový ]
+  * Fixed VCS URLs (https).
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * d/control: Align depends with upstream.
+  * Standards-Version: 3.9.7 (no change).
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 02 Mar 2016 12:37:10 +0000
+
+python-oslo.log (2.3.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Fixed debian/copyright.
+  * Removed install-missing-files.patch.
+  * Rebased allow-pyinotify-0.9.5.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 15 Jan 2016 05:58:54 +0000
+
+python-oslo.log (2.2.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Add patch to allow pyinotify 0.9.5.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 13 Jan 2016 02:34:22 +0000
+
+python-oslo.log (2.0.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 01 Dec 2015 10:55:20 +0100
+
+python-oslo.log (1.11.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 15 Oct 2015 19:41:07 +0000
+
+python-oslo.log (1.11.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 27 Sep 2015 17:50:02 +0200
+
+python-oslo.log (1.10.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Align (build)-depends with upstream.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 04 Sep 2015 08:48:41 +0000
+
+python-oslo.log (1.7.0-1) experimental; urgency=medium
+
+  [ James Page ]
+  * Fixup typo in transitional package description (LP: #1471561).
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 29 Jul 2015 23:29:35 +0000
+
+python-oslo.log (1.4.0-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release. 
+  * Update watch file to use Debian pypi redirector.
+
+ -- James Page <james.page@ubuntu.com>  Wed, 10 Jun 2015 17:31:11 +0100
+
+python-oslo.log (1.2.0-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release:
+    - d/control: Align version requirements with upstream.
+  * Re-align with Ubuntu:
+    - d/control: Add transitional packages for *oslo-log.
+    - d/control: Add Breaks/Replaces to support migration to oslo.log
+      package names.
+
+ -- James Page <james.page@ubuntu.com>  Tue, 09 Jun 2015 08:47:27 +0100
+
+python-oslo.log (1.0.0-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #776109)
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 10 Feb 2015 14:58:25 +0100

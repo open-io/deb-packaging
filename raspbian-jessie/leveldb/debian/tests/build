@@ -1,0 +1,64 @@
+#!/bin/sh
+# autopkgtest check: Builds a small application against leveldb, checking
+# if it compiles, links and runs successfully.
+# Author: Alessio Treglia <alessio@debian.org>
+
+set -e
+
+WORKDIR=$(mktemp -d)
+trap "rm -rf $WORKDIR" 0 INT QUIT ABRT PIPE TERM
+cd $WORKDIR
+cat <<EOF > build_test.cpp
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <cassert>
+
+#include "leveldb/db.h"
+
+using namespace std;
+
+int main(int argc, char **argv)
+{
+    leveldb::DB *db;
+    leveldb::Options opts;
+    leveldb::ReadOptions r_opts;
+    leveldb::WriteOptions w_opts;
+    std::string value;
+
+    opts.create_if_missing = true;
+    // Create a new db
+    leveldb::Status s = leveldb::DB::Open(opts,
+					   "./build_test_db",
+					   &db);
+    assert (s.ok() == true);
+    // Check if the db is empty
+    s = db->Get(r_opts, "test_key1", &value);
+    assert (s.IsNotFound() == true);
+    // Add such new key to the db
+    s = db->Put(w_opts, "test_key1", "test_value1");
+    assert (s.ok() == true);
+    // Get the new key
+    s = db->Get(r_opts, "test_key1", &value);
+    assert (s.ok() == true);
+    // Check the return value
+    assert (value.compare("test_value1") == 0);
+    // Delete the key
+    s = db->Delete(w_opts, "test_key1");
+    assert (s.ok() == true);
+    // Check if the deletion's gone well
+    s = db->Get(r_opts, "test_key1", &value);
+    assert (s.IsNotFound() == true);
+
+    // Close the db
+    delete db;
+
+    return 0;
+}
+EOF
+
+g++ -o build_test build_test.cpp -pthread -lleveldb -lsnappy
+echo "build: OK"
+[ -x build_test ]
+./build_test
+echo "run: OK"

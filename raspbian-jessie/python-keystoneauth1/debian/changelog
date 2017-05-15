@@ -1,0 +1,70 @@
+python-keystoneauth1 (2.4.1-1~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * 
+
+ -- James Page <james.page@ubuntu.com>  Wed, 29 Jun 2016 13:53:29 +0000
+
+python-keystoneauth1 (2.4.1-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Standards-Version is 3.9.8 now (no change)
+  * d/rules: Changed UPSTREAM_GIT protocol to https
+
+  [ James Page ]
+  * New upstream point release (LP: #1586900).
+    - d/p/*: Dropped, included upstream.
+
+ -- James Page <james.page@ubuntu.com>  Tue, 31 May 2016 10:49:35 +0100
+
+python-keystoneauth1 (2.4.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Uploading to unstable.
+  * Fixed (build-)depends for this release.
+  * Removed all patches (applied upstream).
+  * Added fix-OrderedDict-mutated-during-iteration.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 04 Apr 2016 12:33:33 +0200
+
+python-keystoneauth1 (2.1.0-4) experimental; urgency=medium
+
+  [ Corey Bryant ]
+  * d/watch: Fix tags url.
+
+  [ Ondřej Nový ]
+  * Fixed VCS URLs (https).
+
+  [ Thomas Goirand ]
+  * Added patch to remove argparse from requirements.txt.
+  * Standards-Version: 3.9.7 (no change).
+  * Fixed debian/copyright ordering.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 10 Mar 2016 12:58:44 +0100
+
+python-keystoneauth1 (2.1.0-3) experimental; urgency=medium
+
+  * d/rules: Run tests for all versions of py3.
+  * d/p/py3-session-adapters-iteration.patch: Fixes failure hit by py3.5 tests.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Wed, 16 Dec 2015 09:17:55 -0500
+
+python-keystoneauth1 (2.1.0-2) experimental; urgency=medium
+
+  * Added missing pep8 build-depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 08 Dec 2015 15:46:22 +0100
+
+python-keystoneauth1 (2.1.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Made the long description better.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 05 Oct 2015 09:48:29 +0200
+
+python-keystoneauth1 (1.1.0-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #800700)
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 02 Oct 2015 15:17:55 +0200

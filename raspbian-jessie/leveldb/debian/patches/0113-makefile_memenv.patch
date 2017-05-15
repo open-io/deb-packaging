@@ -1,0 +1,37 @@
+Last-Update: 2013-02-21
+Forwarded: no
+Author: Dmitry Smirnov <onlyjob@member.fsf.org>
+Description: install "memenv" component.
+ This patch will install two additional files to libleveldb-dev:
+  + include/helpers/memenv.h
+  + lib/*/libmemenv.a
+
+---
+ Makefile |    6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+--- leveldb.orig/Makefile
++++ leveldb/Makefile
+@@ -101,18 +101,20 @@ $(SHARED3):
+ 
+ endif  # PLATFORM_SHARED_EXT
+ 
+-all: $(SHARED) $(LIBRARY)
++all: $(SHARED) $(LIBRARY) $(MEMENVLIBRARY)
+ 
+ install: all
+ 	install -d $(DESTDIR)$(PREFIX)/$(LIBDIR)
+-	install -d $(DESTDIR)$(PREFIX)/$(INCLUDEDIR)/leveldb
++	install -d $(DESTDIR)$(PREFIX)/$(INCLUDEDIR)/leveldb/helpers
+ 	install -m 0644 $(LIBRARY) $(DESTDIR)$(PREFIX)/$(LIBDIR)
++	install -m 0644 $(MEMENVLIBRARY) $(DESTDIR)$(PREFIX)/$(LIBDIR)
+ ifneq ($(PLATFORM_SHARED_EXT),)
+ 	install -m 0644 $(SHARED3) $(DESTDIR)$(PREFIX)/$(LIBDIR)
+ 	cd $(DESTDIR)$(PREFIX)/$(LIBDIR) && ln -sf $(SHARED3) $(SHARED2)
+ 	cd $(DESTDIR)$(PREFIX)/$(LIBDIR) && ln -sf $(SHARED3) $(SHARED1)
+ endif
+ 	install -m 0644 include/leveldb/* $(DESTDIR)$(PREFIX)/$(INCLUDEDIR)/leveldb
++	install -m 0644 helpers/memenv/*.h $(DESTDIR)$(PREFIX)/$(INCLUDEDIR)/leveldb/helpers
+ 
+ check: all $(PROGRAMS) $(TESTS)
+ 	for t in $(TESTS); do echo "***** Running $$t"; ./$$t || exit 1; done

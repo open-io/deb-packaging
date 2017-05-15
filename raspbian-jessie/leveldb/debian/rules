@@ -1,0 +1,40 @@
+#!/usr/bin/make -f
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS)
+CFLAGS:=$(shell dpkg-buildflags --get CFLAGS)
+
+export CXXFLAGS+=$(CPPFLAGS)
+export CFLAGS+=$(CPPFLAGS)
+
+export DESTDIR=debian/tmp
+export PREFIX=/usr
+export LIBDIR=lib/$(DEB_HOST_MULTIARCH)
+
+ifneq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
+    OPT=-O0
+else
+    OPT=-O2
+endif
+
+export OPT += -g -DNDEBUG
+
+%:
+	dh $@ --parallel
+
+override_dh_auto_test:
+#ifeq ($(DEB_BUILD_ARCH),mips)
+#	@echo "======== will not abort on test(s) failure ========"
+#	dh_auto_test || true
+#else
+#	dh_auto_test
+#endif
+	true
+
+get-orig-source:
+	debian/get-git-source.sh
+
+override_dh_strip:
+	dh_strip --dbg-package=libleveldb-dbg

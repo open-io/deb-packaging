@@ -1,0 +1,206 @@
+python-mock (2.0.0-3~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie.
+
+ -- Al Nikolov <clown@debian.org>  Thu, 17 Nov 2016 01:32:28 +0200
+
+python-mock (2.0.0-3) unstable; urgency=medium
+
+  * Team upload (with agreement from Ondřej Nový).
+  * Uploading to unstable.
+  * Removed useless X-Python-Version: >= 2.6 and X-Python3-Version: >= 3.3.
+  * Moved some build-depends into build-depends-indep.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 06 Oct 2016 07:34:00 +0000
+
+python-mock (2.0.0-2) experimental; urgency=medium
+
+  * Require newer version of python-funcsigs (Closes: #829631)
+  * Use Python 3 version of Sphinx
+  * Added myself as uploader
+  * wrap-and-sort -t -a
+  * d/copyright: Added myself to Debian part
+  * d/watch: Use https protocol
+  * Changed homepage to new one
+
+ -- Ondřej Nový <onovy@debian.org>  Wed, 06 Jul 2016 09:45:39 +0200
+
+python-mock (2.0.0-1) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+  * Team upload.
+  * New upstream release
+  * Fixed B-D and D for new release
+  * Removed pbr.patch and return-to-a-standard-requirements-def.patch
+    (not needed anymore)
+  * Fixed VCS URL (https)
+  * Check signature of upstream tarball, added Robert Collins crt
+  * Bump X-Python{3,}-Version
+  * Removed override_dh_installchangelogs (not needed)
+  * Enabled autopkgtest-pkg-python testsuite
+
+  [ Thomas Goirand ]
+  * debian/control:
+    - Standards-Version is now 3.9.8 (no change).
+    - Removed Breaks+Replaces that were addressing issues prior oldoldstable.
+  * debian/rules:
+    - using dpkg-parsechangelog -SVersion and not -S Version, as Trusty
+      wouldn't accept the space.
+    - Correctly build doc in the override_dh_sphinxdoc and not in auto_build.
+  * Using debian/source/options to ignore egg-info changes instead of
+    cleaning the files.
+  * Bump debhelper to 9 instead of 8.
+  * Added patch to disable failing test.
+
+ -- Ondřej Nový <novy@ondrej.org>  Tue, 07 Jun 2016 16:18:13 +0200
+
+python-mock (1.3.0-2.1) unstable; urgency=medium
+
+  * Team upload.
+  * Add patch to requirements.txt to avoid funky results not supported by
+    pkg_resources in the generated egg-info (Closes: #794461).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 04 Aug 2015 07:55:30 +0000
+
+python-mock (1.3.0-2) unstable; urgency=medium
+
+  * Lower Build-Depends on python-pbr to (>= 0.11) to allow it to build
+    in unstable (Closes: #793945).
+  * Add pbr.patch to sync pbr version between requirements.txt and
+    setup.py.
+  * Add python-funcsigs to Depends (Closes: #794013).
+  * Build-Depend on unittest2 (>= 1.1.0) so we can drop six.patch.
+  * Remove six.patch now that there is a sufficiently new unittest2
+    available.
+
+ -- Michael Fladischer <fladi@debian.org>  Fri, 31 Jul 2015 12:17:26 +0200
+
+python-mock (1.3.0-1) unstable; urgency=medium
+
+  [ Jean-Michel Nirgal Vourgère ]
+  * Remove David Watson from Uploaders. (Closes: #771614)
+
+  [ Michael Fladischer ]
+  * New upstream release.
+  * Add six.patch to provide python2 and 3 compatibility for tests.
+  * Add python-six and python3-six to Build-Depends.
+  * Add OSLO_PACKAGE_VERSION in d/rules to allow pbr to run the tests.
+  * Add lintian override for missing PGP signature on upstream tarballs.
+  * Add dversionmangle and repacksuffix options for DFSG-repack to
+    d/watch.
+  * Bump Standards-Version to 3.9.6.
+  * Drop unnecessary versioned dependencies on python-all and python3-
+    all.
+  * Update years in d/copyright.
+  * Change my email address to fladi@debian.org.
+  * Use pypi.debian.net service for uscan.
+  * Switch buildsystem to pybuild.
+  * Remove PHONY target declarations from d/rules.
+  * Remove html directory from Files-Excluded as upstream no longer
+    ships it in their tarball.
+  * Remove python3.2_tests.patch and python3.4_compat.patch as they are
+    no longer needed.
+  * Rename BSD-mock license to BSD-3-clause.
+  * Add python(3)-pbr and python-setuptools (>= 17.1) to Build-Depends.
+  * Reformat packaging files with cme for better readability.
+
+ -- Michael Fladischer <fladi@debian.org>  Tue, 28 Jul 2015 17:31:58 +0200
+
+python-mock (1.0.1-3) unstable; urgency=medium
+
+  * Team upload.
+  * d/patches/python3.4_compat.patch: Fix FTBFS with Python 3.4.
+    (Closes: #739890) (LP: #1283742)
+  * d/control: Bump Standards-Version with no other changes necessary.
+
+ -- Barry Warsaw <barry@debian.org>  Wed, 26 Feb 2014 15:39:36 -0500
+
+python-mock (1.0.1-2) unstable; urgency=low
+
+  [ Michael Fladischer ]
+  * Upload to unstable.
+  * Remove temporary fix for PKG-INFO.
+
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Wed, 08 May 2013 07:45:16 +0200
+
+python-mock (1.0.1-1) experimental; urgency=low
+
+  [ Michael Fladischer]
+  * New upstream release.
+  * Fix upstream name, contact and year in d/copyright.
+
+  [ Thomas Goirand ]
+  * Uploading to experimental.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 14 Feb 2013 21:43:58 +0800
+
+python-mock (0.8.0-3) unstable; urgency=low
+
+  * Team upload.
+  * debian/control: python-mock-doc needs to Break/Replace
+    python-mock (<< 0.7.2) to ensure clean upgrades from squeeze
+    to wheezy. Thanks to Andreas Beckmann (Closes: #694296).
+
+ -- Andrew Starr-Bochicchio <asb@debian.org>  Fri, 30 Nov 2012 17:02:02 -0500
+
+python-mock (0.8.0-2) unstable; urgency=low
+
+  * Add mock.egg-info/PKG-INFO to d/clean to allow two builds in a row
+    (Closes: #671252).
+  * Run tests during build (Closes: #667554).
+    - Add patch for python3 unittests.
+    - B-D on python-unittest2 for python2.x.
+    - Add override for dh_auto_test.
+  * Exclude SOURCES.txt and add temporary fix for Metadata-Version in
+    PKG-INFO.
+  * Change order of my name.
+  * Update years in d/copyright.
+  * Use DEP5 1.0 format URL.
+  * Drop d/s/local-options from SVN.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Mon, 04 Jun 2012 20:34:13 +0200
+
+python-mock (0.8.0-1) unstable; urgency=low
+
+  * Team upload.
+  * New upstream release
+  * debian/control
+    - bump Standards-Version to 3.9.3 (no changes needed)
+
+ -- Sandro Tosi <morph@debian.org>  Wed, 04 Apr 2012 23:08:09 +0200
+
+python-mock (0.7.2-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #617799)
+  * Set PMPT as maintainer and myself as uploader.
+  * Switch to source format 3.0 (quilt).
+  * Switch to dh_python2.
+  * Use pypi.python.org in d/watch.
+  * Use DEP5 for copyright file.
+  * Streamline packaging code with wrap-and-sort.
+  * Bumped Standards-Version to 3.9.2 (no change necessary).
+  * Move HTML documentation to u/s/d/python-mock/html/.
+  * Use dh_link to create the documentation source symlinks.
+  * Set X-P-V to >= 2.4.
+  * Build for Python3.
+  * Use dh_sphinxdoc.
+  * Ship documentation in separate package.
+
+ -- Fladischer Michael <FladischerMichael@fladi.at>  Tue, 23 Aug 2011 13:13:44 +0200
+
+python-mock (0.6.0-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix "doesn't depend on python" by applying patch to debian/control
+    by Jakub Wilk (Closes: #588586)
+
+ -- Marek Kubica <marek@xivilization.net>  Sat, 17 Jul 2010 12:27:08 +0200
+
+python-mock (0.6.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #540372)
+
+ -- David Watson <david@kutoken.com>  Fri, 21 Aug 2009 14:22:49 +0100

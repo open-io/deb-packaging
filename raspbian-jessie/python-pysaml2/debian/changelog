@@ -1,0 +1,46 @@
+python-pysaml2 (3.0.0-3~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 19 Nov 2015 15:39:29 +0100
+
+python-pysaml2 (3.0.0-3) unstable; urgency=medium
+
+  * override_dh_python3 to fix Py3 shebang.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 23 Oct 2015 23:48:31 +0000
+
+python-pysaml2 (3.0.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 16 Oct 2015 10:34:56 +0000
+
+python-pysaml2 (3.0.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Added Python3 support.
+  * Updated watch file to use github tag and not broken pypi.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 31 Jul 2015 08:47:57 +0000
+
+python-pysaml2 (2.4.0-2) unstable; urgency=medium
+
+  * Makes build reproducible thanks to Juan Picca (Closes: #789751).
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 26 Jun 2015 15:41:09 +0200
+
+python-pysaml2 (2.4.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Dropped X-Python-Version: >= 2.7.
+  * Standard-Versions: is now 3.9.6.
+  * Also renames /usr/bin/merge_metadata.py as pysaml2-merge-metadata.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 15 May 2015 17:48:07 +0200
+
+python-pysaml2 (2.0.0-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #760824)
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 08 Sep 2014 16:11:53 +0800

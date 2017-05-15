@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "remove" ] ; then
+	update-alternatives --remove make_metadata /usr/bin/python3-make_metadata
+	update-alternatives --remove mdexport /usr/bin/python3-mdexport
+	update-alternatives --remove parse_xsd2 /usr/bin/python3-parse_xsd2
+	update-alternatives --remove merge_metadata /usr/bin/python3-merge_metadata
+fi
+
+#DEBHELPER#
+
+exit 0

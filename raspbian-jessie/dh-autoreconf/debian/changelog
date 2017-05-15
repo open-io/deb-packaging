@@ -1,0 +1,132 @@
+dh-autoreconf (12~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * Set debian-branch = jessie-backports
+  * Revert "ltmain-as-needed.diff: Refresh" - jessie has old one
+
+ -- Julian Andres Klode <jak@debian.org>  Wed, 01 Jun 2016 19:27:05 +0200
+
+dh-autoreconf (12) unstable; urgency=medium
+
+  [ Julian Andres Klode ]
+  * dh_autoreconf: --sourcedirectory is forwarded by dh(1)
+    Thanks to Niels Thykier for reporting this on IRC
+  * debian/control: Standards-Version: 3.9.7
+
+  [ Niels Thykier ]
+  * dh_autoreconf: Do nothing if there are no configure scripts
+
+ -- Julian Andres Klode <jak@debian.org>  Sat, 02 Apr 2016 23:44:09 +0200
+
+dh-autoreconf (11) unstable; urgency=medium
+
+  * dh_autoreconf: Support --sourcedirectory in compat level 10
+    (Closes: #673254)
+  * Also look for ltmain.sh in paths from libtool 2.46 (Closes: #814063)
+  * ltmain-as-needed.diff: Refresh
+
+ -- Julian Andres Klode <jak@debian.org>  Mon, 08 Feb 2016 11:13:42 +0100
+
+dh-autoreconf (10) unstable; urgency=medium
+
+  [ Julian Andres Klode ]
+  * debian/copyright: Extend copyright statement to 2013
+  * dh_autoreconf.pod: Fix typo (Closes: #729001)
+  * dh-autoreconf.pod: Document when dh-autoreconf can be used with
+    autotools-dev (Closes: #698765)
+  * debian/gbp.conf: Add
+  * Standards-Version 3.9.5
+  * debian/copyright: Extend to 2014
+  * Use debhelper 9
+
+  [ Eric Dorland ]
+  * Fix automake documentation (Closes: #740797)
+
+ -- Julian Andres Klode <jak@debian.org>  Thu, 25 Sep 2014 15:40:21 +0200
+
+dh-autoreconf (9) unstable; urgency=low
+
+  * autoreconf.mk: Only run dh_autoreconf_clean if needed (Closes: #709079)
+
+ -- Julian Andres Klode <jak@debian.org>  Sun, 14 Jul 2013 22:21:08 +0200
+
+dh-autoreconf (8) unstable; urgency=low
+
+  * Promote autopoint from Recommends to Depends (Closes: #610966)
+  * autoreconf.mk: include buildcore.mk (Closes: #681036)
+  * Set Standards-Version to 3.9.4
+  * Update Vcs-Git and Vcs-Browser to the anonscm urls
+
+ -- Julian Andres Klode <jak@debian.org>  Sun, 14 Jul 2013 20:37:21 +0200
+
+dh-autoreconf (7) unstable; urgency=low
+
+  * dh_autoreconf: Documentation: -f -i is passed to autoreconf by default
+  * dh_autoreconf_clean: Correctly handle spaces in file names (Closes: #692317)
+  * dh_autoreconf_clean: Remove invalid and unneeded comments
+
+ -- Julian Andres Klode <jak@debian.org>  Thu, 22 Nov 2012 23:31:00 +0100
+
+dh-autoreconf (6) unstable; urgency=low
+
+  * Require at least version 2.4.2 of libtool (Closes: #655876)
+  * Add Multi-Arch: foreign field (Closes: #658969)
+  * Do not allow to run dh_autoreconf twice (Closes: #630766)
+  * dh_autoreconf: Create autoreconf.after even if autoreconf fails
+  * Increase Standards-Version to 3.9.3, use copyright-format 1.0
+
+ -- Julian Andres Klode <jak@debian.org>  Thu, 23 Feb 2012 15:46:34 +0100
+
+dh-autoreconf (5) unstable; urgency=low
+
+  * ltmain-as-needed.diff: Rebase against libtool 2.4.2 (Closes: #647070)
+
+ -- Julian Andres Klode <jak@debian.org>  Sun, 30 Oct 2011 14:36:09 +0100
+
+dh-autoreconf (4) unstable; urgency=low
+
+  [ Julian Andres Klode ]
+  * autoreconf.mk: Run _clean in reverse-config (Closes: #596099)
+  * dh_autoreconf: Add --as-needed for automatic patching of ltmain.sh
+  * debian/control: Increase Standards-Version to 3.9.2
+
+  [ Ari Pollak ]
+  * dh_autoreconf: support parameters passed to custom program (Closes: #623229)
+
+ -- Julian Andres Klode <jak@debian.org>  Tue, 14 Jun 2011 19:32:29 +0200
+
+dh-autoreconf (3) unstable; urgency=low
+
+  [ Cyril Brulebois ]
+  * dh-autoreconf.pod: Update rules example for debhelper 8 (Closes: #611414)
+
+  [ Julian Andres Klode ]
+  * autoreconf.mk: Run dh_autoreconf only once (Closes: #618580)
+  * Make it possible to run on sub directories only (Closes: #582114)
+  * autoreconf.mk: Add to CDBS_BUILD_DEPENDS (Closes: #610163)
+  * autoreconf.mk: Run dh_autoreconf_clean before clean (Closes: #596099)
+  * debian/control: Set Standards-Version to 3.9.1
+  * dh_autoreconf: Ignore common VCS directories (Closes: #611864)
+  * dh_autoreconf_clean: Remove 'before' file even if autoreconf failed
+
+  [ Marcin Owsiany ]
+  * dh-autoreconf.pod: Document conflict with autotools-dev (Closes: #587102)
+
+ -- Julian Andres Klode <jak@debian.org>  Mon, 04 Apr 2011 16:06:13 +0200
+
+dh-autoreconf (2) unstable; urgency=low
+
+  [ Didier Roche ]
+  * Fix issue in find | xargs when files contain spaces (Closes:
+    #586755).
+
+  [ Julian Andres Klode ]
+  * Set Standards-Version to 3.9.0.
+
+ -- Julian Andres Klode <jak@debian.org>  Fri, 23 Jul 2010 13:24:44 +0200
+
+dh-autoreconf (1) unstable; urgency=low
+
+  * Initial release (Closes: #575938).
+
+ -- Julian Andres Klode <jak@debian.org>  Sat, 17 Apr 2010 15:18:49 +0200

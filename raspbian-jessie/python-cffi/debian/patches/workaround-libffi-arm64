@@ -1,0 +1,29 @@
+From 11b013d9ed877054dd0276b87c8e2d52b994710b Mon Sep 17 00:00:00 2001
+From: Stefano Rivera <stefanor@debian.org>
+Date: Tue, 29 Dec 2015 10:37:50 +0200
+Subject: Overallocate return value memory (libffi bug)
+
+Workaround a libffi 3.2.1 bug in return value handling on arm64. It
+memcpys beyond the end of unaligned structs, on arm64.
+
+Origin: upstream, https://bitbucket.org/cffi/cffi/commits/e09ccb6b8d89
+Patch-Name: workaround-libffi-arm64
+---
+ c/_cffi_backend.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/c/_cffi_backend.c b/c/_cffi_backend.c
+index de36145..f086481 100644
+--- a/c/_cffi_backend.c
++++ b/c/_cffi_backend.c
+@@ -4648,7 +4648,9 @@ static int fb_build(struct funcbuilder_s *fb, PyObject *fargs,
+ 
+     if (cif_descr != NULL) {
+         /* exchange data size */
+-        cif_descr->exchange_size = exchange_offset;
++        /* we also align it to the next multiple of 8, in an attempt to
++           work around bugs(?) of libffi like #241 */
++        cif_descr->exchange_size = ALIGN_ARG(exchange_offset);
+     }
+     return 0;
+ }

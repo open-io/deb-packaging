@@ -1,0 +1,23 @@
+Tests: unittests
+Depends:
+ build-essential,
+ python-all-dbg,
+ python-all-dev,
+ python-cffi,
+ python-cffi-backend-dbg,
+ python-py,
+ python-pytest,
+ python-setuptools,
+ virtualenv | python-virtualenv (<< 1.11.6)
+
+Tests: unittests3
+Depends:
+ build-essential,
+ python3-all-dbg,
+ python3-all-dev,
+ python3-cffi,
+ python3-cffi-backend-dbg,
+ python3-py,
+ python3-pytest,
+ python3-setuptools,
+ virtualenv | python-virtualenv (<< 1.11.6)

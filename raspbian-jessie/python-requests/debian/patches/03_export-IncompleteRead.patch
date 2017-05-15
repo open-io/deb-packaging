@@ -1,0 +1,35 @@
+From 9b1a5ef69e9b6de15d1d25f52a2d86a8ada06870 Mon Sep 17 00:00:00 2001
+From: Daniele Tricoli <eriol@mornie.org>
+Date: Thu, 8 Oct 2015 13:41:43 -0700
+Subject: Export IncompleteRead from requests.compat since it's
+
+ imported by python-pip.
+Forwarded: not-needed
+Bug-Debian: https://bugs.debian.org/766419
+Last-Update: 2014-10-23
+
+Patch-Name: 03_export-IncompleteRead.patch
+---
+ requests/compat.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/requests/compat.py b/requests/compat.py
+index eb6530d..664c246 100644
+--- a/requests/compat.py
++++ b/requests/compat.py
+@@ -44,6 +44,7 @@ if is_py2:
+     from Cookie import Morsel
+     from StringIO import StringIO
+     from .packages.urllib3.packages.ordered_dict import OrderedDict
++    from httplib import IncompleteRead
+ 
+     builtin_str = str
+     bytes = str
+@@ -58,6 +59,7 @@ elif is_py3:
+     from http.cookies import Morsel
+     from io import StringIO
+     from collections import OrderedDict
++    from http.client import IncompleteRead
+ 
+     builtin_str = str
+     str = str

@@ -1,0 +1,11 @@
+# see git-dpm(1) from git-dpm package
+a01056b36ac83a9fcc63af98f71ab81852864163
+a01056b36ac83a9fcc63af98f71ab81852864163
+a7f3c701b341965dfb3552fb223023dd5bd9e99b
+a7f3c701b341965dfb3552fb223023dd5bd9e99b
+python-urllib3_1.16.orig.tar.gz
+8812930f0eae40fbcaca76abb955921e5a2e8aca
+179763
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"

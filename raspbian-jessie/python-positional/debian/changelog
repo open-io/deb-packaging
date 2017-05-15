@@ -1,0 +1,18 @@
+python-positional (1.0.1-2~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * 
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 30 May 2016 10:24:12 +0000
+
+python-positional (1.0.1-2) unstable; urgency=medium
+
+  * Added {python3-,}subunit as build-depends-indep (Closes: #816263).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 29 Feb 2016 11:26:15 +0000
+
+python-positional (1.0.1-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #816005)
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 26 Feb 2016 23:13:02 +0800

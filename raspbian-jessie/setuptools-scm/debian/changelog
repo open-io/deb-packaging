@@ -1,0 +1,47 @@
+setuptools-scm (1.10.1-2~bpo8+2) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+    - jessie backports doesn't allow source-only uploads.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 29 Jan 2016 23:55:12 +0100
+
+setuptools-scm (1.10.1-2~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 29 Jan 2016 10:28:27 +0100
+
+setuptools-scm (1.10.1-2) unstable; urgency=medium
+
+  * Team upload.
+  [ Dmitry Shachnev ]
+  * Correct dependency for python3-setuptools-scm (use ${python3:Depends}
+    instead of ${python:Depends}).
+
+  [ Gianfranco Costamagna ]
+  * Make sure we pick a suitable python*-setuptools version
+    (>=18.8-1~)
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 16 Dec 2015 09:36:12 +0300
+
+setuptools-scm (1.10.1-1) unstable; urgency=medium
+
+  * Team upload, with maintainer's permission.
+  * New upstream release.
+  * Set DPMT back as maintainer, as we are officially switched to Git
+    (as agreed with Julien).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 15 Dec 2015 21:54:46 +0300
+
+setuptools-scm (1.8.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Put myself as sole maintainer.
+
+ -- Julien Puydt <julien.puydt@laposte.net>  Fri, 02 Oct 2015 11:02:33 +0200
+
+setuptools-scm (1.7.0-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #797915)
+
+ -- Julien Puydt <julien.puydt@laposte.net>  Thu, 03 Sep 2015 10:08:15 +0200

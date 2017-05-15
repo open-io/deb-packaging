@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "remove" ] ; then
+	update-alternatives --remove unit2 /usr/bin/python2-unit2
+fi
+
+#DEBHELPER#
+
+exit 0

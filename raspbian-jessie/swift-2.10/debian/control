@@ -1,0 +1,339 @@
+Source: swift
+Section: net
+Priority: optional
+Maintainer: PKG OpenStack <openstack-devel@lists.alioth.debian.org>
+Uploaders: Thomas Goirand <zigo@debian.org>,
+           Ondřej Nový <onovy@debian.org>,
+Build-Depends: debhelper (>= 10),
+               dh-exec,
+               dh-python,
+               dh-systemd,
+               openstack-pkg-tools (>= 48~),
+               python-all,
+               python-pbr,
+               python-setuptools (>= 20.6.8),
+               python-sphinx,
+Build-Depends-Indep: python-coverage,
+                     python-cryptography (>= 1.0),
+                     python-dnspython (>= 1.14.0),
+                     python-eventlet (>= 0.17.4),
+                     python-greenlet (>= 0.3.1),
+                     python-keystoneclient (>= 1:1.3.0),
+                     python-mock,
+                     python-netifaces (>> 0.10.1),
+                     python-nose,
+                     python-nose-exclude,
+                     python-nosehtmloutput,
+                     python-nosexcover,
+                     python-openssl,
+                     python-openstack.nose-plugin,
+                     python-openstackdocstheme (>= 1.0.3),
+                     python-os-api-ref,
+                     python-os-testr (>= 0.4.1),
+                     python-oslosphinx,
+                     python-pastedeploy (>= 1.3.3),
+                     python-pyeclib (>= 1.2.0),
+                     python-six (>= 1.9.0),
+                     python-swiftclient,
+                     python-xattr (>= 0.4),
+Standards-Version: 3.9.8
+Vcs-Browser: https://git.openstack.org/cgit/openstack/deb-swift?h=debian%2Fnewton
+Vcs-Git: https://git.openstack.org/openstack/deb-swift -b debian/newton
+Homepage: https://github.com/openstack/swift
+
+Package: python-swift
+Architecture: all
+Section: python
+Depends: adduser,
+         python-cryptography (>= 1.0),
+         python-dnspython (>= 1.14.0),
+         python-eventlet (>= 0.17.4),
+         python-greenlet (>= 0.3.1),
+         python-netifaces (>> 0.10.1),
+         python-openssl,
+         python-pastedeploy (>= 1.3.3),
+         python-pyeclib (>= 1.2.0),
+         python-six (>= 1.9.0),
+         python-xattr (>= 0.4),
+         ${misc:Depends},
+         ${python:Depends},
+Provides: ${python:Provides},
+Breaks: swift-account (<< 2.6.0-2),
+        swift-container (<< 2.6.0-2),
+        swift-object (<< 2.6.0-2),
+        swift-object-expirer (<< 2.6.0-2),
+        swift-proxy (<< 2.6.0-2),
+Description: distributed virtual object store - Python libraries
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides the Python libraries that actually implement
+ everything.
+
+Package: swift
+Architecture: all
+Depends: logrotate,
+         python-swift (=${binary:Version}),
+         rsyslog,
+         ${misc:Depends},
+         ${python:Depends},
+Replaces: python-swift (<< 2.9.0-2~),
+          swift-object (<< 2.9.0-2~),
+Breaks: python-swift (<< 2.9.0-2~),
+        swift-object (<< 2.9.0-2~),
+Description: distributed virtual object store - common files
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides some core binaries and clients to control swift.
+
+Package: swift-proxy
+Architecture: all
+Depends: lsb-base (>= 3.0-6),
+         python-swift (=${binary:Version}),
+         swift (=${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+Description: distributed virtual object store - proxy server
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides a proxy server on which clients can connect to store
+ object into Swift.
+
+Package: swift-object
+Architecture: all
+Depends: lsb-base (>= 3.0-6),
+         python-swift (=${binary:Version}),
+         rsync,
+         swift (=${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+Provides: ${python:Provides},
+Recommends: swift-drive-audit,
+Description: distributed virtual object store - object server
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides the swift object server.
+
+Package: swift-container
+Architecture: all
+Depends: lsb-base (>= 3.0-6),
+         python-swift (=${binary:Version}),
+         rsync,
+         swift (=${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+Provides: ${python:Provides},
+Recommends: swift-drive-audit,
+Description: distributed virtual object store - container server
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides the swift container server.
+
+Package: swift-account
+Architecture: all
+Depends: lsb-base (>= 3.0-6),
+         python-swift (=${binary:Version}),
+         rsync,
+         swift (=${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+Provides: ${python:Provides},
+Recommends: swift-drive-audit,
+Description: distributed virtual object store - account server
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides the swift account server.
+
+Package: swift-object-expirer
+Architecture: all
+Depends: lsb-base (>= 3.0-6),
+         python-swift (=${binary:Version}),
+         rsync,
+         swift (=${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+Replaces: swift-object (<< 2.9.0-2~),
+Breaks: swift-object (<< 2.9.0-2~),
+Description: distributed virtual object store - object-expirer
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides the swift object expirer daemon. Only a single instance
+ of this daemon is needed for a given swift cluster, which is why it is
+ packaged separately.
+
+Package: swift-doc
+Architecture: all
+Section: doc
+Depends: libjs-jquery,
+         libjs-underscore,
+         libjs-bootstrap,
+         python-os-api-ref-common,
+         ${misc:Depends},
+         ${sphinxdoc:Depends},
+Description: distributed virtual object store - documentation
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides the Sphinx generated documentation for Swift.
+
+Package: swift-drive-audit
+Architecture: all
+Depends: python-swift (=${binary:Version}),
+         swift (=${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+Description: distributed virtual object store - drive audit
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides the swift drive audit tool.

@@ -1,0 +1,27 @@
+Author: Pino Toscano <pino@debian.org>
+Description: Support for GNU/Hurd
+ This adds support for GNU/Hurd:
+ - detect the correct platform
+ - ignore msync() errors when they are ENOSYS, like currently it happens on
+   GNU/Hurd (not something that can be sent upstream, though)
+Last-Update: 2011-12-01
+
+---
+ build_detect_platform |    6 ++++++
+ 1 file changed, 6 insertions(+)
+
+--- leveldb.orig/build_detect_platform
++++ leveldb/build_detect_platform
+@@ -153,6 +153,12 @@ case "$TARGET_OS" in
+         PLATFORM_LIBS="-lpthread -lrt"
+         PORT_FILE=port/port_posix.cc
+         ;;
++    GNU)
++        PLATFORM=OS_HURD
++        PLATFORM_CFLAGS="-pthread -DOS_HURD"
++        PLATFORM_LIBS="-lpthread"
++        PORT_FILE=port/port_posix.cc
++        ;;
+     *)
+         echo "Unknown platform!" >&2
+         exit 1

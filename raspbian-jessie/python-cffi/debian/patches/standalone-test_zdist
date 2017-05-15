@@ -1,0 +1,27 @@
+From c35c0daca2ee2e16f3413c15c9c1c6021b1fe4fa Mon Sep 17 00:00:00 2001
+From: Stefano Rivera <stefanor@debian.org>
+Date: Mon, 26 Oct 2015 23:51:15 -0700
+Subject: Don't require upstream setup.py for test_zdist
+
+Allow test_zdist to be run standalone (for our autopkgtests). In this
+case, egg_info will be present in the installed package.
+
+Patch-Name: standalone-test_zdist
+---
+ testing/cffi1/test_zdist.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/testing/cffi1/test_zdist.py b/testing/cffi1/test_zdist.py
+index 1b2c6a0..b6315a8 100644
+--- a/testing/cffi1/test_zdist.py
++++ b/testing/cffi1/test_zdist.py
+@@ -48,7 +48,8 @@ class TestDist(object):
+             import setuptools
+         except ImportError:
+             py.test.skip("setuptools not found")
+-        self.run(['setup.py', 'egg_info'], cwd=self.rootdir)
++        if os.path.exists(os.path.join(self.rootdir, 'setup.py')):
++            self.run(['setup.py', 'egg_info'], cwd=self.rootdir)
+         TestDist._setuptools_ready = True
+ 
+     def check_produced_files(self, content, curdir=None):

@@ -1,0 +1,353 @@
+python-keyring (8.5.1-1~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 30 May 2016 12:48:53 +0000
+
+python-keyring (8.5.1-1) unstable; urgency=medium
+
+  * New upstream bugfix release.
+  * Drop unused debian/examples file.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 01 Apr 2016 22:57:21 +0200
+
+python-keyring (8.5-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Suggest gnome-keyring and libkf5wallet-bin as these are providers
+    for D-Bus services that keyring uses.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 12 Mar 2016 09:24:10 +0100
+
+python-keyring (8.4.1-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Now python-keyring contains only the recommended secure backends,
+      all the other backends have been moved to keyrings.alt package.
+  * Update package relationships for the keyrings.alt split:
+    - Depend on python-dbus, both remaining Linux backends (Secret Service
+      and KWallet) need it.
+    - Recommend keyrings.alt to help with migration to the new version.
+      It can be changed to a suggestion later.
+    - Drop obsolete recommendations, suggestions and build-dependencies.
+  * Add a debian/NEWS entry for the split.
+  * Drop the dummy get-orig-source target from debian/rules.
+  * Use https in Vcs-Git field.
+  * Break old kupfer and wheel that do not work with this new version.
+  * Bump Standards-Version to 3.9.7, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 25 Feb 2016 21:48:36 +0300
+
+python-keyring (7.3-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 22 Jan 2016 17:52:43 +0300
+
+python-keyring (6.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump X-Python-Version to >= 2.7, following upstream.
+  * Recommend python[3]-dbus, for the new KWallet backend.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 07 Jan 2016 20:13:26 +0300
+
+python-keyring (5.7.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop python-fs build-dependency, to make merging into Ubuntu easier.
+  * Build-depend on setuptools-scm ≥ 1.9, as required by setup.py.
+  * Remove pytest.ini in clean target, to make pytest work again.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 16 Dec 2015 13:05:39 +0300
+
+python-keyring (5.7-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Use https in debian/watch.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 07 Dec 2015 09:58:09 +0300
+
+python-keyring (5.6-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Fixes the warning from PyGI (closes: #801242).
+  * Update Vcs fields for Git migration.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 12 Oct 2015 14:13:09 +0300
+
+python-keyring (5.4-2) unstable; urgency=medium
+
+  * Fix capitalization in package descriptions.
+    Thanks to Andreas Ronnquist (closes: #795108).
+  * Drop no_setuptools_scm.diff, build-depend on python[3]-setuptools-scm
+    instead, as it is packaged now.
+  * Drop unzip build-dependency, not needed as upstream uses tar.gz now.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 18 Sep 2015 13:14:50 +0300
+
+python-keyring (5.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update debian/watch to support tar.gz tarballs.
+  * Rename no_hgtools.diff to no_setuptools_scm.diff and rebase against
+    the latest version.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 09 Aug 2015 20:10:28 +0300
+
+python-keyring (5.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update URLs for move from BitBucket to GitHub.
+  * Rebase no_hgtools.diff for the new version.
+  * Drop convert-crypto-keyring script, no longer needed.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 19 Jul 2015 12:22:27 +0300
+
+python-keyring (5.0-1) experimental; urgency=medium
+
+  * Use pypi.debian.net redirector in debian/watch.
+  * New upstream release.
+  * Bump Standards-Version to 3.9.6, no changes needed.
+  * Update my e-mail address.
+  * Simplify uscan command in get-orig-source target.
+  * Convert debian/copyright to machine-readable format.
+  * Add a patch to get the version number from debian/changelog,
+    not from hg which is not available.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 24 Feb 2015 11:39:49 +0300
+
+python-keyring (4.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Build-depend on python[3]-pytest and python-fs.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 04 Aug 2014 13:27:07 +0400
+
+python-keyring (3.8-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Set DPMT as Maintainer, add myself to Uploaders.
+  * Suggest python-fs package for fs backend.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Wed, 14 May 2014 17:47:24 +0400
+
+python-keyring (3.7-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Switch to pybuild buildsystem.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 07 Mar 2014 10:09:50 +0400
+
+python-keyring (3.5-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Cleanup debian/copyright and update for upstream license change.
+  * Add --rename to uscan options.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Mon, 17 Feb 2014 18:26:06 +0100
+
+python-keyring (3.3-1) unstable; urgency=low
+
+  * Team upload.
+
+  [ Dmitry Shachnev ]
+  * New upstream bugfix release.
+  * Drop catch-dbus-errors.patch, no longer needed.
+
+  [ Sebastian Ramacher ]
+  * New upstream release.
+  * debian/control:
+    - Add Breaks on python-mini-buildd (<< 1.0.0~gamma.3) and kupfer (<<
+      0+v208-2.1) See #728471 and #728468.
+    - Bump Standards-Version to 3.9.5.
+  * Upload to unstable.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 07 Dec 2013 21:52:49 +0100
+
+python-keyring (3.2-1) experimental; urgency=low
+
+  * Team upload.
+  * New upstream release.
+  * Bump X-Python-Version to >= 2.6 (2.5 is no longer supported).
+  * Unify running the tests across Python 2 and Python 3.
+  * Refresh catch-dbus-errors.patch.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 01 Nov 2013 18:22:45 +0400
+
+python-keyring (2.1-1) unstable; urgency=low
+
+  * Team upload.
+  * New upstream release (closes: #720166).
+  * Drop no-pytest-runner.patch, applied upstream.
+  * Refresh catch-dbus-errors.patch.
+  * Switch debian/watch to use HTTPS.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 31 Aug 2013 23:02:43 +0200
+
+python-keyring (1.6-1) unstable; urgency=low
+
+  * Team upload.
+
+  [ Dmitry Shachnev ]
+  * New upstream release.
+    - Fixes incompatibility between GNOME Keyring and SecretService
+      backends (closes: #714440).
+    - Removes warning when gnome-keyring is not available (LP: #1197988).
+  * Drop fix-importkiller.patch, applied upstream.
+
+  [ Sebastian Ramacher ]
+  * debian/control: Update Homepage to point to the Bitbucket repository. The
+    old homepage does no longer exist.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sun, 14 Jul 2013 22:42:56 +0200
+
+python-keyring (1.4-1) unstable; urgency=low
+
+  * Team upload.
+
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+
+  [ Dmitry Shachnev ]
+  * New upstream release (closes: #697215).
+  * Added convert-crypto-keyring script for conversion of pre-0.9 Crypto
+    keyrings to the new format.
+  * Recommend python[3]-secretstorage, as the default backend now uses it.
+  * Suggest python[3]-gi and gir1.2-gnomekeyring-1.0, as the GNOME Keyring
+    backend now uses it.
+  * Suggest python-gdata, python-keyczar and python[3]-[py]kde4, as other
+    backends use them (closes: #618760).
+  * Drop all previous patches, applied upstream.
+  * debian/patches/no-pytest-runner.patch: do not require pytest-runner,
+    it is not in Debian.
+  * debian/patches/fix-importkiller.patch: fix ImportKiller not working
+    with Python 3.x (fixes the testsuite).
+  * debian/patches/catch-dbus-errors.patch: catch D-Bus errors when checking
+    if SecretService is supported (can be dropped when the next SecretStorage
+    version is released, where this is fixed).
+  * Bump Standards-Version to 3.9.4 and debhelper compat level to 9.
+  * Disable HTTP traffic in debian/rules.
+  * Run upstream testsuite during build; simplify other debian/rules parts.
+  * Bump python-defaults build-dependency to ensure that python2.7 is
+    available, as we use it directly in tests.
+  * Build-depend on python[3]-mock and python[3]-crypto, for the testsuite.
+  * Remove build directory, egg-info directory and .pyc files in clean
+    target.
+  * Update some file names to match upstream renamings.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sat, 22 Jun 2013 11:03:11 +0400
+
+python-keyring (0.9.3-1) unstable; urgency=low
+
+  * Team upload.
+  * Acknowledge Salvatore Bonaccorso's NMU.
+  * New upstream release.
+    - Fix migration code so old databases get upgraded when a key is read.
+      First part of #697213. (LP: #1042754)
+  * debian/patches:
+    - CryptedFileKeyring-fix-unlock-logic.patch: patch from
+      upstream to fix the unlock logic in CryptedFileKeyring. Second part of
+      #697213. (Closes: #697213)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 07 Jan 2013 00:33:14 +0100
+
+python-keyring (0.9.2-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Add 696736-Fix-insecure-permissions-on-database-files.patch
+    [SECURITY]: Fix insecure permissions on database files. Fix
+    CVE-2012-5577 and CVE-2012-5578. (Closes: #696736) (LP: #1031465)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 29 Dec 2012 08:46:59 +0100
+
+python-keyring (0.9.2-1) unstable; urgency=low
+
+  * New upstream release (Closes: #675379, #678682)
+  * debian/control
+    - Bump Standards-Version to 3.9.3
+    - Switch uploader chaica@ohmytux.com to chaica@debian.org
+  * debian/rules
+    - Remove unittests executions
+
+ -- Carl Chenet <chaica@debian.org>  Mon, 30 Jul 2012 20:14:42 +0200
+
+python-keyring (0.7.1-1) unstable; urgency=low
+
+  * New upstream version (Closes: #656680, #624690)
+  * debian/control
+    - Add X-Python-Version for Python 3.2
+    - Add B-D for Python 3.2
+    - Add unzip for B-D to repack upstream sources
+    - Add python3-keyring description
+    - Recommends python3-crypto for Python3 binary package
+  * Add python-keyring.install and python3-keyring.install files
+  * debian/rules
+    - Execute unit tests if available
+    - repack upstream sources
+  * debian/watch
+    - New URL to catch upstream sources
+
+ -- Carl Chenet <chaica@ohmytux.com>  Tue, 14 Feb 2012 12:07:30 +0100
+
+python-keyring (0.6.2-1) unstable; urgency=low
+
+  * New upstream version
+  * debian/control
+    - Bump the Standards-Version field to 3.9.2
+    - Removed Breaks: ${python:Breaks} from the binary package description
+
+ -- Carl Chenet <chaica@ohmytux.com>  Sat, 06 Aug 2011 14:52:47 +0200
+
+python-keyring (0.5.1-1) unstable; urgency=low
+
+  * New upstream release (Closes: #612432)
+  * KDE and GNOME extensions are no more built so dedicated binary packages
+    are removed.
+  * Removed python-keyring.install
+  * Removed python-keyring-kwallet.install
+  * Removed python-keyring-gnome.install 
+  * debian/control
+    - Replaced XS-Python-Version by X-Python-Version
+    - Bump Standard-Version to 3.9.1.0
+    - Removed Build-Depends items to build extensions
+    - Removed ${shlibs:Depends} from Depends of the remaining binary package
+    - Added Breaks: ${python:Breaks} for the binary package
+    - Removed the long descriptions of extension binary packages
+  * debian/rules
+    - Removed overrides to properly build extensions
+    - Added an override to install changelog
+  * debian/source/format
+    - Bump to 3.0 (quilt)
+  * debian/copyright
+    - Added thanks to Barry Warsaw <barry@python.org> for his help for the
+      packaging of this version
+
+ -- Carl Chenet <chaica@ohmytux.com>  Thu, 03 Mar 2011 01:37:19 +0100
+
+python-keyring (0.2-3) unstable; urgency=low
+
+  * debian/rules
+    - Added a $HOME to avoid an error from kde4-config (Closes: #548457)
+  * debian/control
+    - Bump dh to 7.0.50~
+
+ -- Carl Chenet <chaica@ohmytux.com>  Tue, 13 Oct 2009 22:59:53 +0200
+
+python-keyring (0.2-2) unstable; urgency=low
+
+  * debian/control
+    - Added pkg-config and libqt4-dev dependencies.
+  * Add Provides: ${python:Provides} to architecture dependent packages
+
+ -- Carl Chenet <chaica@ohmytux.com>  Mon, 28 Sep 2009 18:59:50 +0200
+
+python-keyring (0.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #544486)
+
+ -- Carl Chenet <chaica@ohmytux.com>  Thu, 24 Sep 2009 23:24:02 +0200
+

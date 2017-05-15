@@ -1,0 +1,22 @@
+Description: Allow compilation on kFreeBSD.
+From: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=640378
+Forwarded: http://code.google.com/p/leveldb/issues/detail?id=38
+---
+ build_detect_platform |    6 ++++++
+ 1 file changed, 6 insertions(+)
+
+--- leveldb.orig/build_detect_platform
++++ leveldb/build_detect_platform
+@@ -147,6 +147,12 @@ case "$TARGET_OS" in
+         PLATFORM_SHARED_CFLAGS=
+         PLATFORM_SHARED_VERSIONED=
+         ;;
++    GNU/kFreeBSD)
++        PLATFORM=OS_FREEBSD
++        PLATFORM_CFLAGS="-pthread -DOS_FREEBSD"
++        PLATFORM_LIBS="-lpthread -lrt"
++        PORT_FILE=port/port_posix.cc
++        ;;
+     *)
+         echo "Unknown platform!" >&2
+         exit 1

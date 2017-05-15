@@ -1,0 +1,116 @@
+python-oslo.serialization (2.4.0-2~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * 
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 30 May 2016 11:39:36 +0000
+
+python-oslo.serialization (2.4.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 04 Apr 2016 08:36:28 +0000
+
+python-oslo.serialization (2.4.0-1) experimental; urgency=medium
+
+  [ David Della Vecchia ]
+  * New upstream release.
+  * d/control: Align depends with upstream.
+  * d/p/no-version-for-python-tz.patch: Rebased.
+
+  [ Ondřej Nový ]
+  * Fixed VCS URLs (https).
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * d/control: Align depends with upstream.
+  * Standards-Version: 3.9.7 (no change).
+  * Fixed debian/copyright ordering.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 03 Mar 2016 02:40:10 +0000
+
+python-oslo.serialization (2.2.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 13 Jan 2016 09:00:48 +0000
+
+python-oslo.serialization (2.0.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Rebased pytz version patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 01 Dec 2015 11:35:06 +0100
+
+python-oslo.serialization (1.9.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 15 Oct 2015 20:35:32 +0000
+
+python-oslo.serialization (1.9.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed (build-)depends for this release.
+  * Drop no namepsace test patch.
+  * Rebased tz version patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 27 Sep 2015 19:04:38 +0200
+
+python-oslo.serialization (1.8.0-1) experimental; urgency=medium
+
+  [ James Page ]
+  * Fixup typo in transitional package description (LP: #1471561).
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Fixed build-depends for this release.
+  * Refreshed patch.
+  * Removed final dot in short desc and fixed Priority: extra for transition
+    packages.
+  * Watch file now using github tag and not broken PyPi.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 04 Sep 2015 11:07:51 +0000
+
+python-oslo.serialization (1.6.0-1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release:
+    - d/control: Align version requirements with upstream.
+    - d/p/*: Refresh.
+  * Re-align with Ubuntu:
+    - d/control: Add Breaks/Replaces for Ubuntu *oslo-serialization packages.
+    - d/control: Add transitional packages for *oslo-serialization.
+  * d/*: wrap-and-sort.
+
+ -- James Page <james.page@ubuntu.com>  Tue, 09 Jun 2015 08:51:15 +0100
+
+python-oslo.serialization (1.4.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Uploading to unstable.
+  * Fixed (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 08 Feb 2015 17:14:50 +0100
+
+python-oslo.serialization (1.0.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Updated (build-)depends for this release.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 02 Oct 2014 16:53:21 +0800
+
+python-oslo.serialization (0.1.0-2) experimental; urgency=medium
+
+  * Added Ubuntu patch: Deal with built-in datetime. Thanks to James page for
+    the bug report and patch (Closes: #761634).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 15 Sep 2014 21:04:56 +0800
+
+python-oslo.serialization (0.1.0-1) experimental; urgency=medium
+
+  * Initial release. (Closes: #760539)
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 05 Sep 2014 11:16:12 +0800

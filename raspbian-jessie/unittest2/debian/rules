@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+export PYBUILD_NAME=unittest2
+
+%:
+	dh $@ --with=python2,python3 --buildsystem=pybuild
+
+override_dh_install:
+	dh_install
+	mv $(CURDIR)/debian/python-unittest2/usr/bin/unit2 $(CURDIR)/debian/python-unittest2/usr/bin/python2-unit2
+	mv $(CURDIR)/debian/python3-unittest2/usr/bin/unit2 $(CURDIR)/debian/python3-unittest2/usr/bin/python3-unit2
+
+# Tests cannot run without unittest2 running them.
+# See: https://code.google.com/p/unittest-ext/issues/detail?id=93 for details
+override_dh_auto_test:
+	dh_auto_test -- --system=custom --test-args='{interpreter} -m unittest2'

@@ -1,0 +1,69 @@
+From: =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
+Date: Sat, 27 Sep 2014 20:52:15 +0200
+Subject: Remove_Zoneinfo_Tarball
+
+---
+ MANIFEST.in                          | 2 +-
+ dateutil/test/test.py                | 4 ++--
+ python_dateutil.egg-info/SOURCES.txt | 3 +--
+ setup.py                             | 1 -
+ 4 files changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/MANIFEST.in b/MANIFEST.in
+index fdfe94a..94cfbdf 100644
+--- a/MANIFEST.in
++++ b/MANIFEST.in
+@@ -1 +1 @@
+-include LICENSE NEWS zonefile_metadata.json updatezinfo.py
++include LICENSE NEWS updatezinfo.py
+diff --git a/dateutil/test/test.py b/dateutil/test/test.py
+index 1d861c8..61e0045 100644
+--- a/dateutil/test/test.py
++++ b/dateutil/test/test.py
+@@ -4050,7 +4050,7 @@ END:VTIMEZONE
+         self.assertEqual(datetime(2003, 10, 26, 1, 00, tzinfo=tz).tzname(),
+                          "EST")
+ 
+-    def testZoneInfoFileStart1(self):
++    """def testZoneInfoFileStart1(self):
+         tz = zoneinfo.gettz("EST5EDT")
+         self.assertEqual(datetime(2003, 4, 6, 1, 59, tzinfo=tz).tzname(), "EST",
+                          MISSING_TARBALL)
+@@ -4072,7 +4072,7 @@ END:VTIMEZONE
+         t1 = t0.astimezone(utc)
+         t2 = t1.astimezone(nyc)
+         self.assertEqual(t0, t2)
+-        self.assertEqual(nyc.dst(t0), timedelta(hours=1))
++        self.assertEqual(nyc.dst(t0), timedelta(hours=1))"""
+ 
+     def testICalStart1(self):
+         tz = tzical(StringIO(self.TZICAL_EST5EDT)).get()
+diff --git a/python_dateutil.egg-info/SOURCES.txt b/python_dateutil.egg-info/SOURCES.txt
+index 74a7872..408bc57 100644
+--- a/python_dateutil.egg-info/SOURCES.txt
++++ b/python_dateutil.egg-info/SOURCES.txt
+@@ -16,10 +16,9 @@ dateutil/tzwin.py
+ dateutil/test/__init__.py
+ dateutil/test/test.py
+ dateutil/zoneinfo/__init__.py
+-dateutil/zoneinfo/dateutil-zoneinfo.tar.gz
+ python_dateutil.egg-info/PKG-INFO
+ python_dateutil.egg-info/SOURCES.txt
+ python_dateutil.egg-info/dependency_links.txt
+ python_dateutil.egg-info/requires.txt
+ python_dateutil.egg-info/top_level.txt
+-python_dateutil.egg-info/zip-safe
+\ No newline at end of file
++python_dateutil.egg-info/zip-safe
+diff --git a/setup.py b/setup.py
+index 02db365..275b23f 100644
+--- a/setup.py
++++ b/setup.py
+@@ -29,7 +29,6 @@ The dateutil module provides powerful extensions to the
+ datetime module available in the Python standard library.
+ """,
+       packages=["dateutil", "dateutil.zoneinfo"],
+-      package_data={"dateutil.zoneinfo": ["dateutil-zoneinfo.tar.gz"]},
+       zip_safe=True,
+       requires=["six"],
+       install_requires=["six >=1.5"],  # XXX fix when packaging is sane again

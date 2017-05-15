@@ -1,0 +1,10 @@
+Index: b/docs/history.txt
+===================================================================
+--- a/docs/history.txt
++++ b/docs/history.txt
+@@ -5,4 +5,4 @@
+ History
+ *******
+ 
+-.. include:: ../CHANGES (links).rst
++.. include:: ../CHANGES.txt

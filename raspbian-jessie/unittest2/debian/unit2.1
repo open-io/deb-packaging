@@ -1,0 +1,64 @@
+.TH UNIT2 "1" "March 2015"
+.SH NAME
+unit2 \- a shorthand for python \-m unittest2
+.SH SYNOPSIS
+.B unit2
+[
+.B \-h
+]
+[
+.B \-v
+]
+[
+.B \-q
+]
+[
+.B \-f
+]
+[
+.B \-c
+]
+[
+.B \-b
+]
+[
+.I tests [tests ...]
+]
+
+.SH DESCRIPTION
+The unit2 script is a convenient shortcut for discovering and running tests in
+a given body of Python source code.
+.SH COMMAND LINE OPTIONS
+.TP
+.B \-h ", " \-\-help
+show this help message and exit
+.TP
+.B \-v ", " \-\-verbose
+Verbose output
+.TP
+.B \-q ", " \-\-quiet
+Quiet output
+.TP
+.B \-f ", " \-\-failfast
+Stop on first fail or error
+.TP
+.B \-c ", " \-\-catch
+Catch ctrl-C and display results so far
+.TP
+.B \-b, \-\-buffer
+Buffer stdout and stderr during tests
+.SH EXAMPLES
+.TP
+.B unit2 test_module
+run tests from
+.I test_module
+.TP
+.B unit2 module.TestClass
+run tests from
+.I module.TestClass
+.TP
+.B unit2 module.Class.test_method
+run specified test method
+.SH AUTHOR
+.UR zygmunt.krynicki@canonical.com
+This manual page was written for Debian by Zygmunt Krynicki

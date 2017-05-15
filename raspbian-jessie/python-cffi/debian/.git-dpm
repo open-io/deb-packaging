@@ -1,0 +1,11 @@
+# see git-dpm(1) from git-dpm package
+11b013d9ed877054dd0276b87c8e2d52b994710b
+11b013d9ed877054dd0276b87c8e2d52b994710b
+cca7b4678d8fba5884f7415f916841cd3a549ff8
+cca7b4678d8fba5884f7415f916841cd3a549ff8
+python-cffi_1.4.2.orig.tar.gz
+76cff6f1ff5bfb2b9c6c8e2cfa8bf90b5c944394
+365490
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"

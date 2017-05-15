@@ -1,0 +1,82 @@
+From: Chris Lamb <lamby@debian.org>
+Date: Fri, 30 Oct 2015 10:53:42 +0000
+Subject: use-system-jemalloc
+
+---
+ src/Makefile  | 5 ++---
+ src/debug.c   | 6 +++---
+ src/zmalloc.c | 8 ++++----
+ src/zmalloc.h | 2 +-
+ 4 files changed, 10 insertions(+), 11 deletions(-)
+
+diff --git a/src/Makefile b/src/Makefile
+index fdbe36a..ccbcb1c 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -103,9 +103,8 @@ ifeq ($(MALLOC),tcmalloc_minimal)
+ endif
+ 
+ ifeq ($(MALLOC),jemalloc)
+-	DEPENDENCY_TARGETS+= jemalloc
+-	FINAL_CFLAGS+= -DUSE_JEMALLOC -I../deps/jemalloc/include
+-	FINAL_LIBS+= ../deps/jemalloc/lib/libjemalloc.a
++	FINAL_CFLAGS+= -DUSE_JEMALLOC -I/usr/include/jemalloc/include
++	FINAL_LIBS+= -ljemalloc
+ endif
+ 
+ REDIS_CC=$(QUIET_CC)$(CC) $(FINAL_CFLAGS)
+diff --git a/src/debug.c b/src/debug.c
+index a97400e..3eac6fa 100644
+--- a/src/debug.c
++++ b/src/debug.c
+@@ -526,15 +526,15 @@ void debugCommand(client *c) {
+ #if defined(USE_JEMALLOC)
+         if (!strcasecmp(c->argv[2]->ptr, "info")) {
+             sds info = sdsempty();
+-            je_malloc_stats_print(inputCatSds, &info, NULL);
++            malloc_stats_print(inputCatSds, &info, NULL);
+             addReplyBulkSds(c, info);
+         } else if (!strcasecmp(c->argv[2]->ptr, "purge")) {
+             char tmp[32];
+             unsigned narenas = 0;
+             size_t sz = sizeof(unsigned);
+-            if (!je_mallctl("arenas.narenas", &narenas, &sz, NULL, 0)) {
++            if (!mallctl("arenas.narenas", &narenas, &sz, NULL, 0)) {
+                 sprintf(tmp, "arena.%d.purge", narenas);
+-                if (!je_mallctl(tmp, NULL, 0, NULL, 0)) {
++                if (!mallctl(tmp, NULL, 0, NULL, 0)) {
+                     addReply(c, shared.ok);
+                     return;
+                 }
+diff --git a/src/zmalloc.c b/src/zmalloc.c
+index 640ee19..119f09d 100644
+--- a/src/zmalloc.c
++++ b/src/zmalloc.c
+@@ -61,10 +61,10 @@ void zlibc_free(void *ptr) {
+ #define realloc(ptr,size) tc_realloc(ptr,size)
+ #define free(ptr) tc_free(ptr)
+ #elif defined(USE_JEMALLOC)
+-#define malloc(size) je_malloc(size)
+-#define calloc(count,size) je_calloc(count,size)
+-#define realloc(ptr,size) je_realloc(ptr,size)
+-#define free(ptr) je_free(ptr)
++#define malloc(size) malloc(size)
++#define calloc(count,size) calloc(count,size)
++#define realloc(ptr,size) realloc(ptr,size)
++#define free(ptr) free(ptr)
+ #endif
+ 
+ #if defined(__ATOMIC_RELAXED)
+diff --git a/src/zmalloc.h b/src/zmalloc.h
+index a47ea6c..fa8aef0 100644
+--- a/src/zmalloc.h
++++ b/src/zmalloc.h
+@@ -50,7 +50,7 @@
+ #include <jemalloc/jemalloc.h>
+ #if (JEMALLOC_VERSION_MAJOR == 2 && JEMALLOC_VERSION_MINOR >= 1) || (JEMALLOC_VERSION_MAJOR > 2)
+ #define HAVE_MALLOC_SIZE 1
+-#define zmalloc_size(p) je_malloc_usable_size(p)
++#define zmalloc_size(p) malloc_usable_size(p)
+ #else
+ #error "Newer version of jemalloc required"
+ #endif

@@ -1,0 +1,123 @@
+oslo-sphinx (4.3.0-1~bpo8+1) jessie; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Ondřej Nový <onovy@debian.org>  Sun, 17 Jul 2016 23:25:57 +0200
+
+oslo-sphinx (4.3.0-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ David Della Vecchia ]
+  * New upstream release (Closes: #820682).
+  * d/control: Align depends with upstream.
+  * d/p/fix-exception-in-checking-git-remote-url.patch: Removed,
+    fixed upstream.
+
+  [ Ondřej Nový ]
+  * Fixed VCS URLs (https).
+  * Added simple Debian test.
+  * d/copyright
+    - Rearranged order of d/copyright.
+    - Added myself of Debian part.
+  * Standards-Version is 3.9.8 now (no change).
+  * Changed upstream git URL to https schema.
+
+ -- Ondřej Nový <novy@ondrej.org>  Fri, 29 Apr 2016 12:21:43 +0200
+
+oslo-sphinx (4.0.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+  * Adding myself to uploaders list.
+
+ -- Ivan Udovichenko <iudovichenko@mirantis.com>  Mon, 04 Apr 2016 11:05:25 +0300
+
+oslo-sphinx (4.0.0-1) experimental; urgency=medium
+
+  [ Corey Bryant ]
+  * New upstream release.
+  * d/control: Align dependencies with upstream.
+  * d/gbp.conf: Update debian-branch to debian/liberty.
+  * d/control: Update uploaders.
+
+  [ Thomas Goirand ]
+  * Add patch to remove google-analytics.com javascript.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 26 Nov 2015 15:02:24 +0100
+
+oslo-sphinx (2.5.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Added python-pbr and python-requests as new Depends.
+  * Uploading to unstable.
+  * Drops python-oslo.sphinx transition package after the release of Jessie.
+  * Standards-Version: 3.9.6.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 25 Feb 2015 10:20:53 +0100
+
+oslo-sphinx (2.2.0.0-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 24 Sep 2014 09:47:25 +0800
+
+oslo-sphinx (2.2.0.0~a3-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Uploading to experimental before the freeze of Jessie.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 05 Sep 2014 15:06:42 +0800
+
+oslo-sphinx (2.1.0-1) unstable; urgency=medium
+
+  [ Thomas Goirand ]
+  * Uploading to unstable.
+
+  [ gustavo panizzo ]
+  * New upstream release. 
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 18 Apr 2014 10:33:19 +0800
+
+oslo-sphinx (2.0-3) experimental; urgency=medium
+
+  * Fixed license of oslo/sphinx/theme/openstack/static/nature.css which is
+    under a BSD-2-clause license (this was previously fixed in Sid).
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 21 Mar 2014 05:56:11 +0000
+
+oslo-sphinx (2.0-2) experimental; urgency=medium
+
+  * Packages the oslosphinx/theme folder correctly.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 09 Mar 2014 14:09:12 +0800
+
+oslo-sphinx (2.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Standards-Version: is now 3.9.5.
+  * Upstream renamed oslo.sphinx into oslosphinx, transitionning
+    accordingly (and adding a new package).
+  * Removed oslo/sphinx/theme/openstack/static/jquery.tweet.js from
+    debian/copyright, because the file is gone upstream.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 05 Mar 2014 15:54:09 +0800
+
+oslo-sphinx (1.0-3) unstable; urgency=medium
+
+  * Fixed license of oslo/sphinx/theme/openstack/static/nature.css which is
+    under a BSD-2-clause license. (Closes: #740932).
+  * Standards-Version: is now 3.9.5.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 21 Mar 2014 05:49:08 +0000
+
+oslo-sphinx (1.0-2) unstable; urgency=low
+
+  * Cleans correctly (package can be built twice).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 25 Jul 2013 19:24:07 +0800
+
+oslo-sphinx (1.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #717809).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 25 Jul 2013 17:57:32 +0800

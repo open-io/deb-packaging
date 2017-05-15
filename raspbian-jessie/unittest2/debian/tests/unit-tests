@@ -1,0 +1,10 @@
+#!/bin/sh
+# autopkgtest check: run unittest2 unit tests
+# (C) 2015 Canonical Ltd.
+# Author: Zygmunt Krynicki <zygmunt.krynicki@canonical.com> 
+
+set -e
+# NOTE: tests have to run from the unittest2 installation directory
+cd /usr/lib/python2.7/dist-packages/unittest2 
+unit2 -v 2>&1
+echo "unit-tests: OK"

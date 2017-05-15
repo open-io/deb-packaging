@@ -1,0 +1,17 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          swift-account-reaper
+# Required-Start:    $remote_fs
+# Required-Stop:     $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Swift account reaper
+# Description:       Account reaper for Swift.
+### END INIT INFO
+
+PROJECT_NAME=swift
+NAME="${PROJECT_NAME}-account-reaper"
+DESC="OpenStack Swift account reaper"
+CONFIG=account-server
+MULTI=1
+SYSTEMD_DOC="man:${NAME}(1)"
