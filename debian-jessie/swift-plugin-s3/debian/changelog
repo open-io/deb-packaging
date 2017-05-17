@@ -1,3 +1,9 @@
+swift-plugin-s3 (1.11.1.081e684-0) jessie; urgency=medium
+
+  * First OpenIO pkg from OpenIO repository 
+
+ -- Sebastien Lapierre <sebastien.lapierre@openio.io>  Wed, 17 May 2017 09:48:13 +0000
+
 swift-plugin-s3 (1.11-2) jessie; urgency=medium
 
   * Uploading to unstable
