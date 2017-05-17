@@ -1,1 +1,2 @@
-http://http.debian.net/debian/pool/main/s/swift-plugin-s3/swift-plugin-s3_1.11.orig.tar.xz
+#http://http.debian.net/debian/pool/main/s/swift-plugin-s3/swift-plugin-s3_1.11.orig.tar.xz swift-plugin-s3_1.11.xz
+https://github.com/open-io/swift3/archive/081e6843f4dadf64301d37121f23caf0796dff74.tar.gz  swift-plugin-s3_1.11.1.081e684.orig.tar.gz
