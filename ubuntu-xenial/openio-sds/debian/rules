@@ -4,7 +4,7 @@
 DH_VERBOSE = 1
 export DH_OPTIONS=-v
 export DEB_BUILD_OPTIONS += nocheck
-export PBR_VERSION=3.2.0
+export PBR_VERSION=3.2.3
 DESTDIR=$(CURDIR)/debian/openio-sds
 PYTHON_SITELIB=$(python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
 
