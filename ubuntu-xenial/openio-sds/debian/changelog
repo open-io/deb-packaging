@@ -1,3 +1,9 @@
+openio-sds (3.2.3-2) xenial; urgency=medium
+
+  * Fix PBR version
+
+ -- Sebastien Lapierre <sebastien.lapierre@openio.io>  Mon, 22 May 2017 09:27:00 +0000
+
 openio-sds (3.2.3-1) xenial; urgency=medium
 
   * New release

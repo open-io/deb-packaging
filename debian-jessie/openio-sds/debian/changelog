@@ -1,3 +1,9 @@
+openio-sds (3.2.3-2) jessie; urgency=medium
+
+  * Fix PBR version
+
+ -- Sebastien Lapierre <sebastien.lapierre@openio.io>  Mon, 22 May 2017 09:35:01 +0000
+
 openio-sds (3.2.3-1) jessie; urgency=medium
 
   * New release
