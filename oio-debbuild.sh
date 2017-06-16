@@ -154,5 +154,8 @@ if [[ "${REPO}" =~ ^http:// ]]; then
     done
 else
     echo "### Uploading package $pkgdsc to repository ${OSDISTID}-openio-${REPO}"
-    dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
+    if [ "${OSDISTID}" == 'ubuntu' -a "${ARCH}" == 'arm64' ]; then
+      dput -f -u ${OSDISTID}-arm64-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
+    else
+      dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
 fi
