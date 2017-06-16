@@ -22,6 +22,7 @@ Build-Depends:
  , openio-asn1c (>= 0.9.27.1)
  , libdb-dev
  , libjson-c-dev (>= 0.12)
+ , libleveldb-dev
  , flex
  , bison
  , curl
@@ -68,6 +69,7 @@ Depends:
  , python-cliff (>= 1.13)
  , python-tablib
  , python-pyeclib (>= 1.2.0)
+ , libleveldb1
  , python-concurrent.futures
 Description: OpenIO Cloud Storage Solution
  OpenIO software storage solution is designed to handle PETA-bytes of
