@@ -1,0 +1,61 @@
+Source: openio-sds-swift-plugin-s3
+Section: python
+Priority: extra
+Maintainer: PKG OpenStack <openstack-devel@lists.alioth.debian.org>
+Uploaders: Thomas Goirand <zigo@debian.org>,
+           Ondřej Nový <onovy@debian.org>,
+Build-Depends: debhelper (>= 9),
+               dh-python,
+               openstack-pkg-tools,
+               python-all,
+               python-pbr,
+               python-setuptools,
+               python-sphinx,
+Build-Depends-Indep: python-boto,
+                     python-coverage,
+                     python-fixtures (>= 1.3.1),
+                     python-hacking (>= 0.11.0),
+                     python-lxml,
+                     python-mock,
+                     python-nose,
+                     python-nose-exclude,
+                     python-openstack.nose-plugin,
+                     python-openstackclient,
+                     python-requests (>= 2.8.1),
+                     python-requests-mock (>= 0.7.0),
+                     python-six (>= 1.9.0),
+                     python-swift,
+Standards-Version: 3.9.8
+#Vcs-Browser: https://git.openstack.org/cgit/openstack/deb-openio-sds-swift-plugin-s3?h=debian%2Fnewton
+#Vcs-Git: https://git.openstack.org/openstack/deb-openio-sds-swift-plugin-s3 -b debian/newton
+Homepage: https://github.com/openstack/swift3/
+
+Package: openio-sds-swift-plugin-s3
+Architecture: all
+Depends: python-lxml,
+         python-swift,
+         ${misc:Depends},
+         ${python:Depends},
+         ${sphinxdoc:Depends},
+Description: swift3 (S3 compatibility) middleware plugin for Swift
+ OpenStack Object Storage (code-named Swift) creates redundant, scalable object
+ storage using clusters of standardized servers to store petabytes of
+ accessible data. It is not a file system or real-time data storage system, but
+ rather a long-term storage system for a more permanent type of static data
+ that can be retrieved, leveraged, and then updated if necessary. Primary
+ examples of data that best fit this type of storage model are virtual machine
+ images, photo storage, email storage and backup archiving. Having no central
+ "brain" or master point of control provides greater scalability, redundancy
+ and permanence.
+ .
+ Objects are written to multiple hardware devices in the data center, with
+ the OpenStack software responsible for ensuring data replication and
+ integrity across the cluster. Storage clusters can scale horizontally by
+ adding new nodes. Should a node fail, OpenStack works to replicate its
+ content from other active nodes. Because OpenStack uses software logic to
+ ensure data replication and distribution across different devices,
+ inexpensive commodity hard drives and servers can be used in lieu of more
+ expensive equipment.
+ .
+ This package provides the Swift3 Middleware plugin for OpenStack Swift,
+ allowing access to OpenStack Swift via the Amazon S3 API.
