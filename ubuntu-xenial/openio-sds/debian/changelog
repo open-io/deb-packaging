@@ -1,3 +1,9 @@
+openio-sds (4.0.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 30 Jun 2017 17:15:42 +0000
+
 openio-sds (3.3.1-2) xenial; urgency=medium
 
   * Fix the PBR version
