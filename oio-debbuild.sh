@@ -6,7 +6,8 @@ set -e
 
 
 if [ $# -ne 1 ]; then
-  echo "You must specify a repository like <sds-testing>."
+  echo "You must specify a destination repository like <sds-testing>, " \
+       "or <http://oio-repo.openio.io:5000/package>."
   exit 1
 fi
 REPO=$1
@@ -138,5 +139,20 @@ sudo DISTID="$OSDISTID" DIST="$OSDISTCODENAME" pbuilder build ${WRK}/*.dsc
 echo "### Building done"
 popd >/dev/null
 echo
-echo "### Uploading package $pkgdsc to repository ${OSDISTID}-openio-${REPO}"
-dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
+
+if [[ "${REPO}" =~ "^http://" ]]; then
+    echo "### Uploading package $pkgdsc to repository ${REPO}"
+    for f in /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.deb; do
+        curl -F "file=@${f}" \
+             -F "company=${OIO_COMPANY}" \
+             -F "prod=${OIO_PROD}" \
+             -F "prod_ver=${OIO_PROD_VER}" \
+             -F "distro=${OSDISTID}" \
+             -F "distro_ver=${OSDISTCODENAME}" \
+             -F "arch=${ARCH}" \
+             "${REPO}"
+    done
+else
+    echo "### Uploading package $pkgdsc to repository ${OSDISTID}-openio-${REPO}"
+    dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
+fi
