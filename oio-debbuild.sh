@@ -140,7 +140,7 @@ echo "### Building done"
 popd >/dev/null
 echo
 
-if [[ "${REPO}" =~ "^http://" ]]; then
+if [[ "${REPO}" =~ ^http:// ]]; then
     echo "### Uploading package $pkgdsc to repository ${REPO}"
     for f in /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.deb; do
         curl -F "file=@${f}" \
