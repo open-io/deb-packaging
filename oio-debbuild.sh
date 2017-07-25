@@ -6,7 +6,7 @@ set -e
 
 
 if [ $# -ne 1 ]; then
-  echo "You must specify a destination repository like <sds-testing>, " \
+  echo "You must specify a destination repository like <sds-testing>, " \
        "or <http://oio-repo.openio.io:5000/package>."
   exit 1
 fi
