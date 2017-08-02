@@ -158,4 +158,5 @@ else
       dput -f -u ${OSDISTID}-arm64-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
     else
       dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
+    fi
 fi
