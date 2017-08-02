@@ -1,3 +1,33 @@
+puppet-module-openio-openiosds (4.0.7-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 20 Jul 2017 13:33:06 +0000
+
+puppet-module-openio-openiosds (4.0.6-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 20 Jul 2017 13:06:39 +0000
+
+puppet-module-openio-openiosds (4.0.5-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 10 Jul 2017 09:38:26 +0000
+
+puppet-module-openio-openiosds (4.0.4-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 04 Jul 2017 14:49:19 +0000
+
+puppet-module-openio-openiosds (4.0.3-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 04 Jul 2017 12:43:56 +0000
+
 puppet-module-openio-openiosds (3.0.1-1) xenial; urgency=medium
 
   * New release
