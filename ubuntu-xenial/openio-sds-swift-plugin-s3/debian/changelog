@@ -1,8 +1,8 @@
-openio-sds-swift-plugin-s3 (1.12.0~b0-1) xenial; urgency=medium
+openio-sds-swift-plugin-s3 (1.12.0-1) xenial; urgency=medium
 
-  * Non-maintainer release.
+  * New release
 
- -- Romain Acciari <romain.acciari@openio.io>  Fri, 30 Jun 2017 17:53:15 +0000
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 11 Sep 2017 16:05:06 +0000
 
 swift-plugin-s3 (1.11-2) unstable; urgency=medium
 
