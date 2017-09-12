@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 #DISTID
 #ARCH
@@ -138,25 +138,24 @@ echo "### Starting building package"
 sudo ARCH="$ARCH" DISTID="$OSDISTID" DIST="$OSDISTCODENAME" pbuilder build ${WRK}/*.dsc
 echo "### Building done"
 popd >/dev/null
-echo
 
-if [[ "${REPO}" =~ ^http:// ]]; then
-    echo "### Uploading package $pkgdsc to repository ${REPO}"
-    for f in /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.deb; do
-        curl -F "file=@${f}" \
-             -F "company=${OIO_COMPANY}" \
-             -F "prod=${OIO_PROD}" \
-             -F "prod_ver=${OIO_PROD_VER}" \
-             -F "distro=${OSDISTID}" \
-             -F "distro_ver=${OSDISTCODENAME}" \
-             -F "arch=${ARCH}" \
-             "${REPO}"
-    done
-else
+#if [[ "${REPO}" =~ ^http:// ]]; then
+#    echo "### Uploading package $pkgdsc to repository ${REPO}"
+#    for f in /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.deb; do
+#        curl -F "file=@${f}" \
+#             -F "company=${OIO_COMPANY}" \
+#             -F "prod=${OIO_PROD}" \
+#             -F "prod_ver=${OIO_PROD_VER}" \
+#             -F "distro=${OSDISTID}" \
+#             -F "distro_ver=${OSDISTCODENAME}" \
+#             -F "arch=${ARCH}" \
+#             "${REPO}"
+#    done
+#else
     echo "### Uploading package $pkgdsc to repository ${OSDISTID}-openio-${REPO}"
     if [ "${OSDISTID}" == 'ubuntu' -a "${ARCH}" == 'arm64' ]; then
       dput -f -u ${OSDISTID}-arm64-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
     else
       dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
     fi
-fi
+#fi
