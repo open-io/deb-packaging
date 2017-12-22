@@ -1,0 +1,17 @@
+/var/log/netdata/*log {
+	compress
+	create 0640 netdata adm
+	daily
+	delaycompress
+	missingok
+	notifempty
+	rotate 14
+	sharedscripts
+	postrotate
+		if service netdata status > /dev/null ; then \
+			service netdata restart > /dev/null; \
+		fi;
+	endscript
+}
+
+

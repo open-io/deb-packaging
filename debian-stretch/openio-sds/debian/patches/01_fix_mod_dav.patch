@@ -1,0 +1,11 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -302,7 +302,7 @@ option_or_system(JSONC json-c json.h)
+ 
+ if (NOT SDK_ONLY)
+ option_or_system(ASN1C asn1cskeletons)
+-option_or_system(APACHE2 modules/mod_webdav.so httpd.h)
++option_or_system(APACHE2 modules/mod_dav.so httpd.h)
+ option_or_system(ATTR attr attr/xattr.h)
+ option_or_system(GRIDINIT gridinit-utils gridinit-utils.h)
+ option_or_system(LIBRAIN rain librain.h)

@@ -1,0 +1,81 @@
+From: Lennart Weller <lhw@ring0.de>
+Date: Wed, 8 Feb 2017 16:35:42 +0100
+Subject: Dont include prctl.h on kFreeBSD or Hurd
+
+---
+ configure.ac      | 1 +
+ src/apps_plugin.c | 2 ++
+ src/common.h      | 4 ++--
+ src/main.c        | 8 ++++----
+ 4 files changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index d0a6ebd..25ac052 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -137,6 +137,7 @@ AC_CHECK_SIZEOF([void *])
+ AC_CANONICAL_HOST
+ AC_HEADER_MAJOR
+ AC_HEADER_RESOLV
++AC_CHECK_HEADERS_ONCE([sys/prctl.h])
+ 
+ AC_ARG_VAR([SSE_CANDIDATE], [C compiler flags for SSE])
+ AS_CASE([$host_cpu],
+diff --git a/src/apps_plugin.c b/src/apps_plugin.c
+index 0a72190..edf15d9 100644
+--- a/src/apps_plugin.c
++++ b/src/apps_plugin.c
+@@ -2854,7 +2854,9 @@ int main(int argc, char **argv)
+         struct rlimit rl = { RLIM_INFINITY, RLIM_INFINITY };
+         if(setrlimit(RLIMIT_CORE, &rl) != 0)
+             info("Cannot request unlimited core dumps for debugging... Proceeding anyway...");
++#ifdef HAVE_SYS_PRCTL_H
+         prctl(PR_SET_DUMPABLE, 1, 0, 0, 0);
++#endif 
+     }
+ #endif /* NETDATA_INTERNAL_CHECKS */
+ 
+diff --git a/src/common.h b/src/common.h
+index e38e95b..24a1f72 100644
+--- a/src/common.h
++++ b/src/common.h
+@@ -67,9 +67,9 @@
+ #include <syslog.h>
+ #include <sys/mman.h>
+ 
+-#if !(defined(__FreeBSD__) || defined(__APPLE__))
++#ifdef HAVE_SYS_PRCTL_H
+ #include <sys/prctl.h>
+-#endif /* __FreeBSD__ || __APPLE__*/
++#endif
+ 
+ #include <sys/resource.h>
+ #include <sys/socket.h>
+diff --git a/src/main.c b/src/main.c
+index ca134fc..c1c9924 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -567,9 +567,9 @@ int main(int argc, char **argv)
+             if(setrlimit(RLIMIT_CORE, &rl) != 0)
+                 error("Cannot request unlimited core dumps for debugging... Proceeding anyway...");
+ 
+-#if !(defined(__FreeBSD__) || defined(__APPLE__))
++#ifdef HAVE_SYS_PRCTL_H
+             prctl(PR_SET_DUMPABLE, 1, 0, 0, 0);
+-#endif /* __FreeBSD__ || __APPLE__*/
++#endif
+         }
+ 
+         // --------------------------------------------------------------------
+@@ -744,9 +744,9 @@ int main(int argc, char **argv)
+         struct rlimit rl = { RLIM_INFINITY, RLIM_INFINITY };
+         if(setrlimit(RLIMIT_CORE, &rl) != 0)
+             error("Cannot request unlimited core dumps for debugging... Proceeding anyway...");
+-#if !(defined(__FreeBSD__) || defined(__APPLE__))
++#ifdef HAVE_SYS_PRCTL_H
+         prctl(PR_SET_DUMPABLE, 1, 0, 0, 0);
+-#endif /* __FreeBSD__ || __APPLE__*/
++#endif
+     }
+ #endif /* NETDATA_INTERNAL_CHECKS */
+ 
