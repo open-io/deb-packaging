@@ -6,11 +6,11 @@ set -e
 
 
 if [ $# -ne 1 ]; then
-  echo "You must specify a destination repository like <sds-testing>, " \
-       "or <http://oio-repo.openio.io:5000/package>."
-  exit 1
+    echo "No upload destination specified, disabling..."
+    REPO=''
+else
+    REPO=$1
 fi
-REPO=$1
 
 BASEDIR="$PWD"
 PKGNAME=$(basename "$BASEDIR")
@@ -139,6 +139,11 @@ sudo ARCH="$ARCH" DISTID="$OSDISTID" DIST="$OSDISTCODENAME" pbuilder build ${WRK
 echo "### Building done"
 popd >/dev/null
 echo
+
+# Uploading disabled upon user request
+if [[ "${REPO}" == "" ]]; then
+    exit 0
+fi
 
 if [[ "${REPO}" =~ ^http:// ]]; then
     echo "### Uploading package $pkgdsc to repository ${REPO}"
