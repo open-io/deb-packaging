@@ -6,6 +6,7 @@ Build-Depends:
  debhelper (>= 9)
  , cmake
  , openio-sds
+ , libattr1-dev
  , libhiredis-dev
  , libfuse-dev
  , libsoup2.4-dev
