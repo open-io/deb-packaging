@@ -1,0 +1,38 @@
+#!/usr/bin/make -f
+
+export PYBUILD_DESTDIR_python2=debian/python-cffi
+export PYBUILD_DESTDIR_python3=debian/python3-cffi
+export PYBUILD_EXT_DESTDIR_python2=debian/python-cffi-backend
+export PYBUILD_EXT_DESTDIR_python3=debian/python3-cffi-backend
+export PYBUILD_EXT_DESTDIR_python2-dbg=debian/python-cffi-backend-dbg
+export PYBUILD_EXT_DESTDIR_python3-dbg=debian/python3-cffi-backend-dbg
+
+# Temporary hack until cffi defaults to calling virtualenv with --never-download
+export VIRTUALENV_DOWNLOAD=no
+
+%:
+	dh $@ --with python2,python3 --buildsystem pybuild
+
+override_dh_auto_test:
+	echo "Skipping tests"
+#	PYBUILD_SYSTEM=custom \
+#		PYBUILD_TEST_ARGS="{interpreter} -m pytest c/ testing/" \
+#		dh_auto_test
+
+override_dh_install:
+	debian/gen-backend-versions.py
+	dh_install
+
+override_dh_installchangelogs:
+	dh_installchangelogs doc/source/whatsnew.rst
+
+override_dh_strip:
+	dh_strip -p python-cffi-backend -p python-cffi-backend-dbg \
+	         --dbg-package=python-cffi-backend-dbg
+	dh_strip -p python3-cffi-backend -p python3-cffi-backend-dbg \
+	         --dbg-package=python3-cffi-backend-dbg
+	dh_strip --remaining-packages
+
+override_dh_clean:
+	dh_clean
+	rm -rf $(wildcard testing/*/snippets/*/build testing/*/snippets/*/dist testing/*/snippets/*/*.egg-info)
