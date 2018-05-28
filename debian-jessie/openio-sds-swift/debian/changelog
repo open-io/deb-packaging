@@ -1,3 +1,9 @@
+openio-sds-swift (1.2.12-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 28 May 2018 10:16:15 +0000
+
 openio-sds-swift (1.2.11-1) jessie; urgency=medium
 
   * New release
