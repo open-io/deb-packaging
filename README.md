@@ -211,3 +211,19 @@ You are ready to run the `oio-debbuild.sh` that will download the source and bui
 If dput and mini-dinstall are configured, you can put the packages in the repository using the command:  
 `# dput -u debian-openio-sds-testing /var/cache/pbuilder/jessie-amd64/result/openio-sds_*.changes`
 
+### Repair the mirror / Remove a broken package
+
+    # Log on the build VM (OpenStack)
+    ssh buildsys-deb
+    # Go inside the mirror (NFS mounted directory from mirror2.openio.io)
+    cd /mnt/koji/mirror/pub/repo/openio/sds/17.04/ubuntu
+    # Remove the broken package(s)
+    sudo rm -i xenial/openio-gridinit-1.7.0*
+    # Delete the old metadata
+    sudo rm -f xenial.db xenial/Packages* xenial/InRelease xenial/Sources* xenial/Release*
+    # Re-create the metadatas
+    sudo mini-dinstall --batch -c /etc/mini-dinstall-ubuntu-sds-17.04.conf /mnt/koji/mirror/pub/repo/openio/sds/17.04/ubuntu
+    # Ask the QA team to double-check mirror2
+    # Synchronize to the external mirror, if needed
+
+*NOTE*: The DEB repositories only hold one package release, so you will have to rebuild the good/old one after that. 
