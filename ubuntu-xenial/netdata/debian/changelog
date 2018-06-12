@@ -1,3 +1,9 @@
+netdata (1.9.0+dfsg-1) xenial; urgency=medium
+
+  * Repackage for ubuntu xenial
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 12 Jun 2018 15:07:51 +0000
+
 netdata (1.9.0+dfsg-1) unstable; urgency=medium
 
   * New upstream release (Closes: #885634)
