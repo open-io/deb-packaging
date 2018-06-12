@@ -1,6 +1,7 @@
 netdata (1.9.0+dfsg-1) xenial; urgency=medium
 
   * Repackage for ubuntu xenial
+  * Backport "use system pyyaml modules" patch hunk from 1.10.0+dfsg-1
 
  -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 12 Jun 2018 15:07:51 +0000
 
