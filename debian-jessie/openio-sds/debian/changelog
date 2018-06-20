@@ -1,3 +1,9 @@
+openio-sds (4.1.26-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 20 Jun 2018 10:07:08 +0000
+
 openio-sds (4.1.25-1) jessie; urgency=medium
 
   * New release
