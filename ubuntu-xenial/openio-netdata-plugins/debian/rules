@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+
+DESTDIR=$(CURDIR)/debian/openio-netdata-plugins
+
+include /usr/share/dpkg/default.mk
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	cd .. && \
+	wget --no-check-certificate https://github.com/go-redis/redis/archive/v6.12.0.tar.gz && \
+	tar zxf v6.12.0.tar.gz && \
+	mkdir -p go/src/github.com/go-redis && \
+	ls -l && \
+	cd go/src && \
+	ls -l && \
+	ln -s ../../openio-netdata-plugins-* oionetdata && \
+	cd github.com/go-redis && \
+	ls -l && \
+	ln -s ../../../../redis-* redis
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build openio.plugin.go
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build zookeeper.plugin.go && \
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build container.plugin.go
+
+override_dh_auto_install:
+	mkdir -pv $(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
+	install -m 0755 \
+		openio.plugin \
+		zookeeper.plugin \
+		container.plugin \
+		$(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
