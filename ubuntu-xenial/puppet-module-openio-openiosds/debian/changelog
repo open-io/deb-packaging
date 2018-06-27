@@ -28,6 +28,12 @@ puppet-module-openio-openiosds (4.0.23-1) xenial; urgency=medium
 
  -- Vincent Legoll <vincent.legoll@openio.io>  Fri, 06 Apr 2018 14:20:13 +0000
 
+puppet-module-openio-openiosds (4.0.13-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 15 Sep 2017 08:15:33 +0000
+
 puppet-module-openio-openiosds (4.0.7-1) xenial; urgency=medium
 
   * New release
