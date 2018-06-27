@@ -1,0 +1,20 @@
+diff -Naur a/plugins.d/python.d.plugin b/plugins.d/python.d.plugin
+--- a/plugins.d/python.d.plugin	2017-03-20 18:26:59.000000000 +0000
++++ b/plugins.d/python.d.plugin	2017-04-27 16:43:57.208000000 +0000
+@@ -55,15 +55,8 @@
+         msg.info('Using python v2')
+     except ImportError:
+         msg.fatal('Cannot start. No importlib.machinery on python3 or lack of imp on python2')
+-# try:
+-#     import yaml
+-# except ImportError:
+-#     msg.fatal('Cannot find yaml library')
+ try:
+-    if PY_VERSION == 3:
+-        import pyyaml3 as yaml
+-    else:
+-        import pyyaml2 as yaml
++    import yaml
+ except ImportError:
+     msg.fatal('Cannot find yaml library')
+ 

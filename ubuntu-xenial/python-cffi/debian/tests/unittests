@@ -1,0 +1,23 @@
+#!/bin/sh
+set -efu
+
+pythons="$(pyversions -r)"
+cp -a c testing "$ADTTMP"
+
+# Not appropriate:
+rm "$ADTTMP"/testing/cffi0/test_version.py
+rm "$ADTTMP"/testing/cffi1/test_parse_c_type.py
+
+# Temporary hack until cffi defaults to calling virtualenv with --never-download
+export VIRTUALENV_DOWNLOAD=no
+
+# Delete any stale __pycache__s
+find "$ADTTMP" -name '__pycache__' -print0 | xargs -0 rm -rf
+
+cd "$ADTTMP"
+for py in $pythons; do
+	echo "======= $py ======="
+	$py -m pytest --tb=native c testing
+	echo "======= $py-dbg ======="
+	$py-dbg -m pytest --tb=native c testing 2>&1
+done
