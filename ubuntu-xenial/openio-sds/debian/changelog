@@ -1,3 +1,51 @@
+openio-sds (4.1.26-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 20 Jun 2018 09:20:12 +0000
+
+openio-sds (4.1.25-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 13 Jun 2018 09:21:44 +0000
+
+openio-sds (4.1.24-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 04 Jun 2018 16:18:32 +0000
+
+openio-sds (4.1.23-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 28 May 2018 12:15:56 +0000
+
+openio-sds (4.1.22-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 24 Apr 2018 15:48:41 +0000
+
+openio-sds (4.1.21-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 03 Apr 2018 15:36:27 +0000
+
+openio-sds (4.1.18-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 27 Mar 2018 08:45:23 +0000
+
+openio-sds (4.1.17-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 26 Mar 2018 15:41:56 +0000
+
 openio-sds (4.1.2-1) xenial; urgency=medium
 
   * New release

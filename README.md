@@ -2,7 +2,45 @@
 
 This repository gathers the deb packaging files used to build OpenIO softwares.
 
-## Setup
+## How to build OpenIO SDS
+
+### Preparation
+
+    # Log on the build VM (OpenStack)
+    ssh buildsys-deb
+    # Setup your debian developper identity
+    cat << EOF >> ~/.bashrc
+        DEBEMAIL="your.email@openio.io"
+        DEBFULLNAME="Your Name"
+        export DEBEMAIL DEBFULLNAME
+    EOF
+    # Create the DEB build environment
+    mkdir ~/debbuildir
+    # Clone OpenIO's DEB packaging repository
+    git clone https://github.com/open-io/deb-packaging.git
+
+### Build one package
+
+    # Log on the build VM (OpenStack)
+    ssh buildsys-deb
+
+    NEW_VERSION=4.1.14
+    RELEASE=1
+
+    DISTRO_BASE=ubuntu
+    DISTRO_VER=xenial
+
+    cd ~/deb-packaging/${DISTRO_BASE}-${DISTRO_VER}/openio-sds
+    sed -i -e "s#\([_/]\)[0-9.]*\(orig\.\)\{0,1\}\(tar\.gz\)#\1${NEW_VERSION}.\2\3#g" ./sources
+    dch --force-distribution -b -v ${NEW_VERSION}-${RELEASE} --distribution ${DISTRO_VER} 'New release'
+
+    # Check everything is OK
+    git diff ./sources ./debian/rules ./debian/changelog
+
+    # Change first param to `sds-testing` or `sds-unstable`
+    ../../oio-debbuild.sh sds-17.04
+
+## Setup build host
 
 We are using pbuilder to build our packages, this guide will help you setup and create or update the packages for Debian and Ubuntu using this repository.
 In this guide, we are using a Debian server to build our Debian and Ubuntu packages but it should work the same on an Ubuntu server.
@@ -173,3 +211,19 @@ You are ready to run the `oio-debbuild.sh` that will download the source and bui
 If dput and mini-dinstall are configured, you can put the packages in the repository using the command:  
 `# dput -u debian-openio-sds-testing /var/cache/pbuilder/jessie-amd64/result/openio-sds_*.changes`
 
+### Repair the mirror / Remove a broken package
+
+    # Log on the build VM (OpenStack)
+    ssh buildsys-deb
+    # Go inside the mirror (NFS mounted directory from mirror2.openio.io)
+    cd /mnt/koji/mirror/pub/repo/openio/sds/17.04/ubuntu
+    # Remove the broken package(s)
+    sudo rm -i xenial/openio-gridinit-1.7.0*
+    # Delete the old metadata
+    sudo rm -f xenial.db xenial/Packages* xenial/InRelease xenial/Sources* xenial/Release*
+    # Re-create the metadatas
+    sudo mini-dinstall --batch -c /etc/mini-dinstall-ubuntu-sds-17.04.conf /mnt/koji/mirror/pub/repo/openio/sds/17.04/ubuntu
+    # Ask the QA team to double-check mirror2
+    # Synchronize to the external mirror, if needed
+
+*NOTE*: The DEB repositories only hold one package release, so you will have to rebuild the good/old one after that. 

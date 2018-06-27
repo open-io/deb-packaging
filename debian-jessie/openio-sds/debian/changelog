@@ -1,3 +1,51 @@
+openio-sds (4.1.26-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 20 Jun 2018 10:07:08 +0000
+
+openio-sds (4.1.25-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 13 Jun 2018 11:14:58 +0000
+
+openio-sds (4.1.24-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 04 Jun 2018 16:52:08 +0000
+
+openio-sds (4.1.23-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 28 May 2018 12:17:54 +0000
+
+openio-sds (4.1.22-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 24 Apr 2018 15:50:44 +0000
+
+openio-sds (4.1.21-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 03 Apr 2018 16:45:22 +0000
+
+openio-sds (4.1.18-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 27 Mar 2018 08:47:12 +0000
+
+openio-sds (4.1.17-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 26 Mar 2018 15:48:26 +0000
+
 openio-sds (4.0.0-1) jessie; urgency=medium
 
   * New release

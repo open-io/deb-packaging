@@ -1,16 +1,16 @@
 #!/bin/bash
-set -ex
+set -e
 
 #DISTID
 #ARCH
 
 
 if [ $# -ne 1 ]; then
-  echo "You must specify a destination repository like <sds-testing>, " \
-       "or <http://oio-repo.openio.io:5000/package>."
-  exit 1
+    echo "No upload destination specified, disabling..."
+    REPO=''
+else
+    REPO=$1
 fi
-REPO=$1
 
 BASEDIR="$PWD"
 PKGNAME=$(basename "$BASEDIR")
@@ -138,24 +138,30 @@ echo "### Starting building package"
 sudo ARCH="$ARCH" DISTID="$OSDISTID" DIST="$OSDISTCODENAME" pbuilder build ${WRK}/*.dsc
 echo "### Building done"
 popd >/dev/null
+echo
 
-#if [[ "${REPO}" =~ ^http:// ]]; then
-#    echo "### Uploading package $pkgdsc to repository ${REPO}"
-#    for f in /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.deb; do
-#        curl -F "file=@${f}" \
-#             -F "company=${OIO_COMPANY}" \
-#             -F "prod=${OIO_PROD}" \
-#             -F "prod_ver=${OIO_PROD_VER}" \
-#             -F "distro=${OSDISTID}" \
-#             -F "distro_ver=${OSDISTCODENAME}" \
-#             -F "arch=${ARCH}" \
-#             "${REPO}"
-#    done
-#else
+# Uploading disabled upon user request
+if [[ "${REPO}" == "" ]]; then
+    exit 0
+fi
+
+if [[ "${REPO}" =~ ^http:// ]]; then
+    echo "### Uploading package $pkgdsc to repository ${REPO}"
+    for f in /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.deb; do
+        curl -F "file=@${f}" \
+             -F "company=${OIO_COMPANY}" \
+             -F "prod=${OIO_PROD}" \
+             -F "prod_ver=${OIO_PROD_VER}" \
+             -F "distro=${OSDISTID}" \
+             -F "distro_ver=${OSDISTCODENAME}" \
+             -F "arch=${ARCH}" \
+             "${REPO}"
+    done
+else
     echo "### Uploading package $pkgdsc to repository ${OSDISTID}-openio-${REPO}"
-    if [ "${OSDISTID}" == 'ubuntu' -a "${ARCH}" == 'arm64' ]; then
+    if [ "${OSDISTID}" == 'ubuntu' -a "${ARCH}" == 'arm64' -a "${REPO}" == "sds-16.10" ]; then
       dput -f -u ${OSDISTID}-arm64-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
     else
       dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
     fi
-#fi
+fi

@@ -1,3 +1,21 @@
+openio-sds-swift-plugin-s3 (1.12.4-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 28 May 2018 11:07:21 +0000
+
+openio-sds-swift-plugin-s3 (1.12.3-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 15 May 2018 15:37:17 +0000
+
+openio-sds-swift-plugin-s3 (1.12.2-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Thu, 26 Apr 2018 12:43:52 +0000
+
 openio-sds-swift-plugin-s3 (1.12.0~b0-1) jessie; urgency=medium
 
   * Non-maintainer release.

@@ -1,3 +1,33 @@
+puppet-module-openio-openiosds (4.0.27-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 20 Jun 2018 15:56:42 +0000
+
+puppet-module-openio-openiosds (4.0.26-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 20 Jun 2018 07:44:15 +0000
+
+puppet-module-openio-openiosds (4.0.25-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 18 Apr 2018 08:07:26 +0000
+
+puppet-module-openio-openiosds (4.0.24-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Fri, 06 Apr 2018 15:25:54 +0000
+
+puppet-module-openio-openiosds (4.0.23-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Fri, 06 Apr 2018 14:20:13 +0000
+
 puppet-module-openio-openiosds (4.0.13-1) xenial; urgency=medium
 
   * New release
