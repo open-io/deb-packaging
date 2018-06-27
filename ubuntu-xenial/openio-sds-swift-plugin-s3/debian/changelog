@@ -1,3 +1,9 @@
+openio-sds-swift-plugin-s3 (1.12.5-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 27 Jun 2018 11:48:29 +0000
+
 openio-sds-swift-plugin-s3 (1.12.4-1) xenial; urgency=medium
 
   * New release
