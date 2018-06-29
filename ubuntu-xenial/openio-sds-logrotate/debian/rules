@@ -33,6 +33,6 @@ override_dh_auto_build:
 
 override_dh_install:
 	mkdir -pv $(DESTDIR)/etc/logrotate.d
-	cp -a openio-sds-logrotate.conf $(DESTDIR)/etc/logrotate.d/openio-sds
+	cp -a openio-sds-logrotate/openio-sds-logrotate.conf $(DESTDIR)/etc/logrotate.d/openio-sds
 
 
