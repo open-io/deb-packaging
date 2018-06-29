@@ -1,0 +1,76 @@
+Description: Slow add_auth calls with multi-threaded client
+Origin: https://issues.apache.org/jira/browse/ZOOKEEPER-770
+
+--- a/src/c/tests/TestClient.cc
++++ b/src/c/tests/TestClient.cc
+@@ -181,6 +181,20 @@
+     }
+ } watchctx_t;
+ 
++static inline int calculate_interval(const struct timeval *start,
++         const struct timeval *end)
++{
++    int interval;
++    struct timeval i = *end;
++    i.tv_sec -= start->tv_sec;
++    i.tv_usec -= start->tv_usec;
++    interval = i.tv_sec * 1000 + (i.tv_usec/1000);
++    return interval;
++}
++
++static timeval completion_timestamp;
++
++
+ class Zookeeper_simpleSystem : public CPPUNIT_NS::TestFixture
+ {
+     CPPUNIT_TEST_SUITE(Zookeeper_simpleSystem);
+@@ -432,6 +446,14 @@
+         count++;
+     }
+ 
++
++    static void voidCompletionWithTimestamp(int rc, const void *data) {
++        int tmp = (int) (long) data;
++        CPPUNIT_ASSERT_EQUAL(tmp, rc);
++        gettimeofday(&completion_timestamp, 0);
++        count++;
++    }
++
+     static void verifyCreateFails(const char *path, zhandle_t *zk) {
+       CPPUNIT_ASSERT_EQUAL((int)ZBADARGUMENTS, zoo_create(zk,
+           path, "", 0, &ZOO_OPEN_ACL_UNSAFE, 0, 0, 0));
+@@ -519,6 +541,8 @@
+         zhandle_t *zk = createClient(&ctx1);
+         struct ACL_vector nodeAcl;
+         struct ACL acl_val;
++        struct timeval started;
++
+         rc = zoo_add_auth(0, "", 0, 0, voidCompletion, (void*)-1);
+         CPPUNIT_ASSERT_EQUAL((int) ZBADARGUMENTS, rc);
+ 
+@@ -552,11 +576,13 @@
+         //create a new client
+         zk = createClient(&ctx2);
+ 
+-        rc = zoo_add_auth(zk, "digest", "pat:passwd2", 11, voidCompletion,
++        gettimeofday(&started, 0);
++        rc = zoo_add_auth(zk, "digest", "pat:passwd2", 11, voidCompletionWithTimestamp,
+                           (void*)ZOK);
+         CPPUNIT_ASSERT_EQUAL((int) ZOK, rc);
+         waitForVoidCompletion(3);
+         CPPUNIT_ASSERT(count == 0);
++        CPPUNIT_ASSERT(calculate_interval(&started, &completion_timestamp) < 2);
+ 
+         char buf[1024];
+         int blen = sizeof(buf);
+--- a/src/c/src/zookeeper.c
++++ b/src/c/src/zookeeper.c
+@@ -1328,7 +1328,7 @@
+     /* We queued the buffer, so don't free it */
+     close_buffer_oarchive(&oa, 0);
+ 
+-    return rc;
++    return rc<0 ? rc : adaptor_send_queue(zh, 0);
+ }
+ 
+ /** send all auths, not just the last one **/
