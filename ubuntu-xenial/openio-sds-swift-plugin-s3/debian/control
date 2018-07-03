@@ -31,6 +31,7 @@ Homepage: https://github.com/openstack/swift3/
 
 Package: openio-sds-swift-plugin-s3
 Architecture: all
+Replaces: swift-plugin-s3
 Depends: python-lxml,
          python-swift,
          ${misc:Depends},
