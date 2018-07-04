@@ -1,0 +1,18 @@
+Source: puppet-module-openio-diamond
+Section: unknown
+Priority: optional
+Maintainer: Romain Acciari <romain.acciari@openio.io>
+Build-Depends:
+ debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: https://github.com/open-io/puppet-diamond/
+
+Package: puppet-module-openio-diamond
+Architecture: all
+Depends:
+ ${misc:Depends}
+ ,puppet-common (>= 3.6) | puppet-agent
+ ,puppet-module-openio-gridinit
+ ,puppet-module-puppetlabs-stdlib (>= 4.6.0)
+Description: Puppet module for OpenIO SDS solution
+ Puppet module to install OpenIO SDS solution.

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+DOCDIR=/usr/share/doc/libjson0-dev
+DOCLINK=libjson-c-dev
+
+if [ -d $DOCDIR ] && [ ! -L $DOCDIR ]; then
+    rmdir $DOCDIR
+    ln -s $DOCLINK $DOCDIR
+fi
+
+INCDIR=/usr/include/json
+INCLINK=json-c
+
+if [ -d $INCDIR ] && [ ! -L $INCDIR ]; then
+    rmdir $INCDIR
+    ln -s $INCLINK $INCDIR
+fi
+
+#DEBHELPER#
+
+exit 0

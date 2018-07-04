@@ -1,0 +1,48 @@
+.TH XATTR 1 "May  8, 2010"
+.SH NAME
+xattr \- sets or lists extended attributes on a file or directory
+.SH SYNOPSIS
+\fBxattr\fR [ \fI-lz\fR ] \fBfilename\fR [ \fBfilename\fR ... ]
+.br
+\fBxattr\fR \fI-p\fR [ \fI-lz\fR ] \fIattr_name\fR \fBfilename\fR [ \fBfilename\fR ... ]
+.br
+\fBxattr\fR \fI-w\fR [ \fI-z\fR ] \fIattr_name\fR \fIattr_value\fR \fBfilename\fR [ \fBfilename\fR ... ]
+.br
+\fBxattr\fR \fI-d\fR \fIattr_name\fR \fBfilename\fR [ \fBfilename\fR ... ]
+.br
+.SH DESCRIPTION
+This manual page documents briefly the \fBxattr\fR command.
+.PP
+The first form lists the names of all xattrs on the given file(s).
+.br
+The second form (\-p) prints the value of the xattr attr_name.
+.br
+The third form (\-w) sets the value of the xattr attr_name to attr_value.
+.br
+The fourth form (\-d) deletes the xattr attr_name.
+.br
+.SH OPTIONS
+A summary of options is included below.
+.TP
+.B \-h
+Show summary of options.
+.TP
+.B \-l
+Print long format (attr_name: attr_value) when listing xattrs.
+.TP
+.B \-z
+Compress or decompress (if compressed) attribute value in zip format.
+.SH EXAMPLES
+.TP
+.B "xattr -w user.mykey myvalue myfile"
+.TP
+.B "xattr -g user.mykey myfile"
+.br
+.SH SEE ALSO
+The Python module "xattr"
+.br
+.SH AUTHOR
+xattr was written by Bob Ippolito <bob@redivi.com>.
+.PP
+This manual page was written by Federico Ceratto,
+for the Debian project (and may be used by others).
