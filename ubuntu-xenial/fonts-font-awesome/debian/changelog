@@ -1,0 +1,168 @@
+fonts-font-awesome (4.7.0~dfsg-3) xenial; urgency=medium
+
+  * Rebuild for xenial
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 04 Jul 2018 11:32:51 +0000
+
+fonts-font-awesome (4.7.0~dfsg-3) unstable; urgency=medium
+
+  * Upload to unstable.
+  * Mark package compliance with Debian policy 4.0.0.
+  * Drop unused lintian override 
+    composer-package-without-pkg-php-tools-builddep.
+
+ -- Vasudev Kamath <vasudev@copyninja.info>  Fri, 07 Jul 2017 21:52:55 +0530
+
+fonts-font-awesome (4.7.0~dfsg-2) experimental; urgency=medium
+
+  * Put symlink to CSS/JS assets in /usr/share/javascript.
+    Closes: bug#849987. Thanks to Michael Fladischer.
+
+ -- Vasudev Kamath <vasudev@copyninja.info>  Sat, 04 Feb 2017 11:26:26 +0530
+
+fonts-font-awesome (4.7.0~dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+    Closes: bug#842236, Thanks to Ricardo Mones
+
+ -- Vasudev Kamath <vasudev@copyninja.info>  Sat, 19 Nov 2016 20:13:21 +0530
+
+fonts-font-awesome (4.6.3~dfsg-1) unstable; urgency=medium
+
+  * Import new upstream release.
+    Closes: bug#826310, Thanks to Daniel Bauman.
+  * Drop trailing / from Files-Excluded item.
+
+ -- Vasudev Kamath <vasudev@copyninja.info>  Sat, 04 Jun 2016 20:55:14 +0530
+
+fonts-font-awesome (4.6.1~dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+    Closes: bug#822357, Thanks to Daniel Baumann.
+  * Switch from CDBS to short-form dh sequencer.
+  * Update READEME.source with information on how to update package with
+    new upstream release.
+  * debian/control:
+    + Use secure URL for Vcs-Browser field.
+    + Add version dependency on debhelper 9, version is now satisfied even
+      in oldstable.
+    + Bump compat to 9
+    + Declare compliance with Debian Policy 3.9.8
+
+ -- Vasudev Kamath <vasudev@copyninja.info>  Sun, 24 Apr 2016 11:43:00 +0530
+
+fonts-font-awesome (4.5.0~dfsg-1) unstable; urgency=medium
+
+  * Imported new upstream release 4.5.0
+  * Update debian/control.in
+    + Change my email address in uploaders field.
+    + Use https URL for Vcs-Git field.
+  * Update debian/copyright
+    + Extend copyright period for upstream.
+    + Extend my copyright period for debian folder.
+
+ -- Vasudev Kamath <vasudev@copyninja.info>  Sun, 17 Jan 2016 18:05:28 +0530
+
+fonts-font-awesome (4.4.0~dfsg-1) unstable; urgency=medium
+
+  * Import new upstream release.
+    Closes: bug#796590, Thanks to Jack.
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Sat, 03 Oct 2015 14:18:04 +0530
+
+fonts-font-awesome (4.3.0~dfsg-2) unstable; urgency=low
+
+  * Upload to unstable
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Fri, 19 Jun 2015 20:50:33 +0530
+
+fonts-font-awesome (4.3.0~dfsg-1) experimental; urgency=medium
+
+  * Update DEB_UPSTREAM_TARBALL_MD5 to 4.3.0 release
+  * Bump Standards-Version to 3.9.6, no change to source
+  * Install woff2 as webfonts.
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Sun, 01 Feb 2015 18:53:44 +0530
+
+fonts-font-awesome (4.2.0~dfsg-1) unstable; urgency=medium
+
+  * Import new upstream release.
+    Closes: bug#763935, Thanks to  John Eikenberry.
+  * Change Vcs-Browser URL to Cgit
+  * Update DEB_UPSTREAM_TARBALL_MD5 to use new tarball md5sum
+  * Add README.source file with instruction for handling the package.
+  * Update copyright file with new modifications
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Sun, 05 Oct 2014 12:05:57 +0530
+
+fonts-font-awesome (4.1.0~dfsg-1) unstable; urgency=medium
+
+  * Imported new upstream release.
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Tue, 17 Jun 2014 23:02:40 +0530
+
+fonts-font-awesome (4.0.3~dfsg-2) unstable; urgency=medium
+
+  * Fix typo in symlink target path.
+    Closes: bug#743034, Thanks to Pau Garcia i Quiles.
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Mon, 31 Mar 2014 12:20:43 +0530
+
+fonts-font-awesome (4.0.3~dfsg-1) unstable; urgency=medium
+
+  [ Vasudev Kamath ]
+  * replace old md5sum with 4.0.3 md5sum.
+  * Bump Standards-Version to 3.9.5
+  * replace home page with url with new CNAME, fontawesome.io/
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Sat, 08 Feb 2014 11:00:25 +0530
+
+fonts-font-awesome (4.0.0~dfsg-1) unstable; urgency=low
+
+  [ Vasudev Kamath ]
+  * Updated the md5sum of upstream tarball to match new release.
+  * Changed directory name to fonts in debian/install to reflect new
+    changes by upstream.
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Sun, 27 Oct 2013 19:40:56 +0530
+
+fonts-font-awesome (3.2.1~dfsg-2) unstable; urgency=low
+
+  * Symlink the fonts to /usr/share/fonts-font-awesome/font directory to
+    fix the wrong path in less and scss files. 
+    Closes: bug#724697. Thanks to Jonas Smedegaard.
+  * Mentioned words LESS and Sass in long description and added Enhances
+    on ruby-sass and node-less. 
+    Closes: bug#724696, Thanks to Jonas Smedegaard.
+  * Added Enhances: libjs-twitter-bootstrap.
+    Closes: bug#724698, Thanks to Jonas Smedegaard.
+  * Fixed the grammar mistake in the long description.
+    Closes: bug#725756, Thanks to Filipus Klutiero.
+  * Dropped explicit build-depends on debhelper, this should be generated
+    by CDBS.
+
+ -- Vasudev Kamath <kamathvasudev@gmail.com>  Sun, 13 Oct 2013 13:40:16 +0530
+
+fonts-font-awesome (3.2.1~dfsg-1) unstable; urgency=low
+
+  [ Vasudev Kamath ]
+  * Updated DEB_UPSTREAM_TARBALL_MD5 to md5sum of 3.2.1
+  * Use repack logic from CDBS to remove non-dfsg src/ folder from
+    upstream tarball.
+  * Install less css and scss shipped by upstream. Thanks to Julian
+    Taylor. (Closes: #719360).
+  * Introduce Debian version mangling for watch file.
+
+  [ Mike Gabriel ]
+  * Add source.lintian-overrides for overriding
+    composer-package-without-pkg-php-tools-builddep. This source package does
+    not use composer.json.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Thu, 26 Sep 2013 09:49:04 +0200
+
+fonts-font-awesome (3.0.2-1) unstable; urgency=low
+
+  [ Vasudev Kamath ]
+  * Initial Release. (Closes: #703219).
+
+ -- Mike Gabriel <sunweaver@debian.org>  Mon, 08 Apr 2013 00:34:25 +0200
