@@ -1,3 +1,9 @@
+python-plyvel (0.9-1) bionic; urgency=low
+
+  * Initial release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 04 Jul 2018 17:20:12 +0000
+
 python-plyvel (0.9-1) xenial; urgency=low
 
   * Initial release
