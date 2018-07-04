@@ -1,0 +1,42 @@
+openio-gridinit (1.7.0-1) xenial; urgency=medium
+
+  * Unreleased
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Thu, 14 Jun 2018 11:31:27 +0000
+
+openio-gridinit (1.6-2) xenial; urgency=medium
+
+  * Fix default socket path
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 04 Apr 2016 13:16:27 +0000
+
+openio-gridinit (1.6-1) xenial; urgency=medium
+
+  * New upstream release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 31 Mar 2016 17:21:16 +0000
+
+openio-gridinit (1.5-1) xenial; urgency=low
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 17 Oct 2015 10:03:08 +0000
+
+openio-gridinit (1.4-3) xenial; urgency=low
+
+  * Add tmpfile
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 08 Oct 2015 08:48:58 +0000
+
+openio-gridinit (1.4-2) xenial; urgency=low
+
+  * Add systemd file
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 08 Oct 2015 07:29:34 +0000
+
+openio-gridinit (1.4-1) xenial; urgency=low
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 06 Oct 2015 15:05:35 +0000
+

@@ -1,0 +1,29 @@
+oiofs-fuse (2.1.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 13 Jun 2018 13:46:11 +0000
+
+oiofs-fuse (2.0.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 12 Jun 2018 17:18:11 +0000
+
+oiofs-fuse (1.0.0~c3-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 21 Mar 2017 12:18:11 +0000
+
+oiofs-fuse (1.0.0~c2-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 20 Oct 2016 12:18:11 +0000
+
+oiofs-fuse (20160411-1) xenial; urgency=low
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 11 Apr 2016 15:40:59 +0000

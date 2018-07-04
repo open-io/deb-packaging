@@ -1,0 +1,5 @@
+python-django-celery-with-redis (3.0-1) xenial; urgency=low
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 14 Sep 2016 14:47:09 +0000

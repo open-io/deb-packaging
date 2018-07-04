@@ -1,0 +1,237 @@
+openio-sds (4.2.0.c0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Thu, 28 Jun 2018 09:20:12 +0000
+
+openio-sds (4.1.26-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 20 Jun 2018 09:20:12 +0000
+
+openio-sds (4.1.25-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 13 Jun 2018 09:21:44 +0000
+
+openio-sds (4.1.24-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 04 Jun 2018 16:18:32 +0000
+
+openio-sds (4.1.23-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 28 May 2018 12:15:56 +0000
+
+openio-sds (4.1.22-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 24 Apr 2018 15:48:41 +0000
+
+openio-sds (4.1.21-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 03 Apr 2018 15:36:27 +0000
+
+openio-sds (4.1.18-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 27 Mar 2018 08:45:23 +0000
+
+openio-sds (4.1.17-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 26 Mar 2018 15:41:56 +0000
+
+openio-sds (4.1.2-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 19 Sep 2017 15:35:36 +0000
+
+openio-sds (4.1.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 11 Sep 2017 15:44:51 +0000
+
+openio-sds (4.0.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 30 Jun 2017 17:15:42 +0000
+
+openio-sds (3.3.1-2) xenial; urgency=medium
+
+  * Fix the PBR version
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 16 Jun 2017 17:14:59 +0000
+
+openio-sds (3.3.1-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 16 Jun 2017 17:02:50 +0000
+
+openio-sds (3.3.0-1) xenial; urgency=medium
+
+  * New release
+  * Change python to C for rdir 
+
+ -- Sebastien Lapierre <sebastien.lapierre@openio.io>  Fri, 12 May 2017 15:19:26 +0000
+
+openio-sds (3.2.4-1) xenial; urgency=medium
+
+  * New release
+  * Change python to C for rdir 
+
+ -- Sebastien Lapierre <sebastien.lapierre@openio.io>  Fri, 12 May 2017 15:19:26 +0000
+
+openio-sds (3.2.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 21 Feb 2017 10:51:05 +0000
+
+openio-sds (3.1.3-1) xenial; urgency=medium
+
+  * New release
+  * Add python-concurrent.futures dependency
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 03 Feb 2017 13:38:32 +0000
+
+openio-sds (3.1.2-3) xenial; urgency=medium
+
+  * Fix /var/lib/oio owner/group
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 20 Jan 2017 10:48:05 +0000
+
+openio-sds (3.1.2-2) xenial; urgency=medium
+
+  * Fix log path owners and permissions
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 18 Jan 2017 10:59:19 +0000
+
+openio-sds (3.1.2-1) xenial; urgency=medium
+
+  * Update to 3.1.2
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 28 Dec 2016 18:04:23 +0000
+
+openio-sds (3.0.1-2) xenial; urgency=medium
+
+  * Add user creation at preinst
+
+ -- Romain Acciari <romain.acciari@openio.io>  Wed, 30 Nov 2016 15:18:49 +0000
+
+openio-sds (3.0.1-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 31 Oct 2016 15:29:16 +0000
+
+openio-sds (3.0.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 20 Oct 2016 09:50:39 +0000
+
+openio-sds (3.0.0~c1-1) xenial; urgency=medium
+
+  * New release candidate
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 30 Sep 2016 10:00:05 +0000
+
+openio-sds (3.0.0~b3-1) xenial; urgency=medium
+
+  * New beta release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 09 Sep 2016 14:40:47 +0000
+
+openio-sds (3.0.0~b1-1) xenial; urgency=medium
+
+  * New beta release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 22 Jul 2016 20:59:23 +0000
+
+openio-sds (2.0.0.c2-6ubuntu1) xenial; urgency=medium
+
+  * Fix Depends
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 07 Apr 2016 15:33:35 +0000
+
+openio-sds (2.0.0.c2-6) xenial; urgency=medium
+
+  * Add python-requests version require
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 05 Apr 2016 15:16:37 +0000
+
+openio-sds (2.0.0.c2-5) xenial; urgency=medium
+
+  * Fix python xattr require
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 05 Apr 2016 14:26:31 +0000
+
+openio-sds (2.0.0.c2-4) xenial; urgency=medium
+
+  * Test python-xattr support
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 05 Apr 2016 11:45:48 +0000
+
+openio-sds (2.0.0.c2-3) xenial; urgency=medium
+
+  * Change requirements from pyxattr to python-xattr >= 0.8.0
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 05 Apr 2016 09:16:53 +0000
+
+openio-sds (2.0.0.c2-2) xenial; urgency=medium
+
+  * Enhance requirements
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 01 Apr 2016 17:32:00 +0000
+
+openio-sds (2.0.0.c2-1) xenial; urgency=medium
+
+  * New upstream release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 31 Mar 2016 20:00:30 +0000
+
+openio-sds (1.0.1-1) xenial; urgency=medium
+
+  * New release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Mon, 14 Dec 2015 18:55:22 +0000
+
+openio-sds (0.8.3-4) xenial; urgency=low
+
+  * Add /run/oio directory
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 13 Oct 2015 12:51:41 +0000
+
+openio-sds (0.8.3-3) xenial; urgency=low
+
+  * Add python-pbr at runtime (will be remove in next release)
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 08 Oct 2015 16:39:20 +0000
+
+openio-sds (0.8.3-2) xenial; urgency=low
+
+  * Add tmpfile
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 08 Oct 2015 09:00:34 +0000
+
+openio-sds (0.8.3-1) xenial; urgency=medium
+
+  * Initial release
+
+ -- Romain Acciari <romain.acciari@openio.io>  Tue, 06 Oct 2015 15:32:21 +0000
+

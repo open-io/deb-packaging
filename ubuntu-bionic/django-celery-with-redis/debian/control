@@ -1,0 +1,15 @@
+Source: python-django-celery-with-redis
+Section: unknown
+Priority: optional
+Maintainer: Romain Acciari <romain.acciari@openio.io>
+Build-Depends: debhelper (>= 9), dh-python, python-all, python-all-dev, python-setuptools
+Standards-Version: 3.9.5
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://anonscm.debian.org/collab-maint/python-django-celery-with-redis.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/python-django-celery-with-redis.git;a=summary
+
+Package: python-django-celery-with-redis
+Architecture: all
+Depends: ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>

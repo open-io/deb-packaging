@@ -1,0 +1,7 @@
+third_party/nanopb/docs/logo/logo.png
+third_party/nanopb/docs/logo/logo16px.png
+third_party/nanopb/docs/logo/logo48px.png
+third_party/nanopb/tests/extra_fields/alltypes_with_extra_fields.pb
+third_party/nanopb/tests/extra_fields/person_with_extra_field.pb
+third_party/nanopb/tests/fuzztest/sample_data/sample1.pb
+third_party/nanopb/tests/fuzztest/sample_data/sample2.pb

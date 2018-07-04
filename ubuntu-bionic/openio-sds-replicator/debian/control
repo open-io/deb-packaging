@@ -1,0 +1,19 @@
+Source: openio-sds-replicator
+Section: unknown
+Priority: optional
+Maintainer: Romain Acciari <romain.acciari@openio.io>
+Build-Depends:
+ debhelper (>= 9)
+ , openjdk-8-jdk-headless
+Standards-Version: 3.9.5
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://anonscm.debian.org/collab-maint/openio-sds-replicator.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/openio-sds-replicator.git;a=summary
+
+Package: openio-sds-replicator
+Architecture: all
+Depends:
+ ${misc:Depends}
+ , openjdk-8-jre-headless
+Description: OpenIO SDS replicator service
+ OpenIO SDS replicator service.
