@@ -1,0 +1,27 @@
+Source: fonts-font-awesome
+Section: fonts
+Priority: optional
+Maintainer: Debian Fonts Task Force <pkg-fonts-devel@lists.alioth.debian.org>
+Uploaders:
+ Friendica Maintenance Team <pkg-friendica-maint@lists.alioth.debian.org>,
+ Vasudev Kamath <vasudev@copyninja.info>,
+ Mike Gabriel <sunweaver@debian.org>,
+Build-Depends: debhelper (>= 9)
+Standards-Version: 4.0.0
+Homepage: http://fontawesome.io/
+Vcs-Git: https://anonscm.debian.org/git/pkg-fonts/fonts-font-awesome.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-fonts/fonts-font-awesome.git
+
+Package: fonts-font-awesome
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Enhances: ruby-sass, node-less, libjs-twitter-bootstrap
+Description: iconic font designed for use with Twitter Bootstrap
+ This font contains about 249 various icon glyphs. Glyphs are designed
+ as scalable vector graphics hence display very well at any screen
+ size. This font was basically designed to be used with the Twitter
+ bootstrap  library but can be used in other places also.
+ .
+ This package also provides Sass and LESS files to use webfonts from
+ this package.
