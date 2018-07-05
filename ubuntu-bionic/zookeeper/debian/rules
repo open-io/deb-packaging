@@ -11,12 +11,13 @@ ANT_ARGS = -Dversion=$(DEB_UPSTREAM_VERSION) \
            -DlastRevision=-1 \
            -Divy.url=file:/usr/share/maven-repo/org/apache/ivy/ivy/ \
            -Divy.version=debian \
+           -Dapache-directory-api.version=debian \
            -Divysettings.xml=/usr/share/ivy-debian-helper/ivysettings.xml \
-           -Dant.build.javac.source=1.5 \
-           -Dant.build.javac.target=1.5
+           -Dant.build.javac.source=1.8 \
+           -Dant.build.javac.target=1.8
 
 %:
-	dh $@ --buildsystem=ivy --with javahelper --with python2 --with systemd
+	dh $@ --buildsystem=ivy --with javahelper --with python2
 
 override_dh_auto_build:
 	# TODO exclude the fatjar contrib from upstream tarball and include the rest contrib
@@ -32,6 +33,8 @@ override_dh_auto_build:
 
 	# Compile contribs - zooinspector
 	dh_auto_build -- -f src/contrib/build.xml $(ANT_ARGS) -Dcontribfilesetincludes="zooinspector/build.xml"
+	# rename JAR file to comply with Debian Java policy
+	mv -fv build/contrib/ZooInspector/zookeeper-ZooInspector.jar build/contrib/ZooInspector/zookeeper-zooinspector.jar
 
 	# Build Python Bindings
 	cd src/contrib/zkpython && \
@@ -88,7 +91,7 @@ endif
 ifeq (i386, $(DEB_BUILD_ARCH))
 override_dh_auto_test-indep:
 	# Run core Java test suite against zookeeper
-	ant -Dversion=$(DEB_UPSTREAM_VERSION) -DlastRevision=-1 test-core-java
+	#dh_auto_build -- $(ANT_ARGS) test-core-java
 endif
 endif
 
@@ -140,6 +143,3 @@ override_dh_auto_clean:
 
 override_dh_installinit:
 	dh_installinit --name=zookeeper
-
-override_dh_systemd_enable:
-	dh_systemd_enable --name=zookeeper

@@ -13,7 +13,7 @@ if ! getent group $GROUP >/dev/null ; then
         addgroup --system $GROUP >/dev/null
 fi
 
-# creating zookeeper user if he isn't already there
+# creating zookeeper user if it isn't already there
 if ! getent passwd $USER >/dev/null ; then
         # Adding system user
         adduser \
@@ -28,6 +28,7 @@ fi
 
 chown $USER:$GROUP /var/log/$NAME
 chown $USER:$GROUP /var/lib/$NAME
+chmod o-rwx /var/lib/$NAME
 
 update-alternatives --install /etc/$NAME/conf $NAME-conf /etc/$NAME/conf_example 5
 

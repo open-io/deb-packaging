@@ -11,11 +11,6 @@
 #                    synchronization, and providing group services.
 ### END INIT INFO
 
-# Author: Foo Bar <foobar@baz.org>
-#
-# Please remove the "Author" lines above and replace them
-# with your own name if you copy and modify this script.
-
 # Do NOT "set -e"
 
 # Exit if the package is not installed

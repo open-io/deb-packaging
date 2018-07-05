@@ -1,0 +1,19 @@
+zookeeper (3.4.10-3) unstable; urgency=medium
+
+  In the interest of better default security, /var/lib/zookeeper is
+  no longer world-readable (see [0]).  This may affect your installation
+  if you depend upon the log_dir being world-readable.
+
+  The default value of JMXLOCALONLY is now true (see [1]).  Although
+  this won't affect the default installation (because remote JMX is
+  not configured out of the box), you may want to adjust this value
+  in /etc/default/zookeeper if you have configured your environment
+  to allow jmxremote.
+
+  The zooinspector JAR has been renamed from zookeeper-ZooInspector.jar
+  to zookeeper-zooinspector.jar.
+
+  [0] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=870271
+  [1] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=869912
+
+ -- tony mancill <tmancill@debian.org>  Sat, 03 Feb 2018 14:58:02 -0800

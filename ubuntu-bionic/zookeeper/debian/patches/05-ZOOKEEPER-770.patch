@@ -65,7 +65,7 @@ Origin: https://issues.apache.org/jira/browse/ZOOKEEPER-770
          int blen = sizeof(buf);
 --- a/src/c/src/zookeeper.c
 +++ b/src/c/src/zookeeper.c
-@@ -1328,7 +1328,7 @@
+@@ -1355,7 +1355,7 @@
      /* We queued the buffer, so don't free it */
      close_buffer_oarchive(&oa, 0);
  
