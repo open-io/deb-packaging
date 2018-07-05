@@ -4,7 +4,7 @@ Author: James Page <james.page@ubuntu.com>, Thomas Koch <thomas@koch.ro>
 Forwarded: not-needed
 --- a/build.xml
 +++ b/build.xml
-@@ -1245,30 +1245,10 @@
+@@ -1297,30 +1297,10 @@
      <target name="test-init" depends="jar,compile-test">
          <delete dir="${test.log.dir}" />
          <delete dir="${test.tmp.dir}" />
@@ -35,7 +35,7 @@ Forwarded: not-needed
      </target>
  
      <condition property="quicktest">
-@@ -1321,6 +1301,9 @@
+@@ -1373,6 +1353,9 @@
            <batchtest todir="${test.log.dir}" if="fulltest">
              <fileset dir="${test.src.dir}">
                <include name="**/*${test.category}Test.java"/>
