@@ -1,6 +1,0 @@
-usr/lib/*/libprotobuf.a
-usr/lib/*/libprotobuf-lite.a
-usr/lib/*/libprotobuf.so
-usr/lib/*/libprotobuf-lite.so
-usr/lib/*/pkgconfig/*
-usr/include
