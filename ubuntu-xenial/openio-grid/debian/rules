@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+
+%:
+	# do not use --with=golang since we don't need dh-golang
+	dh $@ --buildsystem=golang
+
+# tests are broken
+override_dh_auto_test:
+
+# only include the binaries
+override_dh_auto_install:
+	dh_auto_install -- --no-source

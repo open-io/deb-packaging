@@ -1,0 +1,4 @@
+usr/bin/grid-agent
+usr/bin/grid-apiserver
+usr/bin/grid-controller
+usr/bin/grid-discovery
