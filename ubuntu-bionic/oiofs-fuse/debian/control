@@ -1,0 +1,50 @@
+Source: oiofs-fuse
+Section: unknown
+Priority: optional
+Maintainer: Romain Acciari <romain.acciari@openio.io>
+Build-Depends:
+ debhelper (>= 9)
+ , cmake
+ , openio-sds
+ , libattr1-dev
+ , libhiredis-dev
+ , libfuse-dev
+ , libsoup2.4-dev
+ , libglib2.0-dev
+ , libgoogle-glog-dev
+ , libgflags-dev
+ , libjson-c-dev
+ , libsqlite3-dev
+Standards-Version: 3.9.5
+Homepage: http://gitlab.openio.io/openio/oio-fs
+#Vcs-Git: git://anonscm.debian.org/collab-maint/oiofs-fuse.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/oiofs-fuse.git;a=summary
+
+Package: oiofs-fuse
+Architecture: any
+Depends:
+ ${shlibs:Depends}
+ , ${misc:Depends}
+ , libfuse2
+ , libsoup2.4-1
+ , openio-sds
+ , libjson-c2
+Description: OpenIO FileSystem FUSE adapter
+ oiofs FUSE is a FUSE adapter that allows you to mount OpenIO SDS
+ containers as filesystems on Linux systems.
+ oiofs FUSE provides another means to access OpenIO SDS Storage.
+
+Package: oiofs-fuse-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends:
+ oiofs-fuse (= ${binary:Version})
+ , ${misc:Depends}
+Description: debugging symbols for oiofs-fuse
+ oiofs FUSE is a FUSE adapter that allows you to mount OpenIO SDS
+ containers as filesystems on Linux systems.
+ oiofs FUSE provides another means to access OpenIO SDS Storage.
+ .
+ This package contains the debugging symbols for oiofs-fuse.
+

@@ -1,0 +1,19 @@
+Description: Fixes a build failure due to unknown opcode 'lock' in mt_adaptor.c
+ This patch can be removed after upgrading to Zookeeper 3.5.0 or later
+Author: Thomas Koch <thomas.koch@ymc.ch>
+Bug: https://issues.apache.org/jira/browse/ZOOKEEPER-705
+--- a/src/c/src/mt_adaptor.c
++++ b/src/c/src/mt_adaptor.c
+@@ -484,11 +484,7 @@ int32_t fetch_and_add(volatile int32_t*
+ {
+ #ifndef WIN32
+     int32_t result;
+-    asm __volatile__(
+-         "lock xaddl %0,%1\n"
+-         : "=r"(result), "=m"(*(int *)operand)
+-         : "0"(incr)
+-         : "memory");
++    result = __sync_fetch_and_add(operand, incr);
+    return result;
+ #else
+     volatile int32_t result;

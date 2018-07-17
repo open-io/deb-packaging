@@ -1,0 +1,17 @@
+openio-netdata-plugins (0.2.16-1) bionic; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 09 Jul 2018 17:20:12 +0000
+
+openio-netdata-plugins (0.2.15-1) bionic; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 04 Jul 2018 17:20:12 +0000
+
+openio-netdata-plugins (0.2.14-1) xenial; urgency=medium
+
+  * Initial release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 26 Jun 2018 16:20:12 +0200

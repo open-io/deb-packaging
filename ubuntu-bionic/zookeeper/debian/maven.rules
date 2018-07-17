@@ -1,0 +1,3 @@
+log4j log4j * s/.*/1.2.x/ * *
+junit junit * s/.*/4.x/ * *
+commons-collections commons-collections jar s/3\..*/3.x/ * *
