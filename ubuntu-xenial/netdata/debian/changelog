@@ -1,3 +1,10 @@
+netdata (1.9.0+dfsg-2) xenial; urgency=medium
+
+  * Fix for "fails to detect disks/partitions correctly" bug
+    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=878890
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 12 Jun 2018 15:07:51 +0000
+
 netdata (1.9.0+dfsg-1) xenial; urgency=medium
 
   * Repackage for ubuntu xenial
