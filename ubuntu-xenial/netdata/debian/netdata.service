@@ -37,9 +37,8 @@ PrivateTmp=true
 ProtectHome=read-only
 ProtectSystem=full
 
-ReadOnlyDirectories=/
 ReadWriteDirectories=/proc/self
-ReadWriteDirectories=/var
+ReadWriteDirectories=/
 
 # Access to devices and kernel modules and tunables is required
 PrivateDevices=no
