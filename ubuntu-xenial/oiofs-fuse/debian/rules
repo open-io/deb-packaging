@@ -23,6 +23,7 @@ include /usr/share/dpkg/default.mk
 
 override_dh_auto_configure:
 	dh_auto_configure --buildsystem cmake -- \
+	-DCMAKE_BUILD_TYPE=Release \
 	-DCMAKE_INSTALL_PREFIX="/usr" \
 	-DLD_LIBDIR="lib" \
 	-DOIOSDS_INCDIR="/usr/include" \
