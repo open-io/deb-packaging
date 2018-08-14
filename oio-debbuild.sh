@@ -138,7 +138,7 @@ pkgdsc=$(ls *.dsc)
 echo "### Starting building package"
 PBUILDEROPTS=()
 if [ "${PKGNAME}" = "oiofs-fuse" -o "${PKGNAME}" = "openio-billing" -o "${PKGNAME}" = "openio-sds-replicator" ]; then
-    # Do not build source code packages for closed-source projects
+    echo "### Do not build source code packages for closed-source projects"
     PBUILDEROPTS=("${PBUILDEROPTS[@]}" "--debbuildopts" "-b")
 fi
 sudo ARCH="$ARCH" DISTID="$OSDISTID" DIST="$OSDISTCODENAME" pbuilder build "${PBUILDEROPTS[@]}" ${WRK}/*.dsc
