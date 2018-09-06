@@ -3,7 +3,7 @@ ZOOCFGDIR=/etc/zookeeper/conf
 ZOOCFG=/etc/zookeeper/conf/zoo.cfg
 ZOO_LOG_DIR=/var/log/zookeeper
 ZOO_LOG4J_PROP=INFO,ROLLINGFILE
-JMXLOCALONLY=false
+JMXLOCALONLY=true
 JAVA_OPTS=""
 
 # If ZooKeeper is started through systemd, this will only be used for command
