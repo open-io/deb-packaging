@@ -3,7 +3,7 @@ Author: Emmanuel Bourg <ebourg@apache.org>
 Forwarded: no
 --- a/build.xml
 +++ b/build.xml
-@@ -474,6 +474,8 @@
+@@ -525,6 +525,8 @@
           windowtitle="${Name} ${version} API"
           doctitle="${Name} ${version} API"
           bottom="Copyright &amp;copy; ${year} The Apache Software Foundation"
@@ -12,12 +12,12 @@ Forwarded: no
           >
      	<packageset dir="${java.src.dir}">
            <include name="org/apache/**"/>
-@@ -498,6 +500,8 @@
+@@ -549,6 +551,8 @@
           windowtitle="${Name} ${version} API"
           doctitle="${Name} ${version} API"
           bottom="Copyright &amp;copy; ${year} The Apache Software Foundation"
 +         locale="en"
 +         additionalparam="-notimestamp"
+          doclet="org.apache.yetus.audience.tools.IncludePublicAnnotationsStandardDoclet"
+          docletpath="${ivy.lib}/audience-annotations-${audience-annotations.version}.jar"
           >
-     	<fileset dir="${java.src.dir}">
-           <include name="org/apache/**/*Main.java"/>
