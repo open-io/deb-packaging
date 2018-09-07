@@ -1,8 +1,20 @@
+zookeeper (3.4.13-1oio) xenial; urgency=medium
+
+  * Non-maintainer upload.
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Thu, 06 Sep 2018 11:50:51 +0000
+
 zookeeper (3.4.12-1oio) bionic; urgency=medium
 
   * Non-maintainer upload.
 
  -- Vincent Legoll <vincent.legoll@openio.io>  Thu, 05 Jul 2018 10:50:51 +0000
+
+zookeeper (3.4.10-2oio) xenial; urgency=medium
+
+   * Non-maintainer upload.
+
+ -- Romain Acciari <romain.acciari@openio.io>  Thu, 05 Oct 2017 15:55:37 +0000
 
 zookeeper (3.4.12-1) unstable; urgency=medium
 

@@ -9,7 +9,7 @@ Build-Depends:
  ant-optional,
  autoconf,
  automake,
- debhelper (>= 11~),
+ debhelper (>= 9~),
  default-jdk (>= 2:1.6),
  default-jdk-doc,
  dh-python,
