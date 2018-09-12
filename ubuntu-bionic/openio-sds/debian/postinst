@@ -22,7 +22,7 @@ case "$1" in
     configure)
         # Fix log owners & permissions
         chmod 775 /var/log/oio /var/log/oio/sds
-        chown -R openio:openio /var/lib/oio
+        chown openio:openio /var/lib/oio
         chown syslog:openio /var/log/oio /var/log/oio/sds
     ;;
 
