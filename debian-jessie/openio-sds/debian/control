@@ -14,7 +14,7 @@ Build-Depends:
  , libapreq2-dev (>= 1.2)
  , libsqlite3-dev (>= 3.7.11)
  , libattr1-dev (>= 2.4.32)
- , libevent-dev (>= 2.0)
+ , libevent-dev (>= 2.1.8)
  , apache2 (>= 2.2)
  , apache2-dev (>= 2.2)
  , liblzo2-dev (>= 2.0)
@@ -22,7 +22,6 @@ Build-Depends:
  , openio-asn1c (>= 0.9.27.1)
  , libdb-dev
  , libjson-c-dev (>= 0.12)
- , libleveldb-dev
  , flex
  , bison
  , curl
@@ -65,7 +64,6 @@ Depends:
  , python-flask
  , python-eventlet
  , python-redis
- , cliff-tablib
  , python-cliff (>= 1.13)
  , python-tablib
  , python-pyeclib (>= 1.2.0)
