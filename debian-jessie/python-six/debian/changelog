@@ -1,0 +1,193 @@
+six (1.11.0-2) jessie; urgency=medium
+
+  * Move VCS to salsa.debian.org.
+  * Switch Maintainer to the Debian Python Modules Team.
+
+ -- Colin Watson <cjwatson@debian.org>  Sat, 10 Feb 2018 02:30:00 +0000
+
+six (1.11.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Build-depend only on python3-sphinx rather than accepting python-sphinx
+    as an alternative.
+  * Use HTTPS form of copyright-format URL.
+  * Support DEB_BUILD_OPTIONS=nodoc.
+  * Policy version 4.1.0.
+
+ -- Colin Watson <cjwatson@debian.org>  Fri, 22 Sep 2017 11:29:33 +0100
+
+six (1.10.0-4) unstable; urgency=medium
+
+  * Build Sphinx documentation in a new python-six-doc binary package
+    (closes: #855492).
+  * Policy version 3.9.8: no changes required.
+
+ -- Colin Watson <cjwatson@debian.org>  Sun, 19 Feb 2017 16:30:19 +0000
+
+six (1.10.0-3) unstable; urgency=medium
+
+  * d/control:
+    - Drop the python-six-whl binary package as it's no longer necessary.
+      (Closes: #814069)
+    - Drop the Build-Depends on python3-wheel.
+  * d/rules: Drop override_dh_auto_install since we no longer need to
+    build the .whl.
+  * d/python-six-whl.install: Removed.
+  * d/tests: Add simple import smoke tests.
+
+ -- Barry Warsaw <barry@debian.org>  Tue, 09 Feb 2016 09:18:14 -0500
+
+six (1.10.0-2) unstable; urgency=medium
+
+  * Use HTTPS for Vcs-* URLs, and link to cgit rather than gitweb.
+  * Upgrade to debhelper v9.
+
+ -- Colin Watson <cjwatson@debian.org>  Wed, 27 Jan 2016 13:42:43 +0000
+
+six (1.10.0-1) unstable; urgency=medium
+
+  [ Tristan Seligmann ]
+  * d/control: Add pypy-six package.
+  * d/rules: Add --with pypy.
+  * d/python{,3}-six.pydist: Add pydist files.
+
+  [ Colin Watson ]
+  * New upstream release.
+
+ -- Colin Watson <cjwatson@debian.org>  Wed, 07 Oct 2015 22:50:40 +0100
+
+six (1.9.0-5) unstable; urgency=medium
+
+  * Revert previous change to debian/rules file.  It seems to be
+    unnecessary after all.
+
+ -- Barry Warsaw <barry@debian.org>  Wed, 02 Sep 2015 10:22:41 -0400
+
+six (1.9.0-4) unstable; urgency=medium
+
+  * d/rules: Add PYBUILD_TEST_ARGS enabling --assert=plain to avoid ast
+    rewriting bug in pytest with Python 3.5.
+
+ -- Barry Warsaw <barry@debian.org>  Tue, 01 Sep 2015 18:36:35 -0400
+
+six (1.9.0-3) unstable; urgency=medium
+
+  * d/control: Restore X-Python*-Version headers to more modern values.
+  * d/watch: Update to use pypi.debian.net mirror.
+
+ -- Barry Warsaw <barry@debian.org>  Mon, 27 Apr 2015 09:52:45 -0400
+
+six (1.9.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * Ran wrap-and-sort.
+  * Uploading to unstable.
+  * Dropped X-Python fields which are referencing ancient versions of
+    Python.
+  * Standards-Version: 3.9.6 (no changes).
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 27 Apr 2015 08:05:43 +0000
+
+six (1.9.0-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Colin Watson <cjwatson@debian.org>  Sun, 11 Jan 2015 17:30:53 +0000
+
+six (1.8.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Colin Watson <cjwatson@debian.org>  Fri, 12 Sep 2014 11:02:06 +0100
+
+six (1.7.3-2) unstable; urgency=medium
+
+  * Mark all binary packages Multi-Arch: foreign.
+  * Tell pybuild to copy tests into build directory for the duration of the
+    test phase, so that pytest can run them (closes: #759490).
+  * Build-depend on python-py and python3-py for the test suite; this is
+    currently redundant since python-pytest and python3-pytest depend on
+    these, but it's a good idea for future-proofing.
+
+ -- Colin Watson <cjwatson@debian.org>  Sat, 30 Aug 2014 16:01:37 +0100
+
+six (1.7.3-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Colin Watson <cjwatson@debian.org>  Mon, 30 Jun 2014 02:45:16 +0100
+
+six (1.7.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Adjust python-six-whl's short description to say "wheel", not "wheels"
+    (thanks, Scott Kitterman).
+
+ -- Colin Watson <cjwatson@debian.org>  Tue, 10 Jun 2014 19:58:27 +0100
+
+six (1.6.1-2) unstable; urgency=medium
+
+  [ Colin Watson ]
+  * Move git repository to collab-maint.
+
+  [ Barry Warsaw ]
+  * d/control:
+    - Added python-setuptools, python3-setuptools, python3-wheel, and
+      dh-python to Build-Depends.
+    - Added python-six-whl binary package.
+    - Added myself to Uploaders with maintainer's permission.
+  * d/rules:
+    - Use --buildsystem=pybuild and simplify.
+    - Build the universal wheel.
+  * d/python-six-whl.install: Added.
+  * d/python{,3}-six.install: Unnecessary for pybuild; removed.
+
+ -- Barry Warsaw <barry@debian.org>  Fri, 23 May 2014 10:46:07 -0400
+
+six (1.6.1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Colin Watson <cjwatson@debian.org>  Wed, 19 Mar 2014 16:22:09 +0000
+
+six (1.5.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Switch to git; adjust Vcs-* fields.
+  * Policy version 3.9.5: no changes required.
+
+ -- Colin Watson <cjwatson@debian.org>  Tue, 07 Jan 2014 01:00:45 +0000
+
+six (1.4.1-1) unstable; urgency=low
+
+  * New upstream release (closes: #721765).
+
+ -- Colin Watson <cjwatson@debian.org>  Wed, 04 Sep 2013 06:44:27 +0100
+
+six (1.3.0-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Colin Watson <cjwatson@debian.org>  Sat, 27 Apr 2013 12:31:44 +0100
+
+six (1.2.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Add a watch file.
+  * Policy version 3.9.4: no changes required.
+  * Run the upstream test suite.
+
+ -- Colin Watson <cjwatson@debian.org>  Fri, 21 Sep 2012 22:53:29 +0100
+
+six (1.1.0-2) unstable; urgency=low
+
+  * Convert to source format 3.0 (quilt).
+  * Remove the build directory on clean.
+
+ -- Colin Watson <cjwatson@debian.org>  Tue, 17 Jan 2012 22:40:53 +0000
+
+six (1.1.0-1) unstable; urgency=low
+
+  * Initial release (closes: #656234).
+
+ -- Colin Watson <cjwatson@debian.org>  Tue, 17 Jan 2012 17:23:12 +0000
