@@ -1,3 +1,9 @@
+openio-sds-logrotate (1.7-1) jessie; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 02 Oct 2018 14:20:12 +0000
+
 openio-sds-logrotate (1.2-1) jessie; urgency=medium
 
   * New release
