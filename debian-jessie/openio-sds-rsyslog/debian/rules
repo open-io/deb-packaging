@@ -33,5 +33,5 @@ override_dh_auto_build:
 
 override_dh_install:
 	mkdir -pv $(DESTDIR)/etc/rsyslog.d
-	cp -a openio-sds-rsyslog.conf $(DESTDIR)/etc/rsyslog.d/30-openio-sds.conf
+	cp -a openio-sds-rsyslog/openio-sds-rsyslog.conf $(DESTDIR)/etc/rsyslog.d/30-openio-sds.conf
 	
