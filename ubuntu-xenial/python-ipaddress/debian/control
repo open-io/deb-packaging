@@ -1,0 +1,40 @@
+Source: python-ipaddress
+Section: python
+Priority: optional
+Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Uploaders: Tristan Seligmann <mithrandi@debian.org>,
+Build-Depends: debhelper (>= 9),
+               dh-python,
+               pypy,
+               pypy-setuptools,
+               python-all,
+               python-setuptools,
+Homepage: https://github.com/phihag/ipaddress
+Vcs-Browser: https://anonscm.debian.org/cgit/python-modules/packages/python-ipaddress.git
+Vcs-Git: https://anonscm.debian.org/git/python-modules/packages/python-ipaddress.git
+Standards-Version: 3.9.8
+X-Python-Version: >= 2.6
+
+Package: python-ipaddress
+Architecture: all
+Depends: ${misc:Depends},
+         ${python:Depends},
+Description: Backport of Python 3 ipaddress module (Python 2)
+ This module is a backport of the stdlib "ipaddress" module from Python 3. The
+ "ipaddress" module is in turn based off of the "ipaddr" module available in
+ the "python-ipaddr" but there are some important API differences; make sure
+ you are using the right module.
+ .
+ This package contains the Python 2 module.
+
+Package: pypy-ipaddress
+Architecture: all
+Depends: ${misc:Depends},
+         ${pypy:Depends},
+Description: Backport of Python 3 ipaddress module (PyPy)
+ This module is a backport of the stdlib "ipaddress" module from Python 3. The
+ "ipaddress" module is in turn based off of the "ipaddr" module available in
+ the "python-ipaddr" but there are some important API differences; make sure
+ you are using the right module.
+ .
+ This package contains the PyPy module.
