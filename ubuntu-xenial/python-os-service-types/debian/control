@@ -1,0 +1,106 @@
+Source: python-os-service-types
+Section: python
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: PKG OpenStack <openstack-devel@lists.alioth.debian.org>
+Uploaders:
+ Thomas Goirand <zigo@debian.org>,
+Build-Depends:
+ debhelper (>= 10),
+ dh-python,
+ openstack-pkg-tools,
+ python-all,
+ python-pbr (>= 2.0.0),
+ python-setuptools,
+ python-sphinx (>= 1.6.2),
+ python3-all,
+ python3-pbr (>= 2.0.0),
+ python3-setuptools,
+ python3-sphinx (>= 1.6.2),
+Build-Depends-Indep:
+ python-coverage (>= 4.0),
+ python-keystoneauth1 (>= 3.4.0),
+ python-openstackdocstheme (>= 1.18.1),
+ python-oslotest (>= 1:3.2.0),
+ python-reno (>= 2.5.0),
+ python-requests-mock (>= 1.2.0),
+ python-stestr,
+ python-testscenarios (>= 0.4),
+ python3-keystoneauth1 (>= 3.4.0),
+ python3-openstackdocstheme (>= 1.18.1),
+ python3-oslotest (>= 1:3.2.0),
+ python3-reno (>= 2.5.0),
+ python3-requests-mock (>= 1.2.0),
+ python3-stestr,
+ python3-testscenarios (>= 0.4),
+ subunit,
+ testrepository,
+Standards-Version: 4.1.4
+Vcs-Browser: https://git.launchpad.net/~ubuntu-server-dev/ubuntu/+source/python-os-service-types
+Vcs-Git: git://git.launchpad.net/~ubuntu-server-dev/ubuntu/+source/python-os-service-types
+Homepage: http://www.openstack.org/
+Testsuite: autopkgtest-pkg-python
+
+Package: python-os-service-types
+Architecture: all
+Depends:
+ python-pbr (>= 2.0.0),
+ ${misc:Depends},
+ ${python:Depends},
+Suggests:
+ python-os-service-types-doc,
+Description: lib for consuming OpenStack sevice-types-authority data - Python 2.7
+ This package provides a Python library for consuming OpenStack
+ sevice-types-authority data
+ .
+ The OpenStack Service Types Authority contains information about official
+ OpenStack services and their historical service-type aliases.
+ .
+ The data is in JSON and the latest data should always be used. This simple
+ library exists to allow for easy consumption of the data, along with a
+ built-in version of the data to use in case network access is for some reason
+ not possible and local caching of the fetched data.
+ .
+ This package contains the Python 2.7 module.
+
+Package: python-os-service-types-doc
+Section: doc
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${sphinxdoc:Depends},
+Description: lib for consuming OpenStack sevice-types-authority data - doc
+ This package provides a Python library for consuming OpenStack
+ sevice-types-authority data
+ .
+ The OpenStack Service Types Authority contains information about official
+ OpenStack services and their historical service-type aliases.
+ .
+ The data is in JSON and the latest data should always be used. This simple
+ library exists to allow for easy consumption of the data, along with a
+ built-in version of the data to use in case network access is for some reason
+ not possible and local caching of the fetched data.
+ .
+ This package contains the documentation.
+
+Package: python3-os-service-types
+Architecture: all
+Depends:
+ python3-pbr (>= 2.0.0),
+ ${misc:Depends},
+ ${python3:Depends},
+Suggests:
+ python-os-service-types-doc,
+Description: lib for consuming OpenStack sevice-types-authority data - Python 3.x
+ This package provides a Python library for consuming OpenStack
+ sevice-types-authority data
+ .
+ The OpenStack Service Types Authority contains information about official
+ OpenStack services and their historical service-type aliases.
+ .
+ The data is in JSON and the latest data should always be used. This simple
+ library exists to allow for easy consumption of the data, along with a
+ built-in version of the data to use in case network access is for some reason
+ not possible and local caching of the fetched data.
+ .
+ This package contains the Python 3.x module.
