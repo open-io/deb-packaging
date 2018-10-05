@@ -1,0 +1,9 @@
+Document: python-os-service-types-doc
+Title: os-service-types Documentation
+Author: N/A
+Abstract: Sphinx documentation for os-service-types
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python-os-service-types-doc/html/index.html
+Files: /usr/share/doc/python-os-service-types-doc/html/*
