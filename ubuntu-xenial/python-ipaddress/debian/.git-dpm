@@ -1,0 +1,11 @@
+# see git-dpm(1) from git-dpm package
+05c401912b86a90aabe626dd3003d02c1a0088f6
+05c401912b86a90aabe626dd3003d02c1a0088f6
+05c401912b86a90aabe626dd3003d02c1a0088f6
+05c401912b86a90aabe626dd3003d02c1a0088f6
+python-ipaddress_1.0.17.orig.tar.gz
+34bfa4108877dc1ccbe40f93145fd6f54718c535
+32434
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"
