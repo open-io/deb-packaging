@@ -21,12 +21,12 @@ include /usr/share/dpkg/default.mk
 # package maintainers to append LDFLAGS
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
-
 # main packaging script based on dh7 syntax
 %:
 	dh $@ --buildsystem cmake
 
 override_dh_auto_configure:
+	PATH="${PATH}:/usr/lib/go-1.10/bin" \
 	dh_auto_configure --buildsystem cmake -- \
 	-DCMAKE_BUILD_TYPE="Release" \
 	-DCMAKE_INSTALL_PREFIX="/usr" \
@@ -42,7 +42,21 @@ override_dh_auto_configure:
 	-DSOCKET_OPTIMIZED=1
 
 override_dh_auto_build:
-	dh_auto_build --buildsystem cmake
+	# Get golang dependencies
+	wget --no-check-certificate https://github.com/tylerb/graceful/archive/v1.2.15.tar.gz
+	wget --no-check-certificate https://github.com/go-ini/ini/archive/v1.38.2.tar.gz
+
+	# Extract & make them available in local dir added to GOPATH
+	mkdir -p go/src/gopkg.in/tylerb
+	tar -C go/src/gopkg.in/tylerb -xf v1.2.15.tar.gz
+	ln -s graceful-1.2.15 go/src/gopkg.in/tylerb/graceful.v1
+
+	mkdir -p go/src/gopkg.in/go-ini
+	tar -C go/src/gopkg.in -xf v1.38.2.tar.gz
+	ln -s ini-1.38.2 go/src/gopkg.in/ini.v1
+
+	# Go from golang-1.10 is not in PATH
+	PATH="${PATH}:/usr/lib/go-1.10/bin" GOPATH="${GOPATH}:${PWD}/go" dh_auto_build --buildsystem cmake
 	python setup.py build
 
 override_dh_install:
@@ -53,8 +67,6 @@ override_dh_install:
 		$(DESTDIR)/var/lib/oio/sds \
 		$(DESTDIR)/etc/oio/sds \
 		$(DESTDIR)/run/oio/sds
-
-
 
 # debmake generated override targets
 # This is example for Cmake (See http://bugs.debian.org/641051 )
@@ -67,5 +79,4 @@ override_dh_strip:
 	dh_strip --dbg-package=openio-sds-dbg
 
 override_dh_auto_install:
-	dh_auto_install --destdir=debian/openio-sds
-
+	PATH="${PATH}:/usr/lib/go-1.10/bin" GOPATH="${GOPATH}:${PWD}/go" dh_auto_install --destdir=debian/openio-sds

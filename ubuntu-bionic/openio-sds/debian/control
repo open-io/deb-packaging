@@ -7,6 +7,8 @@ Build-Depends:
  , cmake
  , libglib2.0-dev (>= 2.42)
  , libzookeeper-mt-dev (>= 3.4.5)
+ , golang-1.10
+ , wget
  , python-dev
  , python-setuptools
  , libzmq3-dev
