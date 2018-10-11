@@ -1,3 +1,9 @@
+openio-gridinit (1.7.0-1) jessie; urgency=medium
+
+  * Unreleased
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Thu, 14 Jun 2018 11:31:27 +0000
+
 openio-gridinit (1.6-2) jessie; urgency=medium
 
   * Fix default socket path
