@@ -10,6 +10,6 @@ Homepage: http://openio.io/
 
 Package: openio-sds-rsyslog
 Architecture: all
-Depends: ${misc:Depends}, rsyslog (>= 3.20)
+Depends: ${misc:Depends}, rsyslog (>= 3.20), openio-sds
 Description: OpenIO SDS rsyslog configuration
  OpenIO SDS rsyslog configuration.
