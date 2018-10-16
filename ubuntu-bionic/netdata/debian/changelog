@@ -1,8 +1,8 @@
-netdata (1.9.0+dfsg-3) xenial; urgency=medium
+netdata (1.9.0+dfsg-3) bionic; urgency=medium
 
   * use upstream's systemd unit file instead of debian/ubuntu's one
 
- -- Vincent Legoll <vincent.legoll@openio.io>  Thu, 11 Oct 2018 15:07:51 +0000
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 16 Oct 2018 15:07:51 +0000
 
 netdata (1.9.0+dfsg-2) xenial; urgency=medium
 
