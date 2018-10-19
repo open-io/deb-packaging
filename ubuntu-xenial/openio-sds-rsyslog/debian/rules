@@ -29,9 +29,8 @@ include /usr/share/dpkg/default.mk
 #	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
 
 override_dh_auto_build:
-	
+	echo "Nothing to do"
 
 override_dh_install:
 	mkdir -pv $(DESTDIR)/etc/rsyslog.d
-	cp -a openio-sds-rsyslog/openio-sds-rsyslog.conf $(DESTDIR)/etc/rsyslog.d/30-openio-sds.conf
-	
+	cp -a deb/openio-sds-rsyslog.conf $(DESTDIR)/etc/rsyslog.d/30-openio-sds.conf
