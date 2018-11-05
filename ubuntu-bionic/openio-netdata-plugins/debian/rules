@@ -19,9 +19,10 @@ override_dh_auto_build:
 	cd github.com/go-redis && \
 	ls -l && \
 	ln -s ../../../../redis-* redis
-	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build openio.plugin.go
-	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build zookeeper.plugin.go && \
-	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build container.plugin.go
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/openio.plugin/openio.plugin.go
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/zookeeper.plugin/zookeeper.plugin.go
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/container.plugin/container.plugin.go
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/command.plugin/command.plugin.go
 
 override_dh_auto_install:
 	mkdir -pv $(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
@@ -29,4 +30,5 @@ override_dh_auto_install:
 		openio.plugin \
 		zookeeper.plugin \
 		container.plugin \
+		command.plugin \
 		$(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
