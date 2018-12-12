@@ -1,3 +1,9 @@
+python-openstacksdk (0.12.0-0ubuntu1~oio1) xenial; urgency=medium
+
+  * Use tarball from pypi.debian.net
+
+ -- Romain Acciari <romain.acciari@openio.io>  Fri, 05 Oct 2018 21:03:27 +0000
+
 python-openstacksdk (0.12.0-0ubuntu1~oio0) xenial; urgency=medium
 
   * Non-maintainer upload.
