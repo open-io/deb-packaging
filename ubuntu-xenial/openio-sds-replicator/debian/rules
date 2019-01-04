@@ -31,7 +31,8 @@ include /usr/share/dpkg/default.mk
 
 
 override_dh_auto_build:
-	./gradlew assemble
+	mkdir -pv /tmp/gradle
+	./gradlew -Pbuild.type=release -Dgradle.user.home=/tmp/gradle assemble
 
 
 override_dh_auto_install:
