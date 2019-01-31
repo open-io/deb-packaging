@@ -28,7 +28,7 @@ Depends:
  , libfuse2
  , libsoup2.4-1
  , openio-sds
- , libjson-c2
+ , libjson-c3
 Description: OpenIO FileSystem FUSE adapter
  oiofs FUSE is a FUSE adapter that allows you to mount OpenIO SDS
  containers as filesystems on Linux systems.
