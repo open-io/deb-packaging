@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with autoreconf
+
+configure:
+	dh_autoreconf
+	./configure ...
+
+clean:
+	dh_autoreconf_clean
+	dh_clean
