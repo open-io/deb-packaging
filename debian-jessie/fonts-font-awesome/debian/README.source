@@ -1,0 +1,9 @@
+Updating the Package
+--------------------
+
+Updating source tree with new upstream version is done using
+git-buildpackage. Please use the following command
+
+  gbp import-orig --uscan
+
+ -- Vasudev Kamath <vasudev@copyninja.info>, Sun, 24 Apr 2016 11:21:04 +0530
