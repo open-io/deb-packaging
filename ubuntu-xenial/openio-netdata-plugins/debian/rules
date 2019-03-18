@@ -23,12 +23,19 @@ override_dh_auto_build:
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/zookeeper.plugin/zookeeper.plugin.go
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/container.plugin/container.plugin.go
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/command.plugin/command.plugin.go
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/fs.plugin/fs.plugin.go
 
 override_dh_auto_install:
 	mkdir -pv $(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
 	install -m 0755 \
 		openio.plugin \
 		zookeeper.plugin \
-		container.plugin \
 		command.plugin \
+		$(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
+	# By default netdata will run all the plugins in plugin.d directory, which
+	# is not the intended behavior. The plugins below won't be set executable
+	# by default, and will instead be selectively activated when deploying.
+	install -m 0644 \
+		fs.plugin
+		container.plugin \
 		$(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
