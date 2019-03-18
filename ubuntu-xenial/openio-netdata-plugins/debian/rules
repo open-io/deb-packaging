@@ -36,6 +36,6 @@ override_dh_auto_install:
 	# is not the intended behavior. The plugins below won't be set executable
 	# by default, and will instead be selectively activated when deploying.
 	install -m 0644 \
-		fs.plugin
+		fs.plugin \
 		container.plugin \
 		$(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
