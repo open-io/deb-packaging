@@ -1,3 +1,9 @@
+openio-gridinit (2.0.2-1) bionic; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Thu, 21 Mar 2019 11:31:27 +0000
+
 openio-gridinit (1.7.0-1) bionic; urgency=medium
 
   * New release
