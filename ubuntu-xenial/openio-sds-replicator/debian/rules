@@ -37,4 +37,7 @@ override_dh_auto_build:
 
 override_dh_auto_install:
 	mkdir -pv $(DESTDIR)/usr/share/openio-sds-replicator
-	cp -a build/libs/openio-sds-replicator-${JARVERSION}-all.jar $(DESTDIR)/usr/share/openio-sds-replicator/
+	cp -a build/libs/openio-sds-replicator-${JARVERSION}-*all.jar $(DESTDIR)/usr/share/openio-sds-replicator/
+	cd $(DESTDIR)/usr/share/openio-sds-replicator/ && \
+	[ -e openio-sds-replicator-${JARVERSION}-SNAPSHOT-all.jar ] && \
+	ln -s openio-sds-replicator-${JARVERSION}-SNAPSHOT-all.jar openio-sds-replicator-${JARVERSION}-all.jar
