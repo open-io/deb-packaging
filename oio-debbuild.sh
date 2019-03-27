@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 #DISTID
 #ARCH
@@ -83,7 +82,7 @@ function uri_parser() {
     done
 
     # return success
-    return 0
+    #return 0
 }
 
 # Unpack in working dir
@@ -108,18 +107,26 @@ while read -r src filename dest taropt || [[ -n "$src" ]]; do
   fi
   if [[ "$src" =~ ^http ]] || [[ "$src" =~ ^ftp ]]; then
     unset WGET_OPT
-    #uri_parser ${src}
+    uri_parser ${src}
     if [ -r .token ]; then
       TOKEN=$(cat .token)
-      if [ "${uri_host}" == *'github.com' ]; then
-        echo "GitHub tokens are not supported yet!"
+      if [ "${uri_host}" == 'api.github.com' ]; then
+        curl -H "Authorization: token $TOKEN" -H 'Accept: application/vnd.github.v3.raw' \
+             -sL ${src} -o "${WRK}/${filename}"
       elif [ "${uri_host}" == *'gitlab'* ]; then
         WGET_OPT="--header=\'PRIVATE-TOKEN: ${TOKEN}\'"
+        wget --no-check-certificate "$src" ${WGET_OPT} -O "${WRK}/${filename}"
       else
-        echo "Unsupported"
+        echo "${uri_host} is unsupported."
+        exit 1
+      fi
+    else
+      wget --no-check-certificate "$src" ${WGET_OPT} -O "${WRK}/${filename}"
+      if [ $? -ne 0 ]; then
+        echo "Failed to download sources."
+        exit 1
       fi
     fi
-    wget --no-check-certificate "$src" ${WGET_OPT} -O "${WRK}/${filename}"
   else
     cp -a "$src" "${WRK}/${filename}"
   fi
