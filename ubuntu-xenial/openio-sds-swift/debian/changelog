@@ -1,3 +1,9 @@
+openio-sds-swift (1.7.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 27 Mar 2019 10:15:34 +0000
+
 openio-sds-swift (1.6.5.1-1) xenial; urgency=medium
 
   * New release
