@@ -1,3 +1,9 @@
+openio-sds-rsyslog (1.3.4-1) xenial; urgency=medium
+
+  * Divert fileOwner & dirOwner from centos defaults
+
+ --  Vincent Legoll <vincent.legoll@openio.io>  Wed, 27 Mar 2019 10:53:33 +0000
+
 openio-sds-rsyslog (1.3.3-1) xenial; urgency=medium
 
   * Divert fileOwner & dirOwner from centos defaults
