@@ -1,0 +1,15 @@
+Description: Minor modification to enable docs to be built with py2.
+Author: Corey Bryant <corey.bryant@canonical.com>
+Forwarded: not-needed
+
+--- a/doc/source/enforcer.py
++++ b/doc/source/enforcer.py
+@@ -113,7 +113,7 @@
+ 
+     # TEMPORARY: Ignore the wait_for names when determining what is missing.
+     app.info("ENFORCER: Ignoring wait_for_* names...")
+-    missing = set(itertools.filterfalse(is_ignored, missing))
++    missing = set(itertools.ifilterfalse(is_ignored, missing))
+ 
+     missing_count = len(missing)
+     app.info("ENFORCER: Found %d missing proxy methods "
