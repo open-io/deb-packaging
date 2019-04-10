@@ -1,0 +1,3 @@
+version=3
+opts=filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/python-pyeclib-$1\.tar\.gz/ \
+  https://github.com/openstack/pyeclib/tags .*/v?(\d\S*)\.tar\.gz
