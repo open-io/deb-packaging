@@ -45,6 +45,7 @@ override_dh_auto_build:
 	# Get golang dependencies
 	wget --no-check-certificate https://github.com/tylerb/graceful/archive/v1.2.15.tar.gz
 	wget --no-check-certificate https://github.com/go-ini/ini/archive/v1.38.2.tar.gz
+	wget --no-check-certificate https://github.com/golang/sys/archive/release-branch.go1.11.tar.gz
 
 	# Extract & make them available in local dir added to GOPATH
 	mkdir -p go/src/gopkg.in/tylerb
@@ -54,6 +55,10 @@ override_dh_auto_build:
 	mkdir -p go/src/gopkg.in/go-ini
 	tar -C go/src/gopkg.in -xf v1.38.2.tar.gz
 	ln -s ini-1.38.2 go/src/gopkg.in/ini.v1
+
+	mkdir -p go/src/golang.org/x
+	tar -C go/src/golang.org/x -xf release-branch.go1.11.tar.gz
+	ln -s sys-release-branch.go1.11 go/src/golang.org/x/sys
 
 	# Go from golang-1.10 is not in PATH
 	PATH="${PATH}:/usr/lib/go-1.10/bin" GOPATH="${GOPATH}:${PWD}/go" dh_auto_build --buildsystem cmake
