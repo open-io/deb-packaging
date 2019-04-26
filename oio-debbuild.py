@@ -178,6 +178,8 @@ def parse_sources(sources, work):
             if not line or line.startswith('#'):
                 continue
             items = line.split(' ')
+            if len(items) != 2:
+                vprint("Malformed 'sources' file: ", sources)
             # VL: here we ignore dest & taropts as they are not currently used
             src, filename, dest, taropt = items[0], items[1], '', ''
             if dest == '-':
