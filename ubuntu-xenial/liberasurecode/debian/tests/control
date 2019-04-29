@@ -1,0 +1,14 @@
+Test-Command: debian/tests/encode-decode EC_BACKEND_LIBERASURECODE_RS_VAND
+Depends: @, build-essential
+
+Test-Command: debian/tests/encode-decode EC_BACKEND_JERASURE_RS_VAND
+Depends: @, build-essential, libjerasure-dev (>= 2.0.0+2017.04.10.git.de1739cc84)
+
+Test-Command: debian/tests/encode-decode EC_BACKEND_ISA_L_RS_VAND
+Depends: @, build-essential, libisal-dev
+
+Test-Command: debian/tests/encode-decode EC_BACKEND_ISA_L_RS_CAUCHY
+Depends: @, build-essential, libisal-dev
+
+Test-Command: debian/tests/encode-decode EC_BACKEND_FLAT_XOR_HD
+Depends: @, build-essential
