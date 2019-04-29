@@ -1,0 +1,47 @@
+Source: liberasurecode
+Section: libs
+Priority: optional
+Maintainer: Debian OpenStack <openstack-devel@lists.alioth.debian.org>
+Uploaders:
+ Thomas Goirand <zigo@debian.org>,
+ Ondřej Nový <onovy@debian.org>,
+Build-Depends:
+ debhelper (>= 10),
+Standards-Version: 4.0.1
+Homepage: https://github.com/openstack/liberasurecode
+Vcs-Git: https://anonscm.debian.org/git/openstack/libs/liberasurecode.git
+Vcs-Browser: https://anonscm.debian.org/cgit/openstack/libs/liberasurecode.git
+
+Package: liberasurecode-dev
+Section: libdevel
+Architecture: any
+Depends:
+ liberasurecode1 (= ${binary:Version}),
+ ${misc:Depends},
+Description: support of multiple erasure code backends - development files
+ Liberasurecode is an erasure code library which can support multiple erasure
+ code 'backends'. The repository includes a Jerasure for Reed-Solomon
+ implementation.
+ .
+ This package contains the development files needed to build against the shared
+ library.
+
+Package: liberasurecode1
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Suggests:
+ libisal2,
+ libjerasure2 (>= 2.0.0+2017.04.10.git.de1739cc84),
+Breaks:
+ liberasurecode0,
+Replaces:
+ liberasurecode0,
+Multi-Arch: same
+Description: support of multiple erasure code backends - shared library
+ Liberasurecode is an erasure code library which can support multiple erasure
+ code 'backends'. The repository includes a Jerasure for Reed-Solomon
+ implementation.
+ .
+ This package contains the shared library.
