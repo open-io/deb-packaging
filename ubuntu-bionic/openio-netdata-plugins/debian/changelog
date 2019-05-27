@@ -1,3 +1,9 @@
+openio-netdata-plugins (0.5.0-1) bionic; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 27 May 2019 11:40:19 +0000
+
 openio-netdata-plugins (0.4.0-1) bionic; urgency=medium
 
   * New release
