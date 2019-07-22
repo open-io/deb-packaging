@@ -212,8 +212,8 @@ def dpkg_buildpackage(wrkdst, work):
     join = os.path.join
 
     tarsubdir = [d for d in dircont if isdir(join(wrkdst, d))][0]
-    tardir = os.path.join(wrkdst, tarsubdir)
-    debdir = os.path.join(tardir, 'debian')
+    tardir = join(wrkdst, tarsubdir)
+    debdir = join(tardir, 'debian')
     shutil.rmtree(debdir, ignore_errors=True)
     shutil.copytree('debian', debdir)
 
