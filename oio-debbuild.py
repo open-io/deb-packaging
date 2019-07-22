@@ -269,9 +269,11 @@ def validate_args(args):
 
 ################################################################################
 
-def main(sys_argv=sys.argv[1:]):
+def main(sys_argv=None):
     '''Parse CLI args & do it...'''
 
+    if sys_argv is None:
+        sys_argv = sys.argv[1:]
     parser = do_argparse()
     args = parser.parse_args(sys_argv)
     validate_args(args)
