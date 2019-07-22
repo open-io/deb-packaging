@@ -227,7 +227,7 @@ def dpkg_buildpackage(wrkdst, work):
 def pbuilder(pkgname, work, arch, osdistid, osdistcodename):
     '''Build the .deb package with pbuilder'''
 
-    pbuilder_cmd = ['sudo', 'pbuilder', 'build']
+    pbuilder_cmd = ['sudo', '-E', 'pbuilder', 'build']
     if pkgname in _PRIVATE_PKGS:
         print("### Do not build source code package for closed-source project")
         pbuilder_cmd.extend("--debbuildopts", "-b")
