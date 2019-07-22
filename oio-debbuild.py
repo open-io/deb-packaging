@@ -156,7 +156,8 @@ def upload_pkg_oiorepo(destmirror, resultdir, pkgdsc):
     Use the `oiorepo` service, see:
     https://github.com/open-io/dockerfiles/tree/master/openio-repo
     '''
-    print("### Uploading package %s to repository %s" % (pkgdsc, destmirror))
+    print("### Uploading package %s from %s to repository %s" %
+          (pkgdsc, resultdir, destmirror))
 
     #~ for f in resultdir + '*.deb':
         #~ curl -F "file=@${f}" \
