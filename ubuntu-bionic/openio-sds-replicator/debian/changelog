@@ -1,3 +1,15 @@
+openio-sds-replicator (1.0.0-1) bionic; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 24 Jul 2019 07:55:21 +0000
+
+openio-sds-replicator (0.5.4-1) bionic; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Fri, 14 Jun 2019 14:00:19 +0000
+
 openio-sds-replicator (20160110.git7ec6279-2) xenial; urgency=medium
 
   * Create a symlink to the jar file
