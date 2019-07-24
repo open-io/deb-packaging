@@ -1,3 +1,9 @@
+openio-sds-replicator (1.0.0-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 24 Jul 2019 08:14:51 +0000
+
 openio-sds-replicator (0.5.4-1) xenial; urgency=medium
 
   * New release
