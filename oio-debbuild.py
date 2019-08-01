@@ -81,9 +81,13 @@ def doit(args):
 
     if args.arch:
         arch = args.arch
+    elif 'ARCH' in os.environ:
+        arch = os.environ['ARCH']
+        print('Using ARCH environment variable: ' + arch)
     else:
         arch = subprocess.check_output(['dpkg', '--print-architecture'])
         arch = arch.strip().decode('ascii')
+        print('Defaulting to `dpkg --print-architecture`: ' + arch)
 
     print("### Recreating working directory")
 
