@@ -22,7 +22,7 @@ Get source code tarball from the `sources` file and rename it to the blessed
 debian file name then build the .deb package(s) and upload it to the specified
 mirror subdirectory.
 
-This is a simplistic translation of oio-debbuild.sh
+This is based on a translation of oio-debbuild.sh
 '''
 
 import os
@@ -114,6 +114,7 @@ def pkgupload(args, work, arch, osdistid, osdistcodename):
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
         tgt_subdir = "%s-%s-%s" % (osdistid, osdistcodename, arch)
+        # FIXME: pkg_basename should not be appended here but passed through
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result', pkg_basename)
         if args.destmirror.startswith('http://'):
             upload_pkg_oiorepo(args.destmirror, resultdir, pkgdsc)
