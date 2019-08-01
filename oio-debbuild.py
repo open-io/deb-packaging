@@ -89,6 +89,16 @@ def doit(args):
         arch = arch.strip().decode('ascii')
         print('Defaulting to `dpkg --print-architecture`: ' + arch)
 
+    if args.release:
+        release = args.release
+    elif 'SDS_RELEASE' in os.environ:
+        release = os.environ['SDS_RELEASE']
+        print('Using SDS_RELEASE environment variable: ' + release)
+    else:
+        git_branch = ['git', 'rev-parse', '--abbrev-ref', 'HEAD']
+        release = subprocess.check_output(git_branch).strip()
+        print('Using guessed version from current git repo branch: ' + release)
+
     print("### Recreating working directory")
 
     shutil.rmtree(work, ignore_errors=True)
@@ -104,11 +114,11 @@ def doit(args):
 
     print("### Building package")
 
-    pbuilder(pkgname, work, arch, osdistid, osdistcodename)
-    pkgupload(args, work, arch, osdistid, osdistcodename)
+    pbuilder(pkgname, work, arch, release, osdistid, osdistcodename)
+    pkgupload(args, work, arch, release, osdistid, osdistcodename)
 
 
-def pkgupload(args, work, arch, osdistid, osdistcodename):
+def pkgupload(args, work, arch, release, osdistid, osdistcodename):
     '''Upload package to specified mirror, if any'''
 
     if args.destmirror:
@@ -122,21 +132,27 @@ def pkgupload(args, work, arch, osdistid, osdistcodename):
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result', pkg_basename)
         if args.destmirror.startswith('http://'):
             upload_pkg_oiorepo(args.destmirror, resultdir, pkgdsc)
-        elif is_mini_dinstall_target(args.destmirror):
+        elif is_mini_dinstall_target(args.destmirror, release):
             upload_pkg_dput(args.destmirror, resultdir, pkgdsc, osdistid)
         else:
             print('Unknown target repository:', args.destmirror)
             sys.exit(1)
 
 
-def is_mini_dinstall_target(tgt):
-    '''Check if the parameter is OK as a mini-dinstall target'''
+def is_mini_dinstall_target(tgt, release):
+    '''
+    Check if the parameter is OK as a mini-dinstall target and also ensure it is
+    consistent with the packaging release (repository branch or CLI argument)
+    '''
 
     elts = tgt.split('-')
     if len(elts) != 2:
         print('Target repository name contains too much "-" characters:', tgt)
         return False
     name, version = elts
+    if version != release:
+        print('WARNING: target repository (%s) / release (%s) mismatch' %
+              (version, release))
     if name not in _MDI_PROJECTS:
         print('Unknown mini-dinstall project:', name)
         return False
@@ -230,7 +246,7 @@ def dpkg_buildpackage(wrkdst, work):
     vprint(os.listdir(work))
 
 
-def pbuilder(pkgname, work, arch, osdistid, osdistcodename):
+def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
     '''Build the .deb package with pbuilder'''
 
     pbuilder_cmd = ['sudo', '-E', 'pbuilder', 'build']
@@ -240,6 +256,7 @@ def pbuilder(pkgname, work, arch, osdistid, osdistcodename):
     pbuilder_cmd.extend(glob.glob(os.path.join(work, '*.dsc')))
     env = dict(os.environ)
     env.update({'ARCH': arch, 'DISTID': osdistid, 'DIST': osdistcodename})
+    env.update({'SDS_RELEASE': release, 'OIOFS_RELEASE': release})
     subprocess.run(pbuilder_cmd, env=env)
 
 ################################################################################
@@ -257,6 +274,10 @@ def do_argparse():
 
     parser.add_argument('-a', '--arch',
                         help='Use the given architecture (amd64, i386, armhf)')
+
+    parser.add_argument('-r', '--release',
+                        help='Use the given OpenIO SDS release (18.04, 18.10, '
+                        '19.04)')
 
     parser.add_argument('destmirror', metavar='STRING', nargs='?',
                         help='Target mirror, either a mini-dinstall codename, '
