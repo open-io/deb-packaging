@@ -96,7 +96,7 @@ def doit(args):
         print('Using SDS_RELEASE environment variable: ' + release)
     else:
         git_branch = ['git', 'rev-parse', '--abbrev-ref', 'HEAD']
-        release = subprocess.check_output(git_branch).strip()
+        release = subprocess.check_output(git_branch).strip().decode('ascii')
         print('Using guessed version from current git repo branch: ' + release)
 
     print("### Recreating working directory")
