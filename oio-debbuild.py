@@ -168,7 +168,7 @@ def upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid):
     repo_codename = '%s-openio-%s' % (osdistid, destmirror)
     print("### Uploading package %s to repository %s" % (pkgdsc, repo_codename))
     dput = ['dput', '-f', '-u', repo_codename]
-    dput.extend(glob.glob(os.path.join(resultdir, pkg_basename, '*.changes')))
+    dput.extend(glob.glob(os.path.join(resultdir, pkg_basename + '*.changes')))
     subprocess.run(dput)
 
 
