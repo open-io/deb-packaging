@@ -127,7 +127,7 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename):
         vprint(pkgdsc)
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
-        tgt_subdir = "%s-%s-%s" % (osdistid, osdistcodename, arch)
+        tgt_subdir = "%s-%s-%s-%s" % (osdistid, osdistcodename, arch, release)
         # FIXME: pkg_basename should not be appended here but passed through
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result', pkg_basename)
         if args.destmirror.startswith('http://'):
