@@ -123,17 +123,17 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename):
 
     if args.destmirror:
         print("### Uploading package")
+        mirror = args.destmirror
         pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
         vprint(pkgdsc)
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
         tgt_subdir = "%s-%s-%s-%s" % (osdistid, osdistcodename, arch, release)
-        # FIXME: pkg_basename should not be appended here but passed through
-        resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result', pkg_basename)
+        resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
         if args.destmirror.startswith('http://'):
             upload_pkg_oiorepo(args.destmirror, resultdir, pkgdsc)
         elif is_mini_dinstall_target(args.destmirror, release):
-            upload_pkg_dput(args.destmirror, resultdir, pkgdsc, osdistid)
+            upload_pkg_dput(mirror, resultdir, pkg_basename, pkgdsc, osdistid)
         else:
             print('Unknown target repository:', args.destmirror)
             sys.exit(1)
@@ -162,13 +162,13 @@ def is_mini_dinstall_target(tgt, release):
     return True
 
 
-def upload_pkg_dput(destmirror, resultdir, pkgdsc, osdistid):
+def upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid):
     '''Use `dput` & `mini-dinstall` to upload package to mirror'''
 
     repo_codename = '%s-openio-%s' % (osdistid, destmirror)
     print("### Uploading package %s to repository %s" % (pkgdsc, repo_codename))
     dput = ['dput', '-f', '-u', repo_codename]
-    dput.extend(glob.glob(os.path.join(resultdir, '*.changes')))
+    dput.extend(glob.glob(os.path.join(resultdir, pkg_basename, '*.changes')))
     subprocess.run(dput)
 
 
