@@ -169,6 +169,7 @@ def upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid):
     print("### Uploading package %s to repository %s" % (pkgdsc, repo_codename))
     dput = ['dput', '-f', '-u', repo_codename]
     dput.extend(glob.glob(os.path.join(resultdir, pkg_basename + '*.changes')))
+    vprint(str(dput))
     subprocess.run(dput)
 
 
@@ -262,6 +263,7 @@ def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
         'SDS_RELEASE': release,
     }
     env.update(newenv)
+    vprint(str(pbuilder_cmd))
     subprocess.run(pbuilder_cmd, env=env)
 
 ################################################################################
