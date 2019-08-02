@@ -255,8 +255,13 @@ def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
         pbuilder_cmd.extend("--debbuildopts", "-b")
     pbuilder_cmd.extend(glob.glob(os.path.join(work, '*.dsc')))
     env = dict(os.environ)
-    env.update({'ARCH': arch, 'DISTID': osdistid, 'DIST': osdistcodename})
-    env.update({'SDS_RELEASE': release, 'OIOFS_RELEASE': release})
+    newenv = {
+        'ARCH': arch,
+        'DISTID': osdistid,
+        'DIST': osdistcodename,
+        'SDS_RELEASE': release,
+    }
+    env.update(newenv)
     subprocess.run(pbuilder_cmd, env=env)
 
 ################################################################################
