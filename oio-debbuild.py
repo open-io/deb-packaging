@@ -125,7 +125,7 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename):
         print("### Uploading package")
         mirror = args.destmirror
         pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
-        vprint(pkgdsc)
+        vprint('Using *.dsc file: ' + pkgdsc)
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
         tgt_subdir = "%s-%s-%s-%s" % (osdistid, osdistcodename, arch, release)
@@ -236,7 +236,7 @@ def dpkg_buildpackage(wrkdst, work):
     '''Build source code package with dpkg-buildpackage'''
 
     dircont = os.listdir(wrkdst)
-    vprint(dircont)
+    vprint('dpkg_buildpackage(), dircont: ' + dircont)
 
     isdir = os.path.isdir
     join = os.path.join
@@ -250,8 +250,8 @@ def dpkg_buildpackage(wrkdst, work):
     dpkg_bp = ['dpkg-buildpackage', '-S', '-us', '-uc', '-nc', '-d']
     subprocess.run(dpkg_bp, cwd=tardir)
 
-    vprint(os.listdir(tardir))
-    vprint(os.listdir(work))
+    vprint('dpkg_buildpackage(), tardir: ' + str(os.listdir(tardir)))
+    vprint('dpkg_buildpackage(), work: ' + str(os.listdir(work)))
 
 
 def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
