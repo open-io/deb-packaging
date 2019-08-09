@@ -236,7 +236,7 @@ def dpkg_buildpackage(wrkdst, work):
     '''Build source code package with dpkg-buildpackage'''
 
     dircont = os.listdir(wrkdst)
-    vprint('dpkg_buildpackage(), dircont: ' + dircont)
+    vprint('dpkg_buildpackage(), dircont: ' + str(dircont))
 
     isdir = os.path.isdir
     join = os.path.join
