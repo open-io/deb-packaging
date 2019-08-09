@@ -168,7 +168,14 @@ def upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid):
     repo_codename = '%s-openio-%s' % (osdistid, destmirror)
     print("### Uploading package %s to repository %s" % (pkgdsc, repo_codename))
     dput = ['dput', '-f', '-u', repo_codename]
-    dput.extend(glob.glob(os.path.join(resultdir, pkg_basename + '*.changes')))
+    changes_file_glob = os.path.join(resultdir, pkg_basename + '*.changes')
+    changes_fn = glob.glob(changes_file_glob)
+    if not changes_fn:
+        print('No match for: ' + changes_file_glob)
+        sys.exit(1)
+    else:
+        vprint('Found *.changes files: ' + str(changes_fn))
+    dput.extend(changes_fn)
     vprint(str(dput))
     subprocess.run(dput)
 
