@@ -247,11 +247,11 @@ def dpkg_buildpackage(wrkdst, work):
     shutil.rmtree(debdir, ignore_errors=True)
     shutil.copytree('debian', debdir)
 
-    dpkg_bp = ['dpkg-buildpackage', '-S', '-us', '-uc', '-nc', '-d']
-    subprocess.run(dpkg_bp, cwd=tardir).check_returncode()
-
     vprint('dpkg_buildpackage(), tardir: ' + str(os.listdir(tardir)))
     vprint('dpkg_buildpackage(), work: ' + str(os.listdir(work)))
+
+    dpkg_bp = ['dpkg-buildpackage', '-S', '-us', '-uc', '-nc', '-d']
+    subprocess.run(dpkg_bp, cwd=tardir).check_returncode()
 
 
 def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
