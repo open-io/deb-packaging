@@ -177,7 +177,7 @@ def upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid):
         vprint('Found *.changes files: ' + str(changes_fn))
     dput.extend(changes_fn)
     vprint(str(dput))
-    subprocess.run(dput)
+    subprocess.run(dput).check_returncode()
 
 
 def upload_pkg_oiorepo(destmirror, resultdir, pkgdsc):
@@ -248,7 +248,7 @@ def dpkg_buildpackage(wrkdst, work):
     shutil.copytree('debian', debdir)
 
     dpkg_bp = ['dpkg-buildpackage', '-S', '-us', '-uc', '-nc', '-d']
-    subprocess.run(dpkg_bp, cwd=tardir)
+    subprocess.run(dpkg_bp, cwd=tardir).check_returncode()
 
     vprint('dpkg_buildpackage(), tardir: ' + str(os.listdir(tardir)))
     vprint('dpkg_buildpackage(), work: ' + str(os.listdir(work)))
@@ -271,7 +271,7 @@ def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
     }
     env.update(newenv)
     vprint(str(pbuilder_cmd))
-    subprocess.run(pbuilder_cmd, env=env)
+    subprocess.run(pbuilder_cmd, env=env).check_returncode()
 
 ################################################################################
 
