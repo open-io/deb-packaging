@@ -81,6 +81,7 @@ def doit(args):
 
     if args.arch:
         arch = args.arch
+        print('Using --arch CLI argument: ' + arch)
     elif 'ARCH' in os.environ:
         arch = os.environ['ARCH']
         print('Using ARCH environment variable: ' + arch)
@@ -91,6 +92,7 @@ def doit(args):
 
     if args.release:
         release = args.release
+        print('Using --release CLI argument: ' + release)
     elif 'SDS_RELEASE' in os.environ:
         release = os.environ['SDS_RELEASE']
         print('Using SDS_RELEASE environment variable: ' + release)
