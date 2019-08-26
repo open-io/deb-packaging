@@ -45,13 +45,14 @@ def vprint(msg):
 ################################################################################
 
 # Do not build source code packages for the following closed-source projects
-_PRIVATE_PKGS = ("oiofs-fuse", "openio-billing", "openio-sds-replicator")
+_PRIVATE_PKGS = ("oiofs-fuse", "openio-billing", "oio-grid",
+                 "openio-sds-replicator")
 
 # Base pbuilder path
 _PBUILDER = '/var/cache/pbuilder'
 
-# Projects code names (mini-dinstall targets)
-_MDI_PROJECTS = ('sds', 'oiofs', 'g4a', 'replicator')
+# Projects code names & versions (mini-dinstall targets)
+_MDI_PROJECTS = ('sds', 'oiofs', 'oiobilling', 'g4a', 'replicator')
 _MDI_VERSIONS = ('18.04', '18.10', '19.04', 'unstable')
 
 ################################################################################
