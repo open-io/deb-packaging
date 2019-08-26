@@ -189,6 +189,7 @@ def upload_pkg_oiorepo(destmirror, resultdir, pkgdsc):
     '''
     print("### Uploading package %s from %s to repository %s" %
           (pkgdsc, resultdir, destmirror))
+    print('### FIXME: NOT IMPLEMENTED ###')
 
     #~ for f in resultdir + '*.deb':
         #~ curl -F "file=@${f}" \
@@ -202,7 +203,10 @@ def upload_pkg_oiorepo(destmirror, resultdir, pkgdsc):
 
 
 def parse_sources(sources, work):
-    '''Parse the `sources` file and retrieve the tarball to its destination'''
+    '''
+    Parse the `sources` file, retrieve & extract the tarball to its target
+    directory
+    '''
 
     with open(sources, 'rb') as sources_fd:
         for line in sources_fd:
@@ -289,7 +293,8 @@ def do_argparse():
                         help='display additional information')
 
     parser.add_argument('-a', '--arch',
-                        help='Use the given architecture (amd64, i386, armhf)')
+                        help='Use the given architecture (amd64, i386, armhf, '
+                        'arm64)')
 
     parser.add_argument('-r', '--release',
                         help='Use the given OpenIO SDS release (18.04, 18.10, '
