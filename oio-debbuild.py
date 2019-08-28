@@ -68,6 +68,8 @@ def doit(args):
     work = os.path.join(basework, osdistro, pkgname)
     sources = os.path.join(basedir, 'sources')
 
+    mirror = args.mirror
+
     if not os.path.isdir(basework):
         print("### Working directory '%s' doesn't exist." % basework)
         sys.exit(1)
@@ -117,7 +119,7 @@ def doit(args):
 
     print("### Building package")
 
-    pbuilder(pkgname, work, arch, release, osdistid, osdistcodename)
+    pbuilder(pkgname, work, arch, release, osdistid, osdistcodename, mirror)
     pkgupload(args, work, arch, release, osdistid, osdistcodename)
 
 
@@ -261,7 +263,7 @@ def dpkg_buildpackage(wrkdst, work):
     subprocess.run(dpkg_bp, cwd=tardir).check_returncode()
 
 
-def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
+def pbuilder(pkgname, work, **kwargs):
     '''Build the .deb package with pbuilder'''
 
     pbuilder_cmd = ['sudo', '-E', 'pbuilder', 'build']
@@ -270,14 +272,18 @@ def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
         pbuilder_cmd.extend("--debbuildopts", "-b")
     pbuilder_cmd.extend(glob.glob(os.path.join(work, '*.dsc')))
     env = dict(os.environ)
+    # The pbuilder tarball file name
+    pb_cfg_fmt = "{osdistid}-{osdistcodename}-{arch}-{release}-{mirror}"
+    # The parameters for the /root/.pbuilderrc script
     newenv = {
-        'ARCH': arch,
-        'DISTID': osdistid,
-        'DIST': osdistcodename,
-        'SDS_RELEASE': release,
+        'ARCH': kwargs['arch'],
+        'DISTID': kwargs['osdistid'],
+        'DIST': kwargs['osdistcodename'],
+        'NAME': pb_cfg_fmt.format(**kwargs),
     }
     env.update(newenv)
-    vprint(str(pbuilder_cmd))
+    vprint('pbuilder CLI:\n' + str(pbuilder_cmd))
+    vprint('pbuilder env:\n' + str(env))
     subprocess.run(pbuilder_cmd, env=env).check_returncode()
 
 ################################################################################
@@ -296,6 +302,15 @@ def do_argparse():
     parser.add_argument('-a', '--arch',
                         help='Use the given architecture (amd64, i386, armhf, '
                         'arm64)')
+
+    # This is not an url or something like that, because it cannot be changed at
+    # package build time, but must be built into the pbuilder tarball.
+    # See also: pbuilderrc & create_build_envs.sh
+    parser.add_argument('-m', '--mirror', default='mirror2',
+                        help='Use the given openio mirror (mirror, mirror2). '
+                        'This is only used to get openio dependencies at '
+                        'package build time, and not used at package upload '
+                        'time.')
 
     parser.add_argument('-r', '--release',
                         help='Use the given OpenIO SDS release (18.04, 18.10, '
