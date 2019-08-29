@@ -119,7 +119,8 @@ def doit(args):
 
     print("### Building package")
 
-    pbuilder(pkgname, work, arch, release, osdistid, osdistcodename, mirror)
+    pbuilder(pkgname, work=work, arch=arch, release=release, osdistid=osdistid,
+             osdistcodename=osdistcodename, mirror=mirror)
     pkgupload(args, work, arch, release, osdistid, osdistcodename)
 
 
