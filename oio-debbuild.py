@@ -121,10 +121,10 @@ def doit(args):
 
     pbuilder(pkgname, work=work, arch=arch, release=release, osdistid=osdistid,
              osdistcodename=osdistcodename, mirror=mirror)
-    pkgupload(args, work, arch, release, osdistid, osdistcodename)
+    pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror)
 
 
-def pkgupload(args, work, arch, release, osdistid, osdistcodename):
+def pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror):
     '''Upload package to specified mirror, if any'''
 
     if args.destmirror:
@@ -134,7 +134,8 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename):
         vprint('Using *.dsc file: ' + pkgdsc)
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
-        tgt_subdir = "%s-%s-%s-%s" % (osdistid, osdistcodename, arch, release)
+        tgt_subdir = "%s-%s-%s-%s-%s" % (osdistid, osdistcodename, arch,
+                                         release, mirror)
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
         if args.destmirror.startswith('http://'):
             upload_pkg_oiorepo(args.destmirror, resultdir, pkgdsc)
