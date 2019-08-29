@@ -124,25 +124,25 @@ def doit(args):
     pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror)
 
 
-def pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror):
-    '''Upload package to specified mirror, if any'''
+def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
+    '''Upload package to specified mirror (args.destmirror), if any'''
 
-    if args.destmirror:
+    mirror = args.destmirror
+    if mirror:
         print("### Uploading package")
-        mirror = args.destmirror
         pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
         vprint('Using *.dsc file: ' + pkgdsc)
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
         tgt_subdir = "%s-%s-%s-%s-%s" % (osdistid, osdistcodename, arch,
-                                         release, mirror)
+                                         release, mdi_mirror)
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
-        if args.destmirror.startswith('http://'):
-            upload_pkg_oiorepo(args.destmirror, resultdir, pkgdsc)
-        elif is_mini_dinstall_target(args.destmirror, release):
+        if mirror.startswith('http://'):
+            upload_pkg_oiorepo(mirror, resultdir, pkgdsc)
+        elif is_mini_dinstall_target(mirror, release):
             upload_pkg_dput(mirror, resultdir, pkg_basename, pkgdsc, osdistid)
         else:
-            print('Unknown target repository:', args.destmirror)
+            print('Unknown target repository:', mirror)
             sys.exit(1)
 
 
