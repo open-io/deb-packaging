@@ -72,6 +72,15 @@ override_dh_install:
 		$(DESTDIR)/var/lib/oio/sds \
 		$(DESTDIR)/etc/oio/sds \
 		$(DESTDIR)/run/oio/sds
+	# Remove unwanted stuff
+	rm -rf \
+		$(DESTDIR)/usr/bin/oio-dump-buried-events.py \
+		$(DESTDIR)/usr/bin/oio-rawx-uncompress \
+		$(DESTDIR)/usr/bin/oio-webhook-test.py \
+		$(DESTDIR)/usr/bin/oio-check-services \
+		$(DESTDIR)/usr/bin/oio-rawx-compress \
+		$(DESTDIR)/usr/bin/oio-bootstrap.py \
+		$(DESTDIR)/usr/bin/oio-reset.sh
 
 # debmake generated override targets
 # This is example for Cmake (See http://bugs.debian.org/641051 )
