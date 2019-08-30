@@ -77,7 +77,6 @@ override_dh_install:
 		$(DESTDIR)/usr/bin/oio-dump-buried-events.py \
 		$(DESTDIR)/usr/bin/oio-rawx-uncompress \
 		$(DESTDIR)/usr/bin/oio-webhook-test.py \
-		$(DESTDIR)/usr/bin/oio-webhook-test.py \
 		$(DESTDIR)/usr/bin/oio-test-config.py \
 		$(DESTDIR)/usr/bin/oio-wait-scored.sh \
 		$(DESTDIR)/usr/bin/oio-sqlx-server \
