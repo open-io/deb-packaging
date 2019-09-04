@@ -45,13 +45,14 @@ def vprint(msg):
 ################################################################################
 
 # Do not build source code packages for the following closed-source projects
-_PRIVATE_PKGS = ("oiofs-fuse", "openio-billing", "openio-sds-replicator")
+_PRIVATE_PKGS = ("oiofs-fuse", "openio-billing", "oio-grid",
+                 "openio-sds-replicator")
 
 # Base pbuilder path
 _PBUILDER = '/var/cache/pbuilder'
 
-# Projects code names (mini-dinstall targets)
-_MDI_PROJECTS = ('sds', 'oiofs', 'g4a', 'replicator')
+# Projects code names & versions (mini-dinstall targets)
+_MDI_PROJECTS = ('sds', 'oiofs', 'oiobilling', 'g4a', 'replicator')
 _MDI_VERSIONS = ('18.04', '18.10', '19.04', 'unstable')
 
 ################################################################################
@@ -67,6 +68,8 @@ def doit(args):
     work = os.path.join(basework, osdistro, pkgname)
     sources = os.path.join(basedir, 'sources')
 
+    mirror = args.mirror
+
     if not os.path.isdir(basework):
         print("### Working directory '%s' doesn't exist." % basework)
         sys.exit(1)
@@ -81,6 +84,7 @@ def doit(args):
 
     if args.arch:
         arch = args.arch
+        print('Using --arch CLI argument: ' + arch)
     elif 'ARCH' in os.environ:
         arch = os.environ['ARCH']
         print('Using ARCH environment variable: ' + arch)
@@ -91,6 +95,7 @@ def doit(args):
 
     if args.release:
         release = args.release
+        print('Using --release CLI argument: ' + release)
     elif 'SDS_RELEASE' in os.environ:
         release = os.environ['SDS_RELEASE']
         print('Using SDS_RELEASE environment variable: ' + release)
@@ -114,28 +119,30 @@ def doit(args):
 
     print("### Building package")
 
-    pbuilder(pkgname, work, arch, release, osdistid, osdistcodename)
-    pkgupload(args, work, arch, release, osdistid, osdistcodename)
+    pbuilder(pkgname, work=work, arch=arch, release=release, osdistid=osdistid,
+             osdistcodename=osdistcodename, mirror=mirror)
+    pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror)
 
 
-def pkgupload(args, work, arch, release, osdistid, osdistcodename):
-    '''Upload package to specified mirror, if any'''
+def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
+    '''Upload package to specified mirror (args.destmirror), if any'''
 
-    if args.destmirror:
+    mirror = args.destmirror
+    if mirror:
         print("### Uploading package")
-        mirror = args.destmirror
         pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
         vprint('Using *.dsc file: ' + pkgdsc)
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
-        tgt_subdir = "%s-%s-%s-%s" % (osdistid, osdistcodename, arch, release)
+        tgt_subdir = "%s-%s-%s-%s-%s" % (osdistid, osdistcodename, arch,
+                                         release, mdi_mirror)
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
-        if args.destmirror.startswith('http://'):
-            upload_pkg_oiorepo(args.destmirror, resultdir, pkgdsc)
-        elif is_mini_dinstall_target(args.destmirror, release):
+        if mirror.startswith('http://'):
+            upload_pkg_oiorepo(mirror, resultdir, pkgdsc)
+        elif is_mini_dinstall_target(mirror, release):
             upload_pkg_dput(mirror, resultdir, pkg_basename, pkgdsc, osdistid)
         else:
-            print('Unknown target repository:', args.destmirror)
+            print('Unknown target repository:', mirror)
             sys.exit(1)
 
 
@@ -187,6 +194,7 @@ def upload_pkg_oiorepo(destmirror, resultdir, pkgdsc):
     '''
     print("### Uploading package %s from %s to repository %s" %
           (pkgdsc, resultdir, destmirror))
+    print('### FIXME: NOT IMPLEMENTED ###')
 
     #~ for f in resultdir + '*.deb':
         #~ curl -F "file=@${f}" \
@@ -200,7 +208,10 @@ def upload_pkg_oiorepo(destmirror, resultdir, pkgdsc):
 
 
 def parse_sources(sources, work):
-    '''Parse the `sources` file and retrieve the tarball to its destination'''
+    '''
+    Parse the `sources` file, retrieve & extract the tarball to its target
+    directory
+    '''
 
     with open(sources, 'rb') as sources_fd:
         for line in sources_fd:
@@ -254,7 +265,7 @@ def dpkg_buildpackage(wrkdst, work):
     subprocess.run(dpkg_bp, cwd=tardir).check_returncode()
 
 
-def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
+def pbuilder(pkgname, work, **kwargs):
     '''Build the .deb package with pbuilder'''
 
     pbuilder_cmd = ['sudo', '-E', 'pbuilder', 'build']
@@ -263,14 +274,18 @@ def pbuilder(pkgname, work, arch, release, osdistid, osdistcodename):
         pbuilder_cmd.extend("--debbuildopts", "-b")
     pbuilder_cmd.extend(glob.glob(os.path.join(work, '*.dsc')))
     env = dict(os.environ)
+    # The pbuilder tarball file name
+    pb_cfg_fmt = "{osdistid}-{osdistcodename}-{arch}-{release}-{mirror}"
+    # The parameters for the /root/.pbuilderrc script
     newenv = {
-        'ARCH': arch,
-        'DISTID': osdistid,
-        'DIST': osdistcodename,
-        'SDS_RELEASE': release,
+        'ARCH': kwargs['arch'],
+        'DISTID': kwargs['osdistid'],
+        'DIST': kwargs['osdistcodename'],
+        'NAME': pb_cfg_fmt.format(**kwargs),
     }
     env.update(newenv)
-    vprint(str(pbuilder_cmd))
+    vprint('pbuilder CLI:\n' + str(pbuilder_cmd))
+    vprint('pbuilder env:\n' + str(env))
     subprocess.run(pbuilder_cmd, env=env).check_returncode()
 
 ################################################################################
@@ -287,7 +302,17 @@ def do_argparse():
                         help='display additional information')
 
     parser.add_argument('-a', '--arch',
-                        help='Use the given architecture (amd64, i386, armhf)')
+                        help='Use the given architecture (amd64, i386, armhf, '
+                        'arm64)')
+
+    # This is not an url or something like that, because it cannot be changed at
+    # package build time, but must be built into the pbuilder tarball.
+    # See also: pbuilderrc & create_build_envs.sh
+    parser.add_argument('-m', '--mirror', default='mirror2',
+                        help='Use the given openio mirror (mirror, mirror2). '
+                        'This is only used to get openio dependencies at '
+                        'package build time, and not used at package upload '
+                        'time.')
 
     parser.add_argument('-r', '--release',
                         help='Use the given OpenIO SDS release (18.04, 18.10, '
