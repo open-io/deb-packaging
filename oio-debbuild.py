@@ -271,7 +271,7 @@ def pbuilder(pkgname, work, **kwargs):
     pbuilder_cmd = ['sudo', '-E', 'pbuilder', 'build']
     if pkgname in _PRIVATE_PKGS:
         print("### Do not build source code package for closed-source project")
-        pbuilder_cmd.extend("--debbuildopts", "-b")
+        pbuilder_cmd.extend(["--debbuildopts", "-b"])
     pbuilder_cmd.extend(glob.glob(os.path.join(work, '*.dsc')))
     env = dict(os.environ)
     # The pbuilder tarball file name
