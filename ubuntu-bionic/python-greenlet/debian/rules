@@ -13,7 +13,7 @@ PYTHON3 := $(shell py3versions -sv)
 DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
 %:
-	dh $@ --with python2,python3 --buildsystem=pybuild
+	dh $@ --with python2 --buildsystem=pybuild
 
 override_dh_auto_clean:
 	rm -rf build/ .pybuild/
@@ -24,19 +24,17 @@ override_dh_auto_clean:
 build-python%:
 	python$* setup.py build
 
-override_dh_auto_build: $(PYTHON3:%=build-python%)
+override_dh_auto_build:
 	dh_auto_build
 	cd doc && PYTHONPATH=.. make html
 
 install-python%:
 	python$* setup.py install --root=$(CURDIR)/debian/tmp --install-layout=deb
 
-override_dh_auto_install: $(PYTHON3:%=install-python%)
+override_dh_auto_install:
 	dh_auto_install
-	mv $(CURDIR)/debian/tmp/usr/include/python3.7/ \
-		$(CURDIR)/debian/tmp/usr/include/python3.7m/
 
-override_dh_auto_test: $(PYTHON2:%=test-%-stamp) $(PYTHON3:%=test-%-stamp)
+override_dh_auto_test: $(PYTHON2:%=test-%-stamp)
 test-%-stamp:
 ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
 	rm -rf build/test-$*
@@ -53,7 +51,6 @@ endif
 override_dh_strip:
 ifeq (,$(filter nostrip,$(DEB_BUILD_OPTIONS)))
 	dh_strip -p python-greenlet --dbg-package=python-greenlet-dbg
-	dh_strip -p python3-greenlet --dbg-package=python3-greenlet-dbg
 endif
 
 override_dh_compress:
