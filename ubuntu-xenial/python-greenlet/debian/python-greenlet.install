@@ -1,0 +1,2 @@
+usr/lib/python2*/*-packages/*.egg-info
+usr/lib/python2*/*-packages/*[!_][!_].so

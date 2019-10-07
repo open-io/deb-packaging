@@ -1,0 +1,2 @@
+usr/lib/python3*/*-packages/*.egg-info
+usr/lib/python3*/*-packages/*.cpython-3?m-*.so
