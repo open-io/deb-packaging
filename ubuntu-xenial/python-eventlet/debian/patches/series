@@ -9,3 +9,4 @@
 0009-Removed-test_urllib-that-is-failing-in-py36.patch
 0010-Fix-compilation-errors-when-installing-package-in-Py.patch
 0011-Avoid-dependency-on-enum-compat.patch
+0012-case-insensitive-100-continue.patch
