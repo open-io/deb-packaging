@@ -1,0 +1,22 @@
+From 779a72126a88fc5fdad8beb5e2e67b0d68b6b823 Mon Sep 17 00:00:00 2001
+From: Thomas Goirand <zigo@debian.org>
+Date: Fri, 4 Aug 2017 21:47:14 +0200
+Subject: Removes line that is doing FTBFS in doc
+
+Forwarded: no
+---
+ doc/modules/zmq.rst | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/doc/modules/zmq.rst b/doc/modules/zmq.rst
+index c9e925a..9e937b8 100644
+--- a/doc/modules/zmq.rst
++++ b/doc/modules/zmq.rst
+@@ -15,7 +15,6 @@
+ 
+ .. autoclass:: Socket
+     :show-inheritance:
+-    :inherited-members:
+ 
+     .. automethod:: recv
+ 

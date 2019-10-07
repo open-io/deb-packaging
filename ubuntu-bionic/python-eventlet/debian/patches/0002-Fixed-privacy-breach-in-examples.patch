@@ -1,0 +1,41 @@
+From cd4c6bc2d3f0556a07956c0e1b33221d10d7c1f7 Mon Sep 17 00:00:00 2001
+From: Thomas Goirand <zigo@debian.org>
+Date: Fri, 4 Aug 2017 21:47:15 +0200
+Subject: Fixed privacy breach in examples
+
+ Upstream is referencing external websites, we don't allow this.
+Forwarded: no
+Last-Update: 2015-05-27
+---
+ examples/websocket.html      | 4 ++--
+ examples/websocket_chat.html | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/examples/websocket.html b/examples/websocket.html
+index 93a66d5..293795d 100644
+--- a/examples/websocket.html
++++ b/examples/websocket.html
+@@ -3,8 +3,8 @@
+ <head>
+ <!-- idea and code swiped from
+ http://assorted.svn.sourceforge.net/viewvc/assorted/real-time-plotter/trunk/src/rtp.html?view=markup -->
+-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+-<script src="http://people.iola.dk/olau/flot/jquery.flot.js"></script>
++<script src="jquery.min.js"></script>
++<script src="jquery.flot.js"></script>
+ <script>
+ window.onload = function() {
+     var data = {};
+diff --git a/examples/websocket_chat.html b/examples/websocket_chat.html
+index 9237532..2948591 100644
+--- a/examples/websocket_chat.html
++++ b/examples/websocket_chat.html
+@@ -1,7 +1,7 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
++<script src="jquery.min.js"></script>
+ <script>
+ window.onload = function() {
+   var data = {};

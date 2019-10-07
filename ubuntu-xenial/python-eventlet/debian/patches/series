@@ -1,0 +1,11 @@
+0001-Removes-line-that-is-doing-FTBFS-in-doc.patch
+0002-Fixed-privacy-breach-in-examples.patch
+0003-Allow-more-busy-CPU.patch
+0004-Remove-networking-tests.patch
+0005-Removed-failing-test.patch
+0006-Patch-out-intersphinx.patch
+0007-Patched-test_getaddrinfo-due-netbase-update.patch
+0008-Disable-test_server_connection_timeout_exception.patch
+0009-Removed-test_urllib-that-is-failing-in-py36.patch
+0010-Fix-compilation-errors-when-installing-package-in-Py.patch
+0011-Avoid-dependency-on-enum-compat.patch

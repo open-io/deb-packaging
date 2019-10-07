@@ -1,0 +1,11 @@
+# see git-dpm(1) from git-dpm package
+5bc467c897fea2010d4c105147435f530e508493
+5bc467c897fea2010d4c105147435f530e508493
+b717fde61d936941885f6d11908d50802b22cefe
+b717fde61d936941885f6d11908d50802b22cefe
+python-eventlet_0.20.0.orig.tar.xz
+b84ed0ab1b54db4ccc5338bae84975391b90b354
+372532
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"

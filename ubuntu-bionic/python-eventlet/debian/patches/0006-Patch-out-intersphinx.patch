@@ -1,0 +1,26 @@
+From 402d2d08b7d913a0b6368343fbc78339c132b7e7 Mon Sep 17 00:00:00 2001
+From: Thomas Goirand <zigo@debian.org>
+Date: Fri, 4 Aug 2017 21:47:21 +0200
+Subject: Patch out intersphinx
+
+ Avoids internet access during build
+Bug-Debian: https://bugs.debian.org/840092
+Forwarded: no
+Last-Update: 2016-10-08
+---
+ doc/conf.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/doc/conf.py b/doc/conf.py
+index cda080f..5b7889d 100644
+--- a/doc/conf.py
++++ b/doc/conf.py
+@@ -23,7 +23,7 @@ import sys, os
+ # Add any Sphinx extension module names here, as strings. They can be extensions
+ # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
+ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.todo', 'sphinx.ext.coverage', 
+-              'sphinx.ext.intersphinx']
++              ]
+ 
+ # If this is True, '.. todo::' and '.. todolist::' produce output, else they produce
+ # nothing. The default is False.

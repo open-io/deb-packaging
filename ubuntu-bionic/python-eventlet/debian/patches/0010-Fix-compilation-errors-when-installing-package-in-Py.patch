@@ -1,0 +1,75 @@
+From ca0e32395ef6e48cdaaff90118766cc88a3230ab Mon Sep 17 00:00:00 2001
+From: Thomas Goirand <zigo@debian.org>
+Date: Tue, 14 Nov 2017 22:31:38 +0100
+Subject: Fix compilation errors when installing package in Python 2.7
+
+---
+ eventlet/green/http/client.py    | 13 ++++++++-----
+ eventlet/green/http/cookiejar.py |  3 ++-
+ 2 files changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/eventlet/green/http/client.py b/eventlet/green/http/client.py
+index c7d3bda..8d5bcad 100644
+--- a/eventlet/green/http/client.py
++++ b/eventlet/green/http/client.py
+@@ -121,6 +121,7 @@ Unread-response                _CS_IDLE           <response_class>
+ Req-started-unread-response    _CS_REQ_STARTED    <response_class>
+ Req-sent-unread-response       _CS_REQ_SENT       <response_class>
+ """
++from __future__ import print_function
+ 
+ import email.parser
+ import email.message
+@@ -192,8 +193,8 @@ _MAXHEADERS = 100
+ # the patterns for both name and value are more leniant than RFC
+ # definitions to allow for backwards compatibility
+ # Eventlet change: match used instead of fullmatch for Python 3.3 compatibility
+-_is_legal_header_name = re.compile(rb'[^:\s][^:\r\n]*\Z').match
+-_is_illegal_header_value = re.compile(rb'\n(?![ \t])|\r(?![ \t\n])').search
++_is_legal_header_name = re.compile(b'[^:\\s][^:\\r\\n]*\\Z').match
++_is_illegal_header_value = re.compile(b'\\n(?![ \\t])|\\r(?![ \\t\\n])').search
+ 
+ # We always set the Content-Length header for these methods because some
+ # servers will otherwise respond with a 411
+@@ -205,14 +206,16 @@ def _encode(data, name='data'):
+     try:
+         return data.encode("latin-1")
+     except UnicodeEncodeError as err:
+-        raise UnicodeEncodeError(
++        exc = UnicodeEncodeError(
+             err.encoding,
+             err.object,
+             err.start,
+             err.end,
+             "%s (%.20r) is not valid Latin-1. Use %s.encode('utf-8') "
+             "if you want to send it encoded in UTF-8." %
+-            (name.title(), data[err.start:err.end], name)) from None
++            (name.title(), data[err.start:err.end], name))
++        exc.__cause__ = None
++        raise exc
+ 
+ 
+ class HTTPMessage(email.message.Message):
+@@ -1330,7 +1333,7 @@ else:
+ 
+         def __init__(self, host, port=None, key_file=None, cert_file=None,
+                      timeout=socket._GLOBAL_DEFAULT_TIMEOUT,
+-                     source_address=None, *, context=None,
++                     source_address=None, context=None,
+                      check_hostname=None):
+             super(HTTPSConnection, self).__init__(host, port, timeout,
+                                                   source_address)
+diff --git a/eventlet/green/http/cookiejar.py b/eventlet/green/http/cookiejar.py
+index 9c884e9..658faba 100644
+--- a/eventlet/green/http/cookiejar.py
++++ b/eventlet/green/http/cookiejar.py
+@@ -1266,7 +1266,8 @@ def deepvalues(mapping):
+             pass
+         else:
+             mapping = True
+-            yield from deepvalues(obj)
++            for i in deepvalues(obj):
++                yield i
+         if not mapping:
+             yield obj
+ 

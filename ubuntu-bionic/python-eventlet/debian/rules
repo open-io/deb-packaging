@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=eventlet
+
+%:
+	dh $@ --with python2,python3,sphinxdoc --buildsystem=pybuild
+
+override_dh_auto_test:
+	http_proxy= https_proxy= dh_auto_test
+
+override_dh_sphinxdoc:
+	PYTHONPATH=. sphinx-build -N -b html doc $(CURDIR)/debian/python-eventlet-doc/usr/share/doc/python-eventlet-doc/html
+	dh_sphinxdoc
+
+override_dh_compress:
+	dh_compress -X.inv -X.txt
+
+override_dh_installchangelogs:
+	dh_installchangelogs NEWS

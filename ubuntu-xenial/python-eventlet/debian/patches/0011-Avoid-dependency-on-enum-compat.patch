@@ -1,0 +1,22 @@
+From 5bc467c897fea2010d4c105147435f530e508493 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ond=C5=99ej=20Nov=C3=BD?= <onovy@debian.org>
+Date: Fri, 1 Dec 2017 13:02:13 +0100
+Subject: Avoid dependency on enum-compat
+
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 6e16e16..f741c55 100644
+--- a/setup.py
++++ b/setup.py
+@@ -13,7 +13,7 @@ setup(
+     url='http://eventlet.net',
+     packages=find_packages(exclude=['benchmarks', 'tests', 'tests.*']),
+     install_requires=(
+-        'enum-compat',
++        'enum34;python_version<"3.4"',
+         'greenlet >= 0.3',
+     ),
+     zip_safe=False,
