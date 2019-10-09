@@ -60,7 +60,7 @@ _MDI_PROJECTS = (
     'replicator',
     'oioswiftext',
 )
-_MDI_VERSIONS = ('18.04', '18.10', '19.04', 'unstable')
+_MDI_VERSIONS = ('18.04', '18.10', '19.04', '19.10', 'unstable')
 
 ################################################################################
 
@@ -322,8 +322,8 @@ def do_argparse():
                         'time.')
 
     parser.add_argument('-r', '--release',
-                        help='Use the given OpenIO SDS release (18.04, 18.10, '
-                        '19.04)')
+                        help='Use the given OpenIO SDS release (%s)' %
+                        ', '.join(_MDI_VERSIONS))
 
     parser.add_argument('destmirror', metavar='STRING', nargs='?',
                         help='Target mirror, either a mini-dinstall codename, '
