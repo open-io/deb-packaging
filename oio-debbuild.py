@@ -52,7 +52,14 @@ _PRIVATE_PKGS = ("oiofs-fuse", "openio-billing", "oio-grid",
 _PBUILDER = '/var/cache/pbuilder'
 
 # Projects code names & versions (mini-dinstall targets)
-_MDI_PROJECTS = ('sds', 'oiofs', 'oiobilling', 'g4a', 'replicator')
+_MDI_PROJECTS = (
+    'g4a',
+    'sds',
+    'oiofs',
+    'oiobilling',
+    'replicator',
+    'oioswiftext',
+)
 _MDI_VERSIONS = ('18.04', '18.10', '19.04', 'unstable')
 
 ################################################################################
