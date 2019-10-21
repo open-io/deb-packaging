@@ -236,8 +236,8 @@ def parse_sources(sources, work):
                 filename = os.path.basename(src)
             wrkfn = os.path.join(work, filename)
             if src.startswith('http') or src.startswith('ftp'):
-                wget = ['wget', '--no-check-certificate', src, '-O', wrkfn]
-                subprocess.check_call(wget)
+                curl = ['curl', '-s', '-L', '-o', wrkfn, src]
+                subprocess.check_call(curl)
             else:
                 shutil.copy(src, wrkfn)
             wrkdst = os.path.join(work, dest)
