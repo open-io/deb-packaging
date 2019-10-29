@@ -52,8 +52,15 @@ _PRIVATE_PKGS = ("oiofs-fuse", "openio-billing", "oio-grid",
 _PBUILDER = '/var/cache/pbuilder'
 
 # Projects code names & versions (mini-dinstall targets)
-_MDI_PROJECTS = ('sds', 'oiofs', 'oiobilling', 'g4a', 'replicator')
-_MDI_VERSIONS = ('18.04', '18.10', '19.04', 'unstable')
+_MDI_PROJECTS = (
+    'g4a',
+    'sds',
+    'oiofs',
+    'oiobilling',
+    'replicator',
+    'oioswiftext',
+)
+_MDI_VERSIONS = ('18.04', '18.10', '19.04', '19.10', 'unstable')
 
 ################################################################################
 
@@ -229,8 +236,8 @@ def parse_sources(sources, work):
                 filename = os.path.basename(src)
             wrkfn = os.path.join(work, filename)
             if src.startswith('http') or src.startswith('ftp'):
-                wget = ['wget', '--no-check-certificate', src, '-O', wrkfn]
-                subprocess.check_call(wget)
+                curl = ['curl', '-s', '-L', '-o', wrkfn, src]
+                subprocess.check_call(curl)
             else:
                 shutil.copy(src, wrkfn)
             wrkdst = os.path.join(work, dest)
@@ -271,7 +278,7 @@ def pbuilder(pkgname, work, **kwargs):
     pbuilder_cmd = ['sudo', '-E', 'pbuilder', 'build']
     if pkgname in _PRIVATE_PKGS:
         print("### Do not build source code package for closed-source project")
-        pbuilder_cmd.extend("--debbuildopts", "-b")
+        pbuilder_cmd.extend(["--debbuildopts", "-b"])
     pbuilder_cmd.extend(glob.glob(os.path.join(work, '*.dsc')))
     env = dict(os.environ)
     # The pbuilder tarball file name
@@ -315,8 +322,8 @@ def do_argparse():
                         'time.')
 
     parser.add_argument('-r', '--release',
-                        help='Use the given OpenIO SDS release (18.04, 18.10, '
-                        '19.04)')
+                        help='Use the given OpenIO SDS release (%s)' %
+                        ', '.join(_MDI_VERSIONS))
 
     parser.add_argument('destmirror', metavar='STRING', nargs='?',
                         help='Target mirror, either a mini-dinstall codename, '
