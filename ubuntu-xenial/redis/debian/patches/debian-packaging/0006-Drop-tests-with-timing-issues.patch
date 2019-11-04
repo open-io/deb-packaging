@@ -1,0 +1,31 @@
+From: Chris Lamb <lamby@debian.org>
+Date: Mon, 14 Aug 2017 07:33:19 -0700
+Subject: Drop tests with timing issues.
+
+---
+ tests/test_helper.tcl | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/tests/test_helper.tcl b/tests/test_helper.tcl
+index 51a4bc403826..93a28c585135 100644
+--- a/tests/test_helper.tcl
++++ b/tests/test_helper.tcl
+@@ -33,10 +33,8 @@ set ::all_tests {
+     unit/quit
+     unit/aofrw
+     integration/replication
+-    integration/replication-2
+     integration/replication-3
+     integration/replication-4
+-    integration/replication-psync
+     integration/aof
+     integration/rdb
+     integration/convert-zipmap-hash-on-load
+@@ -52,7 +50,6 @@ set ::all_tests {
+     unit/obuf-limits
+     unit/bitops
+     unit/bitfield
+-    unit/geo
+     unit/memefficiency
+     unit/hyperloglog
+     unit/lazyfree

@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -eu
+
+USER="redis"
+GROUP="$USER"
+
+if [ "$1" = "configure" ]
+then
+	adduser \
+		--system \
+		--home /var/lib/redis \
+		--quiet \
+		--group \
+		${USER} || true
+
+	for DIR in /var/lib/redis /var/log/redis
+	do
+		mkdir -p ${DIR}
+
+		if ! dpkg-statoverride --list ${DIR} >/dev/null 2>&1
+		then
+			chown ${USER}:${GROUP} ${DIR}
+			chmod 750 ${DIR}
+		fi
+	done
+fi
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,20 @@
+From: Chris Lamb <lamby@debian.org>
+Date: Thu, 16 Nov 2017 03:14:51 +0900
+Subject: Drop "memory efficiency" tests on advice from upstream.
+
+---
+ tests/test_helper.tcl | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/tests/test_helper.tcl b/tests/test_helper.tcl
+index 93a28c585135..62e08419e19b 100644
+--- a/tests/test_helper.tcl
++++ b/tests/test_helper.tcl
+@@ -50,7 +50,6 @@ set ::all_tests {
+     unit/obuf-limits
+     unit/bitops
+     unit/bitfield
+-    unit/memefficiency
+     unit/hyperloglog
+     unit/lazyfree
+     unit/wait
