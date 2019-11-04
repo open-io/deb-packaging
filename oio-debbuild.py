@@ -291,6 +291,9 @@ def pbuilder(pkgname, work, **kwargs):
         'NAME': pb_cfg_fmt.format(**kwargs),
     }
     env.update(newenv)
+    #FIXME: This workaround is for redis 4.0.9 packaging abusing ${ARCH}
+    if pkgname == 'redis':
+        del env['ARCH']
     vprint('pbuilder CLI:\n' + str(pbuilder_cmd))
     vprint('pbuilder env:\n' + str(env))
     subprocess.run(pbuilder_cmd, env=env).check_returncode()
