@@ -5,6 +5,9 @@
 JARVERSION = $(shell cat version.txt)
 DESTDIR=$(CURDIR)/debian/openio-sds-replicator
 
+# Prevent gradle from writing into ${HOME}
+GRADLE_USER_HOME=/tmp/gradle
+
 # see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
 DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/default.mk
@@ -32,8 +35,8 @@ include /usr/share/dpkg/default.mk
 
 override_dh_auto_build:
 	mkdir -pv /tmp/gradle
-	./gradlew -Pbuild.type=release -Dgradle.user.home=/tmp/gradle assemble
-	./gradlew --stop
+	GRADLE_USER_HOME=$(GRADLE_USER_HOME) ./gradlew -Pbuild.type=release assemble
+	GRADLE_USER_HOME=$(GRADLE_USER_HOME) ./gradlew --stop
 
 
 override_dh_auto_install:
