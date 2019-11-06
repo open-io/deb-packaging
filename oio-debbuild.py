@@ -56,7 +56,7 @@ _MDI_PROJECTS = (
     'g4a',
     'sds',
     'oiofs',
-    'oiobilling',
+    'oiocb',
     'replicator',
     'oioswiftext',
 )
