@@ -2,53 +2,53 @@
 
 export JAVA_HOME=/usr/lib/jvm/default-java
 
-PYVERS := $(shell pyversions -vr)
+PYVERS := 2 3
 DEB_UPSTREAM_VERSION=$(shell dpkg-parsechangelog | sed -rne 's,^Version: ([^+]+).*,\1,p')
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 DEB_CHANGELOG_DATETIME = $(shell dpkg-parsechangelog --show-field Date)
 
 ANT_ARGS = -Dversion=$(DEB_UPSTREAM_VERSION) \
            -DlastRevision=-1 \
-           -Divy.url=file:/usr/share/maven-repo/org/apache/ivy/ivy/ \
-           -Divy.version=debian \
            -Dapache-directory-api.version=debian \
-           -Divysettings.xml=/usr/share/ivy-debian-helper/ivysettings.xml \
-           -Dant.build.javac.source=1.8 \
-           -Dant.build.javac.target=1.8
+           -Divy.home=/tmp \
+	   -d
 
 %:
-	dh $@ --buildsystem=ivy --with javahelper --with python2
+	dh $@ --buildsystem=ivy --with javahelper --with python2 --with python3
 
 override_dh_auto_build:
-	# TODO exclude the fatjar contrib from upstream tarball and include the rest contrib
-	mkdir -p build/test/classes
-	javacc -OUTPUT_DIRECTORY=src/java/main/org/apache/jute/compiler/generated src/java/main/org/apache/jute/compiler/generated/rcc.jj
+	# JUTE compilation
+	dh_auto_build -- $(ANT_ARGS) compile_jute
 
-	dh_auto_build -- $(ANT_ARGS) '-Dbuild.time=$(DEB_CHANGELOG_DATETIME)' -Dfinal.name=zookeeper javadoc javadoc-dev jar
+	# Build zookeeper jars
+	dh_auto_build -- $(ANT_ARGS)
 
 	# Compile C library
-	cd src/c && autoreconf -i
-	cd src/c && ./configure --prefix=/usr --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH)
-	$(MAKE) -C src/c
+	cd zookeeper-client/zookeeper-client-c && \
+	{ test -x configure || autoreconf --install ; } && \
+	./configure --prefix=/usr --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH)
+	$(MAKE) -C zookeeper-client/zookeeper-client-c
 
 	# Compile contribs - zooinspector
-	dh_auto_build -- -f src/contrib/build.xml $(ANT_ARGS) -Dcontribfilesetincludes="zooinspector/build.xml"
+	dh_auto_build -- -f zookeeper-contrib/zookeeper-contrib-zooinspector/build.xml $(ANT_ARGS)
 	# rename JAR file to comply with Debian Java policy
-	mv -fv build/contrib/ZooInspector/zookeeper-ZooInspector.jar build/contrib/ZooInspector/zookeeper-zooinspector.jar
+	mv -fv build/zookeeper-contrib/zookeeper-contrib-zooinspector/zookeeper-3.5.6-1oio-zooinspector.jar \
+	       build/zookeeper-contrib/zookeeper-contrib-zooinspector/zookeeper-zooinspector.jar
 
 	# Build Python Bindings
-	cd src/contrib/zkpython && \
-	  for pv in $(PYVERS); do \
-	    python$$pv src/python/setup.py build --build-base=$(CURDIR)/build ;\
-	  done
+	cd zookeeper-contrib/zookeeper-contrib-zkpython && \
+	sed -E -e 's,(version = ")[^"]+,\1%{version},' -i src/python/setup.py && \
+	for pv in $(PYVERS); do \
+	  python$$pv src/python/setup.py build --build-base=$(CURDIR)/build ; \
+	done
 
 	# Compile zktreeutil and generate man page
-	cd src/contrib/zktreeutil && autoreconf -if && ./configure --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) && make
-	LD_LIBRARY_PATH=src/c/.libs help2man -N --version-string=0.0 src/contrib/zktreeutil/src/zktreeutil >zktreeutil.man
+	#cd zookeeper-contrib/zookeeper-contrib-zktreeutil && autoreconf -if && ./configure --prefix=/usr --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) && make
+	#LD_LIBRARY_PATH=src/c/.libs help2man -N --version-string=0.0 zookeeper-contrib/zookeeper-contrib-zktreeutil >zktreeutil.man
 
 override_dh_install:
-	$(MAKE) -C src/c install DESTDIR=$(CURDIR)/debian/tmp
-	cd src/contrib/zkpython && \
+	$(MAKE) -C zookeeper-client/zookeeper-client-c install DESTDIR=$(CURDIR)/debian/tmp
+	cd zookeeper-contrib/zookeeper-contrib-zkpython && \
 	  for pv in $(PYVERS); do \
 	    python$$pv src/python/setup.py build --build-base=$(CURDIR)/build \
 	               install --root=$(CURDIR)/debian/tmp --install-layout=deb ;\
@@ -62,38 +62,8 @@ override_dh_install:
 
 	# Install the Maven artifacts
 	mh_installpom -plibzookeeper-java debian/pom.xml
-	mh_installjar -plibzookeeper-java --java-lib --has-package-version debian/pom.xml build/zookeeper.jar
+	#mh_installjar -plibzookeeper-java --java-lib --has-package-version debian/pom.xml build/zookeeper.jar
 	dh_install
-
-ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
-# Limit architectures which execute tests as some
-# non x86 archs can be a bit racey.
-TEST_ARCH=i386 amd64
-ifneq (,$(findstring $(DEB_BUILD_ARCH), $(TEST_ARCH)))
-TEST_JARS=jline log4j-1.2 xercesImpl xmlParserAPIs netty slf4j-api slf4j-log4j12
-override_dh_auto_test-arch:
-	# C testing starts/stops zookeeper
-	# this ensures that all the right classes are found
-	for jar in $(TEST_JARS); do \
-		ln -sf /usr/share/java/$$jar.jar build/lib/$$jar.jar; \
-	done;
-	# Execute multi-threaded test suite
-	# Disable on Ubuntu and Debian due to glibc 2.17 incompatibility
-	# https://issues.apache.org/jira/browse/ZOOKEEPER-1646
-	if ! dpkg-vendor --derives-from debian; then \
-		$(MAKE) -C src/c zktest-mt; \
-		cd src/c && ./zktest-mt; \
-	fi;
-endif
-# Only run core Java unit tests on i386 architecture as this is the arch
-# that they are built and published on - works around -indep not working
-# in Ubuntu.
-ifeq (i386, $(DEB_BUILD_ARCH))
-override_dh_auto_test-indep:
-	# Run core Java test suite against zookeeper
-	#dh_auto_build -- $(ANT_ARGS) test-core-java
-endif
-endif
 
 override_dh_clean:
 	mh_clean

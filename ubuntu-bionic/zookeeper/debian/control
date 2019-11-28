@@ -12,30 +12,47 @@ Build-Depends:
  debhelper (>= 9~),
  default-jdk (>= 2:1.6),
  default-jdk-doc,
- dh-python,
  help2man,
  ivy-debian-helper,
  javacc,
  javahelper (>= 0.28),
+ jetty9,
  junit4,
  libapacheds-java,
  libboost-dev,
  libcppunit-dev,
+ libcommons-cli-java,
  libcommons-collections3-java,
  libcommons-io-java,
+ libjackson-json-java,
+ libjackson2-annotations-java,
+ libjackson2-core-java,
+ libjackson2-databind-java,
+ libjackson2-dataformat-yaml,
+ libjackson2-dataformat-xml-java,
+ libjackson2-jr-java,
  libjline-java,
  liblog4cxx-dev,
  liblog4j1.2-java (>> 1.2.15-8),
  libmockito-java,
+ libnetty-java,
  libslf4j-java,
  libtool,
  libxerces2-java,
  libxml2-dev,
+ maven-debian-helper,
  maven-repo-helper,
  pkg-config,
  procps,
- python-all-dev (>= 2.6.6-3~)
-X-Python-Version: >= 2.6
+ python-all-dev,
+ python-all-dbg,
+ python-setuptools,
+ python-sphinx,
+ python3-all-dev,
+ python3-all-dbg,
+ python3-setuptools,
+ python3-sphinx
+Build-Depends-Indep: dh-python
 Standards-Version: 4.1.4
 Vcs-Git: https://salsa.debian.org/java-team/zookeeper.git
 Vcs-Browser: https://salsa.debian.org/java-team/zookeeper
@@ -182,6 +199,7 @@ Package: python-zookeeper
 Architecture: any
 Section: python
 XB-Python-Version: ${python:Versions}
+Provides: ${python:Provides}
 Depends:
  libzookeeper-mt2 (= ${binary:Version}),
  ${misc:Depends},
@@ -194,3 +212,21 @@ Description: Python bindings for zookeeper
  distributed applications.
  .
  This package contains the Python bindings.
+
+Package: python3-zookeeper
+Architecture: any
+Section: python
+XB-Python-Version: ${python3:Versions}
+Provides: ${python3:Provides}
+Depends:
+ libzookeeper-mt2 (= ${binary:Version}),
+ ${misc:Depends},
+ ${python3:Depends},
+ ${shlibs:Depends}
+Description: Python3 bindings for zookeeper
+ ZooKeeper is a centralized, reliable, service for maintaining configuration
+ information, naming, providing distributed synchronization, and group
+ services. All of these kinds of services are used in some form or another by
+ distributed applications.
+ .
+ This package contains the Python3 bindings.
