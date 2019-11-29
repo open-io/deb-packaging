@@ -23,6 +23,8 @@ override_dh_auto_build:
 
 	# Build zookeeper jars
 	dh_auto_build -- $(ANT_ARGS)
+	# rename JAR file to comply with Debian Java policy
+	mv -fv build/zookeeper-$(DEB_UPSTREAM_VERSION).jar build/zookeeper.jar
 
 	# Compile C library
 	cd zookeeper-client/zookeeper-client-c && \
@@ -33,7 +35,7 @@ override_dh_auto_build:
 	# Compile contribs - zooinspector
 	dh_auto_build -- -f zookeeper-contrib/zookeeper-contrib-zooinspector/build.xml $(ANT_ARGS)
 	# rename JAR file to comply with Debian Java policy
-	mv -fv build/zookeeper-contrib/zookeeper-contrib-zooinspector/zookeeper-3.5.6-1oio-zooinspector.jar \
+	mv -fv build/zookeeper-contrib/zookeeper-contrib-zooinspector/zookeeper-$(DEB_UPSTREAM_VERSION)-zooinspector.jar \
 	       build/zookeeper-contrib/zookeeper-contrib-zooinspector/zookeeper-zooinspector.jar
 
 	# Build Python Bindings
@@ -62,10 +64,11 @@ override_dh_install:
 			> debian/$$install.install; \
 	done
 
+	dh_install
+
 	# Install the Maven artifacts
 	mh_installpom -plibzookeeper-java debian/pom.xml
-	#mh_installjar -plibzookeeper-java --java-lib --has-package-version debian/pom.xml build/zookeeper.jar
-	dh_install
+	mh_installjar -plibzookeeper-java --java-lib --has-package-version debian/pom.xml build/zookeeper.jar
 
 override_dh_clean:
 	mh_clean
