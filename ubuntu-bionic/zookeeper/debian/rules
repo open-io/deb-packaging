@@ -4,6 +4,7 @@ export JAVA_HOME=/usr/lib/jvm/default-java
 
 PYVERS := 2 3
 DEB_UPSTREAM_VERSION=$(shell dpkg-parsechangelog | sed -rne 's,^Version: ([^+]+).*,\1,p')
+DEB_BASE_VERSION=$(shell dpkg-parsechangelog | sed -rne 's,^Version: ([^-]+).*,\1,p')
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 DEB_CHANGELOG_DATETIME = $(shell dpkg-parsechangelog --show-field Date)
 
@@ -11,7 +12,7 @@ ANT_ARGS = -Dversion=$(DEB_UPSTREAM_VERSION) \
            -DlastRevision=-1 \
            -Dapache-directory-api.version=debian \
            -Divy.home=/tmp \
-	   -d
+           -d
 
 %:
 	dh $@ --buildsystem=ivy --with javahelper --with python2 --with python3
@@ -37,9 +38,9 @@ override_dh_auto_build:
 
 	# Build Python Bindings
 	cd zookeeper-contrib/zookeeper-contrib-zkpython && \
-	sed -E -e 's,(version = ")[^"]+,\1%{version},' -i src/python/setup.py && \
+	sed -E -e 's,version =.*,version = "'"${DEB_BASE_VERSION}"'",' -i src/python/setup.py && \
 	for pv in $(PYVERS); do \
-	  python$$pv src/python/setup.py build --build-base=$(CURDIR)/build ; \
+	  PBR_VERSION="${DEB_BASE_VERSION}" python$$pv src/python/setup.py build --build-base=$(CURDIR)/build ; \
 	done
 
 	# Compile zktreeutil and generate man page
@@ -50,8 +51,9 @@ override_dh_install:
 	$(MAKE) -C zookeeper-client/zookeeper-client-c install DESTDIR=$(CURDIR)/debian/tmp
 	cd zookeeper-contrib/zookeeper-contrib-zkpython && \
 	  for pv in $(PYVERS); do \
-	    python$$pv src/python/setup.py build --build-base=$(CURDIR)/build \
-	               install --root=$(CURDIR)/debian/tmp --install-layout=deb ;\
+	    PBR_VERSION="${DEB_BASE_VERSION}" python$$pv src/python/setup.py build \
+	    --build-base=$(CURDIR)/build \
+	    install --root=$(CURDIR)/debian/tmp --install-layout=deb ; \
 	  done
 	# Generate install files for Multiarch capability
 	for install in libzookeeper-mt2 libzookeeper-st2 \
