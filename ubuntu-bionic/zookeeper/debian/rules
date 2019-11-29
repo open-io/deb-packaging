@@ -19,7 +19,7 @@ ANT_ARGS = -Dversion=$(DEB_UPSTREAM_VERSION) \
 
 override_dh_auto_build:
 	# Patch id file
-	echo 0 > debian/conf_example/myid
+	echo 1 > debian/conf_example/myid
 
 	# Fix debian/pom.xml version
 	sed -E -e "s#^  <version>[^<]+</version>#<version>$(DEB_UPSTREAM_VERSION)</version>#" -i debian/pom.xml
