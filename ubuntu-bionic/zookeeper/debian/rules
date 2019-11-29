@@ -38,7 +38,7 @@ override_dh_auto_build:
 
 	# Build Python Bindings
 	cd zookeeper-contrib/zookeeper-contrib-zkpython && \
-	sed -E -e 's,version =.*,version = "'"${DEB_BASE_VERSION}"'",' -i src/python/setup.py && \
+	sed -E -e 's#version =.*#version = "'"${DEB_BASE_VERSION}"'",#' -i src/python/setup.py && \
 	for pv in $(PYVERS); do \
 	  PBR_VERSION="${DEB_BASE_VERSION}" python$$pv src/python/setup.py build --build-base=$(CURDIR)/build ; \
 	done
