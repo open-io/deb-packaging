@@ -67,7 +67,7 @@ override_dh_install:
 	dh_install
 
 	# Install the Maven artifacts
-	sed -E -e "s/<version>[^<]+</version>/<version>$(DEB_UPSTREAM_VERSION)</version>/" -i debian/pom.xml
+	sed -E -e "s#<version>[^<]+</version>#<version>$(DEB_UPSTREAM_VERSION)</version>#" -i debian/pom.xml
 	mh_installpom -plibzookeeper-java debian/pom.xml
 	mh_installjar -plibzookeeper-java --java-lib --has-package-version debian/pom.xml build/zookeeper.jar
 
