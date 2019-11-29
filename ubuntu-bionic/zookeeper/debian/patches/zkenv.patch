@@ -1,20 +1,24 @@
---- bin/zkEnv.sh	2019-09-19 12:10:58.993465465 +0200
-+++ bin/zkEnv.sh.new	2019-09-19 12:11:16.977075009 +0200
+diff -ruN apache-zookeeper-3.5.6/bin/zkEnv.sh apache-zookeeper-3.5.6-fix/bin/zkEnv.sh
+--- apache-zookeeper-3.5.6/bin/zkEnv.sh	2019-10-05 11:27:23.000000000 +0000
++++ apache-zookeeper-3.5.6-fix/bin/zkEnv.sh	2019-11-29 13:52:38.601385494 +0000
 @@ -25,6 +25,10 @@
  # Or you can specify the ZOOCFGDIR using the
  # '--config' option in the command line.
+ 
 +# Adapted for SUSE
 +ZOOCFGDIR="/etc/zookeeper"
 +ZOO_LOG_DIR="/var/log/zookeeper"
 +
  ZOOBINDIR="${ZOOBINDIR:-/usr/bin}"
  ZOOKEEPER_PREFIX="${ZOOBINDIR}/.."
+ 
 @@ -94,8 +98,8 @@
+ 
  #make it work in the binary package
  #(use array for LIBPATH to account for spaces within wildcard expansion)
 -if ls "${ZOOKEEPER_PREFIX}"/share/zookeeper/zookeeper-*.jar > /dev/null 2>&1; then 
 -  LIBPATH=("${ZOOKEEPER_PREFIX}"/share/zookeeper/*.jar)
-+if ls "${ZOOKEEPER_PREFIX}"/share/java/zookeeper/zookeeper-*.jar > /dev/null 2>&1; then 
++if ls "${ZOOKEEPER_PREFIX}"/share/java/zookeeper/zookeeper-*.jar > /dev/null 2>&1; then
 +  LIBPATH=("${ZOOKEEPER_PREFIX}"/share/java/zookeeper/*.jar)
  else
    #release tarball format
