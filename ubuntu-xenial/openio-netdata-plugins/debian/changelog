@@ -1,3 +1,9 @@
+openio-netdata-plugins (0.6.1-1) xenial; urgency=medium
+
+  * New release
+
+ -- Vladimir DOMBROVSKI <vladimir@openio.io>  Tue, 03 Dec 2019 18:23:19 +0000
+
 openio-netdata-plugins (0.5.0-1) xenial; urgency=medium
 
   * New release
