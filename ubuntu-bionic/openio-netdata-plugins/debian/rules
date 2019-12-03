@@ -11,9 +11,11 @@ override_dh_auto_build:
 	cd .. && \
 	wget --no-check-certificate https://github.com/go-redis/redis/archive/v6.12.0.tar.gz && \
 	wget --no-check-certificate https://github.com/aws/aws-sdk-go/archive/v1.19.37.tar.gz && \
+	wget --no-check-certificate https://github.com/go-yaml/yaml/archive/v2.2.7.tar.gz && \
 	tar zxf v6.12.0.tar.gz && \
 	tar zxf v1.19.37.tar.gz && \
-	mkdir -p go/src/github.com/go-redis go/src/github.com/aws && \
+	tar zxf v2.2.7.tar.gz && \
+	mkdir -p go/src/github.com/go-redis go/src/github.com/aws go/src/gopkg.in && \
 	ls -l && \
 	cd go/src && \
 	ls -l && \
@@ -24,13 +26,18 @@ override_dh_auto_build:
 	cd ../.. && \
 	cd github.com/aws && \
 	ls -l && \
-	ln -s ../../../../aws-* aws-sdk-go
+	ln -s ../../../../aws-* aws-sdk-go && \
+	cd ../.. && \
+	cd gopkg.in && \
+	ls -l && \
+	ln -s ../../../yaml-* yaml.v2
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/openio.plugin/openio.plugin.go
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/zookeeper.plugin/zookeeper.plugin.go
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/container.plugin/container.plugin.go
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/command.plugin/command.plugin.go
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/fs.plugin/fs.plugin.go
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/s3roundtrip.plugin/s3roundtrip.plugin.go
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/redis.plugin/redis.plugin.go
 
 override_dh_auto_install:
 	mkdir -pv $(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
@@ -40,5 +47,6 @@ override_dh_auto_install:
 		command.plugin \
 		fs.plugin \
 		container.plugin \
+		redis.plugin \
 		s3roundtrip.plugin \
 		$(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
