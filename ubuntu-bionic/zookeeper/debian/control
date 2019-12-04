@@ -198,7 +198,6 @@ Description: Command line utilities for zookeeper
 Package: python-zookeeper
 Architecture: any
 Section: python
-XB-Python-Version: ${python:Versions}
 Provides: ${python:Provides}
 Depends:
  libzookeeper-mt2 (= ${binary:Version}),
@@ -216,7 +215,6 @@ Description: Python bindings for zookeeper
 Package: python3-zookeeper
 Architecture: any
 Section: python
-XB-Python-Version: ${python3:Versions}
 Provides: ${python3:Provides}
 Depends:
  libzookeeper-mt2 (= ${binary:Version}),
