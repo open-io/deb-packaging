@@ -21,7 +21,7 @@ Build-Depends:
  , apache2-dev (>= 2.2)
  , liblzo2-dev (>= 2.0)
  , openio-gridinit
- , openio-asn1c (>= 0.9.27.1)
+ , asn1c (>= 0.9.28)
  , libdb-dev
  , libjson-c-dev (>= 0.12)
  , flex
@@ -46,7 +46,7 @@ Depends:
  , python-redis
  , apache2
  , libexpat1
- , openio-asn1c (>= 0.9.27.1)
+ , asn1c (>= 0.9.28)
  , libglib2.0-0 (>= 2.42)
  , zlib1g
  , libjson-c3 (>= 0.12)
