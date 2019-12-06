@@ -62,11 +62,13 @@ override_dh_auto_build:
 
 	# Go from golang-1.10 is not in PATH
 	PATH="${PATH}:/usr/lib/go-1.10/bin" GOPATH="${GOPATH}:${PWD}/go" dh_auto_build --buildsystem cmake
-	python setup.py build
+	python2 setup.py build
+	python3 setup.py build
 
 override_dh_install:
 	dh_install
-	python setup.py install -O1 --skip-build --prefix=/usr --install-layout=deb --root $(DESTDIR)
+	python2 setup.py install -O1 --skip-build --prefix=/usr --install-layout=deb --root $(DESTDIR)
+	python3 setup.py install -O1 --skip-build --prefix=/usr --install-layout=deb --root $(DESTDIR)
 	# Install OpenIO SDS directories
 	mkdir -pv $(DESTDIR)/var/log/oio/sds \
 		$(DESTDIR)/var/lib/oio/sds \
