@@ -10,7 +10,11 @@ Build-Depends:
  , golang-1.10
  , wget
  , python-dev
+ , python-pbr
  , python-setuptools
+ , python3-dev
+ , python3-pbr
+ , python3-setuptools
  , libzmq3-dev
  , libcurl4-gnutls-dev
  , libapreq2-dev (>= 1.2)
@@ -27,7 +31,6 @@ Build-Depends:
  , flex
  , bison
  , curl
- , python-pbr
  , libleveldb-dev 
 Standards-Version: 3.9.5
 Homepage: <insert the upstream URL, if relevant>
@@ -41,33 +44,43 @@ Depends:
  , ${misc:Depends}
  , python-xattr (>= 0.8.0) | python-pyxattr (>= 0.4.0)
  , python-eventlet (>= 0.15.2)
- , gunicorn (>= 19.4.5)
  , python-requests (>= 2.6.0)
- , python-redis
- , apache2
- , libexpat1
- , asn1c (>= 0.9.28)
- , libglib2.0-0 (>= 2.42)
- , zlib1g
- , libjson-c3 (>= 0.12)
  , python-zookeeper (>= 3.4.5)
- , libapr1 (>= 1.2)
- , libevent-2.1-6
- , liblzo2-2 (>= 2.0)
- , openio-gridinit
- , libdb5.3
  , python-pbr
  , python-yaml
- , libsqlite3-0 (>= 3.7.11)
- , libleveldb1v5
  , python-simplejson (>= 2.0.9)
- , python-eventlet
  , python-redis
  , python-cliff (>= 1.13)
  , python-tablib
  , python-werkzeug
  , python-pyeclib (>= 1.2.0)
  , python-concurrent.futures
+ , python3-xattr (>= 0.8.0) | python3-pyxattr (>= 0.4.0)
+ , python3-eventlet (>= 0.15.2)
+ , python3-requests (>= 2.6.0)
+ , python3-zookeeper (>= 3.4.5)
+ , python3-pbr
+ , python3-yaml
+ , python3-simplejson (>= 2.0.9)
+ , python3-redis
+ , python3-cliff (>= 1.13)
+ , python3-tablib
+ , python3-werkzeug
+ , python3-pyeclib (>= 1.2.0)
+ , gunicorn (>= 19.4.5)
+ , apache2
+ , libexpat1
+ , asn1c (>= 0.9.28)
+ , libglib2.0-0 (>= 2.42)
+ , zlib1g
+ , libjson-c3 (>= 0.12)
+ , libapr1 (>= 1.2)
+ , libevent-2.1-6
+ , liblzo2-2 (>= 2.0)
+ , openio-gridinit
+ , libdb5.3
+ , libsqlite3-0 (>= 3.7.11)
+ , libleveldb1v5
 Description: OpenIO Cloud Storage Solution
  OpenIO software storage solution is designed to handle PETA-bytes of
  data in a distributed way, data such as: images, videos, documents, emails,
