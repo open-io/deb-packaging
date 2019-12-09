@@ -33,9 +33,7 @@ Build-Depends:
  , curl
  , libleveldb-dev 
 Standards-Version: 3.9.5
-Homepage: <insert the upstream URL, if relevant>
-#Vcs-Git: git://anonscm.debian.org/collab-maint/openio-sds.git
-#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/openio-sds.git;a=summary
+Homepage: https://openio.io
 
 Package: openio-sds
 Architecture: any
