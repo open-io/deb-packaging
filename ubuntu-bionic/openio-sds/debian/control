@@ -67,6 +67,7 @@ Depends:
  , python3-tablib
  , python3-werkzeug
  , python3-pyeclib (>= 1.2.0)
+ , python3-gunicorn
  , gunicorn (>= 19.4.5)
  , apache2
  , libexpat1
