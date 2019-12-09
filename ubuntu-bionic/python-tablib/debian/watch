@@ -1,0 +1,2 @@
+version=3
+https://github.com/kennethreitz/tablib/tags  .*/v(\d[\d\.]+)\.tar\.gz

@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=tablib
+export PYBUILD_AFTER_INSTALL=rm -rf {destdir}/usr/lib/python3*/dist-packages/tablib/packages/dbfpy
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_installchangelogs:
+	dh_installchangelogs HISTORY.rst
+
+override_dh_auto_test:
+	dh_auto_test -- --system=custom --test-args="{interpreter} -m pytest test_tablib.py"

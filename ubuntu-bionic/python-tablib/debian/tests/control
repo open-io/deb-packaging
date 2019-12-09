@@ -1,0 +1,5 @@
+Test-Command: python3 -m pytest test_tablib.py
+Depends: @, @builddeps@
+
+Test-Command: python3 debian/tests/basic_usage.py
+Depends: @

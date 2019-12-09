@@ -1,0 +1,108 @@
+python-tablib (0.13.0-1) bionic; urgency=medium
+
+  * Repackage from eoan to bionic
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 09 Dec 2019 11:05:19 -0700
+
+python-tablib (0.13.0-1) unstable; urgency=medium
+
+  * New upstream version 0.13.0
+  * Integrating Ubuntu patch for fixing new default_flow_style (Closes: #934271)
+  * d/control:
+    * Bump standards to 4.4.0.1
+    * Bump debhelper-compat to 12
+    * wrap-and-sort
+  * d/copyright: remove copyright for missing file
+
+ -- Joseph Herlant <aerostitch@debian.org>  Sun, 11 Aug 2019 12:05:19 -0700
+
+python-tablib (0.12.1-3) unstable; urgency=medium
+
+  * Team upload.
+  * Drop Python 2 support.
+
+ -- Ondřej Nový <onovy@debian.org>  Sun, 04 Aug 2019 19:32:36 +0200
+
+python-tablib (0.12.1-2) unstable; urgency=medium
+
+  * Update the maintainer email to my new debian one.
+  * Use the new debhelper-compat(=11) notation and drop d/compat.
+  * Bump standards to 4.2.1.
+  * Add a d/upstream/meatadata file for dep-12 compatibility.
+
+ -- Joseph Herlant <aerostitch@debian.org>  Sat, 15 Dec 2018 18:20:40 -0800
+
+python-tablib (0.12.1-1) unstable; urgency=low
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/control: Add trailing tilde to min version depend to allow
+    backports
+
+  [ Joseph Herlant ]
+  * Initial upstream branch.
+  * New upstream version 0.12.1
+  * d/compat, d/control: upgrade standards to 4.1.4 and compat to 11
+  * Wrap-n-sort
+  * d/control: the project is moving under the python team (Closes: #865855)
+  * d/control: cleanup dependencies already defined via ${python:Depends}
+  * d/rules: disable test overwrite
+  * d/copyright: global-files-wildcard-not-first-paragraph-in-dep5-copyright
+  * d/control, d/rules: remove unused dependency and cleanup
+  * d/control: pandas is required now for 1 test
+  * d/control: add xlwt for python3 too
+  * d/control: add automatic test suite flag
+  * d/rules: fix naming of the package for pybuild
+  * d/rules: remove python2-specific vendored package for python3
+  * d/copyright: update copyrighted files and dates
+  * Add extra autopkgtests
+
+ -- Joseph Herlant <herlantj@gmail.com>  Mon, 30 Apr 2018 22:50:05 -0700
+
+python-tablib (0.11.5+dfsg1-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Fixed VCS URLs (https).
+  * d/rules: Changed UPSTREAM_GIT protocol to https
+
+  [ Daniel Baumann ]
+  * Updating vcs fields.
+  * Updating copyright format url.
+  * Updating maintainer field.
+  * Running wrap-and-sort -bast.
+  * Updating standards version to 4.0.0.
+  * Removing gbp.conf, not used anymore or should be specified in the
+    developers dotfiles.
+  * Updating standards version to 4.0.1.
+  * Updating standards version to 4.1.0.
+
+  [ Thomas Goirand ]
+  * New upstream release (Closes: #864818).
+  * debian/rules: Using pkgos-dh_auto_install and removed things defined in
+    openstack-pkg-tools.
+  * Testing with all versions of Python 3.
+  * Add python-xlwt as (build-)depends.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 24 Oct 2017 15:35:58 +0200
+
+python-tablib (0.10.0+dfsg2-1) experimental; urgency=low
+
+  * New upstream release.
+  * Ran wrap-and-sort.
+  * Added Python 3 support.
+  * Removed lots of embedded Python modules.
+  * Do not use upstream clean.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 30 May 2013 15:45:33 +0800
+
+python-tablib (0.9.11-2) unstable; urgency=low
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 12 May 2013 12:20:36 +0000
+
+python-tablib (0.9.11-1) experimental; urgency=low
+
+  * Initial release (Closes: #699592).
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 02 Feb 2013 13:50:24 +0800

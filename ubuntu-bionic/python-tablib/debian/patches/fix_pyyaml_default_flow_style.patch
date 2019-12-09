@@ -1,0 +1,32 @@
+From: Mathieu Trudel-Lapierre <mathieu.trudel-lapierre@canonical.com>
+Subject: Force yaml.dump() calls to specify default_flow_style=None
+Description: default_flow_style changed to False by default, which actually changes
+ the output format. Make sure we retain the previous behavior expected
+ by the tests.
+ .
+ cf. https://github.com/yaml/pyyaml/issues/265
+Bug-Debian: http://bugs.debian.org/934271
+Forwarded: https://github.com/vinayak-mehta/tablib/pull/374
+Acked-by: Joseph Herlant<aerostitch@debian.org>
+
+Index: python-tablib-0.12.1/tablib/formats/_yaml.py
+===================================================================
+--- python-tablib-0.12.1.orig/tablib/formats/_yaml.py
++++ python-tablib-0.12.1/tablib/formats/_yaml.py
+@@ -13,12 +13,14 @@ extensions = ('yaml', 'yml')
+ def export_set(dataset):
+     """Returns YAML representation of Dataset."""
+ 
+-    return yaml.safe_dump(dataset._package(ordered=False))
++    return yaml.safe_dump(dataset._package(ordered=False),
++                          default_flow_style=None)
+ 
+ 
+ def export_book(databook):
+     """Returns YAML representation of Databook."""
+-    return yaml.safe_dump(databook._package(ordered=False))
++    return yaml.safe_dump(databook._package(ordered=False),
++                          default_flow_style=None)
+ 
+ 
+ def import_set(dset, in_stream):
