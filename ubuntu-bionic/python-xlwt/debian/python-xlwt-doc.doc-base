@@ -1,0 +1,9 @@
+Document: python-xlwt-doc
+Title: xlwt Python module doc
+Abstract: This is the doc of the Python xlwt module for reading and
+ writing Excel files.
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python-xlwt/html/index.html
+Files: /usr/share/doc/python-xlwt/html/*.html

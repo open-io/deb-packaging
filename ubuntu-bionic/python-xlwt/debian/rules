@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE=1
+include /usr/share/python/python.mk
+PYVERS=$(shell pyversions -vd)
+PYTHON3S:=$(shell py3versions -vr 2>/dev/null)
+
+%:
+	dh $@ --buildsystem=python_distutils --with python2,python3,sphinxdoc
+
+override_dh_auto_clean:
+	find . -name '*\.py[co]' -delete
+	rm -rf build
+
+override_dh_auto_install:
+	python2.7 setup.py install --install-layout=deb --root $(CURDIR)/debian/python-xlwt
+	set -e && for pyvers in $(PYTHON3S); do \
+		python$$pyvers setup.py install --install-layout=deb \
+			--root $(CURDIR)/debian/python3-xlwt; \
+	done
+
+override_dh_sphinxdoc:
+ifeq (,$(findstring nodoc, $(DEB_BUILD_OPTIONS)))
+	PYTHONPATH=. sphinx-build -b html docs $(CURDIR)/debian/python-xlwt-doc/usr/share/doc/python-xlwt/html
+	dh_sphinxdoc -O--buildsystem=python_distutils
+endif
+
+override_dh_auto_test:
+	for i in 2.7 $(PYTHON3S) ; do \
+		PYTHON=python$$i PYTHONPATH=. python$$i -m nose -v ; \
+	done
+
+override_dh_compress:
+	dh_compress -i -X.py

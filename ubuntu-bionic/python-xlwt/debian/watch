@@ -1,0 +1,3 @@
+version=3
+opts=dversionmangle=s/\+debian\d+$// \
+ https://pypi.python.org/packages/source/x/xlwt/ xlwt-(.*)\.tar\.gz debian

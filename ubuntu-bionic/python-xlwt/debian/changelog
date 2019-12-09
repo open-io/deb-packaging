@@ -1,0 +1,167 @@
+xlwt (1.3.0-2) bionic; urgency=medium
+
+  * repackage from eoan
+
+-- Vincent Legoll <vincent.legoll@openio.io>  Mon, 09 Dec 2019 11:05:19 -0700
+
+xlwt (1.3.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * Add missing Breaks+Replaces: python-xlwt (<< 1.3.0) for python-xlwt-doc
+    (Closes: #894910)
+
+ -- Sophie Brun <sophie@freexian.com>  Thu, 07 Jun 2018 17:32:38 +0200
+
+xlwt (1.3.0-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Ondřej Nový ]
+  * Fixed homepage (https)
+  * Fixed VCS URL (https)
+  * d/control: Set Vcs-* to salsa.debian.org
+
+  [ Thomas Goirand ]
+  * New upstream release.
+  * Ran wrap-and-sort -bast to minimize git diffs.
+  * Add Python 3 support. Closes: #614502
+  * Tests with nose.
+  * Add a doc package and generate the doc using sphinx.
+  * Generate the doc using sphinx.
+  * Fixed dh sequencer call order.
+  * Standards-Version is now 4.1.1.
+  * Add patch to de-embbed antlr (rather than a +debian1 package). It's ok to
+    do so as antlr.py is redistribuable.
+
+  [ Sophie Brun ]
+  * Drop debian/new-upstream generating a tarball without antlr
+  * Drop useless debian/README.source and get-orig-source
+  * Remove remove-embedded-antlr.patch. We can't use the python-antlr packages,
+    we need to keep the antlr provided by upstream (see
+    https://github.com/python-excel/xlwt/issues/73)
+  * Add autopkgtest
+
+  [ Raphaël Hertzog ]
+  * Build-depends on python3-sphinx instead of python-sphinx as advised by
+    lintian.
+  * Bump Standards-Version to 4.1.3.
+  * Switch to debhelper compat 11.
+  * Ensure documentation is available in main doc directory of both packages.
+
+ -- Sophie Brun <sophie@freexian.com>  Tue, 27 Mar 2018 14:06:28 +0200
+
+xlwt (0.7.5+debian1-1) unstable; urgency=low
+
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+
+  [ Jan Dittberner ]
+  * New upstream version
+  * use wrap-and-sort
+  * bump Standards-Version to 3.9.5
+
+ -- Jan Dittberner <jandd@debian.org>  Sat, 01 Feb 2014 22:32:45 +0100
+
+xlwt (0.7.4+debian1-1) unstable; urgency=low
+
+  * New upstream version.
+  * debian/control:
+    - bump Standards-Version to 3.9.3
+    - remove X-Python-Version
+    - add python-antlr to Build-Depends
+  * Fix "cannot read Excel spreadsheet files" (Closes: #644347)
+    - apply patch for long description clarifying the relationship to
+      python-excelerator and python-xlrd (thanks to Jonathan Nieder)
+    - add Suggests: python-xlrd
+
+ -- Jan Dittberner <jandd@debian.org>  Thu, 17 May 2012 15:14:23 +0200
+
+xlwt (0.7.2+debian1-1) unstable; urgency=low
+
+  * Fix "unnecessary Depends", repacked source without antlr.py
+    (Closes: #614501)
+  * add debian/new-upstream script for repacking upstream source
+  * change debian/watch to execute debian/new-upstream when using uscan
+  * debian/rules:
+    - add --with python2 to dh invocation
+    - don't do repacking directly in get-orig-source rule
+  * debian/control:
+    - bump Standards-Version to 3.9.1 (no changes needed)
+    - change XS-Python-Version to X-Python-Version
+    - drop python-support dependency
+    - bump python dependency to 2.6.5-1~
+    - add Breaks: ${python:Breaks}
+  * change debian/source/format to "3.0 (quilt)"
+  * add debian/patches/fix_import_in_workbook.patch and
+    debian/patches/series to fix an import issue in xlwt/Worksheet.py
+
+ -- Jan Dittberner <jandd@debian.org>  Thu, 03 Mar 2011 23:34:30 +0100
+
+xlwt (0.7.2-2) unstable; urgency=low
+
+  * switch to dh7
+  * debian/control:
+    - Build-Depends: require debhelper (>= 7.0.50)
+    - python-xlwt Depends: add ${misc:Depends}
+    - update Standards-Version to 3.8.4 (no changes needed)
+  * debian/rules:
+    - simplify rules using dh7 features
+  * debian/compat:
+    - 5 -> 7
+  * debian/copyright: explicitly link to GPL-2
+  * add debian/python-xlwt.doc-base.python-xlwt-api and
+    debian/python-xlwt.doc-base.python-xlwt-intro to register
+    /usr/share/doc/python- xlwt/*.html with doc-base
+
+ -- Jan Dittberner <jandd@debian.org>  Wed, 03 Feb 2010 19:17:43 +0100
+
+xlwt (0.7.2-1) unstable; urgency=low
+
+  * new upstream version
+  * build for default Python version only
+  * debian/control:
+    - depend on python instead of python-all
+    - change email address
+    - update Standards-Version to 3.8.2 (no changes needed)
+  * debian/rules:
+    - use default python instead of building for all available versions
+  * debian/copyright:
+    - change email address
+
+ -- Jan Dittberner <jandd@debian.org>  Fri, 24 Jul 2009 22:44:41 +0200
+
+xlwt (0.7.1-1) unstable; urgency=low
+
+  * new upstream version
+  * debian/control:
+    - improved description thanks to upstream author John Machin
+    - update python-all-dev dependency to 2.4.5-1~
+    - update Standards-Version to 3.8.1 (no changes needed)
+  * debian/rules:
+    - add --no-compile --install-layout=deb to setup.py call
+    - use py_libdir from python.mk instead of hardcoded paths
+
+ -- Jan Dittberner <jan@dittberner.info>  Fri, 27 Mar 2009 00:10:42 +0100
+
+xlwt (0.7.0-3) unstable; urgency=low
+
+  * debian/control: depend on separate python-antlr package instead of
+    antlr (available in antlr-2.7.7-10)
+
+ -- Jan Dittberner <jan@dittberner.info>  Fri, 16 Jan 2009 21:35:30 +0100
+
+xlwt (0.7.0-2) unstable; urgency=low
+
+  * remove examples from module installation directory
+
+ -- Jan Dittberner <jan@dittberner.info>  Wed, 07 Jan 2009 22:30:42 +0100
+
+xlwt (0.7.0-1) unstable; urgency=low
+
+  * Initial release. (Closes: #510763)
+  * debian/copyright:
+    - add permission by John McNamara (author of Perl::WriteExcel)
+  * remove antlr.py from upstream tarball and add dependency to antlr
+    package
+
+ -- Jan Dittberner <jan@dittberner.info>  Tue, 06 Jan 2009 08:48:17 +0100

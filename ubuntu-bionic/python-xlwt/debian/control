@@ -1,0 +1,86 @@
+Source: xlwt
+Section: python
+Priority: optional
+Maintainer: Jan Dittberner <jandd@debian.org>
+Uploaders:
+ Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>,
+Build-Depends:
+ debhelper (>= 11),
+ dh-python,
+ python-all,
+ python-setuptools,
+ python3-all,
+ python3-setuptools,
+ python3-sphinx,
+Build-Depends-Indep:
+ python-nose,
+ python-pkginfo,
+ python-six,
+ python3-nose,
+ python3-pkginfo,
+ python3-six,
+Standards-Version: 4.1.3
+Homepage: https://pypi.python.org/pypi/xlwt
+Vcs-Git: https://salsa.debian.org/python-team/modules/xlwt.git
+Vcs-Browser: https://salsa.debian.org/python-team/modules/xlwt
+Testsuite: autopkgtest-pkg-python
+
+Package: python-xlwt
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python:Depends},
+Suggests:
+ python-xlrd,
+ python-xlrt-doc,
+Description: module for writing Microsoft Excel spreadsheet files - Python 2.7
+ This package provides a pure Python module for writing spreadsheet files
+ readable by Excel 97/2000/XP/2003, OpenOffice.org Calc, and Gnumeric. Excel
+ spreadsheets can be generated on any platform without needing Excel or a COM
+ server.
+ .
+ Xlwt is a fork of the unmaintained pyExcelerator module with several
+ bugfixes and enhancements. For the functionality previously provided by the
+ parse_xls function, see the python-xlrd package.
+ .
+ This package provides the Python 2.7 module.
+
+Package: python3-xlwt
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+Suggests:
+ python3-xlrd,
+ python-xlrt-doc,
+Description: module for writing Microsoft Excel spreadsheet files - Python 3.x
+ This package provides a pure Python module for writing spreadsheet files
+ readable by Excel 97/2000/XP/2003, OpenOffice.org Calc, and Gnumeric. Excel
+ spreadsheets can be generated on any platform without needing Excel or a COM
+ server.
+ .
+ Xlwt is a fork of the unmaintained pyExcelerator module with several
+ bugfixes and enhancements. For the functionality previously provided by the
+ parse_xls function, see the python-xlrd package.
+ .
+ This package provides the Python 3.x module.
+
+Package: python-xlwt-doc
+Section: doc
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${sphinxdoc:Depends},
+Breaks: python-xlwt (<< 1.3.0)
+Replaces: python-xlwt (<< 1.3.0)
+Description: module for writing Microsoft Excel spreadsheet files - doc
+ This package provides a pure Python module for writing spreadsheet files
+ readable by Excel 97/2000/XP/2003, OpenOffice.org Calc, and Gnumeric. Excel
+ spreadsheets can be generated on any platform without needing Excel or a COM
+ server.
+ .
+ Xlwt is a fork of the unmaintained pyExcelerator module with several
+ bugfixes and enhancements. For the functionality previously provided by the
+ parse_xls function, see the python-xlrd package.
+ .
+ This package provides the documentation.

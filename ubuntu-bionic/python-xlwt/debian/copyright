@@ -1,0 +1,279 @@
+This package was debianized by Jan Dittberner <jan@dittberner.info> on
+Sun, 04 Jan 2009 19:32:41 +0100.
+
+It was originally downloaded from http://pypi.python.org/pypi/xlwt
+
+Upstream Authors:
+
+    Roman V. Kiseliov <roman@kiseliov.ru>
+    Stephen John Machin <sjmachin@lexicon.net>
+
+Copyright:
+
+    Copyright (C) 2007, Stephen John Machin
+    Copyright (C) 2005, Roman V. Kiseliov
+
+License:
+
+    Portions copyright © 2007, Stephen John Machin, Lingfo Pty Ltd All
+    rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above
+       copyright notice, this list of conditions and the following
+       disclaimer in the documentation and/or other materials provided
+       with the distribution.
+
+    3. None of the names of Stephen John Machin, Lingfo Pty Ltd and
+       any contributors may be used to endorse or promote products
+       derived from this software without specific prior written
+       permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+    CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+    BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+    TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+    DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+    ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+    TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
+    THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+    SUCH DAMAGE.
+
+
+    Copyright (C) 2005 Roman V. Kiseliov
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    1. Redistributions of source code must retain the above copyright
+       notice, this list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in
+       the documentation and/or other materials provided with the
+       distribution.
+
+    3. All advertising materials mentioning features or use of this
+       software must display the following acknowledgment:
+       "This product includes software developed by
+        Roman V. Kiseliov <roman@kiseliov.ru>."
+
+    4. Redistributions of any form whatsoever must retain the following
+       acknowledgment:
+       "This product includes software developed by
+        Roman V. Kiseliov <roman@kiseliov.ru>."
+
+    THIS SOFTWARE IS PROVIDED BY Roman V. Kiseliov ``AS IS'' AND ANY
+    EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+    PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL Roman
+    V. Kiseliov OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+    INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+    OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    Roman V. Kiseliov
+    Russia
+    Kursk
+    Libknecht St., 4
+
+    +7(0712)56-09-83
+
+    <roman@kiseliov.ru>
+    Subject: pyExcelerator
+
+-----------------------------------------------------------
+
+xlwt/Bitmap.py:
+
+    Portions are Copyright (C) 2005 Roman V. Kiseliov
+    Portions are Copyright (c) 2004 Evgeny Filatov <fufff@users.sourceforge.net>
+    Portions are Copyright (c) 2002-2004 John McNamara (Perl Spreadsheet::WriteExcel)
+
+    The following permission has been given by John McNamara:
+
+    Message-ID: <4e9cef090901051501s7ae57b7bqca3c5d9f1fd1b710@mail.gmail.com>
+    Date: Mon, 5 Jan 2009 23:01:52 +0000
+    From: John McNamara <jmcnamara@cpan.org>
+    To: Mike O'Connor <stew@debian.org>
+    Subject: Re: [Python-modules-team] Xlwt/Pyexcelerator licensing
+        information needs to be clarified
+    Cc: Jan Dittberner <jan@dittberner.info>,
+        "Roman V. Kiseliov" <roman@kiseliov.ru>,
+        Stephen John Machin <sjmachin@lexicon.net>,
+        Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+    In-Reply-To: <20090105222358.GI20814@vireo.org>
+    References: <20090104220800.GA13959@denkpolster.dittberner.home>
+        <20090104225008.GA18018@denkpolster.dittberner.home>
+        <4e9cef090901041454u2e237146j909acd0088761620@mail.gmail.com>
+        <20090105215320.GA13308@denkpolster.dittberner.home>
+        <4e9cef090901051400x105dfef5l5f5ed6b1902ff480@mail.gmail.com>
+        <20090105222358.GI20814@vireo.org>
+
+    On Mon, Jan 5, 2009 at 10:23 PM, Mike O'Connor <stew@debian.org> wrote:
+
+    > On Mon, Jan 05, 2009 at 10:00:06PM +0000, John McNamara wrote:
+    > > On Mon, Jan 5, 2009 at 9:53 PM, Jan Dittberner <jan@dittberner.info>
+    > wrote:
+    > >
+    > > > On Sun, Jan 04, 2009 at 10:54:25PM +0000, John McNamara wrote:
+    > > > >
+    > > > >
+    > > > > On Sun, Jan 4, 2009 at 10:50 PM, Jan Dittberner <jan@dittberner.info
+    > >
+    > > > wrote:
+    > > > >
+    > > > >     Bitmap.py contains a verbatim copy of a diagram and code from the
+    > > > Perl code
+    > > > >     and
+    > > > >     is subject to the terms of either the Artistic License, the GPL
+    > or
+    > > > both. I
+    > > > >     think only the author of Spreadsheet::WriteExcel may allow the
+    > > > distribution
+    > > > >     with your BSD licensed sources.
+    > > > >
+    > > > > As the author of Spreadsheet::WriteExcel you have my full permission
+    > to
+    > > > > distribute any derived code in Pyexcelerator under the BSD or any
+    > other
+    > > > > appropriate opensource license.
+    > > >
+    > > > Hi John,
+    > > >
+    > > > thanks for this permission.
+    > > >
+    > > > Is this permission granted only to us (Debian) and pyExelerator/xwlt or
+    > to
+    > > > everyone?
+    > > >
+    > > > Such a permission will be required to meet the criteria of the DFSG
+    > (Debian
+    > > > Free Software Guidelines) [1].
+    > > >
+    > > > [1] http://www.debian.org/social_contract#guidelines
+    > > >
+    > > >
+    > >
+    > > Hi Jan,
+    > >
+    > > Permission is granted to anyone participating in an open source
+    > initiative
+    > > and that certainly includes Debian and the others CC on this mail.
+    > >
+    > > John.
+    > > --
+    >
+    > John,
+    >
+    > Thanks for your responsiveness.  I'm sorry, I'm sure it sounds like we
+    > are becoming annoying with this, however, if permission is only granted
+    > to people participating in an open source initiative, or only granted to
+    > debian, that isn't going to work for us in this case (Beceuase of
+    > sections 5,6,8 of the DFSG mentioned above).  What we'd really need
+    > would be permission for ANYONE to be able to distribute the software
+    > under these new license terms.
+    >
+
+    Hi,
+
+    No problem, I understand that you have to be precise about these things.
+
+    In which case I grant permission to *anyone* to use the code derived from
+    Spreadsheet::WriteExcel.
+
+    If that isn't sufficient then just agree a wording that you would all be
+    happy with and I will give my blessing to it.
+
+    John.
+    --
+
+-----------------------------------------------------------
+
+xlwt/Utils.py:
+
+    Copyright (c) 2004 Evgeny Filatov <fufff@users.sourceforge.net>
+    Copyright (c) 2002-2004 John McNamara (Perl Spreadsheet::WriteExcel)
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public License
+    as published by the Free Software Foundation; either version 2.1
+    of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+    MA 02110-1301, USA.
+
+    --------------------------------------------------------------------
+    This module was written/ported from PERL Spreadsheet::WriteExcel
+    module
+
+    The author of the PERL Spreadsheet::WriteExcel module is John
+    McNamara <jmcnamara@cpan.org>
+    --------------------------------------------------------------------
+    See the README.txt distributed with pyXLWriter for more details.
+
+    Portions are (C) Roman V. Kiseliov, 2005
+
+-----------------------------------------------------------
+
+xlmt/antlr.py
+
+    Copyright (C) Wolfgang Haefelinger, 2004
+    SOFTWARE RIGHTS
+
+    ANTLR 1989-2006 Developed by Terence Parr
+    Partially supported by University of San Francisco & jGuru.com
+
+    We reserve no legal rights to the ANTLR--it is fully in the
+    public domain. An individual or company may do whatever
+    they wish with source code distributed with ANTLR or the
+    code generated by ANTLR, including the incorporation of
+    ANTLR, or its output, into commercial software.
+
+    We encourage users to develop software with ANTLR. However,
+    we do ask that credit is given to us for developing
+    ANTLR. By "credit", we mean that if you use ANTLR or
+    incorporate any source code into one of your programs
+    (commercial product, research project, or otherwise) that
+    you acknowledge this fact somewhere in the documentation,
+    research report, etc... If you like ANTLR and have
+    developed a nice tool with the output, please mention that
+    you developed it using ANTLR. In addition, we ask that the
+    headers remain intact in our source code. As long as these
+    guidelines are kept, we expect to continue enhancing this
+    system and expect to make other tools available as they are
+    completed.
+
+    The primary ANTLR guy:
+
+    Terence Parr
+    parrt@cs.usfca.edu
+    parrt@antlr.org
+
+
+The Debian packaging is copyright 2009, Jan Dittberner
+<jandd@debian.org> and is licensed under the GPL version 2, or (at your option)
+any later version, see `/usr/share/common-licenses/GPL-2'.
