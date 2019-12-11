@@ -24,6 +24,10 @@ case "$1" in
         chmod 775 /var/log/oio /var/log/oio/sds
         chown openio:openio /var/lib/oio
         chown syslog:openio /var/log/oio /var/log/oio/sds
+        test -d %{_sysconfdir}/bash_completion.d && \
+          openio complete > %{_sysconfdir}/bash_completion.d/openio && \
+          openio-admin complete > %{_sysconfdir}/bash_completion.d/openio-admin || \
+          true
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
