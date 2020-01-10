@@ -6,7 +6,7 @@ Build-Depends:
  debhelper (>= 9)
  , cmake
  , libglib2.0-dev (>= 2.42)
- , libzookeeper-mt-dev (>= 3.4.5)
+ , libzookeeper-mt-dev (>= 3.5.6)
  , golang-1.10
  , wget
  , python-dev
@@ -43,7 +43,7 @@ Depends:
  , python-xattr (>= 0.8.0) | python-pyxattr (>= 0.4.0)
  , python-eventlet (>= 0.15.2)
  , python-requests (>= 2.6.0)
- , python-zookeeper (>= 3.4.5)
+ , python-zookeeper (>= 3.5.6)
  , python-pbr
  , python-yaml
  , python-simplejson (>= 2.0.9)
@@ -56,7 +56,7 @@ Depends:
  , python3-xattr (>= 0.8.0) | python3-pyxattr (>= 0.4.0)
  , python3-eventlet (>= 0.15.2)
  , python3-requests (>= 2.6.0)
- , python3-zookeeper (>= 3.4.5)
+ , python3-zookeeper (>= 3.5.6)
  , python3-pbr
  , python3-yaml
  , python3-simplejson (>= 2.0.9)
