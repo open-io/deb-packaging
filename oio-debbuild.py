@@ -154,6 +154,8 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
         vprint('Using *.dsc file: ' + pkgdsc)
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
+        if args.unstable:
+            release += '-unstable'
         tgt_elts = (osdistid, osdistcodename, arch, release, mdi_mirror)
         tgt_subdir = "%s-%s-%s-%s-%s" % tgt_elts
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
