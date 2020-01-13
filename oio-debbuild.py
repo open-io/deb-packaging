@@ -159,24 +159,34 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
         if mirror.startswith('http://'):
             upload_pkg_oiorepo(mirror, resultdir, pkgdsc)
-        elif is_mini_dinstall_target(mirror, release):
+        elif is_mini_dinstall_target(mirror, release, args):
             upload_pkg_dput(mirror, resultdir, pkg_basename, pkgdsc, osdistid)
         else:
             print('Unknown target repository:', mirror)
             sys.exit(1)
 
 
-def is_mini_dinstall_target(tgt, release):
+def is_mini_dinstall_target(tgt, release, args):
     '''
     Check if the parameter is OK as a mini-dinstall target and also ensure it is
     consistent with the packaging release (repository branch or CLI argument)
     '''
 
     elts = tgt.split('-')
-    if len(elts) != 2:
+    if len(elts) == 2:
+        name, version = elts
+    elif len(elts) == 3:
+        name, version, unstable = elts
+        if unstable != 'unstable':
+            print("Target repository should ends with '-unstable' : %s" % tgt)
+            return False
+        if not args.unstable:
+            print('You did not pass the "-u / --unstable" CLI argument, but '
+                  'it looks like you should have: %s' % tgt)
+            # No return here, this one is only a warning
+    else:
         print('Target repository name contains too much "-" characters:', tgt)
         return False
-    name, version = elts
     if version != release:
         print('WARNING: target repository (%s) / release (%s) mismatch' %
               (version, release))
