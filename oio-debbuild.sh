@@ -4,6 +4,9 @@ set -e
 #DISTID
 #ARCH
 
+echo "#########################################################################"
+echo "###       THIS TOOL IS DEPRECATED USE THE PYTHON BASED VERSION        ###"
+echo "#########################################################################"
 
 if [ $# -ne 1 ]; then
     echo "No upload destination specified, disabling..."
@@ -172,3 +175,7 @@ else
       dput -f -u ${OSDISTID}-openio-${REPO} /var/cache/pbuilder/${OSDISTID}-${OSDISTCODENAME}-${ARCH}/result/$(basename ${pkgdsc} .dsc)*.changes
     fi
 fi
+
+echo "#########################################################################"
+echo "###       THIS TOOL IS DEPRECATED USE THE PYTHON BASED VERSION        ###"
+echo "#########################################################################"
