@@ -66,10 +66,12 @@ _MDI_PROJECTS = (
 )
 # Projects versions (mini-dinstall targets)
 _MDI_VERSIONS = (
-    'unstable', # shared for unstable builds before 19.10
+    'unstable', # FIXME: kept for 18.04 only, remove when it's been phased out
     '18.04',
     '18.10',
+    '18.10-unstable',
     '19.04',
+    '19.04-unstable',
     '19.10',
     '19.10-unstable'
 )
