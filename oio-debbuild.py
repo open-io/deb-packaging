@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Copyright © 2019 OpenIO <info@openio.io>
-# Copyright © 2019 Vincent Legoll <vincent.legoll@gmail.com>
+# Copyright © 2019-2020 OpenIO <info@openio.io>
+# Copyright © 2019-2020 Vincent Legoll <vincent.legoll@gmail.com>
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,13 +45,17 @@ def vprint(msg):
 ################################################################################
 
 # Do not build source code packages for the following closed-source projects
-_PRIVATE_PKGS = ("oiofs-fuse", "openio-billing", "oio-grid",
-                 "openio-sds-replicator")
+_PRIVATE_PKGS = (
+    "oiofs-fuse",
+    "openio-billing",
+    "oio-grid",
+    "openio-sds-replicator"
+)
 
 # Base pbuilder path
 _PBUILDER = '/var/cache/pbuilder'
 
-# Projects code names & versions (mini-dinstall targets)
+# Projects code names
 _MDI_PROJECTS = (
     'g4a',
     'sds',
@@ -60,7 +64,17 @@ _MDI_PROJECTS = (
     'replicator',
     'oioswiftext',
 )
-_MDI_VERSIONS = ('18.04', '18.10', '19.04', '19.10', 'unstable')
+# Projects versions (mini-dinstall targets)
+_MDI_VERSIONS = (
+    'unstable', # FIXME: kept for 18.04 only, remove when it's been phased out
+    '18.04',
+    '18.10',
+    '18.10-unstable',
+    '19.04',
+    '19.04-unstable',
+    '19.10',
+    '19.10-unstable'
+)
 
 ################################################################################
 
@@ -127,7 +141,8 @@ def doit(args):
     print("### Building package")
 
     pbuilder(pkgname, work=work, arch=arch, release=release, osdistid=osdistid,
-             osdistcodename=osdistcodename, mirror=mirror)
+             osdistcodename=osdistcodename, mirror=mirror,
+             unstable=args.unstable)
     pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror)
 
 
@@ -141,29 +156,41 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
         vprint('Using *.dsc file: ' + pkgdsc)
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
-        tgt_subdir = "%s-%s-%s-%s-%s" % (osdistid, osdistcodename, arch,
-                                         release, mdi_mirror)
+        if args.unstable:
+            release += '-unstable'
+        tgt_elts = (osdistid, osdistcodename, arch, release, mdi_mirror)
+        tgt_subdir = "%s-%s-%s-%s-%s" % tgt_elts
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
         if mirror.startswith('http://'):
             upload_pkg_oiorepo(mirror, resultdir, pkgdsc)
-        elif is_mini_dinstall_target(mirror, release):
+        elif is_mini_dinstall_target(mirror, release, args):
             upload_pkg_dput(mirror, resultdir, pkg_basename, pkgdsc, osdistid)
         else:
             print('Unknown target repository:', mirror)
             sys.exit(1)
 
 
-def is_mini_dinstall_target(tgt, release):
+def is_mini_dinstall_target(tgt, release, args):
     '''
     Check if the parameter is OK as a mini-dinstall target and also ensure it is
     consistent with the packaging release (repository branch or CLI argument)
     '''
 
     elts = tgt.split('-')
-    if len(elts) != 2:
+    if len(elts) == 2:
+        name, version = elts
+    elif len(elts) == 3:
+        name, version, unstable = elts
+        if unstable != 'unstable':
+            print("Target repository should ends with '-unstable' : %s" % tgt)
+            return False
+        if not args.unstable:
+            print('You did not pass the "-u / --unstable" CLI argument, but '
+                  'it looks like you should have: %s' % tgt)
+            # No return here, this one is only a warning
+    else:
         print('Target repository name contains too much "-" characters:', tgt)
         return False
-    name, version = elts
     if version != release:
         print('WARNING: target repository (%s) / release (%s) mismatch' %
               (version, release))
@@ -282,7 +309,10 @@ def pbuilder(pkgname, work, **kwargs):
     pbuilder_cmd.extend(glob.glob(os.path.join(work, '*.dsc')))
     env = dict(os.environ)
     # The pbuilder tarball file name
-    pb_cfg_fmt = "{osdistid}-{osdistcodename}-{arch}-{release}-{mirror}"
+    pb_cfg_fmt = "{osdistid}-{osdistcodename}-{arch}-{release}"
+    if kwargs['unstable']:
+        pb_cfg_fmt += "-unstable"
+    pb_cfg_fmt += "-{mirror}"
     # The parameters for the /root/.pbuilderrc script
     newenv = {
         'ARCH': kwargs['arch'],
@@ -328,10 +358,14 @@ def do_argparse():
                         help='Use the given OpenIO SDS release (%s)' %
                         ', '.join(_MDI_VERSIONS))
 
+    parser.add_argument('-u', '--unstable', action='store_true', default=False,
+                        help='This will be an "unstable" build')
+
     parser.add_argument('destmirror', metavar='STRING', nargs='?',
                         help='Target mirror, either a mini-dinstall codename, '
-                        'for example: oiofs-18.10 or sds-unstable, or an url to'
-                        ' an `oiorepo` service, or nothing to disable upload')
+                        'for example: oiofs-18.10 or sds-19.10-unstable, or an '
+                        'url to an `oiorepo` service, or nothing to disable '
+                        'upload')
 
     return parser
 
