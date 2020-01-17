@@ -11,6 +11,7 @@ Homepage: <insert the upstream URL, if relevant>
 Package: openio-asn1c
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: asn1c
 Description: Free, Open Source ASN.1 compiler
  Compiles ASN.1 data structures into C source structures that can be
  simply marshalled to/unmarshalled from: BER, DER, CER, BASIC-XER,
