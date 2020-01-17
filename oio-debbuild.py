@@ -163,6 +163,17 @@ def doit(args):
     pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror)
 
 
+def pbuilder_cfg_name(**kwargs):
+    '''Return the pbuilder config name'''
+    pb_cfg_fmt = "{osdistid}-{osdistcodename}-{arch}-{release}"
+    if kwargs['unstable']:
+        pb_cfg_fmt += "-unstable"
+    else:
+        pb_cfg_fmt += "-stable"
+    pb_cfg_fmt += "-{mirror}"
+    return pb_cfg_fmt.format(kwargs)
+
+
 def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
     '''Upload package to specified mirror (args.destmirror), if any'''
 
@@ -173,12 +184,15 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
         vprint('Using *.dsc file: ' + pkgdsc)
         dsc = os.path.basename(pkgdsc)
         pkg_basename = os.path.splitext(dsc)[0]
-        if args.unstable:
-            release += '-unstable'
-        else:
-            release += '-stable'
-        tgt_elts = (osdistid, osdistcodename, arch, release, mdi_mirror)
-        tgt_subdir = "%s-%s-%s-%s-%s" % tgt_elts
+        pb_cfg_kwargs = {
+            'osdistid': osdistid,
+            'osdistcodename': osdistcodename,
+            'arch': arch,
+            'release': release,
+            'mirror': mdi_mirror,
+            'unstable': args.unstable,
+        }
+        tgt_subdir = pbuilder_cfg_name(**pb_cfg_kwargs)
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
         if mirror.startswith('http://'):
             upload_pkg_oiorepo(mirror, resultdir, pkgdsc)
@@ -327,19 +341,12 @@ def pbuilder(pkgname, work, **kwargs):
         pbuilder_cmd.extend(["--debbuildopts", "-b"])
     pbuilder_cmd.extend(glob.glob(os.path.join(work, '*.dsc')))
     env = dict(os.environ)
-    # The pbuilder tarball file name
-    pb_cfg_fmt = "{osdistid}-{osdistcodename}-{arch}-{release}"
-    if kwargs['unstable']:
-        pb_cfg_fmt += "-unstable"
-    else:
-        pb_cfg_fmt += "-stable"
-    pb_cfg_fmt += "-{mirror}"
-    # The parameters for the /root/.pbuilderrc script
+    # The environment variables for the /root/.pbuilderrc script
     newenv = {
         'ARCH': kwargs['arch'],
         'DISTID': kwargs['osdistid'],
         'DIST': kwargs['osdistcodename'],
-        'NAME': pb_cfg_fmt.format(**kwargs),
+        'NAME': pbuilder_cfg_name(**kwargs),
     }
     env.update(newenv)
     #FIXME: This workaround is for redis 4.0.9 packaging abusing ${ARCH}
