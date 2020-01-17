@@ -158,6 +158,8 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
         pkg_basename = os.path.splitext(dsc)[0]
         if args.unstable:
             release += '-unstable'
+        else:
+            release += '-stable'
         tgt_elts = (osdistid, osdistcodename, arch, release, mdi_mirror)
         tgt_subdir = "%s-%s-%s-%s-%s" % tgt_elts
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
@@ -312,6 +314,8 @@ def pbuilder(pkgname, work, **kwargs):
     pb_cfg_fmt = "{osdistid}-{osdistcodename}-{arch}-{release}"
     if kwargs['unstable']:
         pb_cfg_fmt += "-unstable"
+    else:
+        pb_cfg_fmt += "-stable"
     pb_cfg_fmt += "-{mirror}"
     # The parameters for the /root/.pbuilderrc script
     newenv = {
