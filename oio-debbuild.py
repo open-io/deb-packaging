@@ -101,6 +101,7 @@ def doit(args):
     basework = os.path.join(os.environ['HOME'], 'debbuildir')
     work = os.path.join(basework, osdistro, pkgname)
     sources = os.path.join(basedir, 'sources')
+    destmirror = args.destmirror
     mirror = args.mirror
 
     # Arguments validation
@@ -120,12 +121,12 @@ def doit(args):
         print("### No `sources` file available in this directory.")
         sys.exit(1)
 
-    if args.destmirror:
-        if args.mirror in args.destmirror:
+    if destmirror:
+        if args.mirror in destmirror:
             print('You should not pass the mirror name in "--destmirror" as '
                   'it is automatically added')
             sys.exit(1)
-        if '-stable' in args.destmirror:
+        if '-stable' in destmirror:
             print('You should not pass "-stable" suffix in "--destmirror" as '
                   'it is automatically added')
             sys.exit(1)
@@ -168,11 +169,20 @@ def doit(args):
 
     print("### Building package")
 
-    pbuilder(pkgname, work=work, arch=arch, release=release, osdistid=osdistid,
-             osdistcodename=osdistcodename, mirror=mirror,
-             unstable=args.unstable)
-    if args.destmirror:
-        pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror)
+    pb_cfg_kwargs = {
+        'osdistid': osdistid,
+        'osdistcodename': osdistcodename,
+        'arch': arch,
+        'release': release,
+        'mirror': mirror,
+        'unstable': args.unstable,
+        'destmirror': destmirror,
+    }
+
+    pbuilder(pkgname, work=work, **pb_cfg_kwargs)
+
+    if destmirror:
+        pkgupload(work=work, **pb_cfg_kwargs)
     else:
         print("### Not uploading package(s)")
 
@@ -188,38 +198,31 @@ def pbuilder_cfg_name(**kwargs):
     return pb_cfg_fmt.format(kwargs)
 
 
-def pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror):
+def pkgupload(work, **kwargs):
     '''Upload package to specified mirror (args.destmirror), if any'''
 
-    destmirror = args.destmirror
+    destmirror = kwargs['destmirror']
     print("### Uploading package(s)")
     pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
     vprint('Using *.dsc file: ' + pkgdsc)
     dsc = os.path.basename(pkgdsc)
     pkg_basename = os.path.splitext(dsc)[0]
-    pb_cfg_kwargs = {
-        'osdistid': osdistid,
-        'osdistcodename': osdistcodename,
-        'arch': arch,
-        'release': release,
-        'mirror': mirror,
-        'unstable': args.unstable,
-    }
-    tgt_subdir = pbuilder_cfg_name(**pb_cfg_kwargs)
+    tgt_subdir = pbuilder_cfg_name(**kwargs)
     resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
-    if is_mini_dinstall_target(mirror, release, args):
-        upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid)
+    if is_mini_dinstall_target(**kwargs):
+        upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, **kwargs)
     else:
         print('Unknown target repository:', destmirror)
         sys.exit(1)
 
 
-def is_mini_dinstall_target(tgt, release, args):
+def is_mini_dinstall_target(**kwargs):
     '''
     Check if the parameter is OK as a mini-dinstall target and also ensure it is
     consistent with the packaging release (repository branch or CLI argument)
     '''
 
+    tgt = kwargs['mirror']
     elts = tgt.split('-')
     if len(elts) == 2:
         name, version = elts
@@ -228,16 +231,16 @@ def is_mini_dinstall_target(tgt, release, args):
         if unstable != 'unstable':
             print("Target repository should ends with '-unstable' : %s" % tgt)
             return False
-        if not args.unstable:
+        if not kwargs['unstable']:
             print('You did not pass the "-u / --unstable" CLI argument, but '
                   'it looks like you should have: %s' % tgt)
             # No return here, this one is only a warning
     else:
         print('Target repository name contains too much "-" characters:', tgt)
         return False
-    if version != release:
+    if version != kwargs['release']:
         print('WARNING: target repository (%s) / release (%s) mismatch' %
-              (version, release))
+              (version, kwargs['release']))
     if name not in _MDI_PROJECTS:
         print('Unknown mini-dinstall project:', name)
         return False
@@ -247,10 +250,10 @@ def is_mini_dinstall_target(tgt, release, args):
     return True
 
 
-def upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid):
+def upload_pkg_dput(resultdir, pkg_basename, pkgdsc, **kwargs):
     '''Use `dput` & `mini-dinstall` to upload package to mirror'''
 
-    repo_codename = '%s-openio-%s' % (osdistid, destmirror)
+    repo_codename = '{osdistid}-openio-{destmirror}'.format(**kwargs)
     print("### Uploading package %s to repository %s" % (pkgdsc, repo_codename))
     dput = ['dput', '-f', '-u', repo_codename]
     changes_file_glob = os.path.join(resultdir, pkg_basename + '*.changes')
