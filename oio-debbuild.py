@@ -160,7 +160,10 @@ def doit(args):
     pbuilder(pkgname, work=work, arch=arch, release=release, osdistid=osdistid,
              osdistcodename=osdistcodename, mirror=mirror,
              unstable=args.unstable)
-    pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror)
+    if args.destmirror:
+        pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror)
+    else:
+        print("### Not uploading package(s)")
 
 
 def pbuilder_cfg_name(**kwargs):
@@ -178,30 +181,28 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror):
     '''Upload package to specified mirror (args.destmirror), if any'''
 
     destmirror = args.destmirror
-    if destmirror:
-        print("### Uploading package")
-        pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
-        vprint('Using *.dsc file: ' + pkgdsc)
-        dsc = os.path.basename(pkgdsc)
-        pkg_basename = os.path.splitext(dsc)[0]
-        pb_cfg_kwargs = {
-            'osdistid': osdistid,
-            'osdistcodename': osdistcodename,
-            'arch': arch,
-            'release': release,
-            'mirror': mirror,
-            'unstable': args.unstable,
-        }
-        tgt_subdir = pbuilder_cfg_name(**pb_cfg_kwargs)
-        resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
-        if destmirror.startswith('http://'):
-            upload_pkg_oiorepo(destmirror, resultdir, pkgdsc)
-        elif is_mini_dinstall_target(mirror, release, args):
-            upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc,
-                            osdistid)
-        else:
-            print('Unknown target repository:', destmirror)
-            sys.exit(1)
+    print("### Uploading package(s)")
+    pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
+    vprint('Using *.dsc file: ' + pkgdsc)
+    dsc = os.path.basename(pkgdsc)
+    pkg_basename = os.path.splitext(dsc)[0]
+    pb_cfg_kwargs = {
+        'osdistid': osdistid,
+        'osdistcodename': osdistcodename,
+        'arch': arch,
+        'release': release,
+        'mirror': mirror,
+        'unstable': args.unstable,
+    }
+    tgt_subdir = pbuilder_cfg_name(**pb_cfg_kwargs)
+    resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
+    if destmirror.startswith('http://'):
+        upload_pkg_oiorepo(destmirror, resultdir, pkgdsc)
+    elif is_mini_dinstall_target(mirror, release, args):
+        upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid)
+    else:
+        print('Unknown target repository:', destmirror)
+        sys.exit(1)
 
 
 def is_mini_dinstall_target(tgt, release, args):
