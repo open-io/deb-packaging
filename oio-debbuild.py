@@ -78,6 +78,12 @@ _MDI_VERSIONS = (
     '20.04-unstable',
 )
 
+_DISTIDS = (
+    'debian',
+    'raspbian',
+    'ubuntu',
+)
+
 ################################################################################
 
 def doit(args):
@@ -97,7 +103,7 @@ def doit(args):
         print("### Working directory '%s' doesn't exist." % basework)
         sys.exit(1)
 
-    if osdistid not in ('ubuntu', 'debian', 'raspbian'):
+    if osdistid not in _DISTIDS:
         print("### Unknown distribution: %s" % osdistid)
         sys.exit(1)
 
