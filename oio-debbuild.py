@@ -174,7 +174,7 @@ def pbuilder_cfg_name(**kwargs):
     return pb_cfg_fmt.format(kwargs)
 
 
-def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
+def pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror):
     '''Upload package to specified mirror (args.destmirror), if any'''
 
     destmirror = args.destmirror
@@ -189,7 +189,7 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
             'osdistcodename': osdistcodename,
             'arch': arch,
             'release': release,
-            'mirror': mdi_mirror,
+            'mirror': mirror,
             'unstable': args.unstable,
         }
         tgt_subdir = pbuilder_cfg_name(**pb_cfg_kwargs)
