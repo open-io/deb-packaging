@@ -64,6 +64,7 @@ _MDI_PROJECTS = (
     'replicator',
     'oioswiftext',
 )
+
 # Projects versions (mini-dinstall targets)
 _MDI_VERSIONS = (
     'unstable', # FIXME: kept for 18.04 only, remove when it's been phased out
@@ -78,6 +79,7 @@ _MDI_VERSIONS = (
     '20.04-unstable',
 )
 
+# Supported distributions
 _DISTIDS = (
     'debian',
     'raspbian',
