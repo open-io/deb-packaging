@@ -84,6 +84,9 @@ _DISTIDS = (
     'ubuntu',
 )
 
+# Mirror names (not FQDNs)
+_MIRRORS = ('mirror', 'mirror2')
+
 ################################################################################
 
 def doit(args):
@@ -98,6 +101,10 @@ def doit(args):
     sources = os.path.join(basedir, 'sources')
 
     mirror = args.mirror
+
+    if mirror not in _MIRRORS:
+        print('### invalid mirror: %s' % mirror)
+        sys.exit(1)
 
     if not os.path.isdir(basework):
         print("### Working directory '%s' doesn't exist." % basework)
