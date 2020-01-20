@@ -177,8 +177,8 @@ def pbuilder_cfg_name(**kwargs):
 def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
     '''Upload package to specified mirror (args.destmirror), if any'''
 
-    mirror = args.destmirror
-    if mirror:
+    destmirror = args.destmirror
+    if destmirror:
         print("### Uploading package")
         pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
         vprint('Using *.dsc file: ' + pkgdsc)
@@ -194,12 +194,13 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename, mdi_mirror):
         }
         tgt_subdir = pbuilder_cfg_name(**pb_cfg_kwargs)
         resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
-        if mirror.startswith('http://'):
-            upload_pkg_oiorepo(mirror, resultdir, pkgdsc)
+        if destmirror.startswith('http://'):
+            upload_pkg_oiorepo(destmirror, resultdir, pkgdsc)
         elif is_mini_dinstall_target(mirror, release, args):
-            upload_pkg_dput(mirror, resultdir, pkg_basename, pkgdsc, osdistid)
+            upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc,
+                            osdistid)
         else:
-            print('Unknown target repository:', mirror)
+            print('Unknown target repository:', destmirror)
             sys.exit(1)
 
 
