@@ -207,9 +207,7 @@ def pkgupload(args, work, arch, release, osdistid, osdistcodename, mirror):
     }
     tgt_subdir = pbuilder_cfg_name(**pb_cfg_kwargs)
     resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
-    if destmirror.startswith('http://'):
-        upload_pkg_oiorepo(destmirror, resultdir, pkgdsc)
-    elif is_mini_dinstall_target(mirror, release, args):
+    if is_mini_dinstall_target(mirror, release, args):
         upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid)
     else:
         print('Unknown target repository:', destmirror)
@@ -265,26 +263,6 @@ def upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, osdistid):
     dput.extend(changes_fn)
     vprint(str(dput))
     subprocess.run(dput).check_returncode()
-
-
-def upload_pkg_oiorepo(destmirror, resultdir, pkgdsc):
-    '''
-    Use the `oiorepo` service, see:
-    https://github.com/open-io/dockerfiles/tree/master/openio-repo
-    '''
-    print("### Uploading package %s from %s to repository %s" %
-          (pkgdsc, resultdir, destmirror))
-    print('### FIXME: NOT IMPLEMENTED ###')
-
-    #~ for f in resultdir + '*.deb':
-        #~ curl -F "file=@${f}" \
-             #~ -F "company=${OIO_COMPANY}" \
-             #~ -F "prod=${OIO_PROD}" \
-             #~ -F "prod_ver=${OIO_PROD_VER}" \
-             #~ -F "distro=${OSDISTID}" \
-             #~ -F "distro_ver=${OSDISTCODENAME}" \
-             #~ -F "arch=${ARCH}" \
-             #~ "${REPO}"
 
 
 def parse_sources(sources, work):
