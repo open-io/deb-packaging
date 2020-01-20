@@ -101,9 +101,9 @@ def doit(args):
     basework = os.path.join(os.environ['HOME'], 'debbuildir')
     work = os.path.join(basework, osdistro, pkgname)
     sources = os.path.join(basedir, 'sources')
-
     mirror = args.mirror
 
+    # Arguments validation
     if mirror not in _MIRRORS:
         print('### invalid mirror: %s' % mirror)
         sys.exit(1)
@@ -120,6 +120,17 @@ def doit(args):
         print("### No `sources` file available in this directory.")
         sys.exit(1)
 
+    if args.destmirror:
+        if args.mirror in args.destmirror:
+            print('You should not pass the mirror name in "--destmirror" as '
+                  'it is automatically added')
+            sys.exit(1)
+        if '-stable' in args.destmirror:
+            print('You should not pass "-stable" suffix in "--destmirror" as '
+                  'it is automatically added')
+            sys.exit(1)
+
+    # Use arguments or environment variables
     if args.arch:
         arch = args.arch
         print('Using --arch CLI argument: ' + arch)
