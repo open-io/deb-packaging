@@ -1,3 +1,9 @@
+openio-asn1c (0.9.27.1-2) bionic; urgency=medium
+
+  * Add conflict with asn1c upstream package
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 21 Jan 2020 13:52:27 +0000
+
 openio-asn1c (0.9.27.1-1) bionic; urgency=medium
 
   * New upstream release
