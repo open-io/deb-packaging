@@ -1,0 +1,46 @@
+Source: cmd2
+Section: python
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Federico Ceratto <federico@debian.org>
+Build-Depends: debhelper (>= 9~),
+Build-Depends-Indep:
+ dh-python,
+ python-all (>= 2.6.6-3~),
+ python-pyperclip,
+ python-setuptools,
+ python3-all,
+ python3-pyperclip,
+ python3-setuptools
+Standards-Version: 3.9.8
+X-Python-Version: >= 2.7
+X-Python3-Version: >= 3.3
+Homepage: https://bitbucket.org/catherinedevlin/cmd2
+Vcs-Git: git://git.launchpad.net/~ubuntu-server-dev/ubuntu/+source/cmd2
+Vcs-Browser: https://git.launchpad.net/~ubuntu-server-dev/ubuntu/+source/cmd2
+
+Package: python-cmd2
+Architecture: all
+Pre-Depends: dpkg (>= 1.15.6~)
+Depends: ${misc:Depends}, ${python:Depends}
+Recommends: ${python:Recommends}
+Provides: ${python:Provides}
+Description: enhanced Python cmd module - Python 2.x
+ Drop-in replacement adds several features for command-prompt tools, like
+ searchable and persistent command history, multi-line commands, input and
+ output redirections, integrated Python shell, testing helpers
+ .
+ This package provides the Python 2.x module.
+
+Package: python3-cmd2
+Architecture: all
+Pre-Depends: dpkg (>= 1.15.6~)
+Depends: ${misc:Depends}, ${python3:Depends}
+Recommends: ${python3:Recommends}
+Provides: ${python3:Provides}
+Description: enhanced Python cmd module - Python 3.x
+ Drop-in replacement adds several features for command-prompt tools, like
+ searchable and persistent command history, multi-line commands, input and
+ output redirections, integrated Python shell, testing helpers
+ .
+ This package provides the Python 3.x module.

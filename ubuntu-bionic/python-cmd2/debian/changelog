@@ -1,0 +1,127 @@
+cmd2 (0.7.9-0ubuntu1) bionic; urgency=medium
+
+  * d/gbp.conf: Update gbp configuration file.
+  * d/control: Update Vcs-* links and maintainers.
+  * New upstream release.
+  * d/p/drop-import-gtk.patch: Rebased.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Tue, 23 Jan 2018 14:58:09 -0500
+
+cmd2 (0.7.7-1ubuntu1) bionic; urgency=medium
+
+  * d/p/drop-import-gtk.patch: Drop import of gtk now that pyperclip uses gi.
+
+ -- Corey Bryant <corey.bryant@canonical.com>  Tue, 19 Dec 2017 16:47:30 -0500
+
+cmd2 (0.7.7-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Federico Ceratto <federico@debian.org>  Sun, 27 Aug 2017 13:30:40 +0100
+
+cmd2 (0.7.4-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Federico Ceratto <federico@debian.org>  Sat, 08 Jul 2017 13:36:21 +0100
+
+cmd2 (0.7.3-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Federico Ceratto <federico@debian.org>  Sun, 02 Jul 2017 14:46:20 +0100
+
+cmd2 (0.7.2-2) unstable; urgency=medium
+
+  * Upload to Unstable
+
+ -- Federico Ceratto <federico@debian.org>  Sun, 25 Jun 2017 17:54:58 +0100
+
+cmd2 (0.7.2-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Federico Ceratto <federico@debian.org>  Mon, 22 May 2017 22:35:17 +0100
+
+cmd2 (0.7.0-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Federico Ceratto <federico@debian.org>  Thu, 23 Feb 2017 19:58:11 +0000
+
+cmd2 (0.6.9-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Federico Ceratto <federico@debian.org>  Sun, 16 Oct 2016 22:28:02 +0100
+
+cmd2 (0.6.8-1) unstable; urgency=low
+
+  * New upstream release.
+  * Add patch to support Python 3.5 (Closes: #798681)
+  * Switch to Pybuild, add README.txt
+
+ -- Federico Ceratto <federico@debian.org>  Thu, 21 Jan 2016 12:19:27 +0000
+
+cmd2 (0.6.7-2) unstable; urgency=medium
+
+  * Remove dependency on setuptools for Python2 (Closes: #725867)
+
+ -- Federico Ceratto <federico.ceratto@gmail.com>  Wed, 09 Oct 2013 17:09:22 +0100
+
+cmd2 (0.6.7-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Adds support for python3 (and corresponding build-depends).
+  * Fixed missing python-setuptools build-depends.
+  * Added extend-diff-ignore = "^[^/]*[.]egg-info/" in debian/source/options.
+  * Added rm -rf build in dh_clean target.
+  * VCS URLs now canonical.
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 05 Oct 2013 08:46:30 +0000
+
+cmd2 (0.6.7-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #724206)
+
+ -- Federico Ceratto <federico.ceratto@gmail.com>  Sat, 28 Sep 2013 15:14:53 +0100
+
+cmd2 (0.6.6.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * dpkg Pre-Depends added.
+
+ -- Federico Ceratto <federico.ceratto@gmail.com>  Wed, 21 Aug 2013 22:26:20 +0100
+
+cmd2 (0.6.5.1-1) unstable; urgency=low
+
+  * d/changelog: New upstream release 0.6.5.1
+  * Standards-Version bumped to 3.9.4, minor updates
+
+ -- Federico Ceratto <federico.ceratto@gmail.com>  Sun, 05 May 2013 13:24:20 +0100
+
+cmd2 (0.6.4-2) experimental; urgency=low
+
+  * Dependency to python-pyparsing added
+  * Debhelper version bumped to 9
+
+ -- Federico Ceratto <federico.ceratto@gmail.com>  Sun, 16 Sep 2012 16:50:46 +0100
+
+cmd2 (0.6.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Standards-Version bumped to 3.9.3, minor updates.
+
+ -- Federico Ceratto <federico.ceratto@gmail.com>  Mon, 28 May 2012 21:28:35 +0100
+
+cmd2 (0.6.3-2) unstable; urgency=low
+
+  * Dependency to python-setuptools added
+
+ -- Federico Ceratto <federico.ceratto@gmail.com>  Sat, 05 Nov 2011 15:32:19 +0000
+
+cmd2 (0.6.3-1) unstable; urgency=low
+
+  * Initial release (Closes: #647033)
+
+ -- Federico Ceratto <federico.ceratto@gmail.com>  Tue, 25 Oct 2011 18:33:50 +0100

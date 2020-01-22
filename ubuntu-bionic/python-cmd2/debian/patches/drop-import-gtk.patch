@@ -1,0 +1,26 @@
+Description: Drop import of gtk now that pyperclip uses gi (GTK+3).
+Author: Corey Bryant <corey.bryant@canonical.com>
+Bug-Ubuntu: https://bugs.launchpad.net/bugs/1722553
+Origin: https://github.com/python-cmd2/cmd2/pull/242
+Forwarded: yes
+
+--- a/cmd2.py
++++ b/cmd2.py
+@@ -95,17 +95,6 @@
+ else:
+     BROKEN_PIPE_ERROR = IOError
+ 
+-# On some systems, pyperclip will import gtk for its clipboard functionality.
+-# The following code is a workaround for gtk interfering with printing from a background
+-# thread while the CLI thread is blocking in raw_input() in Python 2 on Linux.
+-if six.PY2 and sys.platform.startswith('lin'):
+-    try:
+-        # noinspection PyUnresolvedReferences
+-        import gtk
+-        gtk.set_interactive(0)
+-    except ImportError:
+-        pass
+-
+ __version__ = '0.7.9'
+ 
+ # Pyparsing enablePackrat() can greatly speed up parsing, but problems have been seen in Python 3 in the past
