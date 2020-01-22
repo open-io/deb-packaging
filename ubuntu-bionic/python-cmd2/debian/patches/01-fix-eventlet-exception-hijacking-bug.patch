@@ -1,0 +1,20 @@
+diff -ruN cmd2-0.7.9_old/cmd2.py cmd2-0.7.9/cmd2.py
+--- cmd2-0.7.9_old/cmd2.py	2018-01-04 20:40:51.000000000 +0100
++++ cmd2-0.7.9/cmd2.py	2020-01-22 18:19:54.371732096 +0100
+@@ -217,12 +217,16 @@
+ 
+ 
+ def _which(editor):
++    import eventlet
+     try:
+         editor_path = subprocess.check_output(['which', editor], stderr=subprocess.STDOUT).strip()
+         if six.PY3:
+             editor_path = editor_path.decode()
+     except subprocess.CalledProcessError:
+         editor_path = None
++    except eventlet.green.subprocess.SubprocessError:
++        # See: https://github.com/eventlet/eventlet/issues/413
++        editor_path = None
+     return editor_path
+ 
+ 
