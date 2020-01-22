@@ -1,5 +1,11 @@
 cmd2 (0.7.9-0ubuntu1) bionic; urgency=medium
 
+  * Repackage from eoan
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 22 Jan 2020 17:52:09 +0100
+
+cmd2 (0.7.9-0ubuntu1) bionic; urgency=medium
+
   * d/gbp.conf: Update gbp configuration file.
   * d/control: Update Vcs-* links and maintainers.
   * New upstream release.
