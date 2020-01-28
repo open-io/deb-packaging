@@ -12,6 +12,7 @@ ExecStart=/usr/sbin/netdata -P /run/netdata/netdata.pid -D
 ExecStartPre=/bin/mkdir -p /var/cache/netdata
 ExecStartPre=/bin/chown -R netdata:netdata /var/cache/netdata
 PermissionsStartOnly=true
+LimitNOFILE=30000
 
 # saving a big db on slow disks may need some time
 TimeoutStopSec=60

@@ -1,3 +1,9 @@
+netdata (1.9.0+dfsg-4) bionic; urgency=medium
+
+  * set max open file in systemd unit file (LimitNOFILE=30000)
+
+ -- Jerome Loyet <jerome@openio.io>  Tue, 28 Jan 2020 14:05:27 +0000
+
 netdata (1.9.0+dfsg-3) bionic; urgency=medium
 
   * use upstream's systemd unit file instead of debian/ubuntu's one
