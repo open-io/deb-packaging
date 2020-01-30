@@ -1,0 +1,20 @@
+Source: promtail
+Section: admin
+Priority: extra
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+#              golang-go (>= 1.12),
+               wget,
+               unzip
+Standards-Version: 3.9.8
+Homepage: https://github.com/grafana/loki
+
+Package: promtail
+Architecture: any
+Built-Using: ${misc:Built-Using}
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: 
+ Promtail is an agent which ships the contents of local logs
+ to a private Loki instance or Grafana Cloud.
