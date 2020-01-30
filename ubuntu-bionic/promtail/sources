@@ -1,1 +1,2 @@
+# Not really used, see debian/rules override_dh_auto_build
 https://github.com/grafana/loki/archive/v1.3.0.tar.gz promtail_1.3.0.orig.tar.gz

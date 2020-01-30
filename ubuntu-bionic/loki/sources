@@ -1,1 +1,2 @@
+# Not really used, see debian/rules override_dh_auto_build
 https://github.com/grafana/loki/archive/v1.3.0.tar.gz loki_1.3.0.orig.tar.gz
