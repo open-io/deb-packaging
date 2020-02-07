@@ -39,6 +39,7 @@ override_dh_auto_build:
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/s3roundtrip.plugin/s3roundtrip.plugin.go
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/redis.plugin/redis.plugin.go
 	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/memcached.plugin/memcached.plugin.go
+	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/beanstalk.plugin/beanstalk.plugin.go
 
 override_dh_auto_install:
 	mkdir -pv $(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
@@ -51,4 +52,5 @@ override_dh_auto_install:
 		redis.plugin \
 		s3roundtrip.plugin \
 		memcached.plugin \
+		beanstalk.plugin \
 		$(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
