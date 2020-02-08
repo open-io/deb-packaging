@@ -2,6 +2,19 @@
 
 set -e
 
+dpkg-maintscript-helper dir_to_symlink \
+	/var/lib/netdata/www/.well-known /usr/share/netdata/www/.well-known 1.18.1~ netdata -- "$@"
+dpkg-maintscript-helper dir_to_symlink \
+	/var/lib/netdata/www/css /usr/share/netdata/www/css 1.18.1~ netdata -- "$@"
+dpkg-maintscript-helper dir_to_symlink \
+	/var/lib/netdata/www/fonts /usr/share/netdata/www/fonts 1.18.1~ netdata -- "$@"
+dpkg-maintscript-helper dir_to_symlink \
+	/var/lib/netdata/www/images /usr/share/netdata/www/images 1.18.1~ netdata -- "$@"
+dpkg-maintscript-helper dir_to_symlink \
+	/var/lib/netdata/www/lib /usr/share/netdata/www/lib 1.18.1~ netdata -- "$@"
+dpkg-maintscript-helper dir_to_symlink \
+	/var/lib/netdata/www/static /usr/share/netdata/www/static 1.18.1~ netdata -- "$@"
+
 case "$1" in
   configure)
         if [ -z "$2" ]; then
@@ -11,21 +24,27 @@ case "$1" in
 
           if ! getent passwd netdata >/dev/null; then
               adduser --quiet --system --ingroup netdata --home /var/lib/netdata --no-create-home netdata
-              mkdir -p /var/lib/netdata
           fi
 
-          for dir_name in /var/cache/netdata /var/lib/netdata; do
-              if ! dpkg-statoverride --list "$dir_name" >/dev/null 2>&1; then
-                  dpkg-statoverride --update --add netdata netdata 0755 "$dir_name"
-              fi
+          if ! dpkg-statoverride --list /var/lib/netdata >/dev/null 2>&1; then
+              dpkg-statoverride --update --add netdata netdata 0755 /var/lib/netdata
+          fi
 
-          done
+          if ! dpkg-statoverride --list /var/lib/netdata/www >/dev/null 2>&1; then
+              dpkg-statoverride --update --add root netdata 0755 /var/lib/netdata/www
+          fi
+
+          if ! dpkg-statoverride --list /var/cache/netdata >/dev/null 2>&1; then
+              dpkg-statoverride --update --add netdata netdata 0755 /var/cache/netdata
+          fi
+
         fi
 
-        chown -R root:netdata /usr/lib/@DEB_HOST_MULTIARCH@/netdata/plugins.d
-        setcap cap_dac_read_search,cap_sys_ptrace+ep /usr/lib/@DEB_HOST_MULTIARCH@/netdata/plugins.d/apps.plugin
-        chown netdata:adm /var/log/netdata
-        chmod 02750 /var/log/netdata
+        dpkg-statoverride --update --add --force root netdata 0775 /var/lib/netdata/registry
+        chown -R root:netdata /usr/share/netdata
+        chown -R root:netdata /usr/lib/x86_64-linux-gnu/netdata/plugins.d
+	chown -R root:netdata /var/lib/netdata/www
+        setcap cap_dac_read_search,cap_sys_ptrace+ep /usr/lib/x86_64-linux-gnu/netdata/plugins.d/apps.plugin
 
 #PERMS#
         ;;
