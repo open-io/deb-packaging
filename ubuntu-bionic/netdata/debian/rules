@@ -4,14 +4,7 @@
 # the location of plugins in /usr/lib
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 TOP = $(CURDIR)/debian/netdata
-
-export DH_VERBOSE = 1
-export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-
-export DEB_CFLAGS_MAINT_APPEND  = -Wall -O3
-export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
-
-MULTIARCH_INSTALL = debian/netdata.postinst
+TEMPTOP = $(CURDIR)/debian/tmp
 
 %:
 	# For jessie and beyond
@@ -25,34 +18,91 @@ MULTIARCH_INSTALL = debian/netdata.postinst
 	#dh $@ --with autoreconf
 
 override_dh_auto_configure:
-	dh_auto_configure -- --with-math
+	autoreconf -ivf
+	dh_auto_configure -- --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib \
+	--libexecdir=/usr/lib/x86_64-linux-gnu --with-user=netdata --with-math --with-zlib --with-webdir=/var/lib/netdata/www
 
-override_dh_auto_build:
-	dh_auto_build --parallel
-
-$(MULTIARCH_INSTALL): % : %.in
+debian/%.postinst: debian/%.postinst.in
 	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' $< > $@
 
-override_dh_install: $(MULTIARCH_INSTALL)
+override_dh_install: debian/netdata.postinst
 	dh_install
 
-override_dh_install-arch: $(MULTIARCH_INSTALL)
-	dh_install
-	# Remove unneeded .keep files
-	find "$(TOP)" -name .keep -delete
+	# Set the CUPS plugin install rule
+	#
+	mkdir -p $(TOP)-plugin-cups/usr/lib/x86_64-linux-gnu/netdata/plugins.d
+	mv -f $(TEMPTOP)/usr/lib/x86_64-linux-gnu/netdata/plugins.d/cups.plugin \
+	$(TOP)-plugin-cups/usr/lib/x86_64-linux-gnu/netdata/plugins.d/cups.plugin
 
-override_dh_install-indep:
-	dh_install
-	# Deactivate automatic update check
-	echo 0 > $(TOP)-data/usr/share/netdata/web/version.txt
+	# Set the rest of the software in the main package
+	#
+	cp -rp $(TEMPTOP)/usr $(TOP)
+	cp -rp $(TEMPTOP)/var $(TOP)
+	cp -rp $(TEMPTOP)/etc $(TOP)
 
-override_dh_fixperms-arch:
+	# Move files that local user shouldn't be editing to /usr/share/netdata
+	#
+	mkdir -p "$(TOP)/usr/share/netdata/www"
+	for D in $$(find "$(TOP)/var/lib/netdata/www/" -maxdepth 1 -type d -printf '%f '); do \
+		echo Relocating $$D; \
+		mv "$(TOP)/var/lib/netdata/www/$$D" "$(TOP)/usr/share/netdata/www/$$D"; \
+		ln -s "/usr/share/netdata/www/$$D" "$(TOP)/var/lib/netdata/www/$$D"; \
+	done
+
+	# Update postinst to set correct group for www files on installation.
+	# Should probably be dpkg-statoverride really, but that gets *really*
+	# messy. We also set all web files in /var as conffiles so an upgrade
+	# doesn't splat them.
+	#
+	for D in $$(find "$(TOP)/var/lib/netdata/www/" -maxdepth 1 -type f -printf '%f '); do \
+		echo Updating postinst for $$D; \
+		sed -i "s/^#PERMS#/chgrp netdata \/var\/lib\/netdata\/www\/$$D\n#PERMS#/g" \
+			$(CURDIR)/debian/netdata.postinst; \
+		echo "/var/lib/netdata/www/$$D" >> $(CURDIR)/debian/netdata.conffiles; \
+	done
+	sed -i "/^#PERMS#/d" $(CURDIR)/debian/netdata.postinst
+
+	# Install go
+	#
+	#OIO debian/install_go.sh $$(cat ${CURDIR}/packaging/go.d.version) $(TOP)/usr/lib/netdata $(TOP)/usr/lib/x86_64-linux-gnu/netdata
+
+override_dh_installdocs:
+	dh_installdocs
+
+	find . \
+		-name README.md \
+		-not -path './.travis/*' \
+		-not -path './debian/*' \
+		-not -path './contrib/*' \
+		-exec cp \
+		--parents \
+		--target $(TOP)/usr/share/doc/netdata/ \
+		{} \;
+
+override_dh_fixperms:
 	dh_fixperms
 
 	# apps.plugin should only be runnable by the netdata user. It will be
 	# given extra capabilities in the postinst script.
 	#
-	chmod 0754 $(TOP)/usr/lib/$(DEB_HOST_MULTIARCH)/netdata/plugins.d/apps.plugin
-	chmod 0644 $(TOP)/usr/lib/$(DEB_HOST_MULTIARCH)/netdata/plugins.d/loopsleepms.sh.inc
-	chmod 0644 $(TOP)/usr/lib/$(DEB_HOST_MULTIARCH)/netdata/charts.d/*.sh
-	chmod 0644 $(TOP)/usr/lib/$(DEB_HOST_MULTIARCH)/netdata/python.d/*.py
+	chmod 0754 $(TOP)/usr/lib/x86_64-linux-gnu/netdata/plugins.d/apps.plugin
+	chmod 0754 $(TOP)/usr/lib/x86_64-linux-gnu/netdata/plugins.d/freeipmi.plugin
+	chmod 0754 $(TOP)/usr/lib/x86_64-linux-gnu/netdata/plugins.d/perf.plugin
+	chmod 0754 $(TOP)/usr/lib/x86_64-linux-gnu/netdata/plugins.d/slabinfo.plugin
+	#OIO chmod 0750 $(TOP)/usr/lib/x86_64-linux-gnu/netdata/plugins.d/go.d.plugin
+
+	# CUPS plugin package
+	chmod 0750 $(TOP)-plugin-cups/usr/lib/x86_64-linux-gnu/netdata/plugins.d/cups.plugin
+
+override_dh_installlogrotate:
+	cp system/netdata.logrotate debian/netdata.logrotate
+	dh_installlogrotate
+
+override_dh_clean:
+	dh_clean
+
+	# Tidy up copied/generated files
+	#
+	-[ -r $(CURDIR)/debian/netdata.logrotate ] && rm $(CURDIR)/debian/netdata.logrotate
+	-[ -r $(CURDIR)/debian/netdata.postinst ] && rm $(CURDIR)/debian/netdata.postinst
+	-[ -r $(CURDIR)/debian/netdata.conffiles ] && rm $(CURDIR)/debian/netdata.conffiles

@@ -1,9 +1,21 @@
-netdata (1.9.0+dfsg-4) bionic; urgency=medium
+netdata (1.19.0-3) bionic; urgency=medium
 
-  * set max open file in systemd unit file (LimitNOFILE=30000)
+  * fix libexecdir in postinst script
 
- -- Jerome Loyet <jerome@openio.io>  Tue, 28 Jan 2020 14:05:27 +0000
+ -- Jerome Loyet <jerome@openio.io>  Sat, 08 Feb 2020 15:07:51 +0000
 
+netdata (1.19.0-2) bionic; urgency=medium
+
+  * fix libexecdir
+
+ -- Jerome Loyet <jerome@openio.io>  Sat, 08 Feb 2020 15:07:51 +0000
+
+netdata (1.19.0-1) bionic; urgency=medium
+
+  * update to netdata 1.19
+  * use buildfiles from upstream `contrib/debian directory`
+
+ -- Jerome Loyet <jerome@openio.io>  Sat, 08 Feb 2020 15:07:51 +0000
 netdata (1.9.0+dfsg-3) bionic; urgency=medium
 
   * use upstream's systemd unit file instead of debian/ubuntu's one
