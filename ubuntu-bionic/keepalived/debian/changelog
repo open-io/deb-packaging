@@ -1,10 +1,33 @@
-keepalived (1:2.0.10-1) bionic; urgency=high
+keepalived (1:2.0.19-1build1) bionic; urgency=medium
 
   * Repackage for bionic
 
- -- Vincent Legoll <vincent.legoll@openio.io>  Wed, 09 Oct 2019 10:20:05 +0100
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 18 Jan 2020 11:31:42 +0000
 
-keepalived (1:2.0.10-1) unstable; urgency=high
+keepalived (1:2.0.19-1build1) focal; urgency=medium
+
+  * Rebuild for libsnmp35.
+
+ -- Rafael David Tinoco <rafaeldtinoco@ubuntu.com>  Tue, 14 Jan 2020 18:04:49 +0000
+
+keepalived (1:2.0.19-1) unstable; urgency=medium
+
+  * [3e69686] New upstream version 2.0.19 (Closes: #947472)
+    - fixes execution of scripts with /bin/sh (Closes: #931617)
+    - fixes configuration parsing for SMTP sections (Closes: #859142)
+    - fixes stuck in receive queue (Closes: #942182)
+    - close netlink in checker (Closes: #775868)
+    - fix infinite loop when tracker script times out (Closes: #940036)
+    - fix loading of libipset (Closes: #878241)
+  * [6a81734] Move to debhelper(-compat) 12
+  * [02d9f5d] Bump standards version
+  * [239c70f] Fix location of the ip_vs header file
+  * [495b6e5] Disable dbus create instance feature
+  * [ec5c22c] Enable iptc support
+
+ -- Alexander Wirt <formorer@debian.org>  Sun, 05 Jan 2020 18:45:43 +0100
+
+keepalived (1:2.0.10-1) unstable; urgency=medium
 
   * [3b99bf9] Update vcs headers to salsa
   * [f697779] New upstream version 2.0.2
@@ -23,7 +46,7 @@ keepalived (1:2.0.10-1) unstable; urgency=high
   * [990c014] Improve keepalived service (Closes: #902978, #830196)
 
 
- -- Alexander Wirt <formorer@debian.org>  Fri, 30 Nov 2018 21:20:05 +0100
+ -- Alexander Wirt <formorer@debian.org>  Sun, 05 Jan 2020 18:21:34 +0100
 
 keepalived (1:1.3.9-1) unstable; urgency=medium
 

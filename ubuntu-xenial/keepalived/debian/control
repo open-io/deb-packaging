@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Alexander Wirt <formorer@debian.org>
 Build-Depends: autoconf,
-               debhelper-compat (=12),
+               debhelper (>= 11),
                libglib2.0-dev,
                libjson-c-dev,
                libnl-3-dev,
@@ -13,9 +13,8 @@ Build-Depends: autoconf,
                libssl-dev,
                libnl-nf-3-dev,
                libnfnetlink-dev,
-	       libnftnl-dev,
+               libnftnl-dev,
                libipset-dev,
-	       libip4tc-dev,
                iptables-dev,
                linux-libc-dev,
                pkg-config

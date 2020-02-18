@@ -1,8 +1,8 @@
 keepalived (1:2.0.19-1build1) xenial; urgency=medium
 
-  * Rebuild for xenial
+  * Repackage for xenial
 
- -- Vincent Legoll <vincent.legoll@gmail.com>  Tue, 18 Jan 2020 10:31:42 +0000
+ -- Vincent Legoll <vincent.legoll@openio.io>  Tue, 18 Jan 2020 10:31:42 +0000
 
 keepalived (1:2.0.19-1build1) focal; urgency=medium
 
