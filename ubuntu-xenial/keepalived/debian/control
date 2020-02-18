@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Alexander Wirt <formorer@debian.org>
 Build-Depends: autoconf,
-               debhelper (>= 11),
+               debhelper-compat (=12),
                libglib2.0-dev,
                libjson-c-dev,
                libnl-3-dev,
@@ -13,11 +13,13 @@ Build-Depends: autoconf,
                libssl-dev,
                libnl-nf-3-dev,
                libnfnetlink-dev,
+	       libnftnl-dev,
                libipset-dev,
+	       libip4tc-dev,
                iptables-dev,
                linux-libc-dev,
                pkg-config
-Standards-Version: 4.0.0
+Standards-Version: 4.4.1
 Vcs-Browser: https://salsa.debian.org/ipvs-team/pkg-keepalived
 Vcs-Git: https://salsa.debian.org/ipvs-team/pkg-keepalived.git
 Homepage: http://keepalived.org
@@ -26,6 +28,7 @@ Package: keepalived
 Section: admin
 Architecture: any
 Depends: iproute2, ${misc:Depends}, ${shlibs:Depends}
+Pre-Depends: ${misc:Pre-Depends}
 Recommends: ipvsadm
 Description: Failover and monitoring daemon for LVS clusters
  keepalived is used for monitoring real servers within a Linux
