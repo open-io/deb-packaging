@@ -43,8 +43,10 @@ case "$1" in
         dpkg-statoverride --update --add --force root netdata 0775 /var/lib/netdata/registry
         chown -R root:netdata /usr/share/netdata
         chown -R root:netdata /usr/lib/x86_64-linux-gnu/netdata/plugins.d
-	chown -R root:netdata /var/lib/netdata/www
+        chown -R root:netdata /var/lib/netdata/www
         setcap cap_dac_read_search,cap_sys_ptrace+ep /usr/lib/x86_64-linux-gnu/netdata/plugins.d/apps.plugin
+        setcap cap_sys_resource,cap_sys_admin+ep /usr/lib/x86_64-linux-gnu/netdata/plugins.d/ebpf_process.plugin
+        chmod 4550 /usr/lib/x86_64-linux-gnu/netdata/plugins.d/ebpf_process.plugin
 
 #PERMS#
         ;;

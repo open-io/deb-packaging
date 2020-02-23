@@ -1,3 +1,9 @@
+netdata (1.20.0-1) bionic; urgency=medium
+
+  * 1.20.0
+
+ -- Jerome Loyet <jerome@openio.io>  Sat, 22 Feb 2020 15:07:51 +0000
+
 netdata (1.19.0-3) bionic; urgency=medium
 
   * fix libexecdir in postinst script
