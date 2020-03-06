@@ -1,0 +1,5 @@
+oio-kibana (7.6.1-1) bionic; urgency=medium
+
+  * initial release
+
+ -- Jerome Loyet <jerome@openio.io>  Thu, 05 Mar 2020 14:10:02 +0000
