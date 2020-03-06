@@ -1,0 +1,19 @@
+Source: oio-alertmanager
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+Standards-Version: 3.9.8
+Homepage: https://prometheus.io/
+
+Package: oio-alertmanager
+Architecture: amd64
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Prometheus Alertmanager.
+ The Alertmanager handles alerts sent by client applications such as the
+ Prometheus server. It takes care of deduplicating, grouping, and routing them to
+ the correct receiver integration such as email, PagerDuty, or OpsGenie. It also
+ takes care of silencing and inhibition of alerts.

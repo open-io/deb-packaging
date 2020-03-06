@@ -1,0 +1,35 @@
+#!/usr/bin/make -f
+
+DESTDIR=$(CURDIR)/debian/oio-alertmanager
+
+include /usr/share/dpkg/default.mk
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	# do nothing in order to keep the content of the dist/ directory
+
+override_dh_auto_test:
+	# do nothing in order to prevent running anything
+
+override_dh_dwz:
+	# do nothing in order to prevent running anything
+
+override_dh_auto_build:
+	# do nothing in order to prevent running anything
+
+override_dh_strip:
+	# do nothing in order to prevent running anything
+
+override_dh_installsystemd:
+	# do nothing in order to prevent running anything
+
+override_dh_installdocs:
+	# do nothing in order to prevent running anything
+
+override_dh_auto_install:
+	install -D -m 755 alertmanager $(DESTDIR)/usr/sbin/oio-alertmanager
+	install -D -m 755 amtool $(DESTDIR)/usr/bin/oio-amtool
+	install -D -m 644 NOTICE $(DESTDIR)/usr/share/oio-alertmanager/NOTICE
+	install -D -m 644 alertmanager.yml $(DESTDIR)/usr/share/oio-alertmanager/alertmanager.yml
