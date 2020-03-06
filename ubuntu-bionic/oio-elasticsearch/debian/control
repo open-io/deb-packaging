@@ -1,0 +1,19 @@
+Source: oio-elasticsearch
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+Standards-Version: 3.9.8
+Homepage: ttps://www.elastic.co/
+
+Package: oio-elasticsearch
+Architecture: amd64
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Distributed RESTful search engine built for the cloud
+ Reference documentation can be found at
+ https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+ and the 'Elasticsearch: The Definitive Guide' book can be found at
+ https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html
