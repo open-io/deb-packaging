@@ -1,0 +1,17 @@
+Source: oio-loki
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+Standards-Version: 3.9.8
+Homepage: https://grafana.com/oss/loki/
+
+Package: oio-loki
+Architecture: amd64
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Set of components that can be composed into a fully featured logging stack.
+ Loki is a logging backend, optimized for users running Prometheus and Kubernetes
+ Loki is optimized to search, visualize and explore your logs natively in Grafana
