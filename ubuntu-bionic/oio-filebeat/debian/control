@@ -1,0 +1,15 @@
+Source: oio-filebeat
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+Standards-Version: 3.9.8
+Homepage: ttps://www.elastic.co/
+
+Package: oio-filebeat
+Architecture: amd64
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Filebeat sends log files to Logstash or directly to Elasticsearch.
