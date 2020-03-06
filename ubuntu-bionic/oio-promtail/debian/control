@@ -1,0 +1,21 @@
+Source: oio-promtail
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+Standards-Version: 3.9.8
+Homepage: https://grafana.com/oss/loki/
+
+Package: oio-promtail
+Architecture: amd64
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Logging agent for loki
+ Promtail is an agent which ships the contents of local logs to a private Loki
+ instance or Grafana Cloud. It is usually deployed to every machine that has
+ applications needed to be monitored. It primarily:
+  * Discovers targets
+  * Attaches labels to log streams
+  * Pushes them to the Loki instance.
