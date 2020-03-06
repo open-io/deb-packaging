@@ -1,0 +1,15 @@
+Source: oio-kibana
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+Standards-Version: 3.9.8
+Homepage: ttps://www.elastic.co/
+
+Package: oio-kibana
+Architecture: amd64
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Explore and visualize your Elasticsearch data
