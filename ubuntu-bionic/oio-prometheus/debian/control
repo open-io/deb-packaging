@@ -1,4 +1,4 @@
-Source: prometheus
+Source: oio-prometheus
 Section: net
 Priority: optional
 Maintainer: OpenIO
@@ -7,11 +7,9 @@ Build-Depends: debhelper (>= 12),
 Standards-Version: 3.9.8
 Homepage: https://prometheus.io/
 
-Package: prometheus
-Architecture: any
-Depends: adduser,
-         daemon | systemd-sysv,
-         ${misc:Depends},
+Package: oio-prometheus
+Architecture: amd64
+Depends: ${misc:Depends},
          ${shlibs:Depends},
 Built-Using: ${misc:Built-Using},
 Description: Monitoring system and time series database
