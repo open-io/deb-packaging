@@ -1,0 +1,35 @@
+#!/usr/bin/make -f
+
+DESTDIR=$(CURDIR)/debian/oio-netdata
+
+include /usr/share/dpkg/default.mk
+
+%:
+	dh $@
+
+override_dh_autoreconf:
+	# do nothing in order to prevent running anything
+
+override_dh_auto_configure:
+	sed -i "/^PACKAGE_NAME=/s/netdata/oio-netdata/" configure
+	sed -i "/^PACKAGE_TARNAME=/s/netdata/oio-netdata/" configure
+	sed -i "s@/netdata@/oio-netdata@" configure
+	dh_auto_configure -- --with-user=netdata --with-math --with-zlib --with-webdir=/usr/share/oio-netdata/web --libdir=/usr/lib --libexecdir=/usr/lib/x86_64-linux-gnu
+
+override_dh_auto_install:
+	dh_auto_install
+	find $(DESTDIR) -name .keep -delete
+	install -m 644 -p system/netdata.conf $(DESTDIR)/etc/oio-netdata/
+	install -m 644 -p collectors/charts.d.plugin/*.conf $(DESTDIR)/etc/oio-netdata/charts.d/
+	install -m 644 -p collectors/python.d.plugin/*.conf $(DESTDIR)/etc/oio-netdata/python.d/
+	install -m 644 -p collectors/charts.d.plugin/*.conf $(DESTDIR)/etc/oio-netdata/statsd.d/
+	install -m 644 -p system/netdata.logrotate $(DESTDIR)/usr/share/oio-netdata/
+	install -d $(DESTDIR)/var/lib/oio-netdata
+	install -d $(DESTDIR)/var/cache/oio-netdata
+	install -d $(DESTDIR)/var/log/oio-netdata
+	rm -rf $(DESTDIR)/etc/oio-netdata/{edit-config,health.d}
+	mv $(DESTDIR)/etc/oio-netdata $(DESTDIR)/usr/share/oio-netdata/config
+	mv $(DESTDIR)/usr/sbin/netdata $(DESTDIR)/usr/sbin/oio-netdata
+	mv $(DESTDIR)/usr/sbin/netdatacli $(DESTDIR)/usr/sbin/oio-netdatacli
+	rm $(DESTDIR)/usr/sbin/netdata-claim.sh
+	rm -rf $(DESTDIR)/etc
