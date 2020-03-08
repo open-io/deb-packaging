@@ -1,0 +1,16 @@
+Source: oio-grafana
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+Standards-Version: 3.9.8
+Homepage: https://grafana.com
+
+Package: oio-grafana
+Architecture: amd64
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Grafana is an open source, feature rich metrics dashboard and graph editor
+ for Graphite, InfluxDB & OpenTSDB.
