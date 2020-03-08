@@ -1,0 +1,34 @@
+Source: prometheus
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 9),
+Standards-Version: 3.9.8
+Homepage: https://prometheus.io/
+
+Package: prometheus
+Architecture: any
+Depends: adduser,
+         daemon | systemd-sysv,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Monitoring system and time series database
+ Prometheus is a systems and services monitoring system. It collects metrics
+ from configured targets at given intervals, evaluates rule expressions,
+ displays the results, and can trigger alerts if some condition is observed to
+ be true.
+ .
+ Prometheus' main distinguishing features as compared to other monitoring
+ systems are:
+ .
+  * A multi-dimensional data model (timeseries defined by metric name and set
+    of key/value dimensions).
+  * A flexible query language to leverage this dimensionality.
+  * No dependency on distributed storage; single server nodes are autonomous.
+  * Timeseries collection happens via a pull model over HTTP.
+  * Pushing timeseries is supported via an intermediary gateway.
+  * Targets are discovered via service discovery or static configuration.
+  * Multiple modes of graphing and dashboarding support.
+  * Federation support coming soon.
