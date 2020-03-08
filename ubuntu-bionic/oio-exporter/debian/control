@@ -1,0 +1,19 @@
+Source: oio-exporter
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+               dh-golang,
+               golang (>=1.10),
+               golang-github-jmespath-go-jmespath-dev,
+               curl
+Standards-Version: 3.9.8
+Homepage: https://github.com/open-io/oio-exporter
+
+Package: oio-exporter
+Architecture: amd64
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Prometheus exporter for OpenIO services
