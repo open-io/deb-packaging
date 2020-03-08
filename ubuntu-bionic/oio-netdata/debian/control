@@ -1,0 +1,37 @@
+Source: oio-netdata
+Section: net
+Priority: optional
+Maintainer: OpenIO
+Uploaders: OpenIO
+Build-Depends: debhelper (>= 12),
+               dpkg-dev (>= 1.13.19),
+               pkg-config,
+               zlib1g-dev,
+               uuid-dev,
+               libuv1-dev,
+               liblz4-dev,
+               libjudy-dev,
+               libssl-dev,
+               libmnl-dev,
+               libjson-c-dev,
+               libprotobuf-dev,
+               libprotoc-dev,
+               curl,
+               gcc,
+               g++
+Standards-Version: 3.9.8
+Homepage: http://my-netdata.io
+
+Package: oio-netdata
+Architecture: amd64
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+Built-Using: ${misc:Built-Using},
+Description: Real-time performance monitoring, done right
+ netdata is the fastest way to visualize metrics. It is a resource
+ efficient, highly optimized system for collecting and visualizing any
+ type of realtime timeseries data, from CPU usage, disk activity, SQL
+ queries, API calls, web site visitors, etc.
+ netdata tries to visualize the truth of now, in its greatest detail,
+ so that you can get insights of what is happening now and what just
+ happened, on your systems and applications.

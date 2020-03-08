@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+  configure)
+        if ! getent group netdata >/dev/null; then
+            addgroup --quiet --system netdata
+        fi
+
+        if ! getent passwd netdata >/dev/null; then
+            adduser --quiet --system --ingroup netdata --home /var/lib/netdata --no-create-home netdata
+        fi
+
+        chown -R root:netdata /usr/share/oio-netdata /usr/lib/oio-netdata /usr/lib/x86_64-linux-gnu/oio-netdata
+        chown -R root:netdata /var/lib/oio-netdata /var/cache/oio-netdata /var/log/oio-netdata
+        chmod -R g+w /var/lib/oio-netdata /var/cache/oio-netdata /var/log/oio-netdata
+
+        setcap cap_dac_read_search,cap_sys_ptrace+ep /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/apps.plugin
+        setcap cap_sys_resource,cap_sys_admin+ep /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/ebpf_process.plugin
+        chmod 4550 /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/ebpf_process.plugin
+        ;;
+esac
+exit 0
