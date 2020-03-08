@@ -1,0 +1,11 @@
+oio-exporter (0.0.2-1) bionic; urgency=medium
+
+  * update
+
+ -- Jerome Loyet <jerome@openio.io>  Mon, 30 Mar 2020 07:00:00 +0000
+
+oio-exporter (0.0.1-1) bionic; urgency=medium
+
+  * initial release
+
+ -- Jerome Loyet <jerome@openio.io>  Thu, 05 Mar 2020 14:10:02 +0000
