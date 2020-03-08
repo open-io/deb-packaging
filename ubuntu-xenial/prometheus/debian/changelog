@@ -1,0 +1,5 @@
+prometheus (2.10.0-1) xenial; urgency=medium
+
+  * initial 2.10.0
+
+ -- Jerome Loyet <jerome@openio.io>  Mon, 27 Feb 2020 10:10:02 +0000
