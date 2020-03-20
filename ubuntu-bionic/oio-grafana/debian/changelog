@@ -1,3 +1,9 @@
+oio-grafana (6.7.0-1) bionic; urgency=medium
+
+  * update to 6.7.0
+
+ -- Jerome Loyet <jerome@openio.io>  Thu, 20 Mar 2020 10:10:02 +0000
+
 oio-grafana (6.6.2-1) bionic; urgency=medium
 
   * initial release
