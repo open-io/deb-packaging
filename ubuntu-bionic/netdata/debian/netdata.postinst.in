@@ -38,6 +38,9 @@ case "$1" in
               dpkg-statoverride --update --add netdata netdata 0755 /var/cache/netdata
           fi
 
+          if ! dpkg-statoverride --list /var/log/netdata >/dev/null 2>&1; then
+              dpkg-statoverride --update --add netdata netdata 0755 /var/log/netdata
+          fi
         fi
 
         dpkg-statoverride --update --add --force root netdata 0775 /var/lib/netdata/registry
@@ -46,7 +49,7 @@ case "$1" in
         chown -R root:netdata /var/lib/netdata/www
         setcap cap_dac_read_search,cap_sys_ptrace+ep /usr/lib/x86_64-linux-gnu/netdata/plugins.d/apps.plugin
         setcap cap_sys_resource,cap_sys_admin+ep /usr/lib/x86_64-linux-gnu/netdata/plugins.d/ebpf_process.plugin
-        chmod 4550 /usr/lib/x86_64-linux-gnu/netdata/plugins.d/ebpf_process.plugin
+        chmod 4755 /usr/lib/x86_64-linux-gnu/netdata/plugins.d/ebpf_process.plugin
 
 #PERMS#
         ;;
