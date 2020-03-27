@@ -1,3 +1,15 @@
+netdata (1.20.0-3) bionic; urgency=medium
+
+  * add /var/cache/netdata
+
+ -- Jerome Loyet <jerome@openio.io>  Fri, 27 Mar 2020 08:07:51 +0000
+
+netdata (1.20.0-2) bionic; urgency=medium
+
+  * fix perm for /usr/lib/x86_64-linux-gnu/netdata/plugins.d/ebpf_process.plugin
+
+ -- Jerome Loyet <jerome@openio.io>  Sun, 23 Feb 2020 09:07:51 +0000
+
 netdata (1.20.0-1) bionic; urgency=medium
 
   * 1.20.0
