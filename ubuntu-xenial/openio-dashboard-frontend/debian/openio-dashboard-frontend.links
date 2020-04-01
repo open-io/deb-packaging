@@ -1,2 +1,0 @@
-/etc/nginx/sites-available/openio-dashboard_http /etc/nginx/sites-enabled/openio-dashboard_http
-/etc/nginx/sites-available/openio-dashboard_https /etc/nginx/sites-enabled/openio-dashboard_https

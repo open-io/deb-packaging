@@ -1,4 +1,0 @@
-version=3
-opts=uversionmangle=s/(rc|a|b|c)/~$1/,repacksuffix=+dfsg,dversionmangle=s/\+dfsg$//,\
-pgpsigurlmangle=s/$/.asc/ \
-https://pypi.debian.net/mock/mock-(.+)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))

@@ -1,1 +1,0 @@
-Test-Command: cd "$ADTTMP" ; python -c "from concurrent import futures; print futures.__author__"

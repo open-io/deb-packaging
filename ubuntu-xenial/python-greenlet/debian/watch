@@ -1,2 +1,0 @@
-version=4
-https://github.com/python-greenlet/greenlet/tags .*/archive/v?([0-9][0-9\.]*)\.(?:tgz|tbz2|txz|tar\.(?:gz|bz2|xz))

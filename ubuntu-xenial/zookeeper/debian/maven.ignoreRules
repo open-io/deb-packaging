@@ -1,3 +1,0 @@
-com.puppycrawl.tools checkstyle * * * *
-io.netty netty * * * *
-org.apache.yetus audience-annotations * * * *

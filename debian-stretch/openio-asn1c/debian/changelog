@@ -1,6 +1,0 @@
-openio-asn1c (0.9.27.1-1) stretch; urgency=medium
-
-  * Rebuilt for Debian Stretch
-
- -- Romain Acciari <romain.acciari@openio.io>  Mon, 30 Oct 2017 09:08:05 +0000
-

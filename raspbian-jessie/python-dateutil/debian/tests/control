@@ -1,3 +1,0 @@
-Tests: upstream
-Depends: @
-Restrictions: allow-stderr

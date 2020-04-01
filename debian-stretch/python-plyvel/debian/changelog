@@ -1,6 +1,0 @@
-python-plyvel (0.9-1) stretch; urgency=medium
-
-  * Rebuilt for Debian Stretch
-
- -- Romain Acciari <romain.acciari@openio.io>  Thu, 02 Nov 2017 13:53:00 +0000
-

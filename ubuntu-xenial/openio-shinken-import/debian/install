@@ -1,2 +1,0 @@
-/etc/modules/* /etc/shinken/modules/
-/openio_import /var/lib/shinken/modules/

@@ -1,4 +1,0 @@
-* Add missing-sources for all the libraries in web/{css,lib}
-# Update patches for 1.5.0
-  * Check if still necessary
-* Ensure backport compability

@@ -1,8 +1,0 @@
-Document: python-repoze.who
-Title: Documentation for repoze.who
-Abstract: Documentation for repoze.who: identification and authentication framework for Python WSGI applications
-Section: Programming/Python
-
-Format: HTML
-Index: /usr/share/doc/python-repoze.who/html/index.html
-Files: /usr/share/doc/python-repoze.who/html/*

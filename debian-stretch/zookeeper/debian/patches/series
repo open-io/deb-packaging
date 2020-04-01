@@ -1,9 +1,0 @@
-01-add-jtoaster-to-zooinspector.patch
-02-patch-build-system.patch
-03-disable-cygwin-detection.patch
-#04-ZOOKEEPER-705.patch
-05-ZOOKEEPER-770.patch
-06-ftbfs-gcc-4.7.patch
-#07-remove-non-reproducible-manifest-entries.patch
-#08-reproducible-javadoc.patch
-10-cppunit-pkg-config.patch

@@ -1,3 +1,0 @@
-version=3
-opts="uversionmangle=s/a/~a/" \
-http://pypi.debian.net/repoze.who/repoze.who-(.*).tar.gz

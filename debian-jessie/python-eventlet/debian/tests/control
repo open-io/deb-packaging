@@ -1,3 +1,0 @@
-Tests: listen listen3
-Depends: python-eventlet,
-         python3-eventlet,

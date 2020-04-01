@@ -1,3 +1,0 @@
-version=3
-https://github.com/openstack/swift/tags .*/(\d[\d\.]+.*)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
-https://tarballs.openstack.org/swift/ swift-(\d[\d\.]+.*)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))

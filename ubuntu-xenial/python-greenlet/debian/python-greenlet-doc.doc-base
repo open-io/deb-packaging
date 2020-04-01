@@ -1,9 +1,0 @@
-Document: python-greenlet
-Title: Greenlet Documentation
-Author: Kyle Ambroff
-Abstract: Describes how to use python-greenlet and the API offerred by it.
-Section: Programming/Python
-
-Format: HTML
-Index: /usr/share/doc/python-greenlet/html/index.html
-Files: /usr/share/doc/python-greenlet/html/greenlet.html

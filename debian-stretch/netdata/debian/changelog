@@ -1,6 +1,0 @@
-netdata (1.6.0-2) stretch; urgency=medium
-
-  * Rebuilt for Debian Stretch
-
- -- Romain Acciari <romain.acciari@openio.io>  Mon, 30 Oct 2017 14:55:49 +0000
-

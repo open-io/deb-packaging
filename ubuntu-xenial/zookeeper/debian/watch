@@ -1,4 +1,0 @@
-version=3
-opts=dversionmangle=s/\+dfsg\d+$//,pgpsigurlmangle=s/$/.asc/ \
-  https://archive.apache.org/dist/zookeeper/zookeeper-([0-9.]+)/zookeeper-([0-9.]+).tar.gz \
-  debian debian/orig-tar.sh

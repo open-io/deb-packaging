@@ -1,3 +1,0 @@
-version=3
-opts=filenamemangle=s/.+\/v?(\d\S*)\.tar\.gz/liberasurecode-$1\.tar\.gz/ \
-  https://github.com/openstack/liberasurecode/tags .*/v?(\d\S*)\.tar\.gz

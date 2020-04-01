@@ -1,4 +1,0 @@
-debian/conf/hosts etc/ansible
-examples/ansible.cfg etc/ansible
-usr/lib/python*
-usr/bin/*

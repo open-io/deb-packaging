@@ -1,9 +1,0 @@
-Document: python-pyinotify-reference-manual
-Title: Python Pyinotify Library Reference Manual
-Author: xxxx
-Abstract: Pyinotify is a simple library for accessing Linux inotify mechanism.
-Section: Programming/Python
-
-Format: HTML
-Index: /usr/share/doc/python-pyinotify-doc/html/index.html
-Files: /usr/share/doc/python-pyinotify-doc/html/*

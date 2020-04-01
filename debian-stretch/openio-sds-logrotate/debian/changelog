@@ -1,6 +1,0 @@
-openio-sds-logrotate (1.2-1) stretch; urgency=medium
-
-  * Rebuilt for Debian Stretch
-
- -- Romain Acciari <romain.acciari@openio.io>  Mon, 30 Oct 2017 14:50:40 +0000
-

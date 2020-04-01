@@ -1,3 +1,0 @@
-python35-compat.patch
-remove-argparse-requirement.patch
-only-use-unicodecsv-for-python2.patch
