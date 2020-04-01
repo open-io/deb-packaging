@@ -296,11 +296,19 @@ def parse_sources(sources, work):
                 filename = os.path.basename(src)
             wrkfn = os.path.join(work, filename)
             if src.startswith('http') or src.startswith('ftp'):
+                vprint('parse_sources(): downloading source file: ' + src + ', to: ' + wrkfn)
                 curl = ['curl', '-s', '-L', '-o', wrkfn, src]
                 subprocess.check_call(curl)
             else:
+                vprint('parse_sources(): copying local source file: ' + src + ', to: ' + wrkfn)
                 shutil.copy(src, wrkfn)
             wrkdst = os.path.join(work, dest)
+            if not os.path.exists(wrkfn):
+                print('ERROR: source file missing, something went wrong: ' + wrkfn)
+                sys.exit(1)
+            if not os.path.exists(wrkdst) or not os.path.isdir(wrkdst):
+                print('ERROR: target directory for extracting source file missing, something went wrong: ' + wrkdst)
+                sys.exit(1)
             tar = ['tar', 'xf', wrkfn, '-C', wrkdst]
             if taropt == 'strip1':
                 tar.extend("--strip-components", "1")
