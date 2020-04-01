@@ -202,7 +202,6 @@ def pbuilder_cfg_name(**kwargs):
 def pkgupload(work, **kwargs):
     '''Upload package to specified mirror (args.destmirror), if any'''
 
-    destmirror = kwargs['destmirror']
     print("### Uploading package(s)")
     pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
     vprint('Using *.dsc file: ' + pkgdsc)
@@ -211,9 +210,9 @@ def pkgupload(work, **kwargs):
     tgt_subdir = pbuilder_cfg_name(**kwargs)
     resultdir = os.path.join(_PBUILDER, tgt_subdir, 'result')
     if is_mini_dinstall_target(**kwargs):
-        upload_pkg_dput(destmirror, resultdir, pkg_basename, pkgdsc, **kwargs)
+        upload_pkg_dput(resultdir, pkg_basename, pkgdsc, **kwargs)
     else:
-        print('Unknown target repository:', destmirror)
+        print('Unknown target repository:', kwargs['destmirror'])
         sys.exit(1)
 
 
@@ -223,8 +222,14 @@ def is_mini_dinstall_target(**kwargs):
     consistent with the packaging release (repository branch or CLI argument)
     '''
 
-    tgt = kwargs['mirror']
+    tgt = kwargs['destmirror']
+    if '-' not in tgt:
+        print('Target repository does not contain any "-" character')
+        return False
     elts = tgt.split('-')
+    if len(elts) == 1:
+        print('Target repository is missing (at least) one "-"-separated element')
+        return False
     if len(elts) == 2:
         name, version = elts
     elif len(elts) == 3:
