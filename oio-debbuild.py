@@ -189,13 +189,14 @@ def doit(args):
 
 def pbuilder_cfg_name(**kwargs):
     '''Return the pbuilder config name'''
+    vprint('pbuilder_cfg_name(), kwargs:' + str(kwargs))
     pb_cfg_fmt = "{osdistid}-{osdistcodename}-{arch}-{release}"
     if kwargs['unstable']:
         pb_cfg_fmt += "-unstable"
     else:
         pb_cfg_fmt += "-stable"
     pb_cfg_fmt += "-{mirror}"
-    return pb_cfg_fmt.format(kwargs)
+    return pb_cfg_fmt.format(**kwargs)
 
 
 def pkgupload(work, **kwargs):
