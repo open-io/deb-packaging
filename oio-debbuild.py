@@ -36,11 +36,20 @@ import subprocess
 
 _VERBOSE = False
 
+(_ERROR, _WARN, _INFO) = range(3)
 
-def vprint(msg):
+_VPRINT_PREFIX = {
+    _ERROR: 'ERROR: ',
+    _WARN:  'WARNING: ',
+    _INFO:  'INFO: ',
+}
+
+def vprint(msg, severity=_INFO):
     '''Display verbose infos'''
-    if _VERBOSE:
-        print(msg)
+    if _VERBOSE or severity == _ERROR:
+        print(_VPRINT_PREFIX[severity] + msg)
+    if severity == _ERROR:
+        sys.exit(1)
 
 ################################################################################
 
@@ -106,68 +115,62 @@ def doit(args):
 
     # Arguments validation
     if mirror not in _MIRRORS:
-        print('### invalid mirror: %s' % mirror)
-        sys.exit(1)
+        vprint('Invalid mirror: %s' % mirror, _ERROR)
 
     if not os.path.isdir(basework):
-        print("### Working directory '%s' doesn't exist." % basework)
-        sys.exit(1)
+        vprint("Working directory '%s' doesn't exist." % basework, _ERROR)
 
     if osdistid not in _DISTIDS:
-        print("### Unknown distribution: %s" % osdistid)
-        sys.exit(1)
+        vprint("Unknown distribution: %s" % osdistid, _ERROR)
 
     if not os.path.exists(sources):
-        print("### No `sources` file available in this directory.")
-        sys.exit(1)
+        vprint("No `sources` file available in this directory.", _ERROR)
 
     if destmirror:
         if args.mirror in destmirror:
-            print('You should not pass the mirror name in "--destmirror" as '
-                  'it is automatically added')
-            sys.exit(1)
+            vprint('You should not pass the mirror name in "--destmirror"'
+                   ' as it is automatically added', _ERROR)
         if '-stable' in destmirror:
-            print('You should not pass "-stable" suffix in "--destmirror" as '
-                  'it is automatically added')
-            sys.exit(1)
+            vprint('You should not pass "-stable" suffix in "--destmirror" as '
+                   'it is automatically added', _ERROR)
 
     # Use arguments or environment variables
     if args.arch:
         arch = args.arch
-        print('Using --arch CLI argument: ' + arch)
+        vprint('Using --arch CLI argument: ' + arch)
     elif 'ARCH' in os.environ:
         arch = os.environ['ARCH']
-        print('Using ARCH environment variable: ' + arch)
+        vprint('Using ARCH environment variable: ' + arch)
     else:
         arch = subprocess.check_output(['dpkg', '--print-architecture'])
         arch = arch.strip().decode('ascii')
-        print('Defaulting to `dpkg --print-architecture`: ' + arch)
+        vprint('Defaulting to `dpkg --print-architecture`: ' + arch)
 
     if args.release:
         release = args.release
-        print('Using --release CLI argument: ' + release)
+        vprint('Using --release CLI argument: ' + release)
     elif 'SDS_RELEASE' in os.environ:
         release = os.environ['SDS_RELEASE']
-        print('Using SDS_RELEASE environment variable: ' + release)
+        vprint('Using SDS_RELEASE environment variable: ' + release)
     else:
         git_branch = ['git', 'rev-parse', '--abbrev-ref', 'HEAD']
         release = subprocess.check_output(git_branch).strip().decode('ascii')
-        print('Using guessed version from current git repo branch: ' + release)
+        vprint('Using guessed version from current git repo branch: ' + release)
 
-    print("### Recreating working directory")
+    vprint("Recreating working directory")
 
     shutil.rmtree(work, ignore_errors=True)
     os.makedirs(work)
 
-    print("### Downloading source files")
+    vprint("Downloading source files")
 
     wrkdst = parse_sources(sources, work)
 
-    print("### Building source package")
+    vprint("Building source package")
 
     dpkg_buildpackage(wrkdst, work)
 
-    print("### Building package")
+    vprint("Building package")
 
     pb_cfg_kwargs = {
         'osdistid': osdistid,
@@ -184,7 +187,7 @@ def doit(args):
     if destmirror:
         pkgupload(work=work, **pb_cfg_kwargs)
     else:
-        print("### Not uploading package(s)")
+        vprint("Not uploading package(s)")
 
 
 def pbuilder_cfg_name(**kwargs):
@@ -202,7 +205,7 @@ def pbuilder_cfg_name(**kwargs):
 def pkgupload(work, **kwargs):
     '''Upload package to specified mirror (args.destmirror), if any'''
 
-    print("### Uploading package(s)")
+    vprint("Uploading package(s)")
     pkgdsc = [f for f in os.listdir(work) if f.endswith('.dsc')][0]
     vprint('Using *.dsc file: ' + pkgdsc)
     dsc = os.path.basename(pkgdsc)
@@ -212,8 +215,7 @@ def pkgupload(work, **kwargs):
     if is_mini_dinstall_target(**kwargs):
         upload_pkg_dput(resultdir, pkg_basename, pkgdsc, **kwargs)
     else:
-        print('Unknown target repository:', kwargs['destmirror'])
-        sys.exit(1)
+        vprint('Unknown target repository:', kwargs['destmirror'], _ERROR)
 
 
 def is_mini_dinstall_target(**kwargs):
@@ -224,34 +226,37 @@ def is_mini_dinstall_target(**kwargs):
 
     tgt = kwargs['destmirror']
     if '-' not in tgt:
-        print('Target repository does not contain any "-" character')
+        vprint('Target repository does not contain any "-" character', _WARN)
         return False
     elts = tgt.split('-')
     if len(elts) == 1:
-        print('Target repository is missing (at least) one "-"-separated element')
+        vprint('Target repository is missing (at least) one "-"-separated '
+               'element', _WARN)
         return False
     if len(elts) == 2:
         name, version = elts
     elif len(elts) == 3:
         name, version, unstable = elts
         if unstable != 'unstable':
-            print("Target repository should ends with '-unstable' : %s" % tgt)
+            vprint("Target repository should ends with '-unstable' : %s" % tgt,
+                   _WARN)
             return False
         if not kwargs['unstable']:
-            print('You did not pass the "-u / --unstable" CLI argument, but '
-                  'it looks like you should have: %s' % tgt)
-            # No return here, this one is only a warning
+            vprint('You did not pass the "-u / --unstable" CLI argument, but '
+                   'it looks like you should have: %s' % tgt, _WARN)
+            # No return here, this one is only a harmless warning
     else:
-        print('Target repository name contains too much "-" characters:', tgt)
+        vprint('Target repository name contains too much "-" characters:', tgt,
+               _WARN)
         return False
     if version != kwargs['release']:
-        print('WARNING: target repository (%s) / release (%s) mismatch' %
-              (version, kwargs['release']))
+        vprint('Target repository (%s) / release (%s) mismatch' %
+               (version, kwargs['release']), _WARN)
     if name not in _MDI_PROJECTS:
-        print('Unknown mini-dinstall project:', name)
+        vprint('Unknown mini-dinstall project: ' + name, _WARN)
         return False
     if version not in _MDI_VERSIONS:
-        print('Unknown mini-dinstall version:', version)
+        vprint('Unknown mini-dinstall version: ' + version, _WARN)
         return False
     return True
 
@@ -260,17 +265,16 @@ def upload_pkg_dput(resultdir, pkg_basename, pkgdsc, **kwargs):
     '''Use `dput` & `mini-dinstall` to upload package to mirror'''
 
     repo_codename = '{osdistid}-openio-{destmirror}'.format(**kwargs)
-    print("### Uploading package %s to repository %s" % (pkgdsc, repo_codename))
+    vprint("Uploading package %s to repository %s" % (pkgdsc, repo_codename))
     dput = ['dput', '-f', '-u', repo_codename]
     changes_file_glob = os.path.join(resultdir, pkg_basename + '*.changes')
     changes_fn = glob.glob(changes_file_glob)
     if not changes_fn:
-        print('No match for: ' + changes_file_glob)
-        sys.exit(1)
+        vprint('No match for: ' + changes_file_glob, _ERROR)
     else:
         vprint('Found *.changes files: ' + str(changes_fn))
     dput.extend(changes_fn)
-    vprint(str(dput))
+    vprint('Launching dput command: ' + str(dput))
     subprocess.run(dput).check_returncode()
 
 
@@ -287,7 +291,7 @@ def parse_sources(sources, work):
                 continue
             items = line.split()
             if len(items) != 2:
-                vprint("Malformed 'sources' file: " + sources)
+                vprint("Malformed 'sources' file: " + sources, _ERROR)
             # VL: here we ignore dest & taropts as they are not currently used
             src, filename, dest, taropt = items[0], items[1], '', ''
             if dest == '-':
@@ -296,22 +300,25 @@ def parse_sources(sources, work):
                 filename = os.path.basename(src)
             wrkfn = os.path.join(work, filename)
             if src.startswith('http') or src.startswith('ftp'):
-                vprint('parse_sources(): downloading source file: ' + src + ', to: ' + wrkfn)
+                vprint('parse_sources(): downloading source file: ' + src +
+                       ', to: ' + wrkfn)
                 curl = ['curl', '-s', '-L', '-o', wrkfn, src]
                 subprocess.check_call(curl)
             else:
-                vprint('parse_sources(): copying local source file: ' + src + ', to: ' + wrkfn)
+                vprint('parse_sources(): copying local source file: ' + src +
+                       ', to: ' + wrkfn)
                 shutil.copy(src, wrkfn)
             wrkdst = os.path.join(work, dest)
             if not os.path.exists(wrkfn):
-                print('ERROR: source file missing, something went wrong: ' + wrkfn)
-                sys.exit(1)
+                vprint('Source file missing, something went wrong: ' + wrkfn,
+                       _ERROR)
             if not os.path.exists(wrkdst) or not os.path.isdir(wrkdst):
-                print('ERROR: target directory for extracting source file missing, something went wrong: ' + wrkdst)
-                sys.exit(1)
+                vprint('Target directory for extracting source file missing, '
+                       'something went wrong: ' + wrkdst, _ERROR)
             tar = ['tar', 'xf', wrkfn, '-C', wrkdst]
             if taropt == 'strip1':
                 tar.extend("--strip-components", "1")
+            vprint('Launching tar command: ' + str(tar))
             subprocess.check_call(tar)
 
             # Assume a single tarball in sources
@@ -337,6 +344,7 @@ def dpkg_buildpackage(wrkdst, work):
     vprint('dpkg_buildpackage(), work: ' + str(os.listdir(work)))
 
     dpkg_bp = ['dpkg-buildpackage', '-S', '-us', '-uc', '-nc', '-d']
+    vprint('Launching dpkg-buildpackage command: ' + str(dpkg_bp))
     subprocess.run(dpkg_bp, cwd=tardir).check_returncode()
 
 
@@ -345,7 +353,7 @@ def pbuilder(pkgname, work, **kwargs):
 
     pbuilder_cmd = ['sudo', '-E', 'pbuilder', 'build']
     if pkgname in _PRIVATE_PKGS:
-        print("### Do not build source code package for closed-source project")
+        vprint("Do not build source code package for closed-source project")
         pbuilder_cmd.extend(["--debbuildopts", "-b"])
     pbuilder_cmd.extend(glob.glob(os.path.join(work, '*.dsc')))
     env = dict(os.environ)
@@ -411,7 +419,7 @@ def validate_args(args):
     global _VERBOSE # pylint: disable=global-statement
     if args.verbose:
         _VERBOSE = True
-        vprint('verbose mode')
+        vprint('Verbose mode')
 
 ################################################################################
 
