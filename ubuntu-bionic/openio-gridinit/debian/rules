@@ -34,6 +34,7 @@ override_dh_auto_configure:
 
 override_dh_install:
 	dh_install --sourcedir=debian/openio-gridinit 
+	install -m 755 tools/gridinit-syslog-logger debian/openio-gridinit/usr/bin/gridinit-syslog-logger
 
 # debmake generated override targets
 # This is example for Cmake (See http://bugs.debian.org/641051 )

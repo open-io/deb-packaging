@@ -10,7 +10,7 @@ Homepage: <insert the upstream URL, if relevant>
 
 Package: openio-gridinit
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3-setproctitle
 Description: OpenIO gridinit daemon
  Init program used by the  OpenIO Open Source Project. It forks processes
  and respawns them as soon as they die. It also provides a simple management
