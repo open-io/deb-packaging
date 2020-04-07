@@ -1,3 +1,21 @@
+oio-netdata (1.21.0-4) bionic; urgency=medium
+
+  * use user openio instead of creating netdata user
+
+ -- Jerome Loyet <jerome@openio.io>  Tue, 07 Apr 2020 07:00:00 +0000
+
+oio-netdata (1.21.0-3) bionic; urgency=medium
+
+  * create missing /var/lib/oio-netdata/registry
+
+ -- Jerome Loyet <jerome@openio.io>  Tue, 07 Apr 2020 07:00:00 +0000
+
+oio-netdata (1.21.0-2) bionic; urgency=medium
+
+  * fix setcap dependancy
+
+ -- Jerome Loyet <jerome@openio.io>  Tue, 07 Apr 2020 07:00:00 +0000
+
 oio-netdata (1.21.0-1) bionic; urgency=medium
 
   * update

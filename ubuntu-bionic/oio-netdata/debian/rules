@@ -14,7 +14,8 @@ override_dh_auto_configure:
 	sed -i "/^PACKAGE_NAME=/s/netdata/oio-netdata/" configure
 	sed -i "/^PACKAGE_TARNAME=/s/netdata/oio-netdata/" configure
 	sed -i "s@/netdata@/oio-netdata@" configure
-	dh_auto_configure -- --with-user=netdata --with-math --with-zlib --with-webdir=/usr/share/oio-netdata/web --libdir=/usr/lib --libexecdir=/usr/lib/x86_64-linux-gnu
+	sed -i '/^    program_name = /s/"netdata"/"oio-netdata"/' daemon/main.c
+	dh_auto_configure -- --with-user=openio --with-math --with-zlib --with-webdir=/usr/share/oio-netdata/web --libdir=/usr/lib --libexecdir=/usr/lib/x86_64-linux-gnu
 
 override_dh_auto_install:
 	dh_auto_install
