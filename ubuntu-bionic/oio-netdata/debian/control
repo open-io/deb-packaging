@@ -26,7 +26,8 @@ Package: oio-netdata
 Architecture: amd64
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Built-Using: ${misc:Built-Using},
+         libcap2-bin,
+Built-Using: ${misc:Built-Using}
 Description: Real-time performance monitoring, done right
  netdata is the fastest way to visualize metrics. It is a resource
  efficient, highly optimized system for collecting and visualizing any
