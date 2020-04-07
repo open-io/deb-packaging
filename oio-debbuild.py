@@ -31,6 +31,8 @@ import glob
 import shutil
 import argparse
 import subprocess
+from zipfile import ZipFile
+import tarfile
 
 ################################################################################
 
@@ -293,9 +295,7 @@ def parse_sources(sources, work):
             if len(items) != 2:
                 vprint("Malformed 'sources' file: " + sources, _ERROR)
             # VL: here we ignore dest & taropts as they are not currently used
-            src, filename, dest, taropt = items[0], items[1], '', ''
-            if dest == '-':
-                dest = ''
+            src, filename = items[0], items[1]
             if not filename:
                 filename = os.path.basename(src)
             wrkfn = os.path.join(work, filename)
@@ -308,44 +308,46 @@ def parse_sources(sources, work):
                 vprint('parse_sources(): copying local source file: ' + src +
                        ', to: ' + wrkfn)
                 shutil.copy(src, wrkfn)
-            wrkdst = os.path.join(work, dest)
-            if not os.path.exists(wrkfn):
-                vprint('Source file missing, something went wrong: ' + wrkfn,
-                       _ERROR)
-            if not os.path.exists(wrkdst) or not os.path.isdir(wrkdst):
-                vprint('Target directory for extracting source file missing, '
-                       'something went wrong: ' + wrkdst, _ERROR)
-            tar = ['tar', 'xf', wrkfn, '-C', wrkdst]
-            if taropt == 'strip1':
-                tar.extend("--strip-components", "1")
-            vprint('Launching tar command: ' + str(tar))
-            subprocess.check_call(tar)
 
-            # Assume a single tarball in sources
-            return wrkdst
+            # convert zip files to tar.gz as dpkg does not undestand zip files (wtf ?)
+            if filename.endswith('.zip'):
+                filename = filename.replace('.zip', '.tar.gz')
+                zipfn = wrkfn
+                wrkfn = os.path.join(work, filename)
+
+                vprint("Opening zip file for reading " + zipfn)
+                with ZipFile(zipfn) as zipf:
+                    vprint("Opening tar file for writing " + wrkfn)
+                    with tarfile.open(wrkfn, 'w:gz') as tarf:
+                        for zip_info in zipf.infolist():
+                            vprint("found file " + zip_info.filename + " size=" + str(zip_info.file_size))
+                            tar_info = tarfile.TarInfo(name=zip_info.filename)
+                            tar_info.size = zip_info.file_size
+                            # TODO handle copying mtime, rights, attr, ...
+                            #  tar_info.mtime = time.mktime(list(zip_info.date_time) + [-1, -1, -1])
+                            tarf.addfile(tarinfo=tar_info, fileobj=zipf.open(zip_info.filename))
+                os.unlink(zipfn)
+
+
+    return work
 
 
 def dpkg_buildpackage(wrkdst, work):
     '''Build source code package with dpkg-buildpackage'''
 
-    dircont = os.listdir(wrkdst)
-    vprint('dpkg_buildpackage(), dircont: ' + str(dircont))
+    vprint("dpkg_buildpackage wrkdst:" + wrkdst + ", work:" + work)
 
-    isdir = os.path.isdir
-    join = os.path.join
+    builddir = os.path.join(wrkdst, 'builddir')
+    debdir = os.path.join(builddir, 'debian')
 
-    tarsubdir = [d for d in dircont if isdir(join(wrkdst, d))][0]
-    tardir = join(wrkdst, tarsubdir)
-    debdir = join(tardir, 'debian')
-    shutil.rmtree(debdir, ignore_errors=True)
+    shutil.rmtree(builddir, ignore_errors=True)
+    os.mkdir(builddir)
     shutil.copytree('debian', debdir)
 
-    vprint('dpkg_buildpackage(), tardir: ' + str(os.listdir(tardir)))
-    vprint('dpkg_buildpackage(), work: ' + str(os.listdir(work)))
 
     dpkg_bp = ['dpkg-buildpackage', '-S', '-us', '-uc', '-nc', '-d']
     vprint('Launching dpkg-buildpackage command: ' + str(dpkg_bp))
-    subprocess.run(dpkg_bp, cwd=tardir).check_returncode()
+    subprocess.run(dpkg_bp, cwd=builddir).check_returncode()
 
 
 def pbuilder(pkgname, work, **kwargs):
