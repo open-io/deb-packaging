@@ -28,7 +28,7 @@ override_dh_auto_build:
 	mkdir -p go/src/github.com/open-io
 	ln -s ../../../.. go/src/github.com/open-io/oio-exporter
 	ln -s /usr/share/gocode/src/github.com/jmespath go/src/github.com/jmespath
-	GOPATH=$(shell pwd)/go go build -ldflags="-X 'main.HEALTHCHECKS=$(shell base64 -w0 ./healthchecks.yml)' -X 'main.LOGPATTERNS=$(shell base64 -w0 ./log_patterns.yml)'" oio-exporter.go
+	GOPATH=$(shell pwd)/go make build
 
 override_dh_strip:
 	# do nothing in order to prevent running anything
@@ -44,3 +44,4 @@ override_dh_auto_install:
 	install -D -m 644 README.md $(DESTDIR)/usr/share/oio-exporter/README.md
 	install -D -m 644 healthchecks.yml $(DESTDIR)/usr/share/oio-exporter/healthcheacks.yml
 	install -D -m 644 log_patterns.yml $(DESTDIR)/usr/share/oio-exporter/log_patterns.yml
+	install -D -m 644 versions.yml $(DESTDIR)/usr/share/oio-exporter/versions.yml
