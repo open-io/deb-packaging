@@ -1,3 +1,9 @@
+oio-kibana (7.6.2-2) bionic; urgency=medium
+
+  * add missing jre dependency
+
+ -- Jerome Loyet <jerome@openio.io>  Wed, 07 Apr 2020 07:00:00 +0000
+
 oio-kibana (7.6.2-1) bionic; urgency=medium
 
   * update
