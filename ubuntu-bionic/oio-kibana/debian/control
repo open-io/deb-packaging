@@ -11,5 +11,6 @@ Package: oio-kibana
 Architecture: amd64
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         default-jre-headless
 Built-Using: ${misc:Built-Using},
 Description: Explore and visualize your Elasticsearch data
