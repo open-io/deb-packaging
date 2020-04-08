@@ -11,5 +11,6 @@ Package: oio-filebeat
 Architecture: amd64
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         default-jre-headless
 Built-Using: ${misc:Built-Using},
 Description: Filebeat sends log files to Logstash or directly to Elasticsearch.
