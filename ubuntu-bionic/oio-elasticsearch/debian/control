@@ -11,6 +11,7 @@ Package: oio-elasticsearch
 Architecture: amd64
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         default-jre-headless
 Built-Using: ${misc:Built-Using},
 Description: Distributed RESTful search engine built for the cloud
  Reference documentation can be found at
