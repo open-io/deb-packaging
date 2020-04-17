@@ -17,18 +17,8 @@ override_dh_dwz:
 	# do nothing in order to prevent running anything
 
 override_dh_auto_build:
-	mkdir -p go/src/github.com/aws/aws-sdk-go
-	(cd go/src/github.com/aws/aws-sdk-go && curl -Lqsko - https://github.com/aws/aws-sdk-go/archive/v1.29.11.tar.gz | tar -xzf - --strip-components=1)
-	mkdir -p go/src/github.com/go-redis/redis
-	(cd go/src/github.com/go-redis/redis && curl -Lqsko - https://github.com/go-redis/redis/archive/v6.15.7.tar.gz | tar -xzf - --strip-components=1)
-	mkdir -p go/src/github.com/hpcloud/tail
-	(cd go/src/github.com/hpcloud/tail && curl -Lqsko - https://github.com/hpcloud/tail/archive/v1.0.0.tar.gz | tar -xzf - --strip-components=1)
-	mkdir -p go/src/gopkg.in/yaml.v2
-	(cd go/src/gopkg.in/yaml.v2 && curl -Lqsko - https://github.com/go-yaml/yaml/archive/v2.2.8.tar.gz | tar -xzf - --strip-components=1)
-	mkdir -p go/src/github.com/open-io
-	ln -s ../../../.. go/src/github.com/open-io/oio-exporter
-	ln -s /usr/share/gocode/src/github.com/jmespath go/src/github.com/jmespath
-	GOPATH=$(shell pwd)/go make build
+	curl -Lqsko - https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz | tar -xzf - go/bin go/pkg go/src
+	GOPATH=$(CURDIR)/go PATH=$(CURDIR)/go/bin:${PATH} GOCACHE=$(CURDIR)/go/.cache make build
 
 override_dh_strip:
 	# do nothing in order to prevent running anything

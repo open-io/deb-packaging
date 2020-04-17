@@ -4,10 +4,8 @@ Priority: optional
 Maintainer: OpenIO
 Uploaders: OpenIO
 Build-Depends: debhelper (>= 12),
-               dh-golang,
-               golang (>=1.10),
-               golang-github-jmespath-go-jmespath-dev,
-               curl
+               curl,
+               ca-certificates
 Standards-Version: 3.9.8
 Homepage: https://github.com/open-io/oio-exporter
 
