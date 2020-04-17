@@ -7,7 +7,3 @@ debian-packaging/0006-Drop-tests-with-timing-issues.patch
 debian-packaging/0007-Set-Debian-configuration-defaults.patch
 0009-Drop-memory-efficiency-tests-on-advice-from-upstream.patch
 0010-Use-get_current_dir_name-over-PATHMAX-etc.patch
-CVE-2018-11218.patch
-CVE-2018-11219.patch
-CVE-2018-12326.patch
-0012-CVE-2019-10192.patch
