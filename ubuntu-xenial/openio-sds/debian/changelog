@@ -1,3 +1,9 @@
+openio-sds (5.4.0-2) xenial; urgency=medium
+
+  * New release
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 04 May 2020 09:39:34 +0000
+
 openio-sds (5.2.4-1) xenial; urgency=medium
 
   * New release

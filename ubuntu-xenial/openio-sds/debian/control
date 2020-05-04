@@ -40,7 +40,7 @@ Depends:
  ${shlibs:Depends}
  , ${misc:Depends}
  , python-xattr (>= 0.8.0) | python-pyxattr (>= 0.4.0)
- , python-eventlet (>= 0.15.2)
+ , python-eventlet (>= 0.20.0-4oio1)
  , gunicorn (>= 19.4.5)
  , python-requests (>= 2.6.0)
  , python-flask
@@ -64,7 +64,6 @@ Depends:
  , libleveldb1v5
  , python-simplejson (>= 2.0.9)
  , python-flask
- , python-eventlet
  , python-redis
  , cliff-tablib
  , python-cliff (>= 1.13)

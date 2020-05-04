@@ -1,8 +1,8 @@
-openio-sds (5.2.4-1) bionic; urgency=medium
+openio-sds (5.4.0-2) bionic; urgency=medium
 
   * New release
 
- -- Michael Bonfils <michael.bonfils@openio.io>  Wed, 11 Mar 2020 09:39:34 +0000
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 04 May 2020 09:39:34 +0000
 
 openio-sds (4.4.1-1) bionic; urgency=medium
 

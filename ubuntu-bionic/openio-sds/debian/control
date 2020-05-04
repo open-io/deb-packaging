@@ -40,7 +40,7 @@ Depends:
  ${shlibs:Depends}
  , ${misc:Depends}
  , python-xattr (>= 0.8.0) | python-pyxattr (>= 0.4.0)
- , python-eventlet (>= 0.15.2)
+ , python-eventlet (>= 0.20.0-4oio1)
  , gunicorn (>= 19.4.5)
  , python-requests (>= 2.6.0)
  , python-redis
@@ -61,7 +61,6 @@ Depends:
  , libsqlite3-0 (>= 3.7.11)
  , libleveldb1v5
  , python-simplejson (>= 2.0.9)
- , python-eventlet
  , python-redis
  , python-cliff (>= 1.13)
  , python-tablib
