@@ -41,7 +41,7 @@ Depends:
  ${shlibs:Depends}
  , ${misc:Depends}
  , python-xattr (>= 0.8.0) | python-pyxattr (>= 0.4.0)
- , python-eventlet (>= 0.15.2)
+ , python-eventlet (>= 0.20.0-4oio1)
  , python-requests (>= 2.6.0)
  , python-zookeeper (>= 3.5.6)
  , python-pbr
@@ -54,7 +54,7 @@ Depends:
  , python-pyeclib (>= 1.2.0)
  , python-concurrent.futures
  , python3-xattr (>= 0.8.0) | python3-pyxattr (>= 0.4.0)
- , python3-eventlet (>= 0.15.2)
+ , python3-eventlet (>= 0.20.0-4oio1)
  , python3-requests (>= 2.6.0)
  , python3-zookeeper (>= 3.5.6)
  , python3-pbr
