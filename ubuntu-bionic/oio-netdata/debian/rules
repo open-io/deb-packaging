@@ -19,7 +19,6 @@ override_dh_auto_configure:
 
 override_dh_auto_install:
 	dh_auto_install
-	rm $(DESTDIR)/usr/libexec/netdata/netdata-switch-dashboard.sh
 	find $(DESTDIR) -name .keep -delete
 	install -m 644 -p system/netdata.conf $(DESTDIR)/etc/oio-netdata/
 	install -m 644 -p collectors/charts.d.plugin/*.conf $(DESTDIR)/etc/oio-netdata/charts.d/
