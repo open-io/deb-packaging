@@ -18,7 +18,9 @@ Build-Depends: debhelper (>= 12),
                libprotoc-dev,
                curl,
                gcc,
-               g++
+               g++,
+               cmake,
+               ca-certificates
 Standards-Version: 3.9.8
 Homepage: http://my-netdata.io
 
