@@ -15,11 +15,14 @@ override_dh_auto_configure:
 	sed -i "/^PACKAGE_TARNAME=/s/netdata/oio-netdata/" configure
 	sed -i "s@/netdata@/oio-netdata@" configure
 	sed -i '/^    program_name = /s/"netdata"/"oio-netdata"/' daemon/main.c
-	dh_auto_configure -- --with-user=openio --with-math --with-zlib --with-webdir=/usr/share/oio-netdata/web --libdir=/usr/lib --libexecdir=/usr/lib/x86_64-linux-gnu
+	./packaging/bundle-mosquitto.sh .
+	./packaging/bundle-lws.sh .
+	dh_auto_configure -- --disable-cloud --with-user=openio --with-math --with-zlib --with-webdir=/usr/share/oio-netdata/web --libdir=/usr/lib --libexecdir=/usr/lib/x86_64-linux-gnu
 
 override_dh_auto_install:
 	dh_auto_install
 	find $(DESTDIR) -name .keep -delete
+	./packaging/bundle-dashboard.sh . $(DESTDIR)/usr/share/oio-netdata/web/
 	install -m 644 -p system/netdata.conf $(DESTDIR)/etc/oio-netdata/
 	install -m 644 -p collectors/charts.d.plugin/*.conf $(DESTDIR)/etc/oio-netdata/charts.d/
 	install -m 644 -p collectors/python.d.plugin/*.conf $(DESTDIR)/etc/oio-netdata/python.d/
