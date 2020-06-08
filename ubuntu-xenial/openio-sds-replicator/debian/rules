@@ -2,7 +2,6 @@
 # See debhelper(7) (uncomment to enable)
 # output every command that modifies files on the build system.
 #DH_VERBOSE = 1
-JARVERSION = $(shell cat version.txt)
 DESTDIR=$(CURDIR)/debian/openio-sds-replicator
 
 # Prevent gradle from writing into ${HOME}
@@ -24,7 +23,7 @@ include /usr/share/dpkg/default.mk
 
 # main packaging script based on dh7 syntax
 %:
-	dh $@ 
+	dh $@
 
 # debmake generated override targets
 # This is example for Cmake (See http://bugs.debian.org/641051 )
@@ -41,7 +40,4 @@ override_dh_auto_build:
 
 override_dh_auto_install:
 	mkdir -pv $(DESTDIR)/usr/share/openio-sds-replicator
-	cp -va build/libs/openio-sds-replicator-${JARVERSION}-*all.jar $(DESTDIR)/usr/share/openio-sds-replicator
-	cd $(DESTDIR)/usr/share/openio-sds-replicator && \
-	[ -e openio-sds-replicator-${JARVERSION}-*all.jar ] && \
-	ln -sf openio-sds-replicator-${JARVERSION}-*all.jar openio-sds-replicator-all.jar
+	cp -va build/libs/openio-sds-replicator-all.jar $(DESTDIR)/usr/share/openio-sds-replicator
