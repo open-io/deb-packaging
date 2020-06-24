@@ -1,3 +1,9 @@
+oio-prometheus (2.19.1-1) bionic; urgency=medium
+
+  * update
+
+ -- Jerome Loyet <jerome@openio.io>  Wed, 24 Jun 2020 07:00:00 +0000
+
 oio-prometheus (2.19.0-1) bionic; urgency=medium
 
   * update
