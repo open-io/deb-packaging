@@ -12,9 +12,9 @@ case "$1" in
         chmod 0550 /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/apps.plugin
         chown root:openio /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/apps.plugin
 
-        setcap cap_sys_resource,cap_sys_admin+ep /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/ebpf_process.plugin
-        chmod 4550 /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/ebpf_process.plugin
-        chown root:openio /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/ebpf_process.plugin
+        setcap cap_sys_resource,cap_sys_admin+ep /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/ebpf.plugin
+        chmod 4550 /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/ebpf.plugin
+        chown root:openio /usr/lib/x86_64-linux-gnu/oio-netdata/plugins.d/ebpf.plugin
         ;;
 esac
 exit 0
