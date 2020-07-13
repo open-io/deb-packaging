@@ -88,6 +88,8 @@ _MDI_VERSIONS = (
     '19.10-unstable',
     '20.04',
     '20.04-unstable',
+    '20.10',
+    '20.10-unstable',
 )
 
 # Supported distributions
