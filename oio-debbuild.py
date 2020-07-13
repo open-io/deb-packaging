@@ -217,7 +217,7 @@ def pkgupload(work, **kwargs):
     if is_mini_dinstall_target(**kwargs):
         upload_pkg_dput(resultdir, pkg_basename, pkgdsc, **kwargs)
     else:
-        vprint('Unknown target repository:', kwargs['destmirror'], _ERROR)
+        vprint('Unknown target repository: ' + kwargs['destmirror'], _ERROR)
 
 
 def is_mini_dinstall_target(**kwargs):
