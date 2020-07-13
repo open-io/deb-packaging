@@ -1,3 +1,9 @@
+zookeeper (3.5.8-1oio) bionic; urgency=medium
+
+  * Non-maintainer upload.
+
+ -- Vincent Legoll <vincent.legoll@openio.io>  Mon, 13 Jul 2020 14:02:22 +0000
+
 zookeeper (3.5.6-1oio) bionic; urgency=medium
 
   * Non-maintainer upload.
