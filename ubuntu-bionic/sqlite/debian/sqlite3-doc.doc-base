@@ -1,0 +1,9 @@
+Document: sqlite3-reference
+Title: SQLite3 reference manual
+Author: D. Richard Hipp <drh@hwaci.com>
+Abstract: Overview of SQLite3
+Section: Data Management
+
+Format: HTML
+Index: /usr/share/doc/sqlite3/index.html
+Files: /usr/share/doc/sqlite3/*.html

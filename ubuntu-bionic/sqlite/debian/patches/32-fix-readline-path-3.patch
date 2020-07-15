@@ -1,0 +1,30 @@
+Index: sqlite3-3.26.0+fossilbc891ac6b/configure.ac
+===================================================================
+--- sqlite3-3.26.0+fossilbc891ac6b.orig/configure.ac
++++ sqlite3-3.26.0+fossilbc891ac6b/configure.ac
+@@ -62,7 +62,7 @@
+ #
+ #        This variables define the directory that contain header
+ #        files for the readline library.  If the compiler is able 
+-#        to find <readline.h> on its own, then this can be blank.
++#        to find <readline/readline.h> on its own, then this can be blank.
+ #
+ #    TARGET_EXEEXT
+ #
+@@ -548,12 +548,12 @@ if test x"$with_readline" != xno; then
+ 		[with_readline_inc=$withval],
+ 		[with_readline_inc="auto"])
+ 	if test "x$with_readline_inc" = xauto; then
+-		AC_CHECK_HEADER(readline.h, [found="yes"], [
++		AC_CHECK_HEADER(readline/readline.h, [found="yes"], [
+ 			found="no"
+ 			if test "$cross_compiling" != yes; then
+ 				for dir in /usr /usr/local /usr/local/readline /usr/contrib /mingw; do
+-					for subdir in include include/readline; do
+-						AC_CHECK_FILE($dir/$subdir/readline.h, found=yes)
++					for subdir in include; do
++						AC_CHECK_FILE($dir/$subdir/readline/readline.h, found=yes)
+ 						if test "$found" = "yes"; then
+ 							TARGET_READLINE_INC="-I$dir/$subdir"
+ 							break
+
