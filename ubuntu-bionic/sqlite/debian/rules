@@ -1,0 +1,170 @@
+#!/usr/bin/make -f
+#-*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
+DESTDIR=$(CURDIR)/debian/tmp
+
+DDEBUG=`if (echo $(DEB_BUILD_OPTIONS) | grep -q debug) then \
+		echo "--enable-debug"; \
+	else \
+		echo ""; \
+	fi`
+
+export DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+export DEB_HOST_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+export DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+export LDFLAGS += -Wl,--as-needed
+ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+  confflags += --build $(DEB_HOST_GNU_TYPE) --with-tcl=/usr/lib/$(DEB_HOST_MULTIARCH)/tcl8.6
+  export CROSS_BUILDING=no
+else
+  confflags += --build $(DEB_BUILD_GNU_TYPE) --host $(DEB_HOST_GNU_TYPE) --with-tcl=/usr/lib/$(DEB_HOST_MULTIARCH)/tcl8.6
+  LDFLAGS += -L/usr/lib/$(DEB_HOST_MULTIARCH)
+  export CROSS_BUILDING=yes
+endif
+
+ifeq ($(origin CC),default)
+  HOST_CC ?= $(DEB_HOST_GNU_TYPE)-gcc
+else
+  HOST_CC ?= $(CC)
+endif
+
+export CFLAGS += -O2 -fno-strict-aliasing \
+	-DSQLITE_SECURE_DELETE -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS \
+	-DSQLITE_ENABLE_RTREE=1 -DSQLITE_SOUNDEX=1 \
+	-DSQLITE_ENABLE_UNLOCK_NOTIFY \
+	-DSQLITE_OMIT_LOOKASIDE=1 -DSQLITE_ENABLE_DBSTAT_VTAB \
+	-DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1 \
+	-DSQLITE_ENABLE_LOAD_EXTENSION \
+	-DSQLITE_ENABLE_JSON1 \
+	-DSQLITE_LIKE_DOESNT_MATCH_BLOBS \
+	-DSQLITE_THREADSAFE=1 \
+	-DSQLITE_ENABLE_FTS3_TOKENIZER=1 \
+	-DSQLITE_USE_URI=1 \
+	-DSQLITE_MAX_SCHEMA_RETRY=25 \
+	-DSQLITE_ENABLE_PREUPDATE_HOOK \
+	-DSQLITE_ENABLE_SESSION \
+	-DSQLITE_ENABLE_STMTVTAB \
+	-DSQLITE_MAX_VARIABLE_NUMBER=250000
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	dh_autoreconf --as-needed
+	dh_update_autotools_config
+	./configure --prefix=/usr --mandir="/usr/share/man" \
+	  $(confflags) --enable-threadsafe \
+	  --enable-load-extension \
+	  --enable-json1 \
+	  --enable-fts4 \
+	  --enable-fts5 \
+	  --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
+	  --libexecdir=\$${libdir}/sqlite3 \
+	  TCLLIBDIR=/usr/lib/tcltk/sqlite3 \
+	  $(DDEBUG)
+
+	# remove double -ldl from sqlite3.pc
+	sed -i "s/\([-ldl .+]\) -ldl/\1/" sqlite3.pc
+
+	touch $@
+
+build-arch: build-stamp
+build-indep: build-stamp
+
+build: build-arch build-indep
+build-stamp: configure
+	dh_testdir
+	$(MAKE)
+	$(MAKE) sqldiff
+ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+	$(MAKE) lemon
+endif
+	cd ext/misc && $(HOST_CC) $(LDFLAGS) $(CPPFLAGS) $(CFLAGS) -g -fPIC -I../.. -shared csv.c -o csv.so
+
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f configure-stamp build-stamp
+	rm -f config.log config.h pkgIndex.tcl configure
+	[ ! -f Makefile ] || $(MAKE) distclean
+	rm -f config.h sqlite3session.h mksourceid
+	rm -f ext/misc/csv.so
+	dh_autoreconf_clean
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+
+	$(MAKE) install DESTDIR=$(DESTDIR)
+	chrpath -d $(DESTDIR)/usr/bin/sqlite3
+	chrpath -d $(DESTDIR)/usr/lib/tcltk/sqlite3/libtclsqlite3.so
+	install -m 0664 libtclsqlite3.la $(DESTDIR)/usr/lib/tcltk/sqlite3/
+	install -d $(DESTDIR)/usr/share/lemon
+	install -m 0664 tool/lempar.c $(DESTDIR)/usr/share/lemon/
+	install -m 0775 sqldiff $(DESTDIR)/usr/bin/
+	install -m 0775 lemon $(DESTDIR)/usr/bin/
+	install -d $(DESTDIR)/usr/lib/$(DEB_HOST_MULTIARCH)/sqlite/
+	install -m 0775 ext/misc/csv.so \
+		$(DESTDIR)/usr/lib/$(DEB_HOST_MULTIARCH)/sqlite/
+
+	# Remove *.la files per policy 3.9.1.0
+	sed -i "/dependency_libs/ s/'.*'/''/" `find $(DESTDIR) -name '*.la'`
+
+	# Create the pkgIndex.tcl file for the Tcl module. This generated file
+	# actually turns out to be relocatable.
+ifeq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
+	echo "pkg_mkIndex -verbose $(DESTDIR)/usr/lib/tcltk/sqlite3" | \
+		LD_LIBRARY_PATH=$(DESTDIR)/usr/lib/$(DEB_HOST_MULTIARCH) \
+		tclsh8.6
+	grep -q 'package ifneeded sqlite3' \
+		$(DESTDIR)/usr/lib/tcltk/sqlite3/pkgIndex.tcl || \
+		(echo "pkgIndex.tcl seems to be wrong" && exit 1)
+else
+	echo "" > $(DESTDIR)/usr/lib/tcltk/sqlite3/pkgIndex.tcl
+endif
+
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+
+	dh_install -i --sourcedir=$(DESTDIR)
+	#dh_installdocs -i
+	#dh_installchangelogs -i www/changes.html
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+
+	dh_install -a --sourcedir=$(DESTDIR)
+	dh_installman -a
+	#dh_installdocs -a
+	#dh_installchangelogs -a www/changes.html
+	dh_strip -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_makeshlibs -a
+	dh_installdeb -a
+	dh_shlibdeps -a -Ldebian/libsqlite3-0/usr/lib/$(DEB_HOST_MULTIARCH)
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-indep binary-arch
+.PHONY: build build-indep build-arch clean configure binary-indep binary-arch binary

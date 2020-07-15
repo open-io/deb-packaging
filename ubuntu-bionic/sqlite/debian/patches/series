@@ -1,0 +1,16 @@
+10-520466-libsqlite3-depends-on-libdl.patch
+10-520478-squash-bad-deps.patch
+20-hurd-locking-style.patch
+30-cross.patch
+10-665363-disable-malloc-usable-size.patch
+31-increase_SQLITE_MAX_DEFAULT_PAGE_SIZE_to_32k.patch
+02-use-packaged-lempar.c.patch
+32-fix-readline-path-3.patch
+40-compatibility_with_the_s390_architecture.patch
+41-adapt_FTS_test_cases_to_work_on_big-endian_platforms.patch
+50-Fix_a_problem_in_sqlite3CodecQueryParameters.patch
+51-Fix_a_4_byte_OOB_read_in_test_multiplex.patch
+60-CVE-2020-9327_part1.patch
+61-CVE-2020-9327_part2.patch
+70-Fix_problems_in_the_constant_propagation_optimization.patch
+80-CVE-2020-11655.patch
