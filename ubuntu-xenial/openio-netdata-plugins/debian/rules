@@ -7,30 +7,27 @@ include /usr/share/dpkg/default.mk
 %:
 	dh $@
 
+verride_dh_auto_clean:
+	# do nothing in order to keep the content of the dist/ directory
+
+override_dh_auto_test:
+	# do nothing in order to prevent running anything
+
+override_dh_dwz:
+	# do nothing in order to prevent running anything
+
 override_dh_auto_build:
-	cd .. && \
-	wget --no-check-certificate https://github.com/go-redis/redis/archive/v6.12.0.tar.gz && \
-	wget --no-check-certificate https://github.com/aws/aws-sdk-go/archive/v1.19.37.tar.gz && \
-	tar zxf v6.12.0.tar.gz && \
-	tar zxf v1.19.37.tar.gz && \
-	mkdir -p go/src/github.com/go-redis go/src/github.com/aws && \
-	ls -l && \
-	cd go/src && \
-	ls -l && \
-	ln -s ../../openio-netdata-plugins-* oionetdata && \
-	cd github.com/go-redis && \
-	ls -l && \
-	ln -s ../../../../redis-* redis && \
-	cd ../.. && \
-	cd github.com/aws && \
-	ls -l && \
-	ln -s ../../../../aws-* aws-sdk-go
-	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/openio.plugin/openio.plugin.go
-	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/zookeeper.plugin/zookeeper.plugin.go
-	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/container.plugin/container.plugin.go
-	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/command.plugin/command.plugin.go
-	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/fs.plugin/fs.plugin.go
-	GOPATH=$(shell pwd)/../go /usr/lib/go-1.10/bin/go build cmd/s3roundtrip.plugin/s3roundtrip.plugin.go
+	curl -Lqsko - https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz | tar -xzf - go/bin go/pkg go/src
+	GOPATH=$(CURDIR)/go PATH=$(CURDIR)/go/bin:${PATH} GOCACHE=$(CURDIR)/go/.cache make build
+
+override_dh_strip:
+	# do nothing in order to prevent running anything
+
+override_dh_installsystemd:
+	# do nothing in order to prevent running anything
+
+override_dh_installdocs:
+	# do nothing in order to prevent running anything
 
 override_dh_auto_install:
 	mkdir -pv $(DESTDIR)/usr/lib/x86_64-linux-gnu/netdata/plugins.d
