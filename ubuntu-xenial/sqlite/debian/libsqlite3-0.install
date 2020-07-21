@@ -1,0 +1,2 @@
+usr/lib/*/libsqlite3.so.*
+#usr/lib/*/sqlite/csv.so

@@ -1,0 +1,18 @@
+Index: sqlite3/src/test_multiplex.c
+==================================================================
+--- sqlite3/src/test_multiplex.c
++++ sqlite3/src/test_multiplex.c
+@@ -528,11 +528,11 @@
+ #endif
+       while( (sqlite3PendingByte % pGroup->szChunk)>=(pGroup->szChunk-65536) ){
+         pGroup->szChunk += 65536;
+       }
+     }
+-    pGroup->flags = flags;
++    pGroup->flags = (flags & ~SQLITE_OPEN_URI);
+     rc = multiplexSubFilename(pGroup, 1);
+     if( rc==SQLITE_OK ){
+       pSubOpen = multiplexSubOpen(pGroup, 0, &rc, pOutFlags, 0);
+       if( pSubOpen==0 && rc==SQLITE_OK ) rc = SQLITE_CANTOPEN;
+     }
+
