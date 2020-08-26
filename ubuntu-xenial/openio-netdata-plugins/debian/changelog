@@ -1,3 +1,9 @@
+openio-netdata-plugins (0.5.8-1) xenial; urgency=medium
+
+  * New release
+
+ -- Jerome Loyet <jerome@openio.io>  Wed, 26 Aug 2020 15:04:19 +0000
+
 openio-netdata-plugins (0.5.7-1) xenial; urgency=medium
 
   * New release
