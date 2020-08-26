@@ -1,3 +1,9 @@
+openio-netdata-plugins (0.5.8-1) bionic; urgency=medium
+
+  * New release
+
+ -- Jerome Loyet <jerome@openio.io>  Wed, 26 Aug 2020 06:00:00 +0000
+
 openio-netdata-plugins (0.5.7-1) bionic; urgency=medium
 
   * New release
