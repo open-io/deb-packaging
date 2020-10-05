@@ -1,3 +1,9 @@
+sqlite3 (3.31.1-5) bionic; urgency=high
+
+  * Repackage
+
+ -- Vincent Legoll <vincent.legoll@ovhcloud.com>  Mon, 05 Oct 2020 17:50:27 +0000
+
 sqlite3 (3.31.1-5) unstable; urgency=high
 
   * Backport upstream security fix for CVE-2020-11655: denial of service
