@@ -14,7 +14,7 @@ Build-Depends:
  , libzmq3-dev
  , libcurl4-gnutls-dev
  , libapreq2-dev (>= 1.2)
- , libsqlite3-dev (>= 3.7.11)
+ , libsqlite3-dev (>= 3.31.1-5)
  , libattr1-dev (>= 2.4.32)
  , libevent-dev (>= 2.1.8)
  , apache2 (>= 2.2)
@@ -58,7 +58,7 @@ Depends:
  , libdb5.3
  , python-pbr
  , python-yaml
- , libsqlite3-0 (>= 3.7.11)
+ , libsqlite3-0 (>= 3.31.1-5)
  , libleveldb1v5
  , python-simplejson (>= 2.0.9)
  , python-redis
