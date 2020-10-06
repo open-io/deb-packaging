@@ -1,0 +1,1034 @@
+oio-swift (2.25.0-1oio) bionic; urgency=medium
+
+  * Repackaged from https://salsa.debian.org/openstack-team/services/swift
+
+ -- Vincent Legoll <vincent.legoll>  Tue, 06 Oct 2020 11:28:27 +0100
+
+swift (2.25.0-4) unstable; urgency=medium
+
+  * Add missing directive in systemd files (services start before networking,
+    and then may just fail because they can't bind):
+    - After=network-online.target local-fs.target remote-fs.target 
+    - Wants=network-online.target 
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 15 Sep 2020 17:12:38 +0200
+
+swift (2.25.0-3) unstable; urgency=medium
+
+  * Add py3_Work_with_proper_native_string_paths_in_crypto_meta.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 31 Aug 2020 09:47:24 +0200
+
+swift (2.25.0-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 12 Jun 2020 14:22:55 +0200
+
+swift (2.25.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Rebase patches.
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 21 Apr 2020 10:38:46 +0200
+
+swift (2.24.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * d/patches: Rebased.
+  * Bump Standards-Version to 4.5.0.
+  * Rules-Requires-Root: no.
+  * Disable sphinxcontrib.rsvgconverter extension.
+  * d/patches/py38_cgi_lost_some_names.patch:
+    Drop, applied upstream.
+  * d/rules: Remove not needed override_dh_systemd_enable target.
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 13 Mar 2020 16:46:42 +0100
+
+swift (2.23.1-2) unstable; urgency=medium
+
+  * Add upstream patch: py38_cgi_lost_some_names.patch. (Closes: #951987).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 25 Feb 2020 11:55:02 +0100
+
+swift (2.23.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Remove one more not needed
+    package-supports-alternative-init-but-no-init.d-script
+    lintian override.
+  * Drop Python 3 patches, applied upstream.
+
+ -- Ondřej Nový <onovy@debian.org>  Wed, 23 Oct 2019 14:26:27 +0200
+
+swift (2.23.0-6) unstable; urgency=medium
+
+  * Uploading to unstable.
+  * Bump Standards-Version to 4.4.1.
+  * Remove not needed package-supports-alternative-init-but-no-init.d-script
+    lintian overrides.
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 21 Oct 2019 12:33:00 +0200
+
+swift (2.23.0-5) experimental; urgency=medium
+
+  * Add a number of Py3 fixes:
+    - py3_Fix_swift-drive-audit.patch
+    - py3_Fix_swift-recon.patch
+    - py3_fix_swift-dispersion-populate.patch
+    - py3_fix_swift-account-audit.patch
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 15 Oct 2019 16:53:21 +0200
+
+swift (2.23.0-4) experimental; urgency=medium
+
+  * Replace my old patch Fix_on-disk_encryption_under_Python_3.patch by the new
+    upstream one: Fix_kms_keymaster_under_Python_3.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 15 Oct 2019 03:16:37 +0200
+
+swift (2.23.0-3) experimental; urgency=medium
+
+  * Add Fix_on-disk_encryption_under_Python_3.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 11 Oct 2019 14:16:53 +0200
+
+swift (2.23.0-2) experimental; urgency=medium
+
+  * Do not use --processes=-1 when running tests, as this seems to fail on
+    buildds.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 07 Oct 2019 16:31:24 +0200
+
+swift (2.23.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fixed version of eventlet in (b-)d for this release.
+  * Add  python3-barbicanclient and python3-castellan as recommends in
+    swift-proxy, as they are needed for on-disk encryption.
+  * Removed patches applied upstream:
+    - sphinx_reproducible_build.patch
+    - fix-xattr_supported_check.patch
+  * Run tests with --processes=-1 to run them in parallel.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 04 Oct 2019 15:59:04 +0200
+
+swift (2.22.0-2) unstable; urgency=medium
+
+  * Remove swauth from Recommends.
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 13 Aug 2019 10:37:49 +0200
+
+swift (2.22.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Standards-Version to 4.4.0.
+  * Remove prerm/preinst scripts for upgrading from version 2.6.0-2.
+  * Add lintian overrides for
+    package-supports-alternative-init-but-no-init.d-script
+  * python3-swift.lintian-overrides: Fix wrong binary package name
+  * Use pybuild to build package.
+  * Clean using d/clean file instead of override_dh_auto_clean target.
+  * Bump debhelper compat level to 12.
+  * Cleanup systemd and init scripts generator.
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 05 Aug 2019 19:12:51 +0200
+
+swift (2.21.10+2019.07.13+git.4643412bd1-3) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Running wrap-and-sort -bast.
+  * Use debhelper-compat instead of debian/compat.
+
+  [ Thomas Goirand ]
+  * Fixed python3-os-api-ref-common -> python-os-api-ref-common depends for
+    swift-doc, which was a mistake when converting to Python 3.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 23 Jul 2019 18:41:54 +0200
+
+swift (2.21.10+2019.07.13+git.4643412bd1-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 17 Jul 2019 19:51:53 +0200
+
+swift (2.21.10+2019.07.13+git.4643412bd1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Switch swift to Python 3.
+  * Rebased patches.
+  * Added usr/bin/swift-container-deleter to the swift-container package.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 15 Jul 2019 15:09:23 +0200
+
+swift (2.21.0-1) experimental; urgency=medium
+
+  [ Michal Arbet ]
+  * d/control:
+      - Bump openstack-pkg-tools to version 99
+      - Add me to uploaders field
+  * d/copyright: Add me to copyright file
+  * New upstream version
+
+  [ Ondřej Nový ]
+  * d/p/fix-decryption-of-object-if-metadata-is-missing.patch:
+    Remove, applied upstream
+  * Rebased patches
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 13 May 2019 12:06:24 +0200
+
+swift (2.19.1-1) unstable; urgency=medium
+
+  * New upstream bugfix release
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 26 Feb 2019 11:53:35 +0100
+
+swift (2.19.0-6) unstable; urgency=medium
+
+  * Object decryption fix patch:
+    - Add a warning in the logs if path is different in
+      put_crypto_meta['key_id']['path'] and put_keys['id']['path']).
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 01 Feb 2019 13:38:08 +0100
+
+swift (2.19.0-5) unstable; urgency=medium
+
+  * Fix decryption of objects that sometimes is wrong.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 24 Jan 2019 20:48:22 +0100
+
+swift (2.19.0-3) unstable; urgency=medium
+
+  * Add Breaks of older systemd without CacheDirectory support
+  * Rename d/tests/control.autodep8 to d/tests/control.
+  * d/copyright: Bump my copyright year.
+  * Bump Standards-Version to 4.3.0 (no changes)
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 22 Jan 2019 17:41:50 +0100
+
+swift (2.19.0-2) unstable; urgency=medium
+
+  * Uploading to unstable
+  * Bump Standards-Version to 4.2.1
+
+ -- Ondřej Nový <onovy@debian.org>  Wed, 05 Sep 2018 12:24:08 +0200
+
+swift (2.19.0-1) experimental; urgency=medium
+
+  * New upstream release
+  * d/p/syslog_log_name.patch: Rebased
+  * Add python-ipaddress to B-D and D
+  * Add swift-ring-composer CLI
+
+ -- Ondřej Nový <onovy@debian.org>  Wed, 22 Aug 2018 14:30:40 +0200
+
+swift (2.18.0-1) experimental; urgency=medium
+
+  * New upstream release
+  * d/p/Fix_tests_using_O_TMPFILE.patch: Drop, applied upstream
+  * d/p/syslog_log_name.patch: Rebased
+  * Fix B-D for new upstream release
+  * Add swift-object-relinker manpage
+  * Add swift-container-sharder daemon and swift-manage-shard-ranges CLI
+  * Enable autopkgtest-pkg-python testsuite
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 20 Aug 2018 15:32:05 +0200
+
+swift (2.17.0-5) unstable; urgency=medium
+
+  * d/tests: Use AUTOPKGTEST_TMP instead of ADTTMP
+  * d/control: Use team+openstack@tracker.debian.org as maintainer
+  * Don't use has_key, which is deprecated (Closes: #906413)
+  * Really build docs with Python 3
+  * Use LC_ALL=C.UTF-8 when building docs
+  * Use SOURCE_DATE_EPOCH in docs to make build reproducible (again)
+  * Bump standards version to 4.2.0 (no changes)
+  * Add upstream metadata
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 20 Aug 2018 11:49:41 +0200
+
+swift (2.17.0-4) unstable; urgency=medium
+
+  * Remove python-keystonemiddleware as runtime depends
+  * Add python-keystonemiddleware | swauth as recommends for swift-proxy
+  * d/p/Fix_tests_using_O_TMPFILE.patch: Refresh from current upstream review
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 13 Mar 2018 13:07:06 +0100
+
+swift (2.17.0-3) unstable; urgency=medium
+
+  * Add python-keystonemiddleware as runtime depends.
+  * Removed versions when satisfied in Stretch.
+  * Removed breaks/replaces when transition is already done in Stretch.
+  * Refreshed patches.
+  * Add Fix_tests_using_O_TMPFILE.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 12 Mar 2018 08:58:19 +0000
+
+swift (2.17.0-2) unstable; urgency=medium
+
+  * Uploading to unstable
+  * d/control: Set Vcs-* to salsa.debian.org
+  * Running wrap-and-sort -bast
+  * d/copyright: Bump my copyright year
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 27 Feb 2018 12:49:44 +0100
+
+swift (2.17.0-1) experimental; urgency=medium
+
+  * New upstream release
+  * Sync with unstable
+  * Standards-Version is 4.1.3 now (no change)
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 09 Feb 2018 15:45:22 +0100
+
+swift (2.16.0-1) experimental; urgency=medium
+
+  * New upstream release
+  * Bump required version of python-cryptography
+  * d/patches/Be_more_tolerant_of_exception_messages_from_sqlite.patch:
+    Remove, applied upstream
+  * Rebased all patches
+  * Remove bin/swift-temp-url
+
+ -- Ondřej Nový <onovy@debian.org>  Sat, 09 Dec 2017 22:29:12 +0100
+
+swift (2.15.1-7) unstable; urgency=medium
+
+  * Fix wrong logrotate file
+  * Standards-Version is 4.1.2 now (no change)
+
+ -- Ondřej Nový <onovy@debian.org>  Sun, 10 Dec 2017 10:35:18 +0100
+
+swift (2.15.1-6) unstable; urgency=medium
+
+  * d/swift-container-generator: Remove container-reconciler
+  * Use dh_missing --fail-missing
+
+ -- Ondřej Nový <onovy@debian.org>  Sat, 09 Dec 2017 22:00:34 +0100
+
+swift (2.15.1-5) unstable; urgency=medium
+
+  * Create /var/log/swift and /var/lib/swift only during postinst
+  * Change WorkingDirectory to ~
+  * Use pkgos_var_user_group instead of pkgos_adduser in postinst
+  * Create /var/cache/swift in SysV init script
+
+ -- Ondřej Nový <onovy@debian.org>  Sat, 02 Dec 2017 19:45:07 +0100
+
+swift (2.15.1-4) unstable; urgency=medium
+
+  * Use tmpfiles.d, CacheDirectory and RuntimeDirectory instead of
+    ExecStartPre
+  * Set owner of /var/log/swift to root
+  * d/tests/daemon: Require isolation-container
+
+ -- Ondřej Nový <onovy@debian.org>  Sat, 02 Dec 2017 15:04:11 +0100
+
+swift (2.15.1-3) unstable; urgency=medium
+
+  * d/copyright: Add missing copyright holders
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 06 Nov 2017 09:15:02 +0100
+
+swift (2.15.1-2) unstable; urgency=medium
+
+  * Uploading to unstable
+
+ -- Ondřej Nový <onovy@debian.org>  Sun, 05 Nov 2017 21:12:27 +0100
+
+swift (2.15.1-1) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+  * New upstream release
+  * Bump required version of (build-)depends for new upstream release
+  * d/p/syslog_log_name.patch: rebase
+  * d/p/Be_more_tolerant_of_exception_messages_from_sqlite.patch:
+    fix sqlite error (Closes: #877298)
+  * Don't restart rsyslog in postrm/postinst, it's done by trigger
+  * d/copyright: Bump copyright years
+  * Install swift-object-relinker
+  * Install guide is now part of main docs
+  * d/control
+    - Don't depend on dh-systemd, it's not needed in new debhelper
+    - Remove deprecated ${python:Provides}
+  * Use python3-sphinx for building docs
+  * d/tests/help: Add swift-object-relinker
+  * Updating standards version to 4.1.1.
+
+  [ Daniel Baumann ]
+  * Updating vcs fields.
+  * Updating copyright format url.
+  * Updating maintainer field.
+  * Running wrap-and-sort -bast.
+  * Removing gbp.conf, not used anymore or should be specified in the
+    developers dotfiles.
+  * Correcting permissions in debian packaging files.
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 31 Oct 2017 14:43:03 +0100
+
+swift (2.10.2-1) unstable; urgency=medium
+
+  * New upstream stable release
+  * Removed patches applied upstream:
+    - Quarantine_malformed_database_schema_SQLite_errors.patch
+    - For_any_part_only_one_replica_can_move_in_a_rebalance.patch
+    - FTBFS_i386.patch
+
+ -- Ondřej Nový <onovy@debian.org>  Sat, 03 Jun 2017 13:35:44 +0200
+
+swift (2.10.1-3) unstable; urgency=medium
+
+  * d/patches/FTBFS_i386.patch: Fix FTBFS on i386 (Closes: #860638)
+
+ -- Ondřej Nový <onovy@debian.org>  Thu, 20 Apr 2017 22:51:28 +0200
+
+swift (2.10.1-2) unstable; urgency=medium
+
+  * Don't start rsyslog during postinst/postrm if it's stopped
+  * d/tests
+    - Added Python module import test
+    - Added daemons test
+  * Added patches from upstream master:
+    - For any part only one replica can move in a rebalance
+    - Quarantine malformed database schema SQLite errors
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 13 Jan 2017 10:05:12 +0100
+
+swift (2.10.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bumped debhelper version to 10
+
+ -- Ondřej Nový <onovy@debian.org>  Thu, 15 Dec 2016 16:11:51 +0100
+
+swift (2.10.0-3) unstable; urgency=medium
+
+  * Run swift-drive-audit cron by root
+    (needed for /var/log/kern.log reading and umount command)
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 17 Oct 2016 14:40:10 +0200
+
+swift (2.10.0-2) unstable; urgency=medium
+
+  * Uploading to unstable
+
+ -- Ondřej Nový <onovy@debian.org>  Fri, 07 Oct 2016 10:33:11 +0200
+
+swift (2.10.0-1) experimental; urgency=medium
+
+  * New upstream release
+  * d/s/options: extend-diff-ignore of .gitreview
+  * d/control: Using OpenStack's Gerrit as VCS URLs.
+  * Bump required version of dnspython to 1.14.0
+  * Added missing manpages from upstream
+
+ -- Ondřej Nový <onovy@debian.org>  Thu, 29 Sep 2016 09:43:09 +0200
+
+swift (2.9.0-2) experimental; urgency=medium
+
+  * Rebased on 2.7.0-10
+  * Removed doctrees from doc to make build reproducible
+  * Moved swift-recon and swift-object-expirer manpages to correct binary
+    packages
+  * Moved swift-config cli to swift binary package
+
+ -- Ondřej Nový <onovy@debian.org>  Wed, 21 Sep 2016 20:57:37 +0200
+
+swift (2.9.0-1) experimental; urgency=medium
+
+  * Rebased on 2.7.0-9
+  * New upstream release
+  * Changed (build) depends for new upstream release
+  * Build API ref and install guide documentation
+  * Added libjs-jquery, libjs-underscore and libjs-bootstrap dependency to
+    swift-doc
+  * Moved base documentation to "base" directory
+
+ -- Ondřej Nový <onovy@debian.org>  Sun, 17 Jul 2016 23:15:09 +0200
+
+swift (2.8.0-2) experimental; urgency=medium
+
+  * Rebased on 2.7.0-7
+
+ -- Ondřej Nový <onovy@debian.org>  Wed, 06 Jul 2016 00:35:48 +0200
+
+swift (2.8.0-1) experimental; urgency=medium
+
+  * New upstream release
+  * Removed build depend on git, not needed anymore
+  * Added missed example configs to docs
+  * Use dh_installdocs -A for installing AUTHORS file
+
+ -- Ondřej Nový <novy@ondrej.org>  Tue, 14 Jun 2016 20:23:21 +0200
+
+swift (2.7.0-10) unstable; urgency=medium
+
+  * Stop services first when upgrading from < 2.6.0-2 version
+
+ -- Ondřej Nový <onovy@debian.org>  Wed, 21 Sep 2016 19:34:00 +0200
+
+swift (2.7.0-9) unstable; urgency=medium
+
+  * Ignore errors when trying to restart rsyslog service in postrm too
+    (Closes: #830586)
+
+ -- Ondřej Nový <onovy@debian.org>  Mon, 11 Jul 2016 09:14:29 +0200
+
+swift (2.7.0-8) unstable; urgency=medium
+
+  * Ignore errors when trying to restart rsyslog service and be more robust
+
+ -- Ondřej Nový <onovy@debian.org>  Thu, 07 Jul 2016 16:06:46 +0200
+
+swift (2.7.0-7) unstable; urgency=medium
+
+  * Check for ring files before starting service (Closes: #829375)
+  * Remove all swift directories on purge
+  * Added missed example configs to docs
+  * Use dh_installdocs -A for installing AUTHORS file
+  * Added support for nodocs in DEB_BUILD_OPTIONS
+  * Use dh-exec for installing configs
+  * Use adm group for log directory
+  * Log to /var/log/swift and not to generic logfile
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 05 Jul 2016 23:24:04 +0200
+
+swift (2.7.0-6) unstable; urgency=medium
+
+  * Don't add user swift to adm group
+  * d/{control,copyright}: Use my @debian.org email address
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 21 Jun 2016 17:41:38 +0200
+
+swift (2.7.0-5) unstable; urgency=medium
+
+  * Bumped required version of python-setuptools to 20.6.8
+  * Use OSLO_PACKAGE_VERSION from openstack-pkg-tools
+
+ -- Ondřej Nový <novy@ondrej.org>  Tue, 14 Jun 2016 16:59:08 +0200
+
+swift (2.7.0-4) unstable; urgency=medium
+
+  * Bump required openstack-pkg-tools version to 45
+  * Removed run depends on python-setuptools
+  * Removed (build-)depends on python-paste, it's satisfied by
+    python-pastedeploy
+  * Added python-keystoneclient to Build-Depends-Indep
+
+ -- Ondřej Nový <novy@ondrej.org>  Thu, 09 Jun 2016 08:40:52 +0200
+
+swift (2.7.0-3) unstable; urgency=medium
+
+  * Standards-Version is 3.9.8 now (no change)
+  * Fix copyright year in documentation to make build reproducible
+  * Use pkgos includes inside postinst
+  * Sort inputs in d/rules to make build reproducible
+  * Override false-positive Lintian: spelling-error-in-copyright Thier Their
+  * Removed d/source/include-binaries, not needed anymore
+  * Change directory to $ADTTMP before running Debian tests
+  * wrap-and-sort -t -a
+  * Added Documentation to systemd units
+
+ -- Ondřej Nový <novy@ondrej.org>  Thu, 28 Apr 2016 21:33:07 +0200
+
+swift (2.7.0-2) unstable; urgency=medium
+
+  * Uploading to unstable
+  * Ignore errors when starting daemons during package install
+
+ -- Ondřej Nový <novy@ondrej.org>  Mon, 04 Apr 2016 10:53:24 +0200
+
+swift (2.7.0-1) experimental; urgency=medium
+
+  * New upstream release
+  * Support of multiple conf files in /etc/swift/*-server/ directories
+  * Added dh-python build-depends
+  * Bumped python-pyeclib required version
+  * Enabled autostarting of all daemons
+
+ -- Ondřej Nový <novy@ondrej.org>  Sun, 27 Mar 2016 23:24:34 +0200
+
+swift (2.6.0-2) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+  * Added Debian tests.
+  * Removed swift-init.
+  * Systemd support.
+  * Added container-sync config files.
+  * Changed all dependencies to same version of swift package.
+  * Changed shell of "swift" user to /bin/false.
+  * Add user "swift" to group "adm", not replace group list.
+  * Standards-Version is 3.9.7 now (no change).
+  * Fixed Vcs URL.
+
+  [ Thomas Goirand ]
+  * Added a backups folder in /etc/swift/backups which links back to
+    /var/backups/swift.
+
+ -- Ondřej Nový <novy@ondrej.org>  Wed, 02 Mar 2016 16:42:53 +0100
+
+swift (2.6.0-1) experimental; urgency=medium
+
+  [ Ondřej Nový ]
+
+  * New upstream release.
+  * Removed useless shlibs dependency.
+  * Watch file fixed.
+  * Removed PyEClib requirements patching.
+  * Removed simplejson dependency.
+  * Bumbed eventlet and dnspython dependency to new versions.
+  * Added python-os-testr build dependency.
+  * Added git build dependency.
+  * wrap-and-sort -t -a
+  * Removed wrong systemd unit files.
+  * Removed libjerasure2 build dependency.
+
+  [ Ivan Udovichenko ]
+
+  * d/rules: Fix config location for swift-object-expirer service.
+  * d/control: Add Breaks field to swift-object-expirer package.
+
+ -- Ondřej Nový <novy@ondrej.org>  Wed, 20 Jan 2016 05:31:21 -0500
+
+swift (2.5.0-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Added cron job for drive audit.
+  * Removed python-swiftclient dependency.
+  * Added libjerasure2 build dependency.
+  * Added myself to copyright file.
+  * Fixed debian/copyright.
+  * Fixed typo in swift-container-sync upstart job.
+
+  [ Marek Kaleta ]
+  * Moved drive audit to new package swift-drive-audit.
+  * Added myself to copyright file.
+
+ -- Ondřej Nový <novy@ondrej.org>  Sat, 16 Jan 2016 05:05:21 -0500
+
+swift (2.5.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * New upstream release.
+  * Workaround swift-init bug and send SIGKILL if SIGTERM is not successful.
+    Thanks to Petr Kuběna <petr.kubena@firma.seznam.cz>
+  * Moved same parts of init scripts to template.
+  * Allows one to change kill-interval in swift-init.
+  * man pages cleanup.
+
+  [ Thomas Goirand ]
+  * Removed Pre-Depends on dpkg.
+  * Removed Breaks+Replaces now obsolete after the release of Jessie.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 22 Oct 2015 20:54:44 +0000
+
+swift (2.4.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * New upstream release.
+  * swift-object-reconstructor init script is correctly installed now.
+  * Fixed service name of object-expirer.
+  * Added container-sync init script.
+  * All init scripts is using swift-init.
+  * Added myself as uploader.
+
+  [ Thomas Goirand ]
+  * Adds patch-requirements.txt-to-allow-pyeclib-versions.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 14 Sep 2015 13:21:00 +0000
+
+swift (2.3.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Added python-pyeclib as (build-)depends, bumped eventlet required version
+    to 0.16.1, and removed a few versions already provided by Jessie.
+  * Standards-Version is now 3.9.6.
+  * Removed applied upstream patch:
+    - CVE-2015-1856_Prevent-unauthorized-delete-in-versioned-container.patch
+  * Added usr/bin/swift-object-reconstructor to swift-object.
+  * Added startup scripts for swift-container-reconciler and
+    swift-object-reconstructor. Thanks to <ondrej.novy@firma.seznam.cz> for the
+    bug report and patch (Closes: #788450).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 04 Jun 2015 09:49:04 +0200
+
+swift (2.2.0-3) unstable; urgency=medium
+
+  * Fixed swift user creation (standardized on pkgos way).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 30 Jun 2015 17:03:05 +0200
+
+swift (2.2.0-2) unstable; urgency=high
+
+  * CVE-2015-1856 & OSSA 2015-006: Unauthorized delete of versioned Swift
+    object. Applied upstream patch: Prevent unauthorized delete in versioned
+    container (Closes: #783163).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 23 Apr 2015 09:42:47 +0200
+
+swift (2.2.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Removed the no intersphinx patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 16 Oct 2014 12:44:38 +0000
+
+swift (2.2.0~rc1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 08 Oct 2014 22:29:36 +0800
+
+swift (2.1.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Removed CVE-2014-3497_properly_quote_www-authenticate_header_value.patch
+    applied upstream.
+  * Added new command lines into packages:
+    - usr/bin/swift-container-info
+    - usr/bin/swift-container-reconciler
+    - usr/bin/swift-reconciler-enqueue
+    - usr/bin/swift-account-info
+  * Added new package (+init script): swift-account-expirer (Closes: #760363).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 01 Jul 2014 19:31:22 +0800
+
+swift (1.13.1-1) unstable; urgency=high
+
+  * New upstream release.
+  * CVE-2014-3497: XSS in Swift requests through WWW-Authenticate header.
+    Appilied upstream patch properly_quote_www-authenticate_header_value.patch
+    (Closes: #752087).
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 12 Apr 2014 11:19:56 +0800
+
+swift (1.12.0-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #737638).
+  * Added new (build-)dependency: python-dnspython.
+  * Removed CVE-2014-0006 patch, applied upstream.
+  * Added PYTHONPATH=. when running unit tests.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 04 Feb 2014 23:21:54 +0800
+
+swift (1.11.0-2) unstable; urgency=high
+
+  * CVE-2014-0006: Use constant time comparison in tempURL. Applied upstream
+    patch (Closes: #735582).
+  * Fix sphinx doc building.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 17 Jan 2014 00:31:56 +0800
+
+swift (1.11.0-1) unstable; urgency=medium
+
+  * New upstream relase.
+  * Removed swift-bench things, since that's gone from upstream project (it's
+    moved as a separate project at https://github.com/openstack/swift-bench).
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 13 Dec 2013 17:21:20 +0800
+
+swift (1.10.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 18 Oct 2013 01:08:31 +0800
+
+swift (1.10.0~rc1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Removed applied upstream patches.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 10 Oct 2013 11:59:08 +0800
+
+swift (1.8.0-7) unstable; urgency=low
+
+  * Added "Account Quota Correction" patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 26 Sep 2013 16:03:31 +0800
+
+swift (1.8.0-6) unstable; urgency=low
+
+  [ Thomas Goirand ]
+  * Renamed all init script with .init extension in the debian folder, so it is
+    more easy to list them with ls.
+  * Added upstart scripts.
+  * Added myself and Julien in debian/copyright for the packaging, plus
+    Canonical for the upstart jobs.
+  * Removes unwanted python-webob (build-)depends (Closes: #715452).
+  * CVE-2013-4155: DoS using superfluous object tombstones. Upstream patch
+    fixes handling of DELETE obj reqs with old timestamp (Closes: #719008).
+
+  [ Julien Cristau ]
+  * CVE-2013-2161: Check user input in XML responses (closes: #712202)
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 28 Jun 2013 15:33:19 +0800
+
+swift (1.8.0-5) unstable; urgency=low
+
+  * swift-account should be Breaks+Replaces: swift (<< 1.8.0-4~) to allow to
+    do backports.
+  * Added Fix-formpost-with-queries-without-user_agent.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 17 Jun 2013 15:14:15 +0800
+
+swift (1.8.0-4) unstable; urgency=low
+
+  * Corrects a mistake with the location of the account-server.conf, which
+    should have been in swift-account and not the swift package. As a
+    consequence, adds Breaks+Replaces: swift (<< 1.8.0-4) (Closes: #710916).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 04 Jun 2013 00:04:35 +0800
+
+swift (1.8.0-3) unstable; urgency=low
+
+  * Ran wrap-and-sort.
+  * Installs a default configuration file for swift-dispersion-report
+    (Closes: #668775), thanks to Loic Dachary <loic@dachary.org> for reporting.
+  * Now using upstream manpages when available.
+  * Now using upstream configuration files as default in /etc/swift
+    (Closes: #661811)
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 01 Jun 2013 19:55:10 +0800
+
+swift (1.8.0-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * Updates the Allow-all-headers-requested-for-CORS.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 15 May 2013 22:32:52 +0800
+
+swift (1.8.0-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 03 Apr 2013 20:30:31 +0800
+
+swift (1.7.5-3) experimental; urgency=low
+
+  * New upstream release.
+  * Fixed typoe dependency to python-swiftclient (and not python-swift-client).
+  * Removed patches now applied upstream.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 03 Apr 2013 20:31:31 +0800
+
+swift (1.7.5-2) experimental; urgency=low
+
+  * Added missing python-swiftclient dependency in swift-account. Thanks to
+    Viktor Křivák for reporting (Closes: #703623).
+  * Adds adds Add-handler-for-CORS-actual-requests.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 22 Mar 2013 01:01:47 +0800
+
+swift (1.7.5-1) experimental; urgency=low
+
+  [ Mehdi Abaakouk ]
+  * New upstream release
+  * Fixed -x switch issue in swift-bench
+
+  [ Thomas Goirand ]
+  * Fixed wrong format URL in debian/copyright.
+  * Added missing AUTHORS file in all packages.
+  * Removed useless X-Python-Version: >= 2.6 in control, since we already
+  Build-Depends: on python-all (>=2.6.6-3~).
+  * Removed \r from debian/copyright.
+  * Added missing Provides: ${python:Provides}, uses same short desc as in
+  Ubuntu, Break with versions << 1.6 (because of the python-swiftclient
+  package).
+  * Imported Ubuntu patch to stop accessing network when building docs.
+  * Fixes a log_daemon_msg typo present in most swift init scripts.
+  * Removes useless "swift is open source software" from long description.
+
+  [ Julien Danjou ]
+  * Add /var/cache/swift to use swift-recon
+  * Add configuration and cron job for swift-recon
+  * Move swift-recon-cron to swift-object
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 17 Dec 2012 15:34:54 +0000
+
+swift (1.4.8-2) unstable; urgency=high
+
+  * CVE-2012-4406: Do not use pickle for serialization in memcache, but JSON
+  (Closes: #686812).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 06 Sep 2012 08:40:18 +0000
+
+swift (1.4.8-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Ghe Rivero <ghe.rivero@stackops.com>  Fri, 23 Mar 2012 08:09:54 +0100
+
+swift (1.4.6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Ghe Rivero <ghe.rivero@stackops.com>  Mon, 13 Feb 2012 11:28:38 +0100
+
+swift (1.4.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Ghe Rivero <ghe@debian.org>  Mon, 09 Jan 2012 16:18:17 +0100
+
+swift (1.4.4+git145-g89ef1f4-1) experimental; urgency=low
+
+  * New snapshot release.
+
+ -- Ghe Rivero <ghe@debian.org>  Wed, 04 Jan 2012 09:56:14 +0100
+
+swift (1.4.4+git135-g913cfcf-1) experimental; urgency=low
+
+  * New snapshot release.
+
+ -- Ghe Rivero <ghe@debian.org>  Wed, 28 Dec 2011 08:35:37 +0100
+
+swift (1.4.4-2) unstable; urgency=low
+
+  * Do not install test (Closes: #649908)
+
+ -- Julien Danjou <acid@debian.org>  Mon, 19 Dec 2011 14:02:51 +0100
+
+swift (1.4.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Remove useless provides in control.
+
+ -- Julien Danjou <acid@debian.org>  Thu, 24 Nov 2011 17:17:46 +0100
+
+swift (1.4.3-1) unstable; urgency=low
+
+  * [984c1f2] Imported Upstream version 1.4.3
+     - Closes: #629998  no more st binary
+  * Some package cleanup and sync with ubuntu pkg
+
+ -- Ghe Rivero <ghe@debian.org>  Tue, 08 Nov 2011 08:25:40 +0100
+
+swift (1.3.0-1) unstable; urgency=low
+
+  * Added missing adduser and lsb-base dependency.
+  * Made the long description longer (it was really minimalistic).
+  * Reworked all Debian init.d scripts.
+  * Added many missing manpages.
+  * Added default container-server.conf & object-server.conf files.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 10 May 2011 09:24:33 +0000
+
+swift (1.3.0-0ubuntu1) natty; urgency=low
+
+  * New upstream release.
+
+ -- Chuck Short <zulcss@ubuntu.com>  Fri, 15 Apr 2011 08:25:53 -0400
+
+swift (1.3-rc+bzr266-0ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream release.
+
+ -- Chuck Short <zulcss@ubuntu.com>  Thu, 14 Apr 2011 09:38:42 -0400
+
+swift (1.2.0+bzr208-0ubuntu1) natty; urgency=low
+
+  * New upstream release.
+
+ -- Chuck Short <zulcss@ubuntu.com>  Tue, 12 Apr 2011 10:32:30 -0400
+
+swift (1.2.0-0ubuntu1) natty; urgency=low
+
+  * New upstream release.
+  * Updated VC locations in control file.
+  * Set maintainer properly for Ubuntu.
+
+ -- Monty Taylor <mordred@inaugust.com>  Wed, 16 Feb 2011 08:50:48 -0800
+
+swift (1.1.0+bzr173-0ubuntu1) natty; urgency=low
+
+  * Fresh snapshot.
+  * Updated watch file to also know about the new tarballs place.
+  * Update Maintainer to point to myself.
+  * Add a get-orig-source target to debian/rules.
+
+ -- Soren Hansen <soren@ubuntu.com>  Sat, 15 Jan 2011 00:19:38 +0100
+
+swift (1.0.99+1.1.0rc1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated to standards version 3.9.1.
+  * Use jquery package to provide jquery.js.
+  * Updated some of the control file to make lintian happy.
+
+ -- Monty Taylor <mordred@inaugust.com>  Tue, 19 Oct 2010 14:32:17 -0700
+
+swift (1.0.2-7) unstable; urgency=low
+
+  * Added swift-bench to swift package.
+
+ -- Monty Taylor <mordred@inaugust.com>  Mon, 18 Oct 2010 09:14:22 -0700
+
+swift (1.0.2-6) unstable; urgency=low
+
+  * swift-auth-create-account is now swift-auth-add-user.
+
+ -- Greg Holt <gholt@rackspace.com>  Fri, 03 Sep 2010 13:32:20 +0000
+
+swift (1.0.2-5) unstable; urgency=low
+
+  * Add a step in debian/rules to create doc/build if it doesn't exist.
+
+ -- Monty Taylor <mordred@inaugust.com>  Wed, 25 Aug 2010 08:55:45 -0700
+
+swift (1.0.2-4) unstable; urgency=low
+
+  * Fixed the depend on sphinx - it actually only needs to be >= 1.0.
+  * Added paste-deploy as a depend.
+
+ -- Monty Taylor <mordred@inaugust.com>  Tue, 24 Aug 2010 12:02:31 -0700
+
+swift (1.0.2-3) unstable; urgency=low
+
+  [ Greg Holt ]
+  * Added a png to the docs.
+
+  [ Monty Taylor ]
+  * Add rsync and remove duplicate net-tools dependency.
+  * Added Jay Payne to uploaders.
+  * Added Greg Holt to uploaders.
+  * Updated VCS location to use UDD locations.
+  * We actually depend on 1.0 of sphinx.
+
+ -- Monty Taylor <mordred@inaugust.com>  Tue, 24 Aug 2010 00:02:00 -0700
+
+swift (1.0.2-2) unstable; urgency=low
+
+  * Created python-swift package and actually put the python files in it.
+  * Added python build dep.
+  * Added debhelper token to postinst script. Also removed the
+    byte-compiling of the files, since python-support should do that for us.
+  * Cleaned up control file - removed homepage entries in description,
+    removed trailing periods.
+  * Changed provides in swift-proxy to match policy.
+
+ -- Monty Taylor <mordred@inaugust.com>  Wed, 28 Jul 2010 13:32:55 -0700
+
+swift (1.0.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added VCS info to control file.
+
+ -- Monty Taylor <mordred@inaugust.com>  Thu, 22 Jul 2010 18:32:02 -0500
+
+swift (1.0.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Monty Taylor <mordred@inaugust.com>  Mon, 19 Jul 2010 11:22:41 -0500
+
+swift (1.0.0-1) unstable; urgency=low
+
+  [ Michael Barton ]
+  * Initial release
+
+  [ Monty Taylor ]
+  * Added docs to doc system.
+
+ -- Monty Taylor <mordred@inaugust.com>  Wed, 14 Jul 2010 10:41:11 -0500

@@ -1,0 +1,17 @@
+Description: Disable sphinxcontrib.rsvgconverter extension
+Author: Ondřej Nový <novy@ondrej.org>
+Forwarded: not-needed
+Last-Update: 2020-02-12
+
+--- a/doc/source/conf.py
++++ b/doc/source/conf.py
+@@ -55,8 +55,7 @@
+               'sphinx.ext.todo',
+               'sphinx.ext.coverage',
+               'sphinx.ext.ifconfig',
+-              'openstackdocstheme',
+-              'sphinxcontrib.rsvgconverter']
++              'openstackdocstheme']
+ todo_include_todos = True
+ 
+ # Add any paths that contain templates here, relative to this directory.

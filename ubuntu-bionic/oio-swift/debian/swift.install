@@ -1,0 +1,20 @@
+#! /usr/bin/dh-exec --with=install
+debian/swift.rsyslog => /etc/rsyslog.d/swift.conf
+etc/container-sync-realms.conf-sample => /etc/swift/container-sync-realms.conf
+etc/container-sync-realms.conf-sample => /usr/share/doc/swift/examples/container-sync-realms.conf
+etc/dispersion.conf-sample => /etc/swift/dispersion.conf
+etc/dispersion.conf-sample => /usr/share/doc/swift/examples/dispersion.conf
+etc/swift.conf-sample => /etc/swift/swift.conf
+etc/swift.conf-sample => /usr/share/doc/swift/examples/swift.conf
+usr/bin/swift-config
+usr/bin/swift-container-deleter
+usr/bin/swift-dispersion-populate
+usr/bin/swift-dispersion-report
+usr/bin/swift-form-signature
+usr/bin/swift-get-nodes
+usr/bin/swift-oldies
+usr/bin/swift-orphans
+usr/bin/swift-recon
+usr/bin/swift-ring-builder
+usr/bin/swift-ring-builder-analyzer
+usr/bin/swift-ring-composer
