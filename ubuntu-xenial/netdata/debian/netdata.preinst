@@ -1,0 +1,5 @@
+#! /bin/sh
+
+set -e
+test -d /etc/netdata/health.d && rm -rf /etc/netdata/health.d
+exit 0
