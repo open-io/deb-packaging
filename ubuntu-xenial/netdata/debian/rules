@@ -35,11 +35,17 @@ $(MULTIARCH_INSTALL): % : %.in
 
 override_dh_install: $(MULTIARCH_INSTALL)
 	dh_install
+	# Remove unneeded .keep files
+	find "$(TOP)" -name .keep -delete
+	# Remove health.d directory to prevent email spam
+	rm -rf $(TOP)/etc/netdata/health.d
 
 override_dh_install-arch: $(MULTIARCH_INSTALL)
 	dh_install
 	# Remove unneeded .keep files
 	find "$(TOP)" -name .keep -delete
+	# Remove health.d directory to prevent email spam
+	rm -rf $(TOP)/etc/netdata/health.d
 
 override_dh_install-indep:
 	dh_install
