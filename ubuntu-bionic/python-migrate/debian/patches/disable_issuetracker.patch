@@ -1,0 +1,16 @@
+Description: Don't use issuetracker to avoid hitting the network during build
+Author: Michael Terry <michael.terry@canonical.com>
+Forwarded: not-needed
+--- a/doc/source/conf.py
++++ b/doc/source/conf.py
+@@ -96,8 +96,8 @@
+ # Options for sphinxcontrib.issuetracker
+ # --------------------------------------
+ 
+-issuetracker = 'google code'
+-issuetracker_project = 'sqlalchemy-migrate'
++#issuetracker = 'google code'
++#issuetracker_project = 'sqlalchemy-migrate'
+ 
+ 
+ # Options for HTML output
