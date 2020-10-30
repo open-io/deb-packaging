@@ -343,6 +343,7 @@ Depends:
  swift (=${binary:Version}),
  ${misc:Depends},
  ${python3:Depends},
+ init-system-helpers (>= 1.54),
 Recommends:
  python3-barbicanclient,
  python3-castellan,
