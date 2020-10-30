@@ -1,3 +1,9 @@
+python-eventlet (0.29.1-1) bionic; urgency=medium
+
+  * Updated to latest version
+
+ -- Vincent Legoll <vincent.legoll@ovhcloud.com>  Fri, 30 Oct 2020 14:49:27 +0100
+
 python-eventlet (0.20.0-4oio1) bionic; urgency=medium
 
   * Repackaged from bionic
