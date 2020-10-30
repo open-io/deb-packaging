@@ -1,1 +1,2 @@
-support-alpha.patch
+# VL: was OK for 0.4.15, but does not apply to 0.4.17
+#support-alpha.patch
