@@ -16,36 +16,14 @@ export PYBUILD_TEST_ARGS=\
 %:
 	dh $@ --buildsystem=pybuild --with python3,sphinxdoc
 
-override_dh_auto_build:
-	dh_auto_build
-
-	/usr/share/openstack-pkg-tools/pkgos_insert_include pkgos_func python3-swift.postinst
-
-	set -e ; set -x ; \
-	for i in $(sort $(wildcard debian/*.init.in)) ; do \
-		debian/gen-init $$i ; \
-	done
-
-override_dh_auto_install:
-	dh_auto_install
-
-	rm debian/tmp/usr/bin/swift-init
-
 override_dh_installinit:
-	set -e ; set -x ; \
-	for FILE in $(sort $(patsubst debian/%,%,$(wildcard debian/*.init))) ; do \
-		PKG=`echo $$FILE | cut -d. -f1` ; \
-		NAME=`echo $$FILE | cut -d. -f2` ; \
-		dh_installinit --error-handler=true -p$$PKG --name=$$NAME ;\
-	done
+	echo "Do nothing"
 
 override_dh_installsystemd:
-	set -e ; set -x ; \
-	for FILE in $(sort $(patsubst debian/%,%,$(wildcard debian/*.service))) ; do \
-		PKG=`echo $$FILE | cut -d. -f1` ; \
-		NAME=`echo $$FILE | cut -d. -f2` ; \
-		dh_installsystemd -p$$PKG --name=$$NAME ;\
-	done
+	echo "Do nothing"
+
+override_dh_auto_test:
+	echo "Do nothing"
 
 gen-init-configurations:
 	echo "Do nothing"
@@ -63,5 +41,5 @@ override_dh_installdocs:
 
 	dh_installdocs -A AUTHORS
 
-override_dh_missing:
-	dh_missing --fail-missing
+#override_dh_missing:
+#	echo "Do nothing"
