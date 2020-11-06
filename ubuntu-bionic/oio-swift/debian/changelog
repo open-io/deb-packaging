@@ -1,3 +1,27 @@
+oio-swift (2.27.0.0a0-1oio) bionic; urgency=medium
+
+  * update with actual oio code
+
+ -- Jerome loyet <jerome.loyet@ovhcloud.com>  Fri, 06 Nov 2020 08:00:00 +0100
+
+oio-swift (2.25.0-4oio) bionic; urgency=medium
+
+  * one package to rule'em all
+
+ -- Jerome loyet <jerome.loyet@ovhcloud.com>  Fri, 06 Nov 2020 08:00:00 +0100
+
+oio-swift (2.25.0-3oio) bionic; urgency=medium
+
+  * simplpify package by removing system files/dep + useless subpackages
+
+ -- Jerome loyet <jerome.loyet@ovhcloud.com>  Fri, 06 Nov 2020 08:00:00 +0100
+
+oio-swift (2.25.0-2oio) bionic; urgency=medium
+
+  * fix init-systemd-helper dep
+
+ -- Jerome loyet <jerome.loyet@ovhcloud.com>  Thu, 05 Nov 2020 08:00:00 +0100
+
 oio-swift (2.25.0-1oio) bionic; urgency=medium
 
   * Repackaged from https://salsa.debian.org/openstack-team/services/swift

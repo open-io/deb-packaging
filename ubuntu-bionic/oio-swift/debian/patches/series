@@ -1,2 +1,3 @@
 syslog_log_name.patch
 disable_sphinxcontrib_rsvgconverter.patch
+requirements_txt.patch
