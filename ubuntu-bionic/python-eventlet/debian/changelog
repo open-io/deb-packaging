@@ -1,3 +1,9 @@
+python-eventlet (0.29.1-2) bionic; urgency=medium
+
+  * Remove python2 support
+
+ -- Jerome Loyet <jerome.loyet@ovhcloud.com>  Tue, 17 Nov 2020 07:00:00 +0100
+
 python-eventlet (0.29.1-1) bionic; urgency=medium
 
   * Updated to latest version
