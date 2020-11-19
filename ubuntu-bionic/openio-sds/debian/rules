@@ -29,7 +29,11 @@ include /usr/share/dpkg/default.mk
 	dh $@ --buildsystem cmake
 
 override_dh_auto_configure:
-	PATH="${PATH}:/usr/lib/go-1.10/bin" \
+	wget -O - https://golang.org/dl/go1.15.5.linux-amd64.tar.gz | tar -xz
+	mkdir go/.cache
+	sed -i "s@find_program(GO_EXECUTABLE go)@set(GO_EXECUTABLE GOCACHE=${PWD}/go/.cache GOPATH=${PWD}/go ${PWD}/go/bin/go)@" CMakeLists.txt
+
+	PATH="${PATH}:${PWD}/go/bin" \
 	dh_auto_configure --buildsystem cmake -- \
 	-DCMAKE_BUILD_TYPE="Release" \
 	-DCMAKE_INSTALL_PREFIX="/usr" \
@@ -63,8 +67,8 @@ override_dh_auto_build:
 	tar -C go/src/golang.org/x -xf release-branch.go1.11.tar.gz
 	ln -s sys-release-branch.go1.11 go/src/golang.org/x/sys
 
-	# Go from golang-1.10 is not in PATH
-	PATH="${PATH}:/usr/lib/go-1.10/bin" GOPATH="${GOPATH}:${PWD}/go" dh_auto_build --buildsystem cmake
+	PATH="${PATH}:${PWD}/go/bin" \
+	dh_auto_build --buildsystem cmake
 	python3 setup.py build
 
 override_dh_install:
