@@ -1,4 +1,4 @@
-sqlite3 (3.31.1-5) unstable; urgency=high
+sqlite3 (3.31.1-5) xenial; urgency=high
 
   * Backport upstream security fix for CVE-2020-11655: denial of service
     (segmentation fault) via a malformed window-function query.

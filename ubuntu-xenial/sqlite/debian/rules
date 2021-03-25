@@ -57,7 +57,7 @@ export CFLAGS += -O2 -fno-strict-aliasing \
 
 configure: configure-stamp
 configure-stamp:
-	dh_testdir
+	#dh_testdir
 	dh_autoreconf --as-needed
 	dh_update_autotools_config
 	./configure --prefix=/usr --mandir="/usr/share/man" \
@@ -81,7 +81,7 @@ build-indep: build-stamp
 
 build: build-arch build-indep
 build-stamp: configure
-	dh_testdir
+	#dh_testdir
 	$(MAKE)
 	$(MAKE) sqldiff
 ifneq ($(DEB_BUILD_GNU_TYPE), $(DEB_HOST_GNU_TYPE))
@@ -92,19 +92,19 @@ endif
 	touch $@
 
 clean:
-	dh_testdir
-	dh_testroot
+	#dh_testdir
+	#dh_testroot
 	rm -f configure-stamp build-stamp
 	rm -f config.log config.h pkgIndex.tcl configure
 	[ ! -f Makefile ] || $(MAKE) distclean
 	rm -f config.h sqlite3session.h mksourceid
 	rm -f ext/misc/csv.so
-	dh_autoreconf_clean
+	#dh_autoreconf_clean
 	dh_clean
 
 install: build
-	dh_testdir
-	dh_testroot
+	#dh_testdir
+	#dh_testroot
 
 	$(MAKE) install DESTDIR=$(DESTDIR)
 	chrpath -d $(DESTDIR)/usr/bin/sqlite3
@@ -135,8 +135,8 @@ else
 endif
 
 binary-indep: build install
-	dh_testdir
-	dh_testroot
+	#dh_testdir
+	#dh_testroot
 
 	dh_install -i --sourcedir=$(DESTDIR)
 	#dh_installdocs -i
@@ -149,8 +149,8 @@ binary-indep: build install
 	dh_builddeb -i
 
 binary-arch: build install
-	dh_testdir
-	dh_testroot
+	#dh_testdir
+	#dh_testroot
 
 	dh_install -a --sourcedir=$(DESTDIR)
 	dh_installman -a
