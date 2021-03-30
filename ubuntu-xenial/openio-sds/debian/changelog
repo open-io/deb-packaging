@@ -1,3 +1,9 @@
+openio-sds (5.9.0-2) xenial; urgency=medium
+
+  * New release (sqlite 3.31.1-5)
+
+ -- Vincent Legoll <vincent.legoll@ovhcloud.com>  Mon, 30 Mar 2021 09:39:34 +0000
+
 openio-sds (5.4.0-2) xenial; urgency=medium
 
   * New release
