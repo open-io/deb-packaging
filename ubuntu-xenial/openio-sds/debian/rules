@@ -29,6 +29,7 @@ include /usr/share/dpkg/default.mk
 	dh $@ --buildsystem cmake
 
 override_dh_auto_configure:
+	sed -i 's/.{GO_EXECUTABLE} vet . &&//' rawx/CMakeLists.txt
 	PATH="${PATH}:/usr/lib/go-1.10/bin" \
 	dh_auto_configure --buildsystem cmake -- \
 	-DCMAKE_BUILD_TYPE="Release" \
