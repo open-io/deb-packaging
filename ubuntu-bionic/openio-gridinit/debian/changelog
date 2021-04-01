@@ -1,3 +1,9 @@
+openio-gridinit (2.2.0-1) bionic; urgency=medium
+
+  * New release
+
+ -- Florent Vennetier <florent.vennetier@ovhcloud.com>  Tue, 12 Jan 2021 18:04:27 +0000
+
 openio-gridinit (2.0.2-4) bionic; urgency=medium
 
   * New release

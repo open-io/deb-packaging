@@ -1,7 +1,7 @@
 Source: openio-gridinit
 Section: unknown
 Priority: optional
-Maintainer: Romain Acciari <romain.acciari@openio.io>
+Maintainer: Jérôme Loyet <jerome.loyet@ovhcloud.com>
 Build-Depends: debhelper (>= 9), dh-systemd, cmake, libglib2.0-dev, xutils-dev
 Standards-Version: 3.9.5
 Homepage: <insert the upstream URL, if relevant>
