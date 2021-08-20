@@ -1,0 +1,79 @@
+#!/usr/bin/make -f
+
+PYTHONS:=$(shell pyversions -vr)
+PYTHON3S:=$(shell py3versions -vr)
+
+UPSTREAM_GIT := https://github.com/openstack/sqlalchemy-migrate.git
+include /usr/share/openstack-pkg-tools/pkgos.make
+
+export OSLO_PACKAGE_VERSION=$(VERSION)
+
+include /usr/share/python/python.mk
+
+LAST_CHANGE = $(shell dpkg-parsechangelog -S Date)
+BUILD_DATE  = $(shell LC_ALL=C date -u "+%B %d, %Y" -d "$(LAST_CHANGE)")
+
+%:
+	dh $@ --buildsystem=python_distutils --with python2,python3,sphinxdoc
+
+override_dh_auto_clean:
+	rm -rf dist build
+	find . -name '*\.py[co]' -exec rm {} \;
+	rm -f docs/reference.txt debian/install
+	cp debian/test_db.cfg $(CURDIR)
+	rm -rf .testrepository
+
+override_dh_auto_install:
+	set -e ; for pyvers in $(PYTHONS); do \
+		python$$pyvers setup.py install --install-layout=deb \
+			--root $(CURDIR)/debian/python-migrate; \
+	done
+	set -e ; for pyvers in $(PYTHON3S); do \
+		python$$pyvers setup.py install --install-layout=deb \
+		--root $(CURDIR)/debian/python3-migrate; \
+	done
+	rm -f $(CURDIR)/debian/python*/usr/lib/python*/dist-packages/*.pth
+	mv $(CURDIR)/debian/python-migrate/usr/bin/migrate $(CURDIR)/debian/python-migrate/usr/bin/python2-migrate
+	mv $(CURDIR)/debian/python3-migrate/usr/bin/migrate $(CURDIR)/debian/python3-migrate/usr/bin/python3-migrate
+	mv $(CURDIR)/debian/python-migrate/usr/bin/migrate-repository $(CURDIR)/debian/python-migrate/usr/bin/python2-migrate-repository
+	mv $(CURDIR)/debian/python3-migrate/usr/bin/migrate-repository $(CURDIR)/debian/python3-migrate/usr/bin/python3-migrate-repository
+
+override_dh_python3:
+	dh_python3 --shebang=/usr/bin/python3
+
+override_dh_sphinxdoc:
+ifeq (,$(findstring nodocs, $(DEB_BUILD_OPTIONS)))
+	PYTHONPATH=$(CURDIR) sphinx-build -b html -a -E -N -D today="$(BUILD_DATE)" doc/source debian/python-migrate-doc/usr/share/doc/python-migrate-doc/html/
+	dh_sphinxdoc -O--buildsystem=python_distutils
+endif
+
+override_dh_installchangelogs:
+	dh_installchangelogs -i doc/source/changelog.rst
+
+override_dh_compress:
+	dh_compress -i -X.py -X.rst -X.js -Xobjects.inv
+
+override_dh_auto_test:
+ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
+	chmod +x debian/test.sh
+
+	# Create a working "migrate" binary, so that shell calls continue to
+	# work even without python-migrate being installed
+	mkdir -p debian/bin
+	cp debian/migrate-for-tests debian/bin/migrate
+	sed -i "s#REPLACE_THIS_PATH#$(CURDIR)#" debian/bin/migrate
+
+	# Create a minimalist egg-info, so that "import migrate"
+	# works and gets the correct version
+	mkdir -p sqlalchemy_migrate-$(VERSION).egg-info
+	echo "Metadata-Version: 1.1" >sqlalchemy_migrate-$(VERSION).egg-info/PKG-INFO
+	echo "Name: sqlalchemy-migrate" >>sqlalchemy_migrate-$(VERSION).egg-info/PKG-INFO
+	echo "Version: $(VERSION)" >>sqlalchemy_migrate-$(VERSION).egg-info/PKG-INFO
+
+	# Launch the actual tests
+	$(CURDIR)/debian/test.sh
+
+	# Clean everything
+	rm -rf debian/bin
+	rm -rf sqlalchemy_migrate-$(VERSION).egg-info
+endif
