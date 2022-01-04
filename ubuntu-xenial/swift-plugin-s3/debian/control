@@ -32,7 +32,8 @@ Homepage: https://github.com/openstack/swift3/
 
 Package: swift-plugin-s3
 Architecture: all
-Depends: python-lxml,
+Depends: python-functools32,
+         python-lxml,
          python-swift,
          ${misc:Depends},
          ${python:Depends},
